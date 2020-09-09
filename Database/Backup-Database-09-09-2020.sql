@@ -31,9 +31,9 @@ CREATE TABLE `answer` (
   `IsCorrect` tinyint(1) DEFAULT NULL,
   `CorrectAnswer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `Question` (`Question`),
   KEY `CreatedBy` (`CreatedBy`),
@@ -74,9 +74,9 @@ CREATE TABLE `config` (
   `NumberQuestionLevel10` int(50) DEFAULT NULL,
   `TotalQuestion` int(50) DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `CreatedBy` (`CreatedBy`),
   KEY `UpdatedBy` (`UpdatedBy`),
@@ -112,9 +112,9 @@ CREATE TABLE `examination` (
   `Term` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Lecturer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `CreatedBy` (`CreatedBy`),
   KEY `UpdatedBy` (`UpdatedBy`),
@@ -145,9 +145,9 @@ CREATE TABLE `question` (
   `Level` int(11) DEFAULT NULL,
   `Type` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `CreatedBy` (`CreatedBy`),
   KEY `UpdatedBy` (`UpdatedBy`),
@@ -177,9 +177,9 @@ CREATE TABLE `questiontopic` (
   `Question` int(11) DEFAULT NULL,
   `Topic` int(11) DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `Question` (`Question`),
   KEY `Topic` (`Topic`),
@@ -215,9 +215,9 @@ CREATE TABLE `quiz` (
   `Template` int(11) DEFAULT NULL,
   `Code` int(11) DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `Examination` (`Examination`),
   KEY `Config` (`Config`),
@@ -253,9 +253,9 @@ CREATE TABLE `quizcontent` (
   `Quiz` int(11) DEFAULT NULL,
   `QuestionID` int(11) DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `Quiz` (`Quiz`),
   KEY `CreatedBy` (`CreatedBy`),
@@ -292,9 +292,9 @@ CREATE TABLE `template` (
   `AnswerContent` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `FooterContent` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `CreatedBy` (`CreatedBy`),
   KEY `UpdatedBy` (`UpdatedBy`),
@@ -323,9 +323,9 @@ CREATE TABLE `topic` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
   KEY `CreatedBy` (`CreatedBy`),
   KEY `UpdatedBy` (`UpdatedBy`),
@@ -357,9 +357,9 @@ CREATE TABLE `user` (
   `Fullname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Role` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `CreatedBy` int(11) NOT NULL,
-  `CreatedAt` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
-  `UpdatedAt` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -370,7 +370,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','123456','Dung','1',0,'27/08/2020',NULL,NULL),(2,'dung','123456','Dung','1',0,'27/08/2020',NULL,NULL),(3,'trung','123456','Trung','2',0,'27/08/2020',NULL,NULL),(4,'thay1','123456','Thay1','3',0,'27/08/2020',NULL,NULL);
+INSERT INTO `user` VALUES (1,'admin','123456','Dung','1',0,'2020-09-09 18:35:35',NULL,NULL),(2,'dung','123456','Dung','1',0,'2020-09-09 18:38:12',NULL,NULL),(3,'trung','123456','Trung','2',0,'2020-09-09 18:38:12',NULL,NULL),(4,'thay1','123456','Thay1','3',0,'2020-09-09 18:38:12',NULL,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-30 12:53:21
+-- Dump completed on 2020-09-09 18:39:58
