@@ -12,6 +12,10 @@ app.use(bodyParser.json())
 app.get('/', (req, res) => {
     res.send("Homepage");
 });
+// Require topic routes
+const topicRoutes = require('./src/routes/topic.route')
+// using as middleware
+app.use('/v1/topic', topicRoutes)
 // listen for requests
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);
