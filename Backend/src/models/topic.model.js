@@ -4,10 +4,9 @@ var Topic = function(topic){
   this.Content     = topic.Content;
   this.CreatedBy   = topic.CreatedBy;
   this.UpdatedBy   = topic.UpdatedBy;
-  this.CreatedAt   = new Date();
-  this.UpdatedAt   = new Date();
+
 };
-Topic.create = function (newTop, result) {
+Topic.add = function (newTop, result) {
 dbConn.query("INSERT INTO topic set ?", newTop, function (err, res) {
 if(err) {
   console.log("error: ", err);
@@ -19,7 +18,7 @@ else{
 }
 });
 };
-Topic.findById = function (id, result) {
+Topic.getTopicById = function (id, result) {
 dbConn.query("Select * from topic where id = ? ", id, function (err, res) {
 if(err) {
   console.log("error: ", err);
@@ -30,7 +29,7 @@ else{
 }
 });
 };
-Topic.findAll = function (result) {
+Topic.getTopic = function (result) {
 dbConn.query("Select * from topic", function (err, res) {
 if(err) {
   console.log("error: ", err);
@@ -42,7 +41,7 @@ else{
 }
 });
 };
-Topic.update = function(id, topic, result){
+Topic.updateTopicById = function(id, topic, result){
 dbConn.query("UPDATE topic SET Content=?,CreatedBy=?,UpdatedBy=? WHERE id = ?", [topic.Content,topic.CreatedBy,topic.UpdatedBy, id], function (err, res) {
 if(err) {
   console.log("error: ", err);
@@ -52,7 +51,7 @@ if(err) {
 }
 });
 };
-Topic.delete = function(id, result){
+Topic.deleteTopicById = function(id, result){
 dbConn.query("DELETE FROM topic WHERE id = ?", [id], function (err, res) {
 if(err) {
   console.log("error: ", err);
