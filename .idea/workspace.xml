@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/config.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/question.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/questiontopic.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/quiz.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/models/config.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/models/question.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/models/questiontopic.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/models/quiz.model.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/routes/config.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/routes/question.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/routes/questiontopic.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/src/routes/quiz.route.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sh.exe.stackdump" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/config/db.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,7 +87,8 @@
       <workItem from="1600530826237" duration="1983000" />
       <workItem from="1600739881992" duration="7026000" />
       <workItem from="1600758285998" duration="761000" />
-      <workItem from="1600759639283" duration="525000" />
+      <workItem from="1600759639283" duration="1051000" />
+      <workItem from="1600760714514" duration="71000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -124,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599880854377</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js">
+      <created>1600760214327</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1600760214327</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +140,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Dung add source" />
     <MESSAGE value="Edit code topic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Edit code topic" />
+    <MESSAGE value="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js" />
   </component>
 </project>

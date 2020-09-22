@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `quiz_management` /*!40100 DEFAULT CHARACTER SET 
 USE `quiz_management`;
 -- MariaDB dump 10.17  Distrib 10.4.11-MariaDB, for Win64 (AMD64)
 --
--- Host: 14.186.50.153    Database: quiz_management
+-- Host: localhost    Database: quiz_management
 -- ------------------------------------------------------
 -- Server version	10.4.11-MariaDB
 
@@ -82,7 +82,7 @@ CREATE TABLE `config` (
   KEY `UpdatedBy` (`UpdatedBy`),
   CONSTRAINT `config_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `config_ibfk_2` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,6 +91,7 @@ CREATE TABLE `config` (
 
 LOCK TABLES `config` WRITE;
 /*!40000 ALTER TABLE `config` DISABLE KEYS */;
+INSERT INTO `config` VALUES (1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,'2020-09-22 13:04:57',1,NULL),(2,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,1,'2020-09-22 13:12:37',1,NULL);
 /*!40000 ALTER TABLE `config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +121,7 @@ CREATE TABLE `examination` (
   KEY `UpdatedBy` (`UpdatedBy`),
   CONSTRAINT `examination_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `examination_ibfk_2` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,6 +130,7 @@ CREATE TABLE `examination` (
 
 LOCK TABLES `examination` WRITE;
 /*!40000 ALTER TABLE `examination` DISABLE KEYS */;
+INSERT INTO `examination` VALUES (1,120,'1','test','test','test','test','test','test',1,'2020-09-22 13:03:33',1,NULL);
 /*!40000 ALTER TABLE `examination` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +155,7 @@ CREATE TABLE `question` (
   KEY `UpdatedBy` (`UpdatedBy`),
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `question_ibfk_2` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,6 +164,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO `question` VALUES (1,'Test',1,'Test',1,'2020-09-22 13:15:20',1,NULL),(2,NULL,NULL,NULL,1,'2020-09-22 13:16:52',1,NULL),(3,'test',1,'1',1,'2020-09-22 13:17:46',1,NULL);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +192,7 @@ CREATE TABLE `questiontopic` (
   CONSTRAINT `questiontopic_ibfk_2` FOREIGN KEY (`Topic`) REFERENCES `topic` (`ID`),
   CONSTRAINT `questiontopic_ibfk_3` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `questiontopic_ibfk_4` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,6 +201,7 @@ CREATE TABLE `questiontopic` (
 
 LOCK TABLES `questiontopic` WRITE;
 /*!40000 ALTER TABLE `questiontopic` DISABLE KEYS */;
+INSERT INTO `questiontopic` VALUES (1,1,1,1,'2020-09-22 13:16:15',1,NULL);
 /*!40000 ALTER TABLE `questiontopic` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +233,7 @@ CREATE TABLE `quiz` (
   CONSTRAINT `quiz_ibfk_3` FOREIGN KEY (`Template`) REFERENCES `template` (`ID`),
   CONSTRAINT `quiz_ibfk_4` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `quiz_ibfk_5` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -238,6 +242,7 @@ CREATE TABLE `quiz` (
 
 LOCK TABLES `quiz` WRITE;
 /*!40000 ALTER TABLE `quiz` DISABLE KEYS */;
+INSERT INTO `quiz` VALUES (1,1,1,1,1,1,'2020-09-22 13:12:51',1,NULL);
 /*!40000 ALTER TABLE `quiz` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +305,7 @@ CREATE TABLE `template` (
   KEY `UpdatedBy` (`UpdatedBy`),
   CONSTRAINT `template_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `template_ibfk_2` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,6 +314,7 @@ CREATE TABLE `template` (
 
 LOCK TABLES `template` WRITE;
 /*!40000 ALTER TABLE `template` DISABLE KEYS */;
+INSERT INTO `template` VALUES (1,'Test','Test','Test','Test','Test','Test','Test',1,'2020-09-22 13:07:10',1,NULL);
 /*!40000 ALTER TABLE `template` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,7 +337,7 @@ CREATE TABLE `topic` (
   KEY `UpdatedBy` (`UpdatedBy`),
   CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -340,6 +346,7 @@ CREATE TABLE `topic` (
 
 LOCK TABLES `topic` WRITE;
 /*!40000 ALTER TABLE `topic` DISABLE KEYS */;
+INSERT INTO `topic` VALUES (1,'hehe',1,'2020-09-10 09:46:21',1,'2020-09-11 10:01:53'),(2,'testgfhgf',1,'2020-09-10 09:49:34',1,'2020-09-10 09:49:34'),(3,'testgfhgf',1,'2020-09-11 10:01:29',1,'2020-09-11 10:01:29'),(4,'Dung',1,'2020-09-12 10:18:15',1,NULL),(5,'test',1,'2020-09-21 10:50:59',1,NULL);
 /*!40000 ALTER TABLE `topic` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,15 +360,15 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
-  `Password` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `Password` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Fullname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Role` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `Role` varchar(11) COLLATE utf8_unicode_ci NOT NULL COMMENT '1 is super admin, 2  is admin, 3 is user',
   `CreatedBy` int(11) NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,7 +377,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','123456','Dung','1',0,'2020-09-09 18:35:35',NULL,NULL),(2,'dung','123456','Dung','1',0,'2020-09-09 18:38:12',NULL,NULL),(3,'trung','123456','Trung','2',0,'2020-09-09 18:38:12',NULL,NULL),(4,'thay1','123456','Thay1','3',0,'2020-09-09 18:38:12',NULL,NULL);
+INSERT INTO `user` VALUES (1,'admin','$2a$10$lcSG\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','administrator','1',0,'2020-09-09 18:35:35',2,'2020-09-22 12:52:55'),(2,'dung','$2a$10$eUd1r1A8FNwFQfCvk67lSuJMO95PV.9SSZ.uXO5CEjK0Js6OTq1B6','Tran Hoang Dung','',0,'2020-09-09 18:38:12',2,'2020-09-22 13:52:39'),(3,'trung','$2a$10$7opI\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','Trung tester','2',0,'2020-09-09 18:38:12',2,'2020-09-22 12:52:15'),(4,'thay1','$2a$10$Blcl\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','thay1','3',0,'2020-09-09 18:38:12',2,'2020-09-22 12:52:31'),(6,'dung12','$2a$10$TapN\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','Dungtest','2',2,'2020-09-22 12:38:01',2,NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,4 +398,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-09 18:39:58
+-- Dump completed on 2020-09-22 14:49:07
