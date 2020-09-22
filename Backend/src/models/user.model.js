@@ -79,7 +79,7 @@ User.updateUserById = function (id, userinfo, result) {
         queryObj.Role = userinfo.Role;
         queryObj.UpdatedBy = id;
 
-        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, WHERE id = ?", [userinfo.Password, userinfo.Fullname, userinfo.Role, userinfo.UpdatedBy, id], function (err, res) {
+        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy, queryObj.UpdatedBy.id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
