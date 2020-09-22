@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="" />
+    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/config.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/question.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/questiontopic.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/controllers/quiz.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/models/config.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/models/question.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/models/questiontopic.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/models/quiz.model.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/routes/config.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/routes/question.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/routes/questiontopic.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Backend/src/routes/quiz.route.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sh.exe.stackdump" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/config/db.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +36,8 @@
     </option>
   </component>
   <component name="Git.Rebase.Settings">
-    <option name="ONTO" value="refs/remotes/origin/trung" />
+    <option name="PRESERVE_MERGES" value="true" />
+    <option name="ONTO" value="refs/heads/master" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -69,7 +87,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f074ab4d-2ec6-46fe-b3b6-c4b03545724d" name="Default Changelist" comment="" />
+      <changelist id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="" />
       <created>1599646786565</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -82,6 +100,7 @@
       <workItem from="1600530826237" duration="1983000" />
       <workItem from="1600739881992" duration="7026000" />
       <workItem from="1600758285998" duration="761000" />
+      <workItem from="1600759639283" duration="525000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
