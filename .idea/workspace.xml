@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="f074ab4d-2ec6-46fe-b3b6-c4b03545724d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/topic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/topic.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/config/db.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,6 +23,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Rebase.Settings">
+    <option name="ONTO" value="refs/remotes/origin/trung" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -41,6 +41,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
   </component>
   <component name="RunDashboard">
@@ -54,6 +56,18 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/Backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -72,6 +86,7 @@
       <workItem from="1600397633447" duration="858000" />
       <workItem from="1600530826237" duration="1983000" />
       <workItem from="1600739881992" duration="7026000" />
+      <workItem from="1600758285998" duration="761000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>

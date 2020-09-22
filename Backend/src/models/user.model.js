@@ -11,8 +11,8 @@ var User = function (user) {
     this.UpdatedBy = user.UpdatedBy;
 };
 //add user
-User.addUser = function (accessID, newUser, result) {
-    if (accessID === 2) {
+User.addUser = function (accessID,accessRole, newUser, result) {
+    if (accessRole === 2) {
         console.log("You dont have permission to create account");
         return callback(1, 'invalid_user_permission', 422, 'You dont have permission to create account', null);
     } else {
@@ -55,7 +55,7 @@ User.getUserById = function (id, result) {
         return result(1, 'get_one_user_fail', 400, error, null);
     }
 };
-User.getUser = function (accessUserId,result) {
+User.getUser = function (result) {
     try {
         dbConn.query("Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user", function (err, res) {
             if (err) {
@@ -70,16 +70,15 @@ User.getUser = function (accessUserId,result) {
         return result(1, 'get_all_user_fail', 400, error, null);
     }
 };
-User.updateUserById = function (id, userinfo, result) {
+User.updateUserById = function (accessId, userinfo, result) {
     try {
         let queryObj = {};
         queryObj.Password = BCrypt.hashSync(userinfo.Password, 10);
-        queryObj.Username = userinfo.Username;
         queryObj.Fullname = userinfo.Fullname;
         queryObj.Role = userinfo.Role;
-        queryObj.UpdatedBy = id;
-
-        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, WHERE id = ?", [userinfo.Password, userinfo.Fullname, userinfo.Role, userinfo.UpdatedBy, id], function (err, res) {
+        queryObj.UpdatedBy = accessId;
+        queryObj.Id = accessId;
+        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=? WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -113,29 +112,25 @@ User.authenticate = function(loginName,password,result){
         if(typeof password !== 'string' ){
             return result(1, 'invalid_user_password', 422, 'password is not a string', null);
         }
-        let where = { username: loginName };
-        let attributes = ['Id', 'Username','Password', 'Fullname', 'Role'];
-        User.findOne({
-            where: where,
-            attributes: attributes}).then( account=>{
-            "use strict";
-            if (account) {
-                BCrypt.compare( password, account.Password, function (error, isTrue) {
+        dbConn.query("SELECT Username, Password from user where Username= ?",loginName,function(err,res)
+        {
+            if (err) {
+                console.log("error: ", err);
+                result(null, err);
+            }
+            else{
+                let usernameDb = res[0].Username;
+                let passwordDb= res[0].Password;
+                BCrypt.compare(password, passwordDb, function (error, isTrue) {
                     if (isTrue === true) {
-                        return result(null, null, 200, null, account);
+                        return result(null, 'connect_success', 200, null, res);
                     } else {
-                        return result(1, 'wrong_password', 422, null, null);
+                        return result(null, 'wrong_password', 404, null, error);
                     }
                 });
-            }
-            else {
-                return result(1, 'invalid_user', 404, null, null);
-            }
-        }).catch(function(error){
-            "use strict";
-            return result(1, 'find_one_user_fail', 400, error, null);
 
-        })
+            }
+            });
         }
     catch(error){
         return result(1, 'authenticate_user_fail', 400, error, null);
