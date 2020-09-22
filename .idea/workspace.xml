@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f074ab4d-2ec6-46fe-b3b6-c4b03545724d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/config/db.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" afterDir="false" />
-    </list>
+    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
