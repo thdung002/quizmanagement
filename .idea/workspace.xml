@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f074ab4d-2ec6-46fe-b3b6-c4b03545724d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/topic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/topic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,6 +33,9 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1hGoS62m9NYhsvn0uCa1s1zfTcm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -59,6 +68,10 @@
       <workItem from="1599646787971" duration="1121000" />
       <workItem from="1599876966089" duration="3800000" />
       <workItem from="1599880789836" duration="153000" />
+      <workItem from="1600249302072" duration="3469000" />
+      <workItem from="1600397633447" duration="858000" />
+      <workItem from="1600530826237" duration="1983000" />
+      <workItem from="1600739881992" duration="7026000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
