@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
-    </list>
+    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +20,7 @@
   </component>
   <component name="Git.Rebase.Settings">
     <option name="PRESERVE_MERGES" value="true" />
-    <option name="ONTO" value="refs/remotes/origin/master" />
+    <option name="ONTO" value="refs/heads/trung" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -126,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600760214327</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="answer">
+      <created>1600838611180</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1600838611180</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +152,7 @@
     <MESSAGE value="Edit code topic" />
     <MESSAGE value="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js" />
     <MESSAGE value="edit db" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit db" />
+    <MESSAGE value="answer" />
+    <option name="LAST_COMMIT_MESSAGE" value="answer" />
   </component>
 </project>
