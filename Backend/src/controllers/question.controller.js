@@ -1,58 +1,58 @@
 'use strict';
-const Questiontopic = require('../models/questiontopic.model');
+const Question = require('../models/question.model');
 module.exports = {
-    //get all questiontopic
-    getQuestiontopic: function (req, res) {
-        Questiontopic.getQuestiontopic(function (err, questiontopic) {
+    //get all question
+    getQuestion: function (req, res) {
+        Question.getQuestion(function (err, question) {
             if (err)
                 res.send(err);
-            console.log('res', questiontopic);
-            res.send(questiontopic);
+            console.log('res', question);
+            res.send(question);
         })
     },
 
 
-    //create a new questiontopic
-    addQuestiontopic: function (req, res) {
-        const new_questiontopic = new Questiontopic(req.body);
+    //create a new question
+    addQuestion: function (req, res) {
+        const new_question = new Question(req.body);
     //handles null error
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
             res.status(400).send({error: true, message: 'Please provide all required field'});
         } else {
-            Questiontopic.add(new_questiontopic, function (err, questiontopic) {
+            Question.add(new_question, function (err, question) {
                 if (err)
                     res.send(err);
-                res.json({error: false, message: "Questiontopic added successfully!", data: questiontopic});
+                res.json({error: false, message: "Question added successfully!", data: question});
             });
         }
     },
-    //get questiontopic by id
-    getQuestiontopicById: function (req, res) {
-        Questiontopic.getQuestiontopicById(req.params.id, function (err, questiontopic) {
+    //get question by id
+    getQuestionById: function (req, res) {
+        Question.getQuestionById(req.params.id, function (err, question) {
             if (err)
                 res.send(err);
-            res.json(questiontopic);
+            res.json(question);
         })
     },
 
-    //upadte questiontopic
-    updateQuestiontopicById: function (req, res) {
+    //upadte question
+    updateQuestionById: function (req, res) {
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
             res.status(400).send({error: true, message: 'Please provide all required field'});
         } else {
-            Questiontopic.update(req.params.id, new Questiontopic(req.body), function (err, questiontopic) {
+            Question.update(req.params.id, new Question(req.body), function (err, question) {
                 if (err)
                     res.send(err);
-                res.json({error: false, message: 'Questiontopic successfully updated'});
+                res.json({error: false, message: 'Question successfully updated'});
             });
         }
     },
-    //delete questiontopic
-    deleteQuestiontopicById: function (req, res) {
-        Questiontopic.deleteQuestiontopicById(req.params.id, function (err, questiontopic) {
+    //delete question
+    deleteQuestionById: function (req, res) {
+        Question.deleteQuestionById(req.params.id, function (err, question) {
             if (err)
                 res.send(err);
-            res.json({error: false, message: 'Questiontopic successfully deleted'});
+            res.json({error: false, message: 'Question successfully deleted'});
         })
     }
 };
