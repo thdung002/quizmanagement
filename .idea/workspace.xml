@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/config/db.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,6 +89,7 @@
       <workItem from="1600758285998" duration="761000" />
       <workItem from="1600759639283" duration="1051000" />
       <workItem from="1600760714514" duration="71000" />
+      <workItem from="1600824240781" duration="618000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
