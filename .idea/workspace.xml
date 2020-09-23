@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="" />
+    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/config.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/config.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/question.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/question.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/quiz.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/quiz.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/config.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/config.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/questiontopic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/questiontopic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/quiz.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quiz.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/topic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/topic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/question.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/question.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/questiontopic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/questiontopic.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
