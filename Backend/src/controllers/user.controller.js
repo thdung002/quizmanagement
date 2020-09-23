@@ -14,7 +14,7 @@ module.exports = {
             User.addUser(id,role,new_user, function (err, result) {
                 if (err)
                     res.send(err);
-                res.json({error: false, message: "User added successfully!", data: result});
+                res.json({message: "User added successfully!", data: result});
             });
         }
     },
@@ -43,7 +43,7 @@ module.exports = {
             User.updateUserById(req.params.id, new User(req.body), function (err, result) {
                 if (err)
                     res.send(err);
-                res.json({error: false, result});
+                res.json({ result});
             });
         }
     },
@@ -62,7 +62,7 @@ module.exports = {
         User.authenticate(loginName,password,function(err,result){
             if(err)
                 res.send(err);
-            res.json({error:false,result});
+            res.json({result});
         })
     }
 

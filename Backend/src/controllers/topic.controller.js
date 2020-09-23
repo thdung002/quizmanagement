@@ -23,7 +23,7 @@ module.exports = {
             Topic.addTopic(new_topic, function (err, topic) {
                 if (err)
                     res.send(err);
-                res.json({error: false, message: "Topic added successfully!", data: topic});
+                res.json({ message: "Topic added successfully!", data: topic});
             });
         }
     },
@@ -44,7 +44,7 @@ module.exports = {
             Topic.update(req.params.id, new Topic(req.body), function (err, topic) {
                 if (err)
                     res.send(err);
-                res.json({error: false, message: 'Topic successfully updated'});
+                res.json({ message: 'Topic successfully updated'});
             });
         }
     },
@@ -53,7 +53,7 @@ module.exports = {
         Topic.deleteTopicById(req.params.id, function (err, topic) {
             if (err)
                 res.send(err);
-            res.json({error: false, message: 'Topic successfully deleted'});
+            res.json({ message: 'Topic successfully deleted'});
         })
     }
 };
