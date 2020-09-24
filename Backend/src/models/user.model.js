@@ -1,5 +1,7 @@
 'use strict';
 var dbConn = require('./../../config/db.config');
+const Sequelize = require('sequelize');
+
 const BCrypt = require('bcryptjs');
 
 var User = function (user) {
@@ -55,17 +57,59 @@ User.getUserById = function (id, result) {
         return result(1, 'get_one_user_fail', 400, error, null);
     }
 };
-User.getUser = function (result) {
+User.getUser = function (page,result) {
+    let perPage = 2;
+    let sort = [];
+    if (page ===0)
+        page=1;
+    if(perPage<=0)
+    {
+        perPage=2;
+    }
+    if(sort.length <= 0){
+        sort.push(['updatedAt', 'DESC']);
+    }
+    let offset = perPage * (page - 1);
+
     try {
-        dbConn.query("Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user", function (err, res) {
-            if (err) {
+        dbConn.query("SELECT COUNT(*) as total from USER ", function(err, rows, feilds){
+            if(err)
+            {
                 console.log("error: ", err);
-                result(null, err);
-            } else {
-                console.log('topic : ', res);
-                result(null, res);
+                return result(err, null);
             }
-        });
+            else{
+                dbConn.query("Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID  limit ? offset ? ",[perPage,offset], function (err, res) {
+                    if (err) {
+                        console.log("error: ", err);
+                        result(null, err);
+                    } else {
+                        // console.log('topic : ', res);
+                        // result(null, res);
+                        let pages = rows;
+                        let output={
+                            data: res,
+                            pages:{
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: pages
+                            },
+                            items:{
+                                begin: ((page * perPage) - perPage) + 1,
+                                end: page * perPage,
+                                total: res.length
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
     } catch (error) {
         return result(1, 'get_all_user_fail', 400, error, null);
     }

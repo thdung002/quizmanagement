@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/config.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/config.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/question.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/question.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/quiz.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/quiz.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/topic.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/config.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/config.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/questiontopic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/questiontopic.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/quiz.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quiz.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/topic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/topic.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/question.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/question.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/questiontopic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/questiontopic.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/topic.route.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/user.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/user.route.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +50,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test/s3lab_tpl_nodejs_mysql" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
@@ -106,6 +100,8 @@
       <workItem from="1600759639283" duration="1051000" />
       <workItem from="1600760714514" duration="71000" />
       <workItem from="1600824240781" duration="618000" />
+      <workItem from="1600880984359" duration="78000" />
+      <workItem from="1600914498525" duration="7912000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
