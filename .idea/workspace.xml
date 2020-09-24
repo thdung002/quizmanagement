@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/answer.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/answer.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/topic.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/topic.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/answer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/answer.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes/user.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/user.route.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,7 +103,8 @@
       <workItem from="1600760714514" duration="71000" />
       <workItem from="1600824240781" duration="618000" />
       <workItem from="1600880984359" duration="78000" />
-      <workItem from="1600914498525" duration="7912000" />
+      <workItem from="1600914498525" duration="7984000" />
+      <workItem from="1600939137464" duration="8380000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -138,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600838611180</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="dung add pagination for get all user">
+      <created>1600923521955</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1600923521956</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,6 +173,7 @@
     <MESSAGE value="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js" />
     <MESSAGE value="edit db" />
     <MESSAGE value="answer" />
-    <option name="LAST_COMMIT_MESSAGE" value="answer" />
+    <MESSAGE value="dung add pagination for get all user" />
+    <option name="LAST_COMMIT_MESSAGE" value="dung add pagination for get all user" />
   </component>
 </project>

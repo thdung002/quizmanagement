@@ -1,6 +1,5 @@
 'use strict';
 var dbConn = require('./../../config/db.config');
-const Sequelize = require('sequelize');
 
 const BCrypt = require('bcryptjs');
 
@@ -25,7 +24,6 @@ User.addUser = function (accessID,accessRole, newUser, result) {
             queryObj.Fullname = newUser.Fullname;
             queryObj.Role = newUser.Role;
             queryObj.CreatedBy = accessID;
-            queryObj.UpdatedBy = accessID;
 
             dbConn.query("INSERT INTO user set ?", queryObj, function (err, res) {
                 if (err) {
@@ -57,17 +55,15 @@ User.getUserById = function (id, result) {
         return result(1, 'get_one_user_fail', 400, error, null);
     }
 };
+//get all user with pagination
 User.getUser = function (page,result) {
-    let perPage = 2;
+    let perPage = 3;
     let sort = [];
     if (page ===0)
         page=1;
     if(perPage<=0)
     {
         perPage=2;
-    }
-    if(sort.length <= 0){
-        sort.push(['updatedAt', 'DESC']);
     }
     let offset = perPage * (page - 1);
 
@@ -79,7 +75,7 @@ User.getUser = function (page,result) {
                 return result(err, null);
             }
             else{
-                dbConn.query("Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID  limit ? offset ? ",[perPage,offset], function (err, res) {
+                dbConn.query("Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID ASC limit ? offset ? ",[perPage,offset], function (err, res) {
                     if (err) {
                         console.log("error: ", err);
                         result(null, err);
@@ -114,6 +110,8 @@ User.getUser = function (page,result) {
         return result(1, 'get_all_user_fail', 400, error, null);
     }
 };
+
+//update user by id
 User.updateUserById = function (accessId, userinfo, result) {
     try {
         let queryObj = {};
@@ -125,9 +123,9 @@ User.updateUserById = function (accessId, userinfo, result) {
         dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=? WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
-                result(null, err);
+                 result(null, err);
             } else {
-                result(null, res);
+                 result(null, res);
             }
         });
     } catch (error) {

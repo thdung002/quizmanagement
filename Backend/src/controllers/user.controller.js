@@ -20,7 +20,6 @@ module.exports = {
     },
     //get all user
     getUser: function (req, res) {
-
         User.getUser(req.params.page,function (err, result) {
             if (err)
                 res.send(err);
