@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `quiz_management` /*!40100 DEFAULT CHARACTER SET 
 USE `quiz_management`;
 -- MariaDB dump 10.17  Distrib 10.4.11-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: quiz_management
+-- Host: 113.162.190.123    Database: quiz_management
 -- ------------------------------------------------------
 -- Server version	10.4.11-MariaDB
 
@@ -28,8 +28,8 @@ CREATE TABLE `answer` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Question` int(11) DEFAULT NULL,
   `Content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `IsCorrect` tinyint(1) DEFAULT NULL,
-  `CorrectAnswer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IsCorrect` tinyint(1) DEFAULT NULL COMMENT '1 is correct, 0 is false. Not using when it is match question',
+  `CorrectAnswer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Using for fill type question',
   `CreatedBy` int(11) NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `answer` (
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`Question`) REFERENCES `question` (`ID`),
   CONSTRAINT `answer_ibfk_2` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `answer_ibfk_3` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,6 +50,7 @@ CREATE TABLE `answer` (
 
 LOCK TABLES `answer` WRITE;
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
+INSERT INTO `answer` VALUES (1,3,'This is answer B',NULL,'This is column 2',2,'2020-09-24 19:19:00',1,'2020-09-24 19:23:13');
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,14 +362,16 @@ CREATE TABLE `user` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `Fullname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Role` varchar(11) COLLATE utf8_unicode_ci NOT NULL COMMENT '1 is super admin, 2  is admin, 3 is user',
   `CreatedBy` int(11) NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Username` (`Username`,`Email`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -377,7 +380,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','$2a$10$lcSG\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','administrator','1',0,'2020-09-09 18:35:35',2,'2020-09-22 12:52:55'),(2,'dung','$2a$10$eUd1r1A8FNwFQfCvk67lSuJMO95PV.9SSZ.uXO5CEjK0Js6OTq1B6','Tran Hoang Dung','',0,'2020-09-09 18:38:12',2,'2020-09-22 13:52:39'),(3,'trung','$2a$10$7opI\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','Trung tester','2',0,'2020-09-09 18:38:12',2,'2020-09-22 12:52:15'),(4,'thay1','$2a$10$Blcl\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','thay1','3',0,'2020-09-09 18:38:12',2,'2020-09-22 12:52:31'),(6,'dung12','$2a$10$TapN\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0','Dungtest','2',2,'2020-09-22 12:38:01',2,NULL);
+INSERT INTO `user` VALUES (1,'admin','$2a$10$zXdo0CpJq0ONLYCxyj.g2O3gI8JSdCNj38qYXu7u8A.at2a.9l5qK',NULL,'administrator','1',0,'2020-09-09 18:35:35',1,'2020-09-23 08:45:14'),(2,'dung','$2a$10$i/xSopS23baiJRcGRJgcteqJKhkYpV2VQSIaWemtCaRcRp8tR.3EW','thdung002@gmail.com','THD','1',0,'2020-09-09 18:38:12',2,'2020-09-26 00:40:15'),(3,'trung','$2a$10$mtTEKLAjLq6D9m1d.Ms.hu6bjN78Rq6HT/PEFgY4Z/zzT2VXFOA5m',NULL,'trungggg','3',0,'2020-09-09 18:38:12',3,'2020-09-23 08:50:07');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-22 14:49:07
+-- Dump completed on 2020-09-26  0:48:20

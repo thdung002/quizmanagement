@@ -13,26 +13,28 @@ module.exports = {
         } else {
             User.addUser(id,role,new_user, function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({message: "User added successfully!", data: result});
+                    return res.json({result:"fail",message:"Invalid input"});
+                else return res.json({result:"ok",message: "User added successfully!", id: result});
             });
         }
     },
     //get all user
     getUser: function (req, res) {
-        User.getUser(req.params.page,function (err, result) {
+        let page = req.body.page || '';
+        let sort = req.body.sort || '';
+        let perpage = req.body.perpage || '';
+        User.getUser(page,perpage,sort,function (err, result) {
             if (err)
-                res.send(err);
-            console.log('result', result);
-            res.send(result);
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "User get successfully!", data: result});
         })
     },
     //get 1 user by id
     getUserById: function (req, res) {
         User.getUserById(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json(result);
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "User get successfully!", data: result});
         })
     },
     //update user
@@ -42,8 +44,8 @@ module.exports = {
         } else {
             User.updateUserById(req.params.id, new User(req.body), function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({ result});
+                    return res.json({result:"fail",message:"Invalid input"});
+                else return res.json({result:"ok",message: "User update successfully!", id: result});
             });
         }
     },
@@ -51,8 +53,8 @@ module.exports = {
     deleteUserById: function (req, res) {
         User.deleteUserById(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json({error: false, result});
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "User delete successfully!", id: result});
         })
     },
     //check for login authenticate
@@ -61,8 +63,8 @@ module.exports = {
         let password = req.body.password || '';
         User.authenticate(loginName,password,function(err,result){
             if(err)
-                res.send(err);
-            res.json({result});
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "User login successfully!", data: result});
         })
     }
 

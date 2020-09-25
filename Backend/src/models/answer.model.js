@@ -12,14 +12,17 @@ var Answer = function (answer) {
 //add answer
 Answer.addAnswer = function (accessID, newAnswer, result) {
         try {
+            //create a query object
             let queryObj = {};
             queryObj.Question = newAnswer.Question;
             queryObj.Content = newAnswer.Content;
             queryObj.IsCorrect = newAnswer.IsCorrect;
             queryObj.CorrectAnswer = newAnswer.CorrectAnswer;
             queryObj.CreatedBy = accessID;
+            //insert to answer a query
             dbConn.query("INSERT INTO answer set ?", queryObj, function (err, res) {
                 if (err) {
+                    //log to see error and send to result
                     console.log("error: ", err);
                     result(err, null);
                 } else {

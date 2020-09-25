@@ -2,6 +2,8 @@
 var dbConn = require('./../../config/db.config');
 
 const BCrypt = require('bcryptjs');
+const Validator = require('validator');
+const Pieces = require('../utils/Pieces');
 
 var User = function (user) {
     this.Username = user.Username;
@@ -10,12 +12,24 @@ var User = function (user) {
     this.Role = user.Role;
     this.CreatedBy = user.CreatedBy;
     this.UpdatedBy = user.UpdatedBy;
+    this.Email = user.Email;
 };
 //add user
-User.addUser = function (accessID,accessRole, newUser, result) {
+User.addUser = function (accessID, accessRole, newUser, result) {
     if (accessRole === 2) {
-        console.log("You dont have permission to create account");
-        return callback(1, 'invalid_user_permission', 422, 'You dont have permission to create account', null);
+        return result(1, 'invalid_user_permission', 422, 'You dont have permission to create account', null);
+    } else if (!Pieces.VariableBaseTypeChecking(newUser.Username, 'string')
+        || !Validator.isAlphanumeric(newUser.Username)
+        || !Validator.isLowercase(newUser.Username)
+        || !Validator.isLength(newUser.Username, {min: 4, max: 128})) {
+        return result(1, 'invalid_user_login_name', 400, 'login name should be alphanumeric, lowercase and length 4-128', null);
+    } else if (!Pieces.VariableBaseTypeChecking(newUser.Password, 'string')) {
+        return result(1, 'invalid_user_password', 400, 'password is not a string', null);
+    } else if (!Pieces.VariableBaseTypeChecking(newUser.Email, 'string')
+        || !Validator.isEmail(newUser.Email)) {
+        return result(1, 'invalid_user_email', 400, 'email is incorrect format', null);
+    } else if (newUser.Role > 3 || newUser.Role <= 0) {
+        return result(1, 'invalid_role', 400, 'Role is not have. Only role 1, 2 ,3 ', null);
     } else {
         try {
             let queryObj = {};
@@ -24,10 +38,9 @@ User.addUser = function (accessID,accessRole, newUser, result) {
             queryObj.Fullname = newUser.Fullname;
             queryObj.Role = newUser.Role;
             queryObj.CreatedBy = accessID;
-
+            queryObj.Email = newUser.Email;
             dbConn.query("INSERT INTO user set ?", queryObj, function (err, res) {
                 if (err) {
-                    console.log("error: ", err);
                     result(err, null);
                 } else {
                     console.log(res.insertId);
@@ -42,50 +55,50 @@ User.addUser = function (accessID,accessRole, newUser, result) {
 //get user
 User.getUserById = function (id, result) {
     try {
-        dbConn.query("Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user where id = ? ", id, function (err, res) {
-            if (err) {
-                console.log("error: ", err);
-                result(err, null);
-            } else {
-                result(null, res);
+        dbConn.query("Select Id, Username, Fullname, Email, Role from user where id = ? ", parseInt(id), function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if(res.length === 0)
+                    result (1, 'user_not_found', 403, err, null);
+                else {
+                    result(null, res);
+                }
             }
-        }
         );
     } catch (error) {
         return result(1, 'get_one_user_fail', 400, error, null);
     }
 };
 //get all user with pagination
-User.getUser = function (page,result) {
-    let perPage = 3;
-    let sort = [];
-    if (page ===0)
-        page=1;
-    if(perPage<=0)
-    {
-        perPage=2;
+User.getUser = function (page, perpage, sort, result) {
+    if (page === 0)
+        page = 1;
+    perpage = parseInt(perpage);
+    if (perpage <= 0) {
+        perpage = 5;
     }
-    let offset = perPage * (page - 1);
-
+    if (sort.length === 0) {
+        sort = "ASC";
+    }
+    let type = typeof (sort);
+    let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from USER ", function(err, rows, feilds){
-            if(err)
-            {
-                console.log("error: ", err);
-                return result(err, null);
-            }
-            else{
-                dbConn.query("Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID ASC limit ? offset ? ",[perPage,offset], function (err, res) {
-                    if (err) {
-                        console.log("error: ", err);
-                        result(null, err);
+        dbConn.query("SELECT COUNT(*) as total from USER ", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
                     } else {
                         // console.log('topic : ', res);
                         // result(null, res);
-                        let pages = rows;
-                        let output={
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
                             data: res,
-                            pages:{
+                            pages: {
                                 current: page,
                                 prev: page - 1,
                                 hasPrev: false,
@@ -93,10 +106,10 @@ User.getUser = function (page,result) {
                                 hasNext: false,
                                 total: pages
                             },
-                            items:{
-                                begin: ((page * perPage) - perPage) + 1,
-                                end: page * perPage,
-                                total: res.length
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
                             }
                         };
                         output.pages.hasNext = (output.pages.next !== 0);
@@ -120,12 +133,15 @@ User.updateUserById = function (accessId, userinfo, result) {
         queryObj.Role = userinfo.Role;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = accessId;
-        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=? WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+        queryObj.Email = userinfo.Email;
+        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy,queryObj.Email, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
-                 result(null, err);
-            } else {
-                 result(null, res);
+                result(null, err);
+            } else if(res.changedRows === 0)
+            result(1, 'user_not_found', 403, err, null);
+            else {
+                result(null, queryObj.Id);
             }
         });
     } catch (error) {
@@ -138,44 +154,47 @@ User.deleteUserById = function (id, result) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
-            } else {
-                result(null, res);
+            } else if(res.affectedRows===0)
+                result(1, 'user_not_found', 403, err, null);
+            else {
+                result(null, id);
             }
         });
     } catch (error) {
         return result(1, 'delete_user_fail', 400, error, null);
     }
 };
-User.authenticate = function(loginName,password,result){
-    try{
-        if(typeof loginName !== 'string' ){
+User.authenticate = function (loginName, password, result) {
+    try {
+        if (!Pieces.VariableBaseTypeChecking(loginName, 'string')) {
             return result(1, 'invalid_user_login_name', 422, 'login name is not a string', null);
-        }
-        if(typeof password !== 'string' ){
+        } else if (!Pieces.VariableBaseTypeChecking(password, 'string')) {
             return result(1, 'invalid_user_password', 422, 'password is not a string', null);
         }
-        dbConn.query("SELECT Username, Password from user where Username= ?",loginName,function(err,res)
-        {
-            if (err) {
-                console.log("error: ", err);
-                result(null, err);
-            }
-            else{
-                let usernameDb = res[0].Username;
-                let passwordDb= res[0].Password;
-                BCrypt.compare(password, passwordDb, function (error, isTrue) {
-                    if (isTrue === true) {
-                        return result(null, 'connect_success', 200, null, res);
-                    } else {
-                        return result(null, 'wrong_password', 404, null, error);
-                    }
-                });
+        else {
 
-            }
+
+            dbConn.query("SELECT Id, Role, Username, Password, Email, Fullname from user where Username= ?", loginName, function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(null, err);
+                } else if(res.length === 0)
+                    return result(1, 'user_not_found', 403, err, null);
+                else {
+                    let passwordDb = res[0].Password;
+                    BCrypt.compare(password, passwordDb, function (error, isTrue) {
+                        if (isTrue === true) {
+                            return result(null, res);
+                        } else {
+                            return result(1, 'wrong_password', 402, error, null);
+                        }
+                    });
+
+                }
             });
         }
-    catch(error){
-        return result(1, 'authenticate_user_fail', 400, error, null);
+    } catch (errors) {
+        return result(1, 'authenticate_user_fail', 400, errors, null);
     }
 };
 module.exports = User;
