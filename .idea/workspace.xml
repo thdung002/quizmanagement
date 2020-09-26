@@ -3,13 +3,58 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_project.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_project.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/img/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/it.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/locale.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/pt_br.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/ru.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/tr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/vi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/zh.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/locales/zh_cn.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/utils/handlebars_helper.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/utils/send_sample_request.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/utils/send_sample_request_utils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/diff_match_patch.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/handlebars.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/list.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/lodash.custom.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/path-to-regexp/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/path-to-regexp/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/polyfill.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/prism.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/prism.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/require.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/semver.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/vendor/webfontloader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/answer.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/answer.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/answer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/answer.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes/user.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/user.route.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/BackupDatabase.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BackupDatabase.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +165,9 @@
       <workItem from="1600914498525" duration="7984000" />
       <workItem from="1600939137464" duration="9076000" />
       <workItem from="1600998316296" duration="7420000" />
-      <workItem from="1601047599418" duration="8639000" />
+      <workItem from="1601047599418" duration="8760000" />
+      <workItem from="1601056392506" duration="153000" />
+      <workItem from="1601087002931" duration="4634000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -171,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600950232746</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="dung edit code users - code mau =&gt; lam theo cho nhung table khac">
+      <created>1601056341846</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601056341847</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +252,8 @@
     <MESSAGE value="answer" />
     <MESSAGE value="dung add pagination for get all user" />
     <MESSAGE value="answer api" />
-    <option name="LAST_COMMIT_MESSAGE" value="answer api" />
+    <MESSAGE value="dung edit code users - code mau =&gt; lam theo cho nhung table khac" />
+    <option name="LAST_COMMIT_MESSAGE" value="dung edit code users - code mau =&gt; lam theo cho nhung table khac" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -206,25 +261,21 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Backend/src/models/user.model.js</url>
           <line>104</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Backend/src/models/user.model.js</url>
           <line>105</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Backend/src/models/user.model.js</url>
           <line>115</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Backend/src/models/user.model.js</url>
           <line>114</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>

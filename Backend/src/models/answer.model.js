@@ -1,5 +1,6 @@
 'use strict';
 var dbConn = require('./../../config/db.config');
+const Pieces = require('../utils/Pieces');
 
 var Answer = function (answer) {
     this.Question = answer.Question;
@@ -9,21 +10,21 @@ var Answer = function (answer) {
     this.CreatedBy = answer.CreatedBy;
     this.UpdatedBy = answer.UpdatedBy;
 };
-//add answer
+//add Answer
 Answer.addAnswer = function (accessID, newAnswer, result) {
+     if (!Pieces.VariableBaseTypeChecking(newAnswer.Content, 'string')
+        || newAnswer.Content===null) {
+        return result(1, 'invalid_Answer', 400, null, null);
+    }else {
         try {
-            //create a query object
             let queryObj = {};
             queryObj.Question = newAnswer.Question;
             queryObj.Content = newAnswer.Content;
-            queryObj.IsCorrect = newAnswer.IsCorrect;
+            queryObj.IsCorrect = newAnswer.Content;
             queryObj.CorrectAnswer = newAnswer.CorrectAnswer;
             queryObj.CreatedBy = accessID;
-            //insert to answer a query
-            dbConn.query("INSERT INTO answer set ?", queryObj, function (err, res) {
+            dbConn.query("INSERT INTO Answer set ?", queryObj, function (err, res) {
                 if (err) {
-                    //log to see error and send to result
-                    console.log("error: ", err);
                     result(err, null);
                 } else {
                     console.log(res.insertId);
@@ -31,57 +32,57 @@ Answer.addAnswer = function (accessID, newAnswer, result) {
                 }
             });
         } catch (error) {
-            return result(1, 'add_answer_fail', 400, error, null);
+            result(1, 'create_Answer_fail', 400, error, null);
         }
+    }
 };
-//get answer
+//get Answer
 Answer.getAnswerById = function (id, result) {
     try {
-        dbConn.query("Select * from answer where id = ? ", id, function (err, res) {
+        dbConn.query("Select * from Answer where id = ? ", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
-                } else {
+                } else if(res.length === 0)
+                    result (1, 'Answer_not_found', 403, err, null);
+                else {
                     result(null, res);
                 }
             }
         );
     } catch (error) {
-        return result(1, 'get_one_answer_fail', 400, error, null);
+        return result(1, 'get_one_Answer_fail', 400, error, null);
     }
 };
-
 //get all Answer with pagination
-Answer.getAnswer = function (page,result) {
-    let perPage = 2;
-    let sort = [];
-    if (page ===0)
-        page=1;
-    if(perPage<=0)
-    {
-        perPage=2;
+Answer.getAnswer = function (page, perpage, sort, result) {
+    if (page === 0)
+        page = 1;
+    perpage = parseInt(perpage);
+    if (perpage <= 0) {
+        perpage = 5;
     }
-    let offset = perPage * (page - 1);
-
+    if (sort.length === 0) {
+        sort = "ASC";
+    }
+    let type = typeof (sort);
+    let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from ANSWER ", function(err, rows, feilds){
-            if(err)
-            {
-                console.log("error: ", err);
-                return result(err, null);
-            }
-            else{
-                dbConn.query("Select * from ANSWER ORDER BY ID ASC limit ? offset ? ",[perPage,offset], function (err, res) {
-                    if (err) {
-                        console.log("error: ", err);
-                        result(null, err);
+        dbConn.query("SELECT COUNT(*) as total from Answer ", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select * from Answer ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
                     } else {
                         // console.log('topic : ', res);
                         // result(null, res);
-                        let pages = rows;
-                        let output={
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
                             data: res,
-                            pages:{
+                            pages: {
                                 current: page,
                                 prev: page - 1,
                                 hasPrev: false,
@@ -89,10 +90,10 @@ Answer.getAnswer = function (page,result) {
                                 hasNext: false,
                                 total: pages
                             },
-                            items:{
-                                begin: ((page * perPage) - perPage) + 1,
-                                end: page * perPage,
-                                total: res.length
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
                             }
                         };
                         output.pages.hasNext = (output.pages.next !== 0);
@@ -103,42 +104,47 @@ Answer.getAnswer = function (page,result) {
             }
         })
     } catch (error) {
-        return result(1, 'get_all_answer_fail', 400, error, null);
+        return result(1, 'get_all_Answer_fail', 400, error, null);
     }
 };
-//update answer by id
-Answer.updateAnswerById = function (accessId, answerinfo, result) {
+
+//update Answer by id
+Answer.updateAnswerById = function (accessId, Answerinfo, result) {
     try {
         let queryObj = {};
-        queryObj.Content = answerinfo.Content;
-        queryObj.IsCorrect = answerinfo.IsCorrect;
-        queryObj.CorrectAnswer = answerinfo.CorrectAnswer;
+        queryObj.Content = Answerinfo.Content;
+        queryObj.IsCorrect = Answerinfo.IsCorrect;
+        queryObj.CorrectAnswer = Answerinfo.CorrectAnswer;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = accessId;
-        dbConn.query("UPDATE answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+        dbConn.query("UPDATE Answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
-                 result(null, err);
-            } else {
-                 result(null, res);
+                result(null, err);
+            } else if(res.changedRows === 0)
+                result(1, 'Answer_not_found', 403, err, null);
+            else {
+                result(null, queryObj.Id);
             }
         });
     } catch (error) {
-        return result(1, 'update_answer_fail', 400, error, null);
+        return result(1, 'update_Answer_fail', 400, error, null);
     }
 };
 Answer.deleteAnswerById = function (id, result) {
     try {
-        dbConn.query("DELETE FROM ANSWER WHERE id = ?", [id], function (err, res) {
+        dbConn.query("DELETE FROM Answer WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
-            } else {
-                result(null, res);
+            } else if(res.affectedRows===0)
+                result(1, 'Answer_not_found', 403, err, null);
+            else {
+                result(null, id);
             }
         });
     } catch (error) {
-        return result(1, 'delete_answer_fail', 400, error, null);
+        return result(1, 'delete_Answer_fail', 400, error, null);
     }
 };
 module.exports = Answer;

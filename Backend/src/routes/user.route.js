@@ -2,7 +2,7 @@ const userController = require('../controllers/user.controller');
 module.exports = function (app) {
     app.get('/v1/user/getall', userController.getUser);
     /**
-     * @api {GET} /v1/user/getall/:page Get All List
+     * @api {GET} /v1/user/getall Get All List
      * @apiVersion 1.0.0
      * @apiName getAll
      * @apiGroup User
@@ -15,7 +15,7 @@ module.exports = function (app) {
      * @apiParam {String} sort Sort the list by a field (N/A)
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/user/getall/1
+     * curl -i http://localhost:5000/v1/user/getall
      *
      * @apiSuccess {String} result ok or fail
      * @apiSuccess {String} message something from server
@@ -136,7 +136,6 @@ module.exports = function (app) {
      * @apiName update
      * @apiGroup User
      * @apiPermission Every type of user
-     * @apiHeader {String} access_token json web token to access to data
      *
      * @apiDescription Update user information
      *
@@ -229,10 +228,12 @@ module.exports = function (app) {
      *     HTTP/1.1 200 OK
      *     {
      *       "data":{
-     *          "id":2,
-     *          "loginName": "bioz",
-     *          "displayName": "bioz",
-     *          "email": ilovebioz@gmail.com
+     *          "Id":2,
+     *          "Role": "1",
+     *          "Username": "dung",
+     *          "Fullname": "THD"
+     *          "Email": "thdung002@gmail.com",
+     *          "Password": "$2a$10$i/xSopS23baiJRcGRJgcteqJKhkYpV2VQSIaWemtCaRcRp8tR.3EW",
      *       },
      *       "result": "ok",
      *       "message":"User login successfully!"

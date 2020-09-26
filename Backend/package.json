@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "a quiz management project ",
   "main": "index.js",
+  "apidoc": {
+    "title": "API DOCS",
+    "version": "1.0.0",
+    "url": "http://localhost:5000/docs"
+  },
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app",

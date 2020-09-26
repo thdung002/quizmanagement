@@ -1,5 +1,6 @@
 'use strict';
-const Answer = require('../models/Answer.model');
+const Answer = require('../models/answer.model');
+
 module.exports = {
     //create a new Answer
     addAnswer: function (req, res) {
@@ -11,26 +12,28 @@ module.exports = {
         } else {
             Answer.addAnswer(id,new_Answer, function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({message: "Answer added successfully!", data: result});
+                     res.json({result:"fail",message:"Invalid input"});
+                else  res.json({result:"ok",message: "Answer added successfully!", id: result});
             });
         }
     },
     //get all Answer
     getAnswer: function (req, res) {
-        Answer.getAnswer(req.params.page,function (err, result) {
+        let page = req.body.page || '';
+        let sort = req.body.sort || '';
+        let perpage = req.body.perpage || '';
+        Answer.getAnswer(page,perpage,sort,function (err, result) {
             if (err)
-                res.send(err);
-            console.log('result', result);
-            res.send(result);
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Answer get successfully!", data: result});
         })
     },
     //get 1 Answer by id
     getAnswerById: function (req, res) {
         Answer.getAnswerById(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json(result);
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Answer get successfully!", data: result});
         })
     },
     //update Answer
@@ -40,8 +43,8 @@ module.exports = {
         } else {
             Answer.updateAnswerById(req.params.id, new Answer(req.body), function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({ result});
+                    return res.json({result:"fail",message:"Invalid input"});
+                else return res.json({result:"ok",message: "Answer update successfully!", id: result});
             });
         }
     },
@@ -49,8 +52,19 @@ module.exports = {
     deleteAnswerById: function (req, res) {
         Answer.deleteAnswerById(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json({error: false, result});
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Answer delete successfully!", id: result});
         })
     },
+    //check for login authenticate
+    login:function(req,res){
+        let loginName = req.body.loginName || '';
+        let password = req.body.password || '';
+        Answer.authenticate(loginName,password,function(err,result){
+            if(err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Answer login successfully!", data: result});
+        })
+    }
+
 };
