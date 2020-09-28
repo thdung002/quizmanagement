@@ -88,13 +88,13 @@ module.exports = function (app) {
      *
      * @apiDescription Get one answer
      *
-     * @apiParam {string} id ID of answer, on params
+     * @apiParam {string} id ID of question, on params
      *
      * @apiExample Example usage:
      * curl -i http://localhost:3000/v1/answers/get/2
      *
-     * @apiSuccess {String} id the ID of answer
-     * @apiSuccess {Number} id of question
+     * @apiSuccess {String} Id the ID of answer
+     * @apiSuccess {Number} Question Id of question
      * @apiSuccess {String} Content answer content
      * @apiSuccess {String} CorrectAnswer Answer for filling question
      * @apiSuccess {Number} IsCorrect correct answer for multiple choice, 1 is correct, 0 is fail
@@ -132,10 +132,11 @@ module.exports = function (app) {
      *
      * @apiDescription Update Answer information
      *
-     * @apiParam {Number} ID Id of Answer, on params
+     * @apiParam {Number} ID Id of Answer where to update, on params
      * @apiParam {String} Content Content of answer
      * @apiParam {String} CorrectAnwser  Correct Answer
      * @apiParam {String} IsCorrect Correct value 1 or 0
+     * @apiParam {String} accessID ID of current user
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/Answer/update/2

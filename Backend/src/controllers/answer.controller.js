@@ -10,7 +10,7 @@ module.exports = {
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
             res.status(400).send({error: true, message: 'Please provide all required field'});
         } else {
-            Answer.addAnswer(id,new_Answer, function (err, result) {
+            Answer.add(id,new_Answer, function (err, result) {
                 if (err)
                      res.json({result:"fail",message:"Invalid input"});
                 else  res.json({result:"ok",message: "Answer added successfully!", id: result});
@@ -22,7 +22,7 @@ module.exports = {
         let page = req.body.page || '';
         let sort = req.body.sort || '';
         let perpage = req.body.perpage || '';
-        Answer.getAnswer(page,perpage,sort,function (err, result) {
+        Answer.getAnswer(parseInt(page),parseInt(perpage),sort,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Answer get successfully!", data: result});
@@ -38,10 +38,12 @@ module.exports = {
     },
     //update Answer
     updateAnswerById: function (req, res) {
+        let id = req.body.accessID;
+
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
             res.status(400).send({error: true, message: 'Please provide all required field'});
         } else {
-            Answer.updateAnswerById(req.params.id, new Answer(req.body), function (err, result) {
+            Answer.update(id,req.params.id, new Answer(req.body), function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
                 else return res.json({result:"ok",message: "Answer update successfully!", id: result});
@@ -50,21 +52,10 @@ module.exports = {
     },
     //delete Answer
     deleteAnswerById: function (req, res) {
-        Answer.deleteAnswerById(req.params.id, function (err, result) {
+        Answer.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Answer delete successfully!", id: result});
         })
-    },
-    //check for login authenticate
-    login:function(req,res){
-        let loginName = req.body.loginName || '';
-        let password = req.body.password || '';
-        Answer.authenticate(loginName,password,function(err,result){
-            if(err)
-                return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Answer login successfully!", data: result});
-        })
     }
-
 };

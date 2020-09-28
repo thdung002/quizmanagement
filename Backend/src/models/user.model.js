@@ -15,7 +15,7 @@ var User = function (user) {
     this.Email = user.Email;
 };
 //add user
-User.addUser = function (accessID, accessRole, newUser, result) {
+User.add = function (accessID, accessRole, newUser, result) {
     if (accessRole === 2) {
         return result(1, 'invalid_user_permission', 422, 'You dont have permission to create account', null);
     } else if (!Pieces.VariableBaseTypeChecking(newUser.Username, 'string')
@@ -74,7 +74,6 @@ User.getUserById = function (id, result) {
 User.getUser = function (page, perpage, sort, result) {
     if (page === 0)
         page = 1;
-    perpage = parseInt(perpage);
     if (perpage <= 0) {
         perpage = 5;
     }
@@ -125,13 +124,13 @@ User.getUser = function (page, perpage, sort, result) {
 };
 
 //update user by id
-User.updateUserById = function (accessId, userinfo, result) {
+User.update = function (id,accessId, userinfo, result) {
     try {
         let queryObj = {};
         queryObj.Password = BCrypt.hashSync(userinfo.Password, 10);
         queryObj.Fullname = userinfo.Fullname;
         queryObj.Role = userinfo.Role;
-        queryObj.UpdatedBy = accessId;
+        queryObj.UpdatedBy = id;
         queryObj.Id = accessId;
         queryObj.Email = userinfo.Email;
         dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy,queryObj.Email, queryObj.Id], function (err, res) {
@@ -148,7 +147,7 @@ User.updateUserById = function (accessId, userinfo, result) {
         return result(1, 'update_user_fail', 400, error, null);
     }
 };
-User.deleteUserById = function (id, result) {
+User.delete = function (id, result) {
     try {
         dbConn.query("DELETE FROM user WHERE id = ?", [id], function (err, res) {
             if (err) {

@@ -1,29 +1,33 @@
 'use strict';
 var dbConn = require('./../../config/db.config');
-const Pieces = require('../utils/Pieces');
+// const Pieces = require('../utils/Pieces');
 
-var Answer = function (answer) {
-    this.Question = answer.Question;
-    this.Content = answer.Content;
-    this.IsCorrect = answer.IsCorrect;
-    this.CorrectAnswer = answer.CorrectAnswer;
-    this.CreatedBy = answer.CreatedBy;
-    this.UpdatedBy = answer.UpdatedBy;
+var Exam = function (exam) {
+    this.Duration = exam.Duration;
+    this.Semester = exam.Semester;
+    this.Notes = exam.Notes;
+    this.Department = exam.Department;
+    this.Course = exam.Course;
+    this.CourseCode = exam.CourseCode;
+    this.AcademicYear = exam.AcademicYear;
+    this.Lecturer = exam.Lecturer;
+    this.CreatedBy = exam.CreatedBy;
+    this.UpdatedBy = exam.UpdatedBy;
 };
-//add Answer
-Answer.add = function (accessID, newAnswer, result) {
-     if (!Pieces.VariableBaseTypeChecking(newAnswer.Content, 'string')
-        || newAnswer.Content===null) {
-        return result(1, 'invalid_Answer', 400, null, null);
-    }else {
+//add Exam
+Exam.add = function (accessID, newExam, result) {
         try {
             let queryObj = {};
-            queryObj.Question = newAnswer.Question;
-            queryObj.Content = newAnswer.Content;
-            queryObj.IsCorrect = newAnswer.Content;
-            queryObj.CorrectAnswer = newAnswer.CorrectAnswer;
+            queryObj.Duration = newExam.Duration;
+            queryObj.Semester = newExam.Semester;
+            queryObj.Notes = newExam.Notes;
+            queryObj.Department = newExam.Department;
+            queryObj.Course = newExam.Course;
+            queryObj.CourseCode = newExam.CourseCode;
+            queryObj.AcademicYear = newExam.AcademicYear;
+            queryObj.Lecturer = newExam.Lecturer;
             queryObj.CreatedBy = accessID;
-            dbConn.query("INSERT INTO Answer set ?", queryObj, function (err, res) {
+            dbConn.query("INSERT INTO Examination set ?", queryObj, function (err, res) {
                 if (err) {
                     result(err, null);
                 } else {
@@ -32,30 +36,29 @@ Answer.add = function (accessID, newAnswer, result) {
                 }
             });
         } catch (error) {
-            result(1, 'create_Answer_fail', 400, error, null);
+            result(1, 'create_Exam_fail', 400, error, null);
         }
-    }
 };
-//get Answer
-Answer.getAnswerById = function (id, result) {
+//get Exam
+Exam.getExamById = function (id, result) {
     try {
-        dbConn.query("Select * from Answer where question = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from Examination where question = ? ", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
                 } else if(res.length === 0)
-                    result (1, 'Answer_not_found', 403, err, null);
+                    result (1, 'Exam_not_found', 403, err, null);
                 else {
                     result(null, res);
                 }
             }
         );
     } catch (error) {
-        return result(1, 'get_one_Answer_fail', 400, error, null);
+        return result(1, 'get_Exam_fail', 400, error, null);
     }
 };
-//get all Answer with pagination
-Answer.getAnswer = function (page, perpage, sort, result) {
+//get all Exam with pagination
+Exam.getExam = function (page, perpage, sort, result) {
     if (page === 0)
         page = 1;
     if (perpage <= 0) {
@@ -67,11 +70,11 @@ Answer.getAnswer = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from Answer ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from Examination ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from Answer ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from Examination ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -103,47 +106,54 @@ Answer.getAnswer = function (page, perpage, sort, result) {
             }
         })
     } catch (error) {
-        return result(1, 'get_all_Answer_fail', 400, error, null);
+        return result(1, 'get_all_Exam_fail', 400, error, null);
     }
 };
 
-//update Answer by id
-Answer.update = function (id,accessId, Answerinfo, result) {
+//update Exam by id
+Exam.update = function (id,accessId, Examinfo, result) {
     try {
         let queryObj = {};
-        queryObj.Content = Answerinfo.Content;
-        queryObj.IsCorrect = Answerinfo.IsCorrect;
-        queryObj.CorrectAnswer = Answerinfo.CorrectAnswer;
+        queryObj.Duration = Examinfo.Duration;
+        queryObj.Semester = Examinfo.Semester;
+        queryObj.Notes = Examinfo.Notes;
+        queryObj.Department = Examinfo.Department;
+        queryObj.Course = Examinfo.Course;
+        queryObj.CourseCode = Examinfo.CourseCode;
+        queryObj.AcademicYear = Examinfo.AcademicYear;
+        queryObj.Lecturer = Examinfo.Lecturer;
         queryObj.UpdatedBy = id;
         queryObj.Id = accessId;
-        dbConn.query("UPDATE Answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+        dbConn.query("UPDATE Examination SET Duration=?,Semester=?,Notes=?,Department=?,Course=?,CourseCode=?,AcademicYear=?,Lecturer=?,UpdatedBy=? WHERE id = ?",
+            [queryObj.Duration, queryObj.Semester, queryObj.Notes,queryObj.Department,queryObj.Course,queryObj.CourseCode,
+                queryObj.AcademicYear,queryObj.Lecturer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
             } else if(res.changedRows === 0)
-                result(1, 'Answer_not_found', 403, err, null);
+                result(1, 'Exam_not_found', 403, err, null);
             else {
                 result(null, queryObj.Id);
             }
         });
     } catch (error) {
-        return result(1, 'update_Answer_fail', 400, error, null);
+        return result(1, 'update_Exam_fail', 400, error, null);
     }
 };
-Answer.delete = function (id, result) {
+Exam.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM Answer WHERE id = ?", [id], function (err, res) {
+        dbConn.query("DELETE FROM Examination WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
             } else if(res.affectedRows===0)
-                result(1, 'Answer_not_found', 403, err, null);
+                result(1, 'Exam_not_found', 403, err, null);
             else {
                 result(null, id);
             }
         });
     } catch (error) {
-        return result(1, 'delete_Answer_fail', 400, error, null);
+        return result(1, 'delete_Exam_fail', 400, error, null);
     }
 };
-module.exports = Answer;
+module.exports = Exam;

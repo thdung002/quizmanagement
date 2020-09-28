@@ -105,14 +105,14 @@ DROP TABLE IF EXISTS `examination`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `examination` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Duration` int(11) DEFAULT NULL,
-  `Semester` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Department` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Course` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CourseCode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Term` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Lecturer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Duration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Semester` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Notes` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Department` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Course` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Coursecode` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `AcademicYear` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Lecturer` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
@@ -122,7 +122,7 @@ CREATE TABLE `examination` (
   KEY `UpdatedBy` (`UpdatedBy`),
   CONSTRAINT `examination_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   CONSTRAINT `examination_ibfk_2` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +131,7 @@ CREATE TABLE `examination` (
 
 LOCK TABLES `examination` WRITE;
 /*!40000 ALTER TABLE `examination` DISABLE KEYS */;
-INSERT INTO `examination` VALUES (1,120,'1','test','test','test','test','test','test',1,'2020-09-22 13:03:33',1,NULL);
+INSERT INTO `examination` VALUES (1,'120','1','test','test','test','test','test','test',1,'2020-09-22 13:03:33',1,NULL),(3,'180 Minutes','1','Neither phone nor laptop allowed','HTTT- CTTT2018','TestCourse1','MSIS-124312','2019-2020','Mr.Dung',2,'2020-09-28 10:41:08',2,'2020-09-28 10:53:52');
 /*!40000 ALTER TABLE `examination` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -401,4 +401,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-26 10:42:11
+-- Dump completed on 2020-09-28 11:00:35

@@ -139,11 +139,12 @@ module.exports = function (app) {
      *
      * @apiDescription Update user information
      *
-     * @apiParam {String} id ID of user, on params
+     * @apiParam {String} id ID of user where to update, on params
      * @apiParam {String} loginName login name of user
      * @apiParam {String} email email of user
      * @apiParam {String} firstName first name of user
      * @apiParam {String} lastName last name of user
+     * @apiParam {String} accessID ID of current user
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/user/update/2
