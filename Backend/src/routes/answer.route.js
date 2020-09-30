@@ -45,7 +45,7 @@ module.exports = function (app) {
 
     app.post('/v1/answer/add', answerController.addAnswer);
     /**
-     * @api {POST} /v1/answer/add Create One account
+     * @api {POST} /v1/answer/add Create One answer
      * @apiVersion 1.0.0
      * @apiName createByAdmin
      * @apiGroup Answer
@@ -84,7 +84,6 @@ module.exports = function (app) {
      * @apiName getOne
      * @apiGroup Answer
      * @apiPermission Every type of answer
-     * @apiHeader {String} access_token json web token to access to data
      *
      * @apiDescription Get one answer
      *
@@ -167,7 +166,6 @@ module.exports = function (app) {
      * @apiName delete
      * @apiGroup Answer
      * @apiPermission just admin Answer
-     * @apiHeader {String} access_token json web token to access to data
      *
      * @apiDescription delete Answer
      *

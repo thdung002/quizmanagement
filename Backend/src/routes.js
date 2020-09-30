@@ -7,5 +7,6 @@ module.exports = function (app) {
     require('./routes/user.route')(app);
     require('./routes/answer.route')(app);
     require('./routes/examination.route')(app);
+    require('./routes/quizcontent.route')(app);
 
 };

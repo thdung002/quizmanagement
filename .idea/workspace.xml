@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/src/models/examination.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/answer.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/answer.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/user.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/config/db.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes/answer.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/answer.route.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/routes/user.route.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/user.route.js" afterDir="false" />
@@ -124,7 +120,8 @@
       <workItem from="1601047599418" duration="8760000" />
       <workItem from="1601056392506" duration="153000" />
       <workItem from="1601087002931" duration="5371000" />
-      <workItem from="1601259363197" duration="5522000" />
+      <workItem from="1601259363197" duration="5710000" />
+      <workItem from="1601431783287" duration="4406000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -189,7 +186,28 @@
       <option name="project" value="LOCAL" />
       <updated>1601091764347</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="dung add examination and backup database">
+      <created>1601265669885</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1601265669886</updated>
+    </task>
+    <task id="LOCAL-00011" summary="dung add examination and backup database">
+      <created>1601265710668</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1601265710668</updated>
+    </task>
+    <task id="LOCAL-00012" summary="dung add examination and backup database">
+      <created>1601265737569</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1601265737569</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,7 +236,8 @@
     <MESSAGE value="answer api" />
     <MESSAGE value="dung edit code users - code mau =&gt; lam theo cho nhung table khac" />
     <MESSAGE value="add answer and backup database" />
-    <option name="LAST_COMMIT_MESSAGE" value="add answer and backup database" />
+    <MESSAGE value="dung add examination and backup database" />
+    <option name="LAST_COMMIT_MESSAGE" value="dung add examination and backup database" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

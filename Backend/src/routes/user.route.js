@@ -90,7 +90,6 @@ module.exports = function (app) {
      * @apiName getOne
      * @apiGroup User
      * @apiPermission Every type of user
-     * @apiHeader {String} access_token json web token to access to data
      *
      * @apiDescription Get one user
      *
@@ -177,7 +176,6 @@ module.exports = function (app) {
      * @apiName delete
      * @apiGroup User
      * @apiPermission just admin user
-     * @apiHeader {String} access_token json web token to access to data
      *
      * @apiDescription delete user
      *
