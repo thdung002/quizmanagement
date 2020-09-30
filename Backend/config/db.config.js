@@ -2,7 +2,7 @@
 const mysql = require('mysql');
 const dbConn = mysql.createConnection({
   host     : '113.172.223.236',
-  port     : '28128',
+  port     : '28129',
   user     : 'dung',
   password : '123456',
   database : 'quiz_management'
