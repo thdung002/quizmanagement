@@ -1,4 +1,4 @@
-const questionController =   require('../controllers/question.controller');
+const questionController =   require('../controllers/question');
 module.exports = function (app) {
     app.get('/v1/question/get/', questionController.getQuestion);
     app.post('/v1/question/add/', questionController.addQuestion);

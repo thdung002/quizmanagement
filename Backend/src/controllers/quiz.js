@@ -1,5 +1,5 @@
 'use strict';
-const Quiz = require('../models/quiz.model');
+const Quiz = require('../models/quiz');
 module.exports = {
     //get all toppic
     getQuiz: function (req, res) {

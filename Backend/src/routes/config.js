@@ -1,4 +1,4 @@
-const configController =   require('../controllers/config.controller');
+const configController =   require('../controllers/config');
 module.exports = function (app) {
     app.get('/v1/config/get/', configController.getConfig);
     app.post('/v1/config/add/', configController.addConfig);

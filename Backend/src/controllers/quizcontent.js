@@ -1,5 +1,5 @@
 'use strict';
-const QuizContent = require('../models/quizcontent.model');
+const QuizContent = require('../models/quizcontent');
 
 module.exports = {
     //create a new QuizContent

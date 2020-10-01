@@ -59,12 +59,12 @@ Exam.getExamById = function (id, result) {
 };
 //get all Exam with pagination
 Exam.getExam = function (page, perpage, sort, result) {
-    if (page === 0)
+    if (page === 0|| isNaN(page))
         page = 1;
-    if (perpage <= 0) {
+    if (perpage <= 0 || isNaN(perpage)) {
         perpage = 5;
     }
-    if (sort.length === 0) {
+    if (sort.length === 0|| sort!=="DESC") {
         sort = "ASC";
     }
     let type = typeof (sort);

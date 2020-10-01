@@ -1,5 +1,5 @@
 'use strict';
-const Exam = require('../models/examination.model');
+const Exam = require('../models/examination');
 
 module.exports = {
     //create a new Exam

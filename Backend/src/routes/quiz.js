@@ -1,4 +1,4 @@
-const quizController =   require('../controllers/quiz.controller');
+const quizController =   require('../controllers/quiz');
 module.exports = function (app) {
     app.get('/v1/quiz/get/', quizController.getQuiz);
     app.post('/v1/quiz/add/', quizController.addQuiz);

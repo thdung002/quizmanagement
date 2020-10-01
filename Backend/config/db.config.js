@@ -1,7 +1,7 @@
 'use strict';
 const mysql = require('mysql');
 const dbConn = mysql.createConnection({
-  host     : '113.172.223.236',
+  host     : 'quizmanagement.zapto.org',
   port     : '28129',
   user     : 'dung',
   password : '123456',

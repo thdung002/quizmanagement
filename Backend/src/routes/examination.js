@@ -1,4 +1,4 @@
-const examController =   require('../controllers/examination.controller');
+const examController =   require('../controllers/examination');
 module.exports = function (app) {
     app.get('/v1/exam/getall', examController.getExam);
     /**
