@@ -122,8 +122,8 @@ Exam.update = function (id,accessId, Examinfo, result) {
         queryObj.CourseCode = Examinfo.CourseCode;
         queryObj.AcademicYear = Examinfo.AcademicYear;
         queryObj.Lecturer = Examinfo.Lecturer;
-        queryObj.UpdatedBy = id;
-        queryObj.Id = accessId;
+        queryObj.UpdatedBy = accessId;
+        queryObj.Id = id;
         dbConn.query("UPDATE Examination SET Duration=?,Semester=?,Notes=?,Department=?,Course=?,CourseCode=?,AcademicYear=?,Lecturer=?,UpdatedBy=? WHERE id = ?",
             [queryObj.Duration, queryObj.Semester, queryObj.Notes,queryObj.Department,queryObj.Course,queryObj.CourseCode,
                 queryObj.AcademicYear,queryObj.Lecturer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
