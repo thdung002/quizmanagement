@@ -124,14 +124,14 @@ User.getUser = function (page, perpage, sort, result) {
 };
 
 //update user by id
-User.update = function (id,accessId, userinfo, result) {
+User.update = function (accessId,id, userinfo, result) {
     try {
         let queryObj = {};
         queryObj.Password = BCrypt.hashSync(userinfo.Password, 10);
         queryObj.Fullname = userinfo.Fullname;
         queryObj.Role = userinfo.Role;
-        queryObj.UpdatedBy = id;
-        queryObj.Id = accessId;
+        queryObj.UpdatedBy = accessId;
+        queryObj.Id = id;
         queryObj.Email = userinfo.Email;
         dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy,queryObj.Email, queryObj.Id], function (err, res) {
             if (err) {

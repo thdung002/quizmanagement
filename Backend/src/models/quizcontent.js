@@ -101,13 +101,13 @@ QuizContent.getQuizContent = function (page, perpage, sort, result) {
 };
 
 //update QuizContent by id
-QuizContent.update = function (id,accessId, QuizContentinfo, result) {
+QuizContent.update = function (accessId,id, QuizContentinfo, result) {
     try {
         let queryObj = {};
         queryObj.Quiz = QuizContentinfo.Quiz;
         queryObj.QuestionID = QuizContentinfo.QuestionID;
-        queryObj.UpdatedBy = id;
-        queryObj.Id = accessId;
+        queryObj.UpdatedBy = accessId;
+        queryObj.Id = id;
         dbConn.query("UPDATE QuizContent SET Quiz=?,QuestionID=?,UpdatedBy=? WHERE id = ?", [queryObj.Quiz, queryObj.QuestionID, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);

@@ -53,7 +53,15 @@ module.exports = function (app) {
      *
      * @apiDescription Create Exam by all user
      *
-     *
+     * @apiParam {String} Duration time of the exam
+     * @apiParam {String} Semester Semester time of the exam
+     * @apiParam {String} Notes notes of lecturer for the exam
+     * @apiParam {String} Department Department name
+     * @apiParam {String} Course course name
+     * @apiParam {String} CourseCode course code of course
+     * @apiParam {String} AcademicYear year of the exam
+     * @apiParam {String} Lecturer lecturer name
+
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/exam/add
      *
@@ -83,7 +91,7 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName getOne
      * @apiGroup Exam
-     * @apiPermission Every type of Exam
+     * @apiPermission Every type of user
      * @apiHeader {String} access_token json web token to access to data
      *
      * @apiDescription Get one Exam
@@ -128,7 +136,7 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName update
      * @apiGroup Exam
-     * @apiPermission Every type of Exam
+     * @apiPermission Every type of user
      *
      * @apiDescription Update Exam information
      *

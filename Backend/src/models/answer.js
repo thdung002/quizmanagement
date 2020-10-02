@@ -108,14 +108,14 @@ Answer.getAnswer = function (page, perpage, sort, result) {
 };
 
 //update Answer by id
-Answer.update = function (id,accessId, Answerinfo, result) {
+Answer.update = function (accessId,id, Answerinfo, result) {
     try {
         let queryObj = {};
         queryObj.Content = Answerinfo.Content;
         queryObj.IsCorrect = Answerinfo.IsCorrect;
         queryObj.CorrectAnswer = Answerinfo.CorrectAnswer;
-        queryObj.UpdatedBy = id;
-        queryObj.Id = accessId;
+        queryObj.UpdatedBy = accessId;
+        queryObj.Id = id;
         dbConn.query("UPDATE Answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);

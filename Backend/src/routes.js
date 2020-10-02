@@ -8,5 +8,5 @@ module.exports = function (app) {
     require('./routes/answer')(app);
     require('./routes/examination')(app);
     require('./routes/quizcontent')(app);
-
+    require('./routes/template')(app);
 };

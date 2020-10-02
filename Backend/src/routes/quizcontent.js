@@ -84,7 +84,7 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName getOne
      * @apiGroup quizcontent
-     * @apiPermission Every type of quizcontent
+     * @apiPermission Every type of user
      *
      * @apiDescription Get one quizcontent
      *
@@ -125,7 +125,7 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName update
      * @apiGroup quizcontent
-     * @apiPermission Every type of quizcontent
+     * @apiPermission Every type of user
      *
      * @apiDescription Update quizcontent information
      *
