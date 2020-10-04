@@ -56,9 +56,9 @@ Answer.getAnswerById = function (id, result) {
 };
 //get all Answer with pagination
 Answer.getAnswer = function (page, perpage, sort, result) {
-    if (page === 0)
+    if (page === 0 || isNaN(page))
         page = 1;
-    if (perpage <= 0) {
+    if (perpage <= 0 || isNaN(perpage)) {
         perpage = 5;
     }
     if (sort.length === 0) {
