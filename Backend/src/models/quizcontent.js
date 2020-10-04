@@ -2,28 +2,21 @@
 var dbConn = require('./../../config/db.config');
 const Pieces = require('../utils/Pieces');
 
-var Answer = function (answer) {
-    this.Question = answer.Question;
-    this.Content = answer.Content;
-    this.IsCorrect = answer.IsCorrect;
-    this.CorrectAnswer = answer.CorrectAnswer;
-    this.CreatedBy = answer.CreatedBy;
-    this.UpdatedBy = answer.UpdatedBy;
+var QuizContent = function (quiz) {
+    this.Quiz = quiz.Quiz;
+    this.QuestionID = quiz.QuestionID;
+    this.CreatedBy = quiz.CreatedBy;
+    this.UpdatedBy = quiz.UpdatedBy;
 };
-//add Answer
-Answer.add = function (accessID, newAnswer, result) {
-     if (!Pieces.VariableBaseTypeChecking(newAnswer.Content, 'string')
-        || newAnswer.Content===null) {
-        return result(1, 'invalid_Answer', 400, null, null);
-    }else {
+//add QuizContent
+QuizContent.add = function (accessID, newQuizContent, result) {
+
         try {
             let queryObj = {};
-            queryObj.Question = newAnswer.Question;
-            queryObj.Content = newAnswer.Content;
-            queryObj.IsCorrect = newAnswer.Content;
-            queryObj.CorrectAnswer = newAnswer.CorrectAnswer;
+            queryObj.Quiz = newQuizContent.Quiz;
+            queryObj.QuestionID = newQuizContent.QuestionID;
             queryObj.CreatedBy = accessID;
-            dbConn.query("INSERT INTO Answer set ?", queryObj, function (err, res) {
+            dbConn.query("INSERT INTO quizcontent set ?", queryObj, function (err, res) {
                 if (err) {
                     result(err, null);
                 } else {
@@ -32,46 +25,46 @@ Answer.add = function (accessID, newAnswer, result) {
                 }
             });
         } catch (error) {
-            result(1, 'create_Answer_fail', 400, error, null);
+            result(1, 'create_Quiz_Content_fail', 400, error, null);
         }
-    }
+
 };
-//get Answer
-Answer.getAnswerById = function (id, result) {
+//get QuizContent
+QuizContent.getQuizContentById = function (id, result) {
     try {
-        dbConn.query("Select * from Answer where question = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from QuizContent where id = ? ", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
                 } else if(res.length === 0)
-                    result (1, 'Answer_not_found', 403, err, null);
+                    result (1, 'Quiz_Content_not_found', 403, err, null);
                 else {
                     result(null, res);
                 }
             }
         );
     } catch (error) {
-        return result(1, 'get_one_Answer_fail', 400, error, null);
+        return result(1, 'get_one_Quiz_Content_fail', 400, error, null);
     }
 };
-//get all Answer with pagination
-Answer.getAnswer = function (page, perpage, sort, result) {
-    if (page === 0 || isNaN(page))
+//get all QuizContent with pagination
+QuizContent.getQuizContent = function (page, perpage, sort, result) {
+    if (page === 0|| isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
         perpage = 5;
     }
-    if (sort.length === 0) {
+    if (sort.length === 0|| sort!=="DESC") {
         sort = "ASC";
     }
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from Answer ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from QuizContent ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from Answer ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from QuizContent ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -103,47 +96,46 @@ Answer.getAnswer = function (page, perpage, sort, result) {
             }
         })
     } catch (error) {
-        return result(1, 'get_all_Answer_fail', 400, error, null);
+        return result(1, 'get_all_Quiz_Content_fail', 400, error, null);
     }
 };
 
-//update Answer by id
-Answer.update = function (id,accessId, Answerinfo, result) {
+//update QuizContent by id
+QuizContent.update = function (accessId,id, QuizContentinfo, result) {
     try {
         let queryObj = {};
-        queryObj.Content = Answerinfo.Content;
-        queryObj.IsCorrect = Answerinfo.IsCorrect;
-        queryObj.CorrectAnswer = Answerinfo.CorrectAnswer;
+        queryObj.Quiz = QuizContentinfo.Quiz;
+        queryObj.QuestionID = QuizContentinfo.QuestionID;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
-        dbConn.query("UPDATE Answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+        dbConn.query("UPDATE QuizContent SET Quiz=?,QuestionID=?,UpdatedBy=? WHERE id = ?", [queryObj.Quiz, queryObj.QuestionID, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
             } else if(res.changedRows === 0)
-                result(1, 'Answer_not_found', 403, err, null);
+                result(1, 'Quiz_Content_not_found', 403, err, null);
             else {
                 result(null, queryObj.Id);
             }
         });
     } catch (error) {
-        return result(1, 'update_Answer_fail', 400, error, null);
+        return result(1, 'update_QuizContent_fail', 400, error, null);
     }
 };
-Answer.delete = function (id, result) {
+QuizContent.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM Answer WHERE id = ?", [id], function (err, res) {
+        dbConn.query("DELETE FROM QuizContent WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
             } else if(res.affectedRows===0)
-                result(1, 'Answer_not_found', 403, err, null);
+                result(1, 'Quiz_Content_not_found', 403, err, null);
             else {
                 result(null, id);
             }
         });
     } catch (error) {
-        return result(1, 'delete_Answer_fail', 400, error, null);
+        return result(1, 'delete_Quiz_Content_fail', 400, error, null);
     }
 };
-module.exports = Answer;
+module.exports = QuizContent;

@@ -1,4 +1,4 @@
-const topicController =   require('../controllers/topic.controller');
+const topicController =   require('../controllers/topic');
 // const router = express.Router();
 // router.get('/', topicController.findAll);
 // router.post('/', topicController.create);

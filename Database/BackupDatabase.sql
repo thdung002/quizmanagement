@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `quiz_management` /*!40100 DEFAULT CHARACTER SET 
 USE `quiz_management`;
 -- MariaDB dump 10.17  Distrib 10.4.11-MariaDB, for Win64 (AMD64)
 --
--- Host: 113.162.190.123    Database: quiz_management
+-- Host: quizmanagement.zapto.org    Database: quiz_management
 -- ------------------------------------------------------
 -- Server version	10.4.11-MariaDB
 
@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `answer`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `answer` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Question` int(11) DEFAULT NULL,
+  `Question` int(11) NOT NULL,
   `Content` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `IsCorrect` tinyint(1) DEFAULT NULL COMMENT '1 is correct, 0 is false. Not using when it is match question',
   `CorrectAnswer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Using for fill type question',
@@ -131,7 +131,7 @@ CREATE TABLE `examination` (
 
 LOCK TABLES `examination` WRITE;
 /*!40000 ALTER TABLE `examination` DISABLE KEYS */;
-INSERT INTO `examination` VALUES (1,'120','1','test','test','test','test','test','test',1,'2020-09-22 13:03:33',1,NULL),(3,'180 Minutes','1','Neither phone nor laptop allowed','HTTT- CTTT2018','TestCourse1','MSIS-124312','2019-2020','Mr.Dung',2,'2020-09-28 10:41:08',2,'2020-09-28 10:53:52');
+INSERT INTO `examination` VALUES (1,'120','1','test','test','test','test','test','test',1,'2020-09-22 13:03:33',1,NULL);
 /*!40000 ALTER TABLE `examination` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -178,8 +178,8 @@ DROP TABLE IF EXISTS `questiontopic`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `questiontopic` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Question` int(11) DEFAULT NULL,
-  `Topic` int(11) DEFAULT NULL,
+  `Question` int(11) NOT NULL,
+  `Topic` int(11) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
@@ -215,9 +215,9 @@ DROP TABLE IF EXISTS `quiz`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quiz` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Examination` int(11) DEFAULT NULL,
-  `Config` int(11) DEFAULT NULL,
-  `Template` int(11) DEFAULT NULL,
+  `Examination` int(11) NOT NULL,
+  `Config` int(11) NOT NULL,
+  `Template` int(11) NOT NULL,
   `Code` int(11) DEFAULT NULL,
   `CreatedBy` int(11) NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
@@ -256,8 +256,8 @@ DROP TABLE IF EXISTS `quizcontent`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `quizcontent` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Quiz` int(11) DEFAULT NULL,
-  `QuestionID` int(11) DEFAULT NULL,
+  `Quiz` int(11) NOT NULL,
+  `QuestionID` int(11) NOT NULL,
   `CreatedBy` int(11) NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT current_timestamp(),
   `UpdatedBy` int(11) DEFAULT NULL,
@@ -266,10 +266,12 @@ CREATE TABLE `quizcontent` (
   KEY `Quiz` (`Quiz`),
   KEY `CreatedBy` (`CreatedBy`),
   KEY `UpdatedBy` (`UpdatedBy`),
+  KEY `QuestionID` (`QuestionID`),
   CONSTRAINT `quizcontent_ibfk_1` FOREIGN KEY (`Quiz`) REFERENCES `quiz` (`ID`),
   CONSTRAINT `quizcontent_ibfk_2` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
-  CONSTRAINT `quizcontent_ibfk_3` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `quizcontent_ibfk_3` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`),
+  CONSTRAINT `quizcontent_ibfk_4` FOREIGN KEY (`QuestionID`) REFERENCES `question` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,6 +280,7 @@ CREATE TABLE `quizcontent` (
 
 LOCK TABLES `quizcontent` WRITE;
 /*!40000 ALTER TABLE `quizcontent` DISABLE KEYS */;
+INSERT INTO `quizcontent` VALUES (1,1,3,2,'2020-09-30 10:09:08',NULL,NULL),(2,1,2,2,'2020-09-30 10:11:08',1,'2020-09-30 10:23:04'),(3,1,2,2,'2020-09-30 10:11:11',1,'2020-09-30 10:14:03');
 /*!40000 ALTER TABLE `quizcontent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,9 +363,9 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Username` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(11) COLLATE utf8_unicode_ci NOT NULL COMMENT 'must be a string and a lowercase ',
   `Password` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `Fullname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `Role` varchar(11) COLLATE utf8_unicode_ci NOT NULL COMMENT '1 is super admin, 2  is admin, 3 is user',
   `CreatedBy` int(11) NOT NULL,
@@ -370,7 +373,7 @@ CREATE TABLE `user` (
   `UpdatedBy` int(11) DEFAULT NULL,
   `UpdatedAt` datetime DEFAULT NULL ON UPDATE current_timestamp(),
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Username` (`Username`,`Email`)
+  UNIQUE KEY `Username` (`Username`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -380,7 +383,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin','$2a$10$zXdo0CpJq0ONLYCxyj.g2O3gI8JSdCNj38qYXu7u8A.at2a.9l5qK',NULL,'administrator','1',0,'2020-09-09 18:35:35',1,'2020-09-23 08:45:14'),(2,'dung','$2a$10$i/xSopS23baiJRcGRJgcteqJKhkYpV2VQSIaWemtCaRcRp8tR.3EW','thdung002@gmail.com','THD','1',0,'2020-09-09 18:38:12',2,'2020-09-26 00:40:15'),(3,'trung','$2a$10$mtTEKLAjLq6D9m1d.Ms.hu6bjN78Rq6HT/PEFgY4Z/zzT2VXFOA5m',NULL,'trungggg','3',0,'2020-09-09 18:38:12',3,'2020-09-23 08:50:07');
+INSERT INTO `user` VALUES (1,'admin','$2a$10$zXdo0CpJq0ONLYCxyj.g2O3gI8JSdCNj38qYXu7u8A.at2a.9l5qK','','administrator','1',0,'2020-09-09 18:35:35',1,'2020-09-23 08:45:14'),(2,'dung','$2a$10$i/xSopS23baiJRcGRJgcteqJKhkYpV2VQSIaWemtCaRcRp8tR.3EW','thdung002@gmail.com','THD','1',0,'2020-09-09 18:38:12',2,'2020-09-26 00:40:15'),(3,'trung','$2a$10$mtTEKLAjLq6D9m1d.Ms.hu6bjN78Rq6HT/PEFgY4Z/zzT2VXFOA5m','','trungggg','3',0,'2020-09-09 18:38:12',3,'2020-09-23 08:50:07');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -401,4 +404,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-09-28 11:00:35
+-- Dump completed on 2020-10-02 10:08:56

@@ -1,21 +1,21 @@
-const examController =   require('../controllers/examination.controller');
+const quizController =   require('../controllers/quiz');
 module.exports = function (app) {
-    app.get('/v1/exam/getall', examController.getExam);
+    app.get('/v1/quiz/getall', quizController.getQuiz);
     /**
-     * @api {GET} /v1/exam/getall Get All List
+     * @api {GET} /v1/quiz/getall Get All List
      * @apiVersion 1.0.0
      * @apiName getAll
-     * @apiGroup Exam
+     * @apiGroup Quiz
      * @apiPermission only Super administrator
      *
-     * @apiDescription Get all Exams
+     * @apiDescription Get all quizs
      *
      * @apiParam {Number} page Page which we want to get (N/A)
      * @apiParam {Number} perPage Item per page (N/A)
      * @apiParam {String} sort Sort the list by a field (N/A)
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/exam/getall
+     * curl -i http://localhost:5000/v1/quiz/getall
      *
      * @apiSuccess {String} result ok or fail
      * @apiSuccess {String} message something from server
@@ -43,26 +43,26 @@ module.exports = function (app) {
      *     }
      */
 
-    app.post('/v1/exam/add', examController.addExam);
+    app.post('/v1/quiz/add', quizController.addQuiz);
     /**
-     * @api {POST} /v1/exam/add Create One account
+     * @api {POST} /v1/quiz/add Create One quiz
      * @apiVersion 1.0.0
      * @apiName createByAdmin
-     * @apiGroup Exam
-     * @apiPermission All user
+     * @apiGroup Quiz
+     * @apiPermission just administrator or super administrator
      *
-     * @apiDescription Create Exam by all user
+     * @apiDescription Create quiz by admin or moderator
      *
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/exam/add
+     * curl -i http://localhost:5000/v1/quiz/add
      *
-     * @apiSuccess {String} id the ID of created Exam
+     * @apiSuccess {String} id the ID of created quiz
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *       "result": "ok",
-     *       "message": "Exam added successfully!",
+     *       "message": "quiz added successfully!",
      *       "id": 9
      *     }
      *
@@ -77,38 +77,36 @@ module.exports = function (app) {
      */
 
 
-    app.get('/v1/exam/get/:id', examController.getExamById);
+    app.get('/v1/quiz/get/:id', quizController.getQuizById);
     /**
-     * @api {GET} /v1/exam/get/:id Get One
+     * @api {GET} /v1/answer/get/:id Get One
      * @apiVersion 1.0.0
      * @apiName getOne
-     * @apiGroup Exam
-     * @apiPermission Every type of Exam
-     * @apiHeader {String} access_token json web token to access to data
+     * @apiGroup Quiz
+     * @apiPermission Every type of answer
      *
-     * @apiDescription Get one Exam
+     * @apiDescription Get one quiz
      *
-     * @apiParam {string} id ID of question, on params
+     * @apiParam {string} id ID of examination, on params
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:3000/v1/exams/get/2
+     * curl -i http://localhost:3000/v1/quiz/get/2
      *
-     * @apiSuccess {String} Id the ID of Exam
-     * @apiSuccess {Number} Question Id of question
-     * @apiSuccess {String} Content Exam content
-     * @apiSuccess {String} CorrectExam Exam for filling question
-     * @apiSuccess {Number} IsCorrect correct Exam for multiple choice, 1 is correct, 0 is fail
+     * @apiSuccess {String} Id the ID of Examination
+     * @apiSuccess {Number} Examination Id of Examination
+     * @apiSuccess {Number} Config Id of Config
+     * @apiSuccess {Number} Template Id of Template
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *          "result": "ok",
-     *          "message" "Exam get successfully!"
+     *          "message" "quiz get successfully!"
      *          "data":{
      *              "ID": 1,
-     *              "Question": 3,
-     *              "Content": "This is Exam B",
-     *              "CorrectExam": "This is column 2",
+     *              "Examination": 3,
+     *              "Config": "1",
+     *              "Template": "1",
      *              ...
      *          },
      *     }
@@ -122,36 +120,31 @@ module.exports = function (app) {
      *       "message": "invalid input"
      *     }
      */
-    app.put('/v1/exam/update/:id', examController.updateExamById);
+    app.put('/v1/quiz/update/:id', quizController.updateQuizById);
     /**
-     * @api {PUT} /v1/exam/update/:id Update One
+     * @api {PUT} /v1/quiz/update/:id Update One
      * @apiVersion 1.0.0
      * @apiName update
-     * @apiGroup Exam
-     * @apiPermission Every type of Exam
+     * @apiGroup Quiz
+     * @apiPermission Every type of Quiz
      *
-     * @apiDescription Update Exam information
+     * @apiDescription Update Quiz information
      *
-     * @apiParam {Number} ID Id of Exam, on params
-     * @apiParam {String} Duration Time of Exam
-     * @apiParam {String} Semester Semester of Exam
-     * @apiParam {String} Notes Note of lecturer for exam
-     * @apiParam {String} Department Department of exam
-     * @apiParam {String} Course Course name of exam
-     * @apiParam {String} Coursecode Code of course
-     * @apiParam {String} AcademicYear Year of exam
-     * @apiParam {String} Lecturer Name of lecturer
-     * @apiParam {String} accessID ID of current user
+     * @apiParam {Number} ID Id of Quiz where to update, on params
+     * @apiSuccess {Number} Examination Id of Examination
+     * @apiSuccess {Number} Config Id of Config
+     * @apiSuccess {Number} Template Id of Template
+     * @apiParam {Number} accessID ID of current user
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/exam/update/2
+     * curl -i http://localhost:5000/v1/quiz/update/2
      *
-     * @apiSuccess {String} id the ID of updated Exam
+     * @apiSuccess {Number} id the ID of updated Quiz
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *          "result":"ok",
-     *          "message":"Exam update successfully!"
+     *          "message":"Quiz update successfully!"
      *          "id": "1"
      *     }
      *
@@ -165,28 +158,27 @@ module.exports = function (app) {
      *     }
      */
 
-    app.delete('/v1/exam/delete/:id', examController.deleteExamById);
+    app.delete('/v1/quiz/delete/:id', quizController.deleteQuizById);
     /**
-     * @api {DELETE} /v1/exam/delete/:id Delete One
+     * @api {DELETE} /v1/quiz/delete/:id Delete One
      * @apiVersion 1.0.0
      * @apiName delete
-     * @apiGroup Exam
-     * @apiPermission just admin Exam
-     * @apiHeader {String} access_token json web token to access to data
+     * @apiGroup Quiz
+     * @apiPermission just admin Quiz
      *
-     * @apiDescription delete Exam
+     * @apiDescription delete Quiz
      *
-     * @apiParam {String} id ID of Exam
+     * @apiParam {Number} id ID of Quiz
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/exam/delete/7
+     * curl -i http://localhost:5000/v1/Quiz/delete/7
      *
-     * @apiSuccess {String} id Id of deleted Exam
+     * @apiSuccess {Number} id Id of deleted Quiz
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *          "result": "ok",
-     *          "message": "Exam delete successfully!",
+     *          "message": "Quiz delete successfully!",
      *          "id": "2"
      *     }
      *

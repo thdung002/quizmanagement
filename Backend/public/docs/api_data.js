@@ -58,7 +58,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/answer.route.js",
+    "filename": "src/routes/answer.js",
     "groupTitle": "Answer"
   },
   {
@@ -146,7 +146,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/answer.route.js",
+    "filename": "src/routes/answer.js",
     "groupTitle": "Answer"
   },
   {
@@ -263,7 +263,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/answer.route.js",
+    "filename": "src/routes/answer.js",
     "groupTitle": "Answer"
   },
   {
@@ -372,7 +372,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/answer.route.js",
+    "filename": "src/routes/answer.js",
     "groupTitle": "Answer"
   },
   {
@@ -468,7 +468,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/answer.route.js",
+    "filename": "src/routes/answer.js",
     "groupTitle": "Answer"
   },
   {
@@ -585,7 +585,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/user.route.js",
+    "filename": "src/routes/user.js",
     "groupTitle": "User"
   },
   {
@@ -673,7 +673,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/user.route.js",
+    "filename": "src/routes/user.js",
     "groupTitle": "User"
   },
   {
@@ -790,7 +790,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/user.route.js",
+    "filename": "src/routes/user.js",
     "groupTitle": "User"
   },
   {
@@ -906,7 +906,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/user.route.js",
+    "filename": "src/routes/user.js",
     "groupTitle": "User"
   },
   {
@@ -1002,7 +1002,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/user.route.js",
+    "filename": "src/routes/user.js",
     "groupTitle": "User"
   },
   {
@@ -1105,7 +1105,7 @@ define({ "api": [
         }
       ]
     },
-    "filename": "src/routes/user.route.js",
+    "filename": "src/routes/user.js",
     "groupTitle": "User"
   }
 ] });

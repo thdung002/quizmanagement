@@ -1,21 +1,21 @@
-const quizController =   require('../controllers/quiz.controller');
+const quizcontentController =   require('../controllers/quizcontent');
 module.exports = function (app) {
-    app.get('/v1/quiz/getall', quizController.getQuiz);
+    app.get('/v1/quizcontent/getall', quizcontentController.getQuizContent);
     /**
-     * @api {GET} /v1/quiz/getall Get All List
+     * @api {GET} /v1/quizcontent/getall Get All List
      * @apiVersion 1.0.0
      * @apiName getAll
-     * @apiGroup Quiz
-     * @apiPermission only Super administrator
+     * @apiGroup quizcontent
+     * @apiPermission all user
      *
-     * @apiDescription Get all quizs
+     * @apiDescription Get all quiz
      *
      * @apiParam {Number} page Page which we want to get (N/A)
      * @apiParam {Number} perPage Item per page (N/A)
      * @apiParam {String} sort Sort the list by a field (N/A)
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/quiz/getall
+     * curl -i http://localhost:5000/v1/quizcontent/getall
      *
      * @apiSuccess {String} result ok or fail
      * @apiSuccess {String} message something from server
@@ -43,26 +43,27 @@ module.exports = function (app) {
      *     }
      */
 
-    app.post('/v1/quiz/add', quizController.addQuiz);
+    app.post('/v1/quizcontent/add', quizcontentController.addQuizContent);
     /**
-     * @api {POST} /v1/quiz/add Create One quiz
+     * @api {POST} /v1/quizcontent/add Create One Quiz content
      * @apiVersion 1.0.0
      * @apiName createByAdmin
-     * @apiGroup Quiz
-     * @apiPermission just administrator or super administrator
+     * @apiGroup quizcontent
+     * @apiPermission all user
      *
-     * @apiDescription Create quiz by admin or moderator
-     *
+     * @apiDescription Create quizcontent by all user
+     * @apiParam {Number} Quiz Id of quiz
+     * @apiParam {Number} QuestionID id of question
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/quiz/add
+     * curl -i http://localhost:5000/v1/quizcontent/add
      *
-     * @apiSuccess {String} id the ID of created quiz
+     * @apiSuccess {String} id the ID of created quizcontent
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *       "result": "ok",
-     *       "message": "quiz added successfully!",
+     *       "message": "quizcontent added successfully!",
      *       "id": 9
      *     }
      *
@@ -77,36 +78,34 @@ module.exports = function (app) {
      */
 
 
-    app.get('/v1/quiz/get/:id', quizController.getQuizById);
+    app.get('/v1/quizcontent/get/:id', quizcontentController.getQuizContentById);
     /**
-     * @api {GET} /v1/answer/get/:id Get One
+     * @api {GET} /v1/quizcontent/get/:id Get One
      * @apiVersion 1.0.0
      * @apiName getOne
-     * @apiGroup Quiz
-     * @apiPermission Every type of answer
+     * @apiGroup quizcontent
+     * @apiPermission Every type of user
      *
-     * @apiDescription Get one quiz
+     * @apiDescription Get one quizcontent
      *
-     * @apiParam {string} id ID of examination, on params
+     * @apiParam {string} id ID of quiz, on params
      *
      * @apiExample Example usage:
      * curl -i http://localhost:3000/v1/quiz/get/2
      *
-     * @apiSuccess {String} Id the ID of Examination
-     * @apiSuccess {Number} Examination Id of Examination
-     * @apiSuccess {Number} Config Id of Config
-     * @apiSuccess {Number} Template Id of Template
+     * @apiSuccess {String} Id the ID of quizcontent
+     * @apiSuccess {Number} QuestionID Id of question
+     * @apiSuccess {String} Quiz id of quiz
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *          "result": "ok",
-     *          "message" "quiz get successfully!"
+     *          "message" "quizcontent get successfully!"
      *          "data":{
      *              "ID": 1,
-     *              "Examination": 3,
-     *              "Config": "1",
-     *              "Template": "1",
+     *              "QuestionID": 3,
+     *              "Quiz": 1,
      *              ...
      *          },
      *     }
@@ -120,31 +119,30 @@ module.exports = function (app) {
      *       "message": "invalid input"
      *     }
      */
-    app.put('/v1/quiz/update/:id', quizController.updateQuizById);
+    app.put('/v1/quizcontent/update/:id', quizcontentController.updateQuizContentById);
     /**
-     * @api {PUT} /v1/quiz/update/:id Update One
+     * @api {PUT} /v1/quizcontent/update/:id Update One
      * @apiVersion 1.0.0
      * @apiName update
-     * @apiGroup Quiz
-     * @apiPermission Every type of Quiz
+     * @apiGroup quizcontent
+     * @apiPermission Every type of user
      *
-     * @apiDescription Update Quiz information
+     * @apiDescription Update quizcontent information
      *
-     * @apiParam {Number} ID Id of Quiz where to update, on params
-     * @apiSuccess {Number} Examination Id of Examination
-     * @apiSuccess {Number} Config Id of Config
-     * @apiSuccess {Number} Template Id of Template
-     * @apiParam {Number} accessID ID of current user
+     * @apiParam {Number} ID Id of quizcontent where to update, on params
+     * @apiParam {String} Quiz id of quiz
+     * @apiParam {String} QuestionID  Id of question
+     * @apiParam {String} accessID ID of current user
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/quiz/update/2
+     * curl -i http://localhost:5000/v1/quizcontent/update/2
      *
-     * @apiSuccess {Number} id the ID of updated Quiz
+     * @apiSuccess {String} id the ID of updated quizcontent
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *          "result":"ok",
-     *          "message":"Quiz update successfully!"
+     *          "message":"quizcontent update successfully!"
      *          "id": "1"
      *     }
      *
@@ -158,27 +156,27 @@ module.exports = function (app) {
      *     }
      */
 
-    app.delete('/v1/quiz/delete/:id', quizController.deleteQuizById);
+    app.delete('/v1/quizcontent/delete/:id', quizcontentController.deleteQuizContentById);
     /**
-     * @api {DELETE} /v1/quiz/delete/:id Delete One
+     * @api {DELETE} /v1/quizcontent/delete/:id Delete One
      * @apiVersion 1.0.0
      * @apiName delete
-     * @apiGroup Quiz
-     * @apiPermission just admin Quiz
+     * @apiGroup quizcontent
+     * @apiPermission just admin quizcontent
      *
-     * @apiDescription delete Quiz
+     * @apiDescription delete quizcontent
      *
-     * @apiParam {Number} id ID of Quiz
+     * @apiParam {String} id ID of quizcontent
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/Quiz/delete/7
+     * curl -i http://localhost:5000/v1/quizcontent/delete/7
      *
-     * @apiSuccess {Number} id Id of deleted Quiz
+     * @apiSuccess {String} id Id of deleted quizcontent
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *          "result": "ok",
-     *          "message": "Quiz delete successfully!",
+     *          "message": "quizcontent delete successfully!",
      *          "id": "2"
      *     }
      *

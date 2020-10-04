@@ -1,5 +1,5 @@
 'use strict';
-const User = require('../models/user.model');
+const User = require('../models/user');
 
 module.exports = {
     //create a new user

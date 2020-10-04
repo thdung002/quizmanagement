@@ -1,5 +1,5 @@
 'use strict';
-const Topic = require('../models/topic.model');
+const Topic = require('../models/topic');
 // exports.findAll = function(req, res) {
 //     Topic.findAll(function(err, topic) {
 //   console.log('controller')

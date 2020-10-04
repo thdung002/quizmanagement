@@ -1,5 +1,5 @@
 'use strict';
-const Questiontopic = require('../models/questiontopic.model');
+const Questiontopic = require('../models/questiontopic');
 module.exports = {
     //get all questiontopic
     getQuestiontopic: function (req, res) {

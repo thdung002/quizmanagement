@@ -1,5 +1,5 @@
 'use strict';
-const Config = require('../models/config.model');
+const Config = require('../models/config');
 module.exports = {
     //get all config
     getConfig: function (req, res) {
