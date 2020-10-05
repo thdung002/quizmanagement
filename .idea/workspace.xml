@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/examination.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/examination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/examination.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/examination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/quizcontent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/quizcontent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/config/db.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/BackupDatabase.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/BackupDatabase.sql" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +122,8 @@
       <workItem from="1601431783287" duration="5220000" />
       <workItem from="1601443520542" duration="103000" />
       <workItem from="1601521415822" duration="2560000" />
-      <workItem from="1601605603037" duration="2372000" />
+      <workItem from="1601605603037" duration="2568000" />
+      <workItem from="1601904169752" duration="46000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -242,7 +237,21 @@
       <option name="project" value="LOCAL" />
       <updated>1601529516193</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="dung add template">
+      <created>1601608053400</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1601608053400</updated>
+    </task>
+    <task id="LOCAL-00018" summary="dung add template and backup template">
+      <created>1601608158405</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1601608158406</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +284,9 @@
     <MESSAGE value="add quizcontent" />
     <MESSAGE value="dung edit db" />
     <MESSAGE value="dung refactor code + name source" />
-    <option name="LAST_COMMIT_MESSAGE" value="dung refactor code + name source" />
+    <MESSAGE value="dung add template" />
+    <MESSAGE value="dung add template and backup template" />
+    <option name="LAST_COMMIT_MESSAGE" value="dung add template and backup template" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
