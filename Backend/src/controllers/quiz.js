@@ -1,56 +1,65 @@
 'use strict';
-const Quiz = require('../models/quiz');
-module.exports = {
-    //get all toppic
-    getQuiz: function (req, res) {
-        Quiz.getQuiz(function (err, quiz) {
-            if (err)
-                res.send(err);
-            console.log('res', quiz);
-            res.send(quiz);
-        })
-    },
-    //create a new quiz
-    addQuiz: function (req, res) {
-        const new_quiz = new Quiz(req.body);
-    //handles null error
-        if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
-        } else {
-            Quiz.add(new_quiz, function (err, quiz) {
-                if (err)
-                    res.send(err);
-                res.json({error: false, message: "Quiz added successfully!", data: quiz});
-            });
-        }
-    },
-    //get quiz by id
-    getQuizById: function (req, res) {
-        Quiz.getQuizById(req.params.id, function (err, quiz) {
-            if (err)
-                res.send(err);
-            res.json(quiz);
-        })
-    },
+<<<<<<< HEAD:Backend/src/controllers/quiz.controller.js
+const Quiz = require('../models/quiz.model');
 
-    //upadte quiz
-    updateQuizById: function (req, res) {
+=======
+const Quiz = require('../models/quiz');
+>>>>>>> b3fd3ab6794cebcbcbf327179238200140635843:Backend/src/controllers/quiz.js
+module.exports = {
+    //Add new Quiz
+    addQuiz: function (req, res) {
+        let id = req.body.accessID || ' ';
+        let new_Quiz = req.body || '';
+        //Handles null error
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
             res.status(400).send({error: true, message: 'Please provide all required field'});
         } else {
-            Quiz.update(req.params.id, new Quiz(req.body), function (err, quiz) {
+            Quiz.add(id,new_Quiz, function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({error: false, message: 'Quiz successfully updated'});
+                     res.json({result:"fail",message:"Invalid input"});
+                else  res.json({result:"ok",message: "Quiz added successfully!", id: result});
             });
         }
     },
-    //delete quiz
-    deleteQuizById: function (req, res) {
-        Quiz.deleteQuizById(req.params.id, function (err, quiz) {
+    //get all Quiz
+    getQuiz: function (req, res) {
+        let page = req.body.page || '';
+        let sort = req.body.sort || '';
+        let perpage = req.body.perpage || '';
+        Quiz.getQuiz(parseInt(page),parseInt(perpage),sort,function (err, result) {
             if (err)
-                res.send(err);
-            res.json({error: false, message: 'Quiz successfully deleted'});
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Quiz get successfully!", data: result});
+        })
+    },
+    //get 1 Quiz by id
+    getQuizById: function (req, res) {
+        Quiz.getQuizById(req.params.id, function (err, result) {
+            if (err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Quiz get successfully!", data: result});
+        })
+    },
+    //update Quiz
+    updateQuizById: function (req, res) {
+        let id = req.body.accessID;
+
+        if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+            res.status(400).send({error: true, message: 'Please provide all required field'});
+        } else {
+            Quiz.update(id,req.params.id, new Quiz(req.body), function (err, result) {
+                if (err)
+                    return res.json({result:"fail",message:"Invalid input"});
+                else return res.json({result:"ok",message: "Quiz update successfully!", id: result});
+            });
+        }
+    },
+    //delete Quiz
+    deleteQuizById: function (req, res) {
+        Quiz.delete(req.params.id, function (err, result) {
+            if (err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Quiz delete successfully!", id: result});
         })
     }
 };
