@@ -1,58 +1,61 @@
 'use strict';
 const Config = require('../models/config');
+
 module.exports = {
-    //get all config
-    getConfig: function (req, res) {
-        Config.getConfig(function (err, config) {
-            if (err)
-                res.send(err);
-            console.log('res', config);
-            res.send(config);
-        })
-    },
-
-
-    //create a new config
+    //Add new Config
     addConfig: function (req, res) {
-        const new_config = new Config(req.body);
-    //handles null error
+        let id = req.body.accessID || ' ';
+        let new_Config = req.body || '';
+        //Handles null error
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Config.add(new_config, function (err, config) {
+            Config.add(id, new_Config, function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({error: false, message: "Config added successfully!", data: config});
+                    res.json({ result: "fail", message: "Invalid input" });
+                else res.json({ result: "ok", message: "Config added successfully!", id: result });
             });
         }
     },
-    //get config by id
-    getConfigById: function (req, res) {
-        Config.getConfigById(req.params.id, function (err, config) {
+    //Get all
+    getConfig: function (req, res) {
+        let page = req.body.page || '';
+        let sort = req.body.sort || '';
+        let perpage = req.body.perpage || '';
+        Config.getConfig(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
-                res.send(err);
-            res.json(config);
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Config get successfully!", data: result });
         })
     },
-
-    //upadte config
+    //get Config by id
+    getConfigById: function (req, res) {
+        Config.getConfigById(req.params.id, function (err, result) {
+            if (err)
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Config get successfully!", data: result });
+        })
+    },
+    //update Config
     updateConfigById: function (req, res) {
+        let id = req.body.accessID;
+
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Config.update(req.params.id, new Config(req.body), function (err, config) {
+            Config.update(id, req.params.id, new Config(req.body), function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({error: false, message: 'Config successfully updated'});
+                    return res.json({ result: "fail", message: "Invalid input" });
+                else return res.json({ result: "ok", message: "Config update successfully!", id: result });
             });
         }
     },
-    //delete config
+    //delete Config
     deleteConfigById: function (req, res) {
-        Config.deleteConfigById(req.params.id, function (err, config) {
+        Config.delete(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json({error: false, message: 'Config successfully deleted'});
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Config delete successfully!", id: result });
         })
     }
 };

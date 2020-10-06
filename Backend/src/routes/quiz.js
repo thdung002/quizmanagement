@@ -6,7 +6,6 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName getAll
      * @apiGroup Quiz
-     * @apiPermission only Super administrator
      *
      * @apiDescription Get all quizs
      *
@@ -75,8 +74,7 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName createByAdmin
      * @apiGroup Quiz
-     * @apiPermission just administrator or super administrator
-     *
+     * 
      * @apiDescription Create quiz by admin or moderator
      *
      * @apiParam {Number} Examination Examination of the quiz (N/A)
@@ -118,8 +116,7 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName getOne
      * @apiGroup Quiz
-     * @apiPermission Every type of answer
-     *
+     * 
      * @apiDescription Get one quiz
      *
      * @apiParam {Number} Id the ID of Examination
@@ -161,7 +158,6 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName update
      * @apiGroup Quiz
-     * @apiPermission Every type of Quiz
      *
      * @apiDescription Update Quiz information
      *
@@ -204,14 +200,13 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName delete
      * @apiGroup Quiz
-     * @apiPermission just admin Quiz
      *
      * @apiDescription delete Quiz
      *
      * @apiParam {Number} id ID of Quiz
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/Quiz/delete/7
+     * curl -i http://localhost:5000/v1/cuiz/delete/7
      *
      * @apiSuccess result sucess or fail
      * @apiSuccess message from server

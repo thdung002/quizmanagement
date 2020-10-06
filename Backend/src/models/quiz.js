@@ -35,8 +35,7 @@ Quiz.add = function (accessID, newQuiz, result) {
         if (err) {
           result(err, null);
         } else {
-          console.log(res.insertId);
-          result(null, res.insertId);
+          result(null, res.err);
         }
       });
     } catch (error) {
@@ -125,7 +124,6 @@ Quiz.update = function (id,accessId, Quiz, result) {
       queryObj.Id = id;
       dbConn.query("UPDATE quiz SET Examination=?,Config=?,Template=?,Code=?, UpdatedBy=? WHERE id = ?", [queryObj.Examination, queryObj.Config, queryObj.Template,queryObj.Code, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
           if (err) {
-              console.log("error: ", err);
               result(null, err);
           } else if(res.changedRows === 0)
               result(1, 'Nothing was updated', 403, err, null);

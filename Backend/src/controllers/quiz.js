@@ -8,12 +8,12 @@ module.exports = {
         let new_Quiz = req.body || '';
         //Handles null error
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Quiz.add(id,new_Quiz, function (err, result) {
+            Quiz.add(id, new_Quiz, function (err, result) {
                 if (err)
-                     res.json({result:"fail",message:"Invalid input"});
-                else  res.json({result:"ok",message: "Quiz added successfully!", id: result});
+                    res.json({ result: "fail", message: "Invalid input" });
+                else res.json({ result: "ok", message: "Quiz added successfully!", id: result });
             });
         }
     },
@@ -22,18 +22,18 @@ module.exports = {
         let page = req.body.page || '';
         let sort = req.body.sort || '';
         let perpage = req.body.perpage || '';
-        Quiz.getQuiz(parseInt(page),parseInt(perpage),sort,function (err, result) {
+        Quiz.getQuiz(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
-                return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Quiz get successfully!", data: result});
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Quiz get successfully!", data: result });
         })
     },
     //get 1 Quiz by id
     getQuizById: function (req, res) {
         Quiz.getQuizById(req.params.id, function (err, result) {
             if (err)
-                return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Quiz get successfully!", data: result});
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Quiz get successfully!", data: result });
         })
     },
     //update Quiz
@@ -41,12 +41,12 @@ module.exports = {
         let id = req.body.accessID;
 
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Quiz.update(id,req.params.id, new Quiz(req.body), function (err, result) {
+            Quiz.update(id, req.params.id, new Quiz(req.body), function (err, result) {
                 if (err)
-                    return res.json({result:"fail",message:"Invalid input"});
-                else return res.json({result:"ok",message: "Quiz update successfully!", id: result});
+                    return res.json({ result: "fail", message: "Invalid input" });
+                else return res.json({ result: "ok", message: "Quiz update successfully!", id: result });
             });
         }
     },
@@ -54,8 +54,8 @@ module.exports = {
     deleteQuizById: function (req, res) {
         Quiz.delete(req.params.id, function (err, result) {
             if (err)
-                return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Quiz delete successfully!", id: result});
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Quiz delete successfully!", id: result });
         })
     }
 };
