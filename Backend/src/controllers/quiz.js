@@ -1,10 +1,6 @@
 'use strict';
-<<<<<<< HEAD:Backend/src/controllers/quiz.controller.js
-const Quiz = require('../models/quiz.model');
-
-=======
 const Quiz = require('../models/quiz');
->>>>>>> b3fd3ab6794cebcbcbf327179238200140635843:Backend/src/controllers/quiz.js
+
 module.exports = {
     //Add new Quiz
     addQuiz: function (req, res) {
