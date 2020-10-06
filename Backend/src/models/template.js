@@ -29,7 +29,7 @@ Template.add = function (accessID, newTemp, result) {
             queryObj.AnswerContent = newTemp.AnswerContent;
             queryObj.FooterContent = newTemp.FooterContent;
             queryObj.CreatedBy = accessID;
-            dbConn.query("INSERT INTO Template set ?", queryObj, function (err, res) {
+            dbConn.query("INSERT INTO template set ?", queryObj, function (err, res) {
                 if (err) {
                     result(err, null);
                 } else {
@@ -45,7 +45,7 @@ Template.add = function (accessID, newTemp, result) {
 //get Template
 Template.getTemplateById = function (id, result) {
     try {
-        dbConn.query("Select * from Template where id = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from template where id = ? ", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -73,11 +73,11 @@ Template.getTemplate = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from Template ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from template ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from Template ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from template ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -126,7 +126,7 @@ Template.update = function (id, accessId, Templateinfo, result) {
         queryObj.FooterContent = Templateinfo.FooterContent;
         queryObj.UpdatedBy = id;
         queryObj.Id = accessId;
-        dbConn.query("UPDATE Template SET TemplateName=?,Description=?,HeaderContent=?,Quiz=?,QuestionContent=?,AnswerContent=?,FooterContent=?,UpdatedBy=? WHERE id = ?",
+        dbConn.query("UPDATE template SET TemplateName=?,Description=?,HeaderContent=?,Quiz=?,QuestionContent=?,AnswerContent=?,FooterContent=?,UpdatedBy=? WHERE id = ?",
             [queryObj.TemplateName, queryObj.Description, queryObj.HeaderContent, queryObj.Quiz,queryObj.QuestionContent,queryObj.AnswerContent,queryObj.FooterContent, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
@@ -143,7 +143,7 @@ Template.update = function (id, accessId, Templateinfo, result) {
 };
 Template.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM Template WHERE id = ?", [id], function (err, res) {
+        dbConn.query("DELETE FROM template WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);

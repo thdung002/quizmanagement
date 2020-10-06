@@ -27,7 +27,7 @@ Exam.add = function (accessID, newExam, result) {
             queryObj.AcademicYear = newExam.AcademicYear;
             queryObj.Lecturer = newExam.Lecturer;
             queryObj.CreatedBy = accessID;
-            dbConn.query("INSERT INTO Examination set ?", queryObj, function (err, res) {
+            dbConn.query("INSERT INTO examination set ?", queryObj, function (err, res) {
                 if (err) {
                     result(err, null);
                 } else {
@@ -42,7 +42,7 @@ Exam.add = function (accessID, newExam, result) {
 //get Exam
 Exam.getExamById = function (id, result) {
     try {
-        dbConn.query("Select * from Examination where question = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from examination where question = ? ", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -70,11 +70,11 @@ Exam.getExam = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from Examination ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from examination ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from Examination ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from examination ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -124,7 +124,7 @@ Exam.update = function (accessId,id, Examinfo, result) {
         queryObj.Lecturer = Examinfo.Lecturer;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
-        dbConn.query("UPDATE Examination SET Duration=?,Semester=?,Notes=?,Department=?,Course=?,CourseCode=?,AcademicYear=?,Lecturer=?,UpdatedBy=? WHERE id = ?",
+        dbConn.query("UPDATE examination SET Duration=?,Semester=?,Notes=?,Department=?,Course=?,CourseCode=?,AcademicYear=?,Lecturer=?,UpdatedBy=? WHERE id = ?",
             [queryObj.Duration, queryObj.Semester, queryObj.Notes,queryObj.Department,queryObj.Course,queryObj.CourseCode,
                 queryObj.AcademicYear,queryObj.Lecturer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
@@ -142,7 +142,7 @@ Exam.update = function (accessId,id, Examinfo, result) {
 };
 Exam.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM Examination WHERE id = ?", [id], function (err, res) {
+        dbConn.query("DELETE FROM examination WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);

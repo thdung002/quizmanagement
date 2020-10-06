@@ -31,7 +31,7 @@ Quiz.add = function (accessID, newQuiz, result) {
       queryObj.Template = newQuiz.Template;
       queryObj.Code = newQuiz.Code;
       queryObj.CreatedBy = accessID;
-      dbConn.query("INSERT INTO Quiz set ?", queryObj, function (err, res) {
+      dbConn.query("INSERT INTO quiz set ?", queryObj, function (err, res) {
         if (err) {
           result(err, null);
         } else {
@@ -47,7 +47,7 @@ Quiz.add = function (accessID, newQuiz, result) {
 //Get Quiz by Examination
 Quiz.getQuizById = function (id, result) {
   try {
-      dbConn.query("Select * from Quiz where Examination = ? ", parseInt(id), function (err, res) {
+      dbConn.query("Select * from quiz where Examination = ? ", parseInt(id), function (err, res) {
               if (err) {
                   console.log("error: ", err);
                   result(err, null);
@@ -75,11 +75,11 @@ Quiz.getQuiz = function (page, perpage, sort, result) {
   let type = typeof (sort);
   let offset = perpage * (page - 1);
   try {
-      dbConn.query("SELECT COUNT(*) as total from Quiz ", function (err, rows) {
+      dbConn.query("SELECT COUNT(*) as total from quiz ", function (err, rows) {
           if (err) {
               return result(err);
           } else {
-              dbConn.query(`Select * from Quiz ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+              dbConn.query(`Select * from quiz ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                   if (errs) {
                       console.log("error in query db: ", errs);
                       return result(errs);
@@ -123,7 +123,7 @@ Quiz.update = function (id,accessId, Quiz, result) {
       queryObj.Code = Quiz.Code;
       queryObj.UpdatedBy = accessId;
       queryObj.Id = id;
-      dbConn.query("UPDATE Quiz SET Examination=?,Config=?,Template=?,UpdatedBy=? WHERE id = ?", [queryObj.Examination, queryObj.Config, queryObj.Template, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+      dbConn.query("UPDATE quiz SET Examination=?,Config=?,Template=?,UpdatedBy=? WHERE id = ?", [queryObj.Examination, queryObj.Config, queryObj.Template, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
           if (err) {
               console.log("error: ", err);
               result(null, err);
@@ -139,7 +139,7 @@ Quiz.update = function (id,accessId, Quiz, result) {
 };
 Quiz.delete = function (id, result) {
   try {
-      dbConn.query("DELETE FROM Quiz WHERE id = ?", [id], function (err, res) {
+      dbConn.query("DELETE FROM quiz WHERE id = ?", [id], function (err, res) {
           if (err) {
               console.log("error: ", err);
               result(null, err);

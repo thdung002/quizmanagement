@@ -83,7 +83,7 @@ User.getUser = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from USER ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from user ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
