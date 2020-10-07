@@ -23,7 +23,7 @@ Answer.add = function (accessID, newAnswer, result) {
             queryObj.IsCorrect = newAnswer.Content;
             queryObj.CorrectAnswer = newAnswer.CorrectAnswer;
             queryObj.CreatedBy = accessID;
-            dbConn.query("INSERT INTO Answer set ?", queryObj, function (err, res) {
+            dbConn.query("INSERT INTO answer set ?", queryObj, function (err, res) {
                 if (err) {
                     result(err, null);
                 } else {
@@ -39,7 +39,7 @@ Answer.add = function (accessID, newAnswer, result) {
 //get Answer
 Answer.getAnswerById = function (id, result) {
     try {
-        dbConn.query("Select * from Answer where question = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from answer where question = ? ", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -67,11 +67,11 @@ Answer.getAnswer = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from Answer ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from answer ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from Answer ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from answer ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -116,7 +116,7 @@ Answer.update = function (accessId,id, Answerinfo, result) {
         queryObj.CorrectAnswer = Answerinfo.CorrectAnswer;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
-        dbConn.query("UPDATE Answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+        dbConn.query("UPDATE answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -132,7 +132,7 @@ Answer.update = function (accessId,id, Answerinfo, result) {
 };
 Answer.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM Answer WHERE id = ?", [id], function (err, res) {
+        dbConn.query("DELETE FROM answer WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
