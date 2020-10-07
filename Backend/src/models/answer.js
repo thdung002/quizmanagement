@@ -12,10 +12,10 @@ var Answer = function (answer) {
 };
 //add Answer
 Answer.add = function (accessID, newAnswer, result) {
-     if (!Pieces.VariableBaseTypeChecking(newAnswer.Content, 'string')
-        || newAnswer.Content===null) {
+    if (!Pieces.VariableBaseTypeChecking(newAnswer.Content, 'string')
+        || newAnswer.Content === null) {
         return result(1, 'invalid_Answer', 400, null, null);
-    }else {
+    } else {
         try {
             let queryObj = {};
             queryObj.Question = newAnswer.Question;
@@ -43,8 +43,8 @@ Answer.getAnswerById = function (id, result) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
-                } else if(res.length === 0)
-                    result (1, 'Answer_not_found', 403, err, null);
+                } else if (res.length === 0)
+                    result(1, 'Answer_not_found', 403, err, null);
                 else {
                     result(null, res);
                 }
@@ -56,12 +56,12 @@ Answer.getAnswerById = function (id, result) {
 };
 //get all Answer with pagination
 Answer.getAnswer = function (page, perpage, sort, result) {
-    if (page === 0|| isNaN(page))
+    if (page === 0 || isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
         perpage = 5;
     }
-    if (sort.length === 0|| sort!=="DESC") {
+    if (sort.length === 0 || sort !== "DESC") {
         sort = "ASC";
     }
     let type = typeof (sort);
@@ -108,26 +108,38 @@ Answer.getAnswer = function (page, perpage, sort, result) {
 };
 
 //update Answer by id
-Answer.update = function (accessId,id, Answerinfo, result) {
-    try {
+Answer.update = function (accessId, id, Answerinfo, result) {
+    if (Answerinfo.Content === undefined)
+        return result(1, 'invalid_content', 400, null, null);
+    if (accessId === undefined)
+        return result(1, 'invalid_content', 400, null, null);
+    if (Answerinfo.IsCorrect === undefined)
+        return result(1, 'invalid_content', 400, null, null);
+    if (Answerinfo.CorrectAnswer === undefined)
+        return result(1, 'invalid_content', 400, null, null);
+
+    else {
         let queryObj = {};
         queryObj.Content = Answerinfo.Content;
         queryObj.IsCorrect = Answerinfo.IsCorrect;
         queryObj.CorrectAnswer = Answerinfo.CorrectAnswer;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
-        dbConn.query("UPDATE answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
-            if (err) {
-                console.log("error: ", err);
-                result(null, err);
-            } else if(res.changedRows === 0)
-                result(1, 'Answer_not_found', 403, err, null);
-            else {
-                result(null, queryObj.Id);
-            }
-        });
-    } catch (error) {
-        return result(1, 'update_Answer_fail', 400, error, null);
+        try {
+            dbConn.query("UPDATE answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(null, err);
+                } else if (res.changedRows === 0)
+                    result(1, 'Answer_not_found', 403, err, null);
+                else {
+                    result(null, queryObj.Id);
+                }
+            });
+        } catch (error) {
+            return result(1, 'update_Answer_fail', 400, error, null);
+        }
+
     }
 };
 Answer.delete = function (id, result) {
@@ -136,7 +148,7 @@ Answer.delete = function (id, result) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
-            } else if(res.affectedRows===0)
+            } else if (res.affectedRows === 0)
                 result(1, 'Answer_not_found', 403, err, null);
             else {
                 result(null, id);
