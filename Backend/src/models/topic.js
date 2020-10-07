@@ -100,7 +100,7 @@ Topic.getTopic = function (page, perpage, sort, result) {
     }
 };
 //Update Topic by id
-Topic.update = function (id, accessID, Topic, result) {
+Topic.update = function (accessID, id, Topic, result) {
     try {
         let queryObj = {};
         queryObj.Content = Topic.Content;

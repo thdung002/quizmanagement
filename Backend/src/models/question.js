@@ -110,7 +110,7 @@ Question.getQuestion = function (page, perpage, sort, result) {
 };
 
 //Update Question by id
-Question.update = function (id,accessID, Question, result) {
+Question.update = function (accessID, id, Question, result) {
   try {
       let queryObj = {};
       queryObj.Content = Question.Content;

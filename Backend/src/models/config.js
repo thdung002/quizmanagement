@@ -119,7 +119,7 @@ Config.getConfig = function (page, perpage, sort, result) {
 };
 
 //Update Config by id
-Config.update = function (id,accessID, Config, result) {
+Config.update = function (accessID, id, Config, result) {
   try {
       let queryObj = {};
       queryObj.NumberQuestionLevel1 = Config.NumberQuestionLevel1;

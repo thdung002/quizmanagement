@@ -113,7 +113,7 @@ Quiz.getQuiz = function (page, perpage, sort, result) {
 };
 
 //Update Quiz by id
-Quiz.update = function (id,accessId, Quiz, result) {
+Quiz.update = function (accessId, id, Quiz, result) {
   try {
       let queryObj = {};
       queryObj.Examination = Quiz.Examination;
