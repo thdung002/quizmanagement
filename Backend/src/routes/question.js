@@ -31,10 +31,9 @@ module.exports = function (app) {
      *        "data": [
      *            {
      *                "ID": 1,
-     *                "Examination": 1,
-     *                "Config": 1,
-     *                "Template": 1,
-     *                "Code": 1,
+     *                "Content": 1,
+     *                "Level": 1,
+     *                "Type": 1,
      *                "CreatedBy": 1,
      *                "CreatedAt": "2020-09-22T06:12:51.000Z",
      *                "UpdatedBy": null,
@@ -134,9 +133,9 @@ module.exports = function (app) {
      *          "message" "question get successfully!"
      *          "data":{
      *              "ID": 1,
-     *              "Examination": 3,
-     *              "Config": "1",
-     *              "Template": "1",
+     *              "Content": 3,
+     *              "Level": "1",
+     *              "Type": "1",
      *              ...
      *          },
      *     }
