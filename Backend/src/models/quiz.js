@@ -35,8 +35,7 @@ Quiz.add = function (accessID, newQuiz, result) {
         if (err) {
           result(err, null);
         } else {
-          console.log(res.insertId);
-          result(null, res.insertId);
+          result(null, res.err);
         }
       });
     } catch (error) {
@@ -114,7 +113,7 @@ Quiz.getQuiz = function (page, perpage, sort, result) {
 };
 
 //Update Quiz by id
-Quiz.update = function (id,accessId, Quiz, result) {
+Quiz.update = function (accessId, id, Quiz, result) {
   try {
       let queryObj = {};
       queryObj.Examination = Quiz.Examination;
@@ -123,9 +122,8 @@ Quiz.update = function (id,accessId, Quiz, result) {
       queryObj.Code = Quiz.Code;
       queryObj.UpdatedBy = accessId;
       queryObj.Id = id;
-      dbConn.query("UPDATE quiz SET Examination=?,Config=?,Template=?,UpdatedBy=? WHERE id = ?", [queryObj.Examination, queryObj.Config, queryObj.Template, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+      dbConn.query("UPDATE quiz SET Examination=?,Config=?,Template=?,Code=?, UpdatedBy=? WHERE id = ?", [queryObj.Examination, queryObj.Config, queryObj.Template,queryObj.Code, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
           if (err) {
-              console.log("error: ", err);
               result(null, err);
           } else if(res.changedRows === 0)
               result(1, 'Nothing was updated', 403, err, null);
@@ -137,6 +135,7 @@ Quiz.update = function (id,accessId, Quiz, result) {
       return result(1, 'update_Quiz_fail', 400, error, null);
   }
 };
+//Delete 1 quiz by id
 Quiz.delete = function (id, result) {
   try {
       dbConn.query("DELETE FROM quiz WHERE id = ?", [id], function (err, res) {

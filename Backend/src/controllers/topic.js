@@ -1,105 +1,61 @@
 'use strict';
 const Topic = require('../models/topic');
-// exports.findAll = function(req, res) {
-//     Topic.findAll(function(err, topic) {
-//   console.log('controller')
-//   if (err)
-//   res.send(err);
-//   console.log('res', topic);
-//   res.send(topic);
-// });
-// };
-// exports.create = function(req, res) {
-// const new_topic = new Topic(req.body);
-// //handles null error
-// if(req.body.constructor === Object && Object.keys(req.body).length === 0){
-//   res.status(400).send({ error:true, message: 'Please provide all required field' });
-// }else{
-//     Topic.create(new_topic, function(err, topic) {
-//   if (err)
-//   res.send(err);
-//   res.json({error:false,message:"Topic added successfully!",data:topic});
-// });
-// }
-// };
-// exports.findById = function(req, res) {
-// Topic.findById(req.params.id, function(err, topic) {
-//   if (err)
-//   res.send(err);
-//   res.json(topic);
-// });
-// };
-// exports.update = function(req, res) {
-//   if(req.body.constructor === Object && Object.keys(req.body).length === 0){
-//     res.status(400).send({ error:true, message: 'Please provide all required field' });
-//   }else{
-//     Topic.update(req.params.id, new Topic(req.body), function(err, topic) {
-//    if (err)
-//    res.send(err);
-//    res.json({ error:false, message: 'Topic successfully updated' });
-// });
-// }
-// };
-// exports.delete = function(req, res) {
-// Topic.delete( req.params.id, function(err, topic) {
-//   if (err)
-//   res.send(err);
-//   res.json({ error:false, message: 'Topic successfully deleted' });
-// });
-// };
+
 module.exports = {
-    //get all toppic
-    getTopic: function (req, res) {
-        Topic.getTopic(function (err, topic) {
-            if (err)
-                res.send(err);
-            console.log('res', topic);
-            res.send(topic);
-        })
-    },
-
-
-    //create a new topic
+    //Add new Topic
     addTopic: function (req, res) {
-        const new_topic = new Topic(req.body);
-    //handles null error
+        let id = req.body.accessID || ' ';
+        let new_Topic = req.body || '';
+        //Handles null error
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Topic.add(new_topic, function (err, topic) {
+            Topic.add(id, new_Topic, function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({ message: "Topic added successfully!", data: topic});
+                    res.json({ result: "fail", message: "Invalid input" });
+                else res.json({ result: "ok", message: "Topic added successfully!", id: result });
             });
         }
     },
-    //get topic by id
-    getTopicById: function (req, res) {
-        Topic.getTopicById(req.params.id, function (err, topic) {
+    //Get all
+    getTopic: function (req, res) {
+        let page = req.body.page || '';
+        let sort = req.body.sort || '';
+        let perpage = req.body.perpage || '';
+        Topic.getTopic(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
-                res.send(err);
-            res.json(topic);
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Topic get successfully!", data: result });
         })
     },
-
-    //upadte topic
+    //get Topic by id
+    getTopicById: function (req, res) {
+        Topic.getTopicById(req.params.id, function (err, result) {
+            if (err)
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Topic get successfully!", data: result });
+        })
+    },
+    //update Topic
     updateTopicById: function (req, res) {
+        let id = req.body.accessID;
+
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Topic.update(req.params.id, new Topic(req.body), function (err, topic) {
+            Topic.update(id, req.params.id, new Topic(req.body), function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({ message: 'Topic successfully updated'});
+                    return res.json({ result: "fail", message: "Invalid input" });
+                else return res.json({ result: "ok", message: "Topic update successfully!", id: result });
             });
         }
     },
-    //delete topic
+    //delete Topic
     deleteTopicById: function (req, res) {
-        Topic.deleteTopicById(req.params.id, function (err, topic) {
+        Topic.delete(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json({ message: 'Topic successfully deleted'});
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Topic delete successfully!", id: result });
         })
     }
 };

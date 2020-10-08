@@ -1,58 +1,61 @@
 'use strict';
 const Questiontopic = require('../models/questiontopic');
+
 module.exports = {
-    //get all questiontopic
-    getQuestiontopic: function (req, res) {
-        Questiontopic.getQuestiontopic(function (err, questiontopic) {
-            if (err)
-                res.send(err);
-            console.log('res', questiontopic);
-            res.send(questiontopic);
-        })
-    },
-
-
-    //create a new questiontopic
+    //Add new Questiontopic
     addQuestiontopic: function (req, res) {
-        const new_questiontopic = new Questiontopic(req.body);
-    //handles null error
+        let id = req.body.accessID || ' ';
+        let new_Questiontopic = req.body || '';
+        //Handles null error
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Questiontopic.add(new_questiontopic, function (err, questiontopic) {
+            Questiontopic.add(id, new_Questiontopic, function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({error: false, message: "Questiontopic added successfully!", data: questiontopic});
+                    res.json({ result: "fail", message: "Invalid input" });
+                else res.json({ result: "ok", message: "Questiontopic added successfully!", id: result });
             });
         }
     },
-    //get questiontopic by id
-    getQuestiontopicById: function (req, res) {
-        Questiontopic.getQuestiontopicById(req.params.id, function (err, questiontopic) {
+    //get all Questiontopic
+    getQuestiontopic: function (req, res) {
+        let page = req.body.page || '';
+        let sort = req.body.sort || '';
+        let perpage = req.body.perpage || '';
+        Questiontopic.getQuestiontopic(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
-                res.send(err);
-            res.json(questiontopic);
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Questiontopic get successfully!", data: result });
         })
     },
-
-    //upadte questiontopic
+    //get 1 Questiontopic by id
+    getQuestiontopicById: function (req, res) {
+        Questiontopic.getQuestiontopicById(req.params.id, function (err, result) {
+            if (err)
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Questiontopic get successfully!", data: result });
+        })
+    },
+    //update Questiontopic
     updateQuestiontopicById: function (req, res) {
+        let id = req.body.accessID;
+
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Questiontopic.update(req.params.id, new Questiontopic(req.body), function (err, questiontopic) {
+            Questiontopic.update(id, req.params.id, new Questiontopic(req.body), function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({error: false, message: 'Questiontopic successfully updated'});
+                    return res.json({ result: "fail", message: "Invalid input" });
+                else return res.json({ result: "ok", message: "Questiontopic update successfully!", id: result });
             });
         }
     },
-    //delete questiontopic
+    //delete Questiontopic
     deleteQuestiontopicById: function (req, res) {
-        Questiontopic.deleteQuestiontopicById(req.params.id, function (err, questiontopic) {
+        Questiontopic.delete(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json({error: false, message: 'Questiontopic successfully deleted'});
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Questiontopic delete successfully!", id: result });
         })
     }
 };

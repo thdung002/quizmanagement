@@ -6,7 +6,6 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName getAll
      * @apiGroup Quiz
-     * @apiPermission only Super administrator
      *
      * @apiDescription Get all quizs
      *
@@ -17,24 +16,50 @@ module.exports = function (app) {
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/quiz/getall
      *
-     * @apiSuccess {String} result ok or fail
-     * @apiSuccess {String} message something from server
+     * @apiSuccess {String} result sucess or fail
+     * @apiSuccess {String} message from server
      * @apiSuccess {Object[]} data the list of data
-     * @apiSuccess {Object} items {begin, end, total}
      * @apiSuccess {Object} pages {current, prev, hasPrev, next, hasNext, total}
+     * @apiSuccess {Object} items {begin, end, total}
+     * 
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
-     *     {
-     *       "result": "ok",
-     *       "message": ""
-
-     *       "data": [...],
-     *       "items": {"begin": 1, "end": 3, "total": 2},
-     *       "pages": {"current": 1, "prev": 0, "hasPrev": false, "next": 2, "hasNext": true, "total": 4},
-     *     }
+     * {
+     *    "result": "ok",
+     *    "message": "Quiz get successfully!",
+     *    "data": {
+     *        "data": [
+     *            {
+     *                "ID": 1,
+     *                "Examination": 1,
+     *                "Config": 1,
+     *                "Template": 1,
+     *                "Code": 1,
+     *                "CreatedBy": 1,
+     *                "CreatedAt": "2020-09-22T06:12:51.000Z",
+     *                "UpdatedBy": null,
+     *                "UpdatedAt": "2020-10-06T02:00:18.000Z"
+     *            }
+     *        ],
+     *        "pages": {
+     *            "current": 1,
+     *            "prev": 0,
+     *            "hasPrev": false,
+     *            "next": 2,
+     *            "hasNext": true,
+     *            "total": 2
+     *        },
+     *        "items": {
+     *            "begin": 1,
+     *            "end": 1,
+     *            "total": 1
+     *        }
+     *    }
+     *}
      *
-     * @apiError invalid input data
-     *
+     * @apiError result sucess or fail
+     * @apiError message from server
+     * 
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
@@ -49,15 +74,22 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName createByAdmin
      * @apiGroup Quiz
-     * @apiPermission just administrator or super administrator
-     *
+     * 
      * @apiDescription Create quiz by admin or moderator
      *
+     * @apiParam {Number} Examination Examination of the quiz (N/A)
+     * @apiParam {Number} Config Config of the quiz (N/A)
+     * @apiParam {Number} Template Template of the quiz(N/A)
+     * @apiParam {Number} Code Code of the quiz(N/A)
+     * @apiParam {Number} accessID ID of current user(N/A)
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/quiz/add
      *
-     * @apiSuccess {String} id the ID of created quiz
+     * @apiSuccess result sucess or fail
+     * @apiSuccess message from server
+     * @apiSuccess id of item created
+     * 
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
@@ -66,7 +98,8 @@ module.exports = function (app) {
      *       "id": 9
      *     }
      *
-     * @apiError invalid input data
+     * @apiError result sucess or fail
+     * @apiError message from server
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
@@ -83,20 +116,18 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName getOne
      * @apiGroup Quiz
-     * @apiPermission Every type of answer
-     *
+     * 
      * @apiDescription Get one quiz
      *
-     * @apiParam {string} id ID of examination, on params
+     * @apiParam {Number} Id the ID of Examination
      *
      * @apiExample Example usage:
      * curl -i http://localhost:3000/v1/quiz/get/2
      *
-     * @apiSuccess {String} Id the ID of Examination
-     * @apiSuccess {Number} Examination Id of Examination
-     * @apiSuccess {Number} Config Id of Config
-     * @apiSuccess {Number} Template Id of Template
-     *
+     * @apiSuccess {String} result sucess or fail
+     * @apiSuccess {String} message from server
+     * @apiSuccess {Object[]} data the list of data
+     * 
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
@@ -111,7 +142,8 @@ module.exports = function (app) {
      *          },
      *     }
      *
-     * @apiError invalid input data
+     * @apiError result sucess or fail
+     * @apiError message from server
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
@@ -126,20 +158,23 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName update
      * @apiGroup Quiz
-     * @apiPermission Every type of Quiz
      *
      * @apiDescription Update Quiz information
      *
      * @apiParam {Number} ID Id of Quiz where to update, on params
-     * @apiSuccess {Number} Examination Id of Examination
-     * @apiSuccess {Number} Config Id of Config
-     * @apiSuccess {Number} Template Id of Template
+     * @apiParam {Number} Examination Id Examination of Quiz
+     * @apiParam {Number} Config Id config of Quiz
+     * @apiParam {Number} Template Id of Quiz
+     * @apiParam {Number} Code Id Code of Quiz
      * @apiParam {Number} accessID ID of current user
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/quiz/update/2
      *
-     * @apiSuccess {Number} id the ID of updated Quiz
+     * @apiSuccess result sucess or fail
+     * @apiSuccess message from server
+     * @apiSuccess id of item updated
+     * 
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
@@ -148,7 +183,8 @@ module.exports = function (app) {
      *          "id": "1"
      *     }
      *
-     * @apiError invalid input data
+     * @apiError result sucess or fail
+     * @apiError message from server
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
@@ -164,16 +200,18 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName delete
      * @apiGroup Quiz
-     * @apiPermission just admin Quiz
      *
      * @apiDescription delete Quiz
      *
      * @apiParam {Number} id ID of Quiz
      *
      * @apiExample Example usage:
-     * curl -i http://localhost:5000/v1/Quiz/delete/7
+     * curl -i http://localhost:5000/v1/cuiz/delete/7
      *
+     * @apiSuccess result sucess or fail
+     * @apiSuccess message from server
      * @apiSuccess {Number} id Id of deleted Quiz
+     * 
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
@@ -182,7 +220,8 @@ module.exports = function (app) {
      *          "id": "2"
      *     }
      *
-     * @apiError invalid input data
+     * @apiError result sucess or fail
+     * @apiError message from server
      *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
@@ -191,6 +230,4 @@ module.exports = function (app) {
      *       "message": "invalid input"
      *     }
      */
-
-
 };

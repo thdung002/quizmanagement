@@ -1,58 +1,60 @@
 'use strict';
 const Question = require('../models/question');
 module.exports = {
-    //get all question
-    getQuestion: function (req, res) {
-        Question.getQuestion(function (err, question) {
-            if (err)
-                res.send(err);
-            console.log('res', question);
-            res.send(question);
-        })
-    },
-
-
-    //create a new question
+    //Add new Question
     addQuestion: function (req, res) {
-        const new_question = new Question(req.body);
-    //handles null error
+        let id = req.body.accessID || ' ';
+        let new_Question = req.body || '';
+        //Handles null error
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Question.add(new_question, function (err, question) {
+            Question.add(id, new_Question, function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({error: false, message: "Question added successfully!", data: question});
+                    res.json({ result: "fail", message: "Invalid input" });
+                else res.json({ result: "ok", message: "Question added successfully!", id: result });
             });
         }
     },
-    //get question by id
-    getQuestionById: function (req, res) {
-        Question.getQuestionById(req.params.id, function (err, question) {
+    //get all Question
+    getQuestion: function (req, res) {
+        let page = req.body.page || '';
+        let sort = req.body.sort || '';
+        let perpage = req.body.perpage || '';
+        Question.getQuestion(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
-                res.send(err);
-            res.json(question);
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Question get successfully!", data: result });
         })
     },
-
-    //upadte question
+    //get 1 Question by id
+    getQuestionById: function (req, res) {
+        Question.getQuestionById(req.params.id, function (err, result) {
+            if (err)
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Question get successfully!", data: result });
+        })
+    },
+    //update Question
     updateQuestionById: function (req, res) {
+        let id = req.body.accessID;
+
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-            res.status(400).send({error: true, message: 'Please provide all required field'});
+            res.status(400).send({ error: true, message: 'Please provide all required field' });
         } else {
-            Question.update(req.params.id, new Question(req.body), function (err, question) {
+            Question.update(id, req.params.id, new Question(req.body), function (err, result) {
                 if (err)
-                    res.send(err);
-                res.json({error: false, message: 'Question successfully updated'});
+                    return res.json({ result: "fail", message: "Invalid input" });
+                else return res.json({ result: "ok", message: "Question update successfully!", id: result });
             });
         }
     },
-    //delete question
+    //delete Question
     deleteQuestionById: function (req, res) {
-        Question.deleteQuestionById(req.params.id, function (err, question) {
+        Question.delete(req.params.id, function (err, result) {
             if (err)
-                res.send(err);
-            res.json({error: false, message: 'Question successfully deleted'});
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Question delete successfully!", id: result });
         })
     }
 };
