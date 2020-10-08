@@ -4,11 +4,6 @@
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/examination.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/examination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/quiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quiz.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +123,10 @@
       <workItem from="1601521415822" duration="2560000" />
       <workItem from="1601605603037" duration="2568000" />
       <workItem from="1601904169752" duration="281000" />
-      <workItem from="1601973514347" duration="360000" />
+      <workItem from="1601973514347" duration="683000" />
+      <workItem from="1602047362112" duration="831000" />
+      <workItem from="1602049033609" duration="419000" />
+      <workItem from="1602050864056" duration="1118000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -270,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601904416140</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="dung edit query in model">
+      <created>1601973964374</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1601973964374</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +311,8 @@
     <MESSAGE value="dung add template" />
     <MESSAGE value="dung add template and backup template" />
     <MESSAGE value="dung edit db query" />
-    <option name="LAST_COMMIT_MESSAGE" value="dung edit db query" />
+    <MESSAGE value="dung edit query in model" />
+    <option name="LAST_COMMIT_MESSAGE" value="dung edit query in model" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
