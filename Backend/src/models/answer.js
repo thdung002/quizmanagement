@@ -39,7 +39,7 @@ Answer.add = function (accessID, newAnswer, result) {
 //get Answer
 Answer.getAnswerById = function (id, result) {
     try {
-        dbConn.query("Select * from answer where question = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from answer where question = ? and deleted = 0 ", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -67,11 +67,11 @@ Answer.getAnswer = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from answer ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from answer where Deleted =0 ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from answer ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from answer ORDER BY ID ${sort} limit ${perpage} offset ${offset} where Deleted =0`, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -126,7 +126,7 @@ Answer.update = function (accessId, id, Answerinfo, result) {
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
         try {
-            dbConn.query("UPDATE answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+            dbConn.query("UPDATE answer SET Content=?,IsCorrect=?,CorrectAnswer=?,UpdatedBy=? WHERE id = ? and Deleted =0", [queryObj.Content, queryObj.IsCorrect, queryObj.CorrectAnswer, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(null, err);
@@ -144,11 +144,11 @@ Answer.update = function (accessId, id, Answerinfo, result) {
 };
 Answer.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM answer WHERE id = ?", [id], function (err, res) {
+        dbConn.query("UPDATE answer SET Deleted =1 WHERE id = ? ", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
-            } else if (res.affectedRows === 0)
+            } else if (res.changedRows === 0)
                 result(1, 'Answer_not_found', 403, err, null);
             else {
                 result(null, id);
