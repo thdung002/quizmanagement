@@ -32,7 +32,7 @@ QuizContent.add = function (accessID, newQuizContent, result) {
 //get QuizContent
 QuizContent.getQuizContentById = function (id, result) {
     try {
-        dbConn.query("Select * from quizcontent where id = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from quizcontent where id = ? and IsDeleted = 0", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -60,11 +60,11 @@ QuizContent.getQuizContent = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from quizcontent ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from quizcontent where IsDeleted = 0", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from quizcontent ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from quizcontent ORDER BY ID ${sort} limit ${perpage} offset ${offset} where IsDeleted = 0`, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -108,7 +108,7 @@ QuizContent.update = function (accessId,id, QuizContentinfo, result) {
         queryObj.QuestionID = QuizContentinfo.QuestionID;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
-        dbConn.query("UPDATE quizcontent SET Quiz=?,QuestionID=?,UpdatedBy=? WHERE id = ?", [queryObj.Quiz, queryObj.QuestionID, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+        dbConn.query("UPDATE quizcontent SET Quiz=?,QuestionID=?,UpdatedBy=? WHERE id = ? and IsDeleted = 0", [queryObj.Quiz, queryObj.QuestionID, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -124,7 +124,7 @@ QuizContent.update = function (accessId,id, QuizContentinfo, result) {
 };
 QuizContent.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM quizcontent WHERE id = ?", [id], function (err, res) {
+        dbConn.query("UPDATE quizcontent set IsDeleted =1 WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);

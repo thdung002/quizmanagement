@@ -4,6 +4,10 @@
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/examination.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/examination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +131,7 @@
       <workItem from="1602047362112" duration="831000" />
       <workItem from="1602049033609" duration="419000" />
       <workItem from="1602050864056" duration="1209000" />
-      <workItem from="1602149561518" duration="453000" />
+      <workItem from="1602149561518" duration="2221000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -283,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602052021044</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="edit delete in answer models">
+      <created>1602150068687</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1602150068687</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,7 +332,8 @@
     <MESSAGE value="dung edit db query" />
     <MESSAGE value="dung edit query in model" />
     <MESSAGE value="dung - answer update condition not undefined" />
-    <option name="LAST_COMMIT_MESSAGE" value="dung - answer update condition not undefined" />
+    <MESSAGE value="edit delete in answer models" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit delete in answer models" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

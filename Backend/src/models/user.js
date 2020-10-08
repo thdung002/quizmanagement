@@ -55,7 +55,7 @@ User.add = function (accessID, accessRole, newUser, result) {
 //get user
 User.getUserById = function (id, result) {
     try {
-        dbConn.query("Select Id, Username, Fullname, Email, Role from user where id = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select Id, Username, Fullname, Email, Role from user where id = ? and IsDeleted = 0", parseInt(id), function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
@@ -83,11 +83,11 @@ User.getUser = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from user ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from user where IsDeleted = 0", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID ${sort} limit ${perpage} offset ${offset} where IsDeleted = 0`, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
@@ -133,7 +133,7 @@ User.update = function (accessId,id, userinfo, result) {
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
         queryObj.Email = userinfo.Email;
-        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ?", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy,queryObj.Email, queryObj.Id], function (err, res) {
+        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ? and IsDeleted = 0", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy,queryObj.Email, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -149,7 +149,7 @@ User.update = function (accessId,id, userinfo, result) {
 };
 User.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM user WHERE id = ?", [id], function (err, res) {
+        dbConn.query("UPDATE user set IsDeleted =1 WHERE id = ?", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -171,9 +171,7 @@ User.authenticate = function (loginName, password, result) {
             return result(1, 'invalid_user_password', 422, 'password is not a string', null);
         }
         else {
-
-
-            dbConn.query("SELECT Id, Role, Username, Password, Email, Fullname from user where Username= ?", loginName, function (err, res) {
+            dbConn.query("SELECT Id, Role, Username, Password, Email, Fullname from user where Username= ? and IsDeleted = 0", loginName, function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(null, err);
