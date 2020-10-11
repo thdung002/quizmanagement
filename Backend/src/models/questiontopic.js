@@ -38,7 +38,7 @@ Questiontopic.add = function (accessID, newQuestiontopic, result) {
 //Get Question by id
 Questiontopic.getQuestiontopicById = function (id, result) {
   try {
-      dbConn.query("Select * from questiontopic where id = ? ", parseInt(id), function (err, res) {
+      dbConn.query("Select * from questiontopic where id = ? and  isDeleted = 0", parseInt(id), function (err, res) {
               if (err) {
                   console.log("error: ", err);
                   result(err, null);
@@ -66,7 +66,7 @@ Questiontopic.getQuestiontopic = function (page, perpage, sort, result) {
   let type = typeof (sort);
   let offset = perpage * (page - 1);
   try {
-      dbConn.query("SELECT COUNT(*) as total from questiontopic ", function (err, rows) {
+      dbConn.query("SELECT COUNT(*) as total from questiontopic where isDeleted = 0", function (err, rows) {
           if (err) {
               return result(err);
           } else {
@@ -124,10 +124,10 @@ Questiontopic.update = function (accessID, id, Questiontopic, result) {
       return result(1, 'update_questiontopic_fail', 400, error, null);
   }
 };
-//Delete 1 question by id
+//Delete 1 questiontopic by id
 Questiontopic.delete = function (id, result) {
   try {
-      dbConn.query("DELETE FROM questiontopic WHERE id = ?", [id], function (err, res) {
+      dbConn.query("UPDATE answer SET IsDeleted = 1 WHERE id = ?", [id], function (err, res) {
           if (err) {
               console.log("error: ", err);
               result(null, err);

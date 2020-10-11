@@ -6,7 +6,6 @@ var Type = function(type){
   this.Content     = type.Content;
   this.CreatedBy   = type.CreatedBy;
   this.UpdatedBy   = type.UpdatedBy;
-
 };
 //Add new type
 Type.add = function (accessID, newType, result) {
@@ -33,7 +32,7 @@ Type.add = function (accessID, newType, result) {
 //Get Type by id
 Type.getTypeById = function (id, result) {
   try {
-      dbConn.query("Select * from type where id = ? ", parseInt(id), function (err, res) {
+      dbConn.query("Select * from type where id = ?  and IsDeleted = 0", parseInt(id), function (err, res) {
               if (err) {
                   console.log("error: ", err);
                   result(err, null);
@@ -61,7 +60,7 @@ Type.getType = function (page, perpage, sort, result) {
   let type = typeof (sort);
   let offset = perpage * (page - 1);
   try {
-      dbConn.query("SELECT COUNT(*) as total from type ", function (err, rows) {
+      dbConn.query("SELECT COUNT(*) as total from type where IsDeleted = 0", function (err, rows) {
           if (err) {
               return result(err);
           } else {
@@ -122,7 +121,7 @@ Type.update = function (accessID, id, Type, result) {
 //Delete 1 type by id
 Type.delete = function (id, result) {
   try {
-      dbConn.query("DELETE FROM type WHERE id = ?", [id], function (err, res) {
+      dbConn.query("UPDATE type SET IsDeleted =1 WHERE id = ? ", [id], function (err, res) {
           if (err) {
               console.log("error: ", err);
               result(null, err);

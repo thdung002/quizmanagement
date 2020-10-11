@@ -1,6 +1,5 @@
 'use strict';
 const Type = require('../models/type');
-
 module.exports = {
     //Add new Type
     addType: function (req, res) {

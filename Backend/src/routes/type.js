@@ -30,10 +30,8 @@ module.exports = function (app) {
      *    "data": {
      *        "data": [
      *            {
-     *                "ID": 1,
-     *                "Content": 1,
-     *                "Level": 1,
-     *                "Type": 1,
+     *                "ID": 4,
+     *                "Content": trung,
      *                "CreatedBy": 1,
      *                "CreatedAt": "2020-09-22T06:12:51.000Z",
      *                "UpdatedBy": null,
@@ -77,8 +75,6 @@ module.exports = function (app) {
      * @apiDescription Create type by admin or moderator
      *
      * @apiParam {String} Content Content of the type (N/A)
-     * @apiParam {Number} Level Level of the type (N/A)
-     * @apiParam {String} Type Template of the type(N/A)
      * @apiParam {Number} accessID ID of current user(N/A)
      *
      * @apiExample Example usage:
@@ -132,10 +128,8 @@ module.exports = function (app) {
      *          "result": "ok",
      *          "message" "type get successfully!"
      *          "data":{
-     *              "ID": 1,
-     *              "Content": 3,
-     *              "Level": "1",
-     *              "Type": "1",
+     *              "ID": 4,
+     *              "Content": "trung",
      *              ...
      *          },
      *     }
@@ -161,8 +155,6 @@ module.exports = function (app) {
      *
      * @apiParam {Number} ID Id of type where to update, on params
      * @apiParam {String} Content Content of the type
-     * @apiParam {Number} Level Level of the type
-     * @apiParam {String} Type Template of the type
      * @apiParam {Number} accessID ID of current user
      *
      * @apiExample Example usage:
@@ -177,7 +169,7 @@ module.exports = function (app) {
      *     {
      *          "result":"ok",
      *          "message":"type update successfully!"
-     *          "id": "1"
+     *          "id": "4"
      *     }
      *
      * @apiError result sucess or fail
@@ -214,7 +206,7 @@ module.exports = function (app) {
      *     {
      *          "result": "ok",
      *          "message": "Type delete successfully!",
-     *          "id": "2"
+     *          "id": "4"
      *     }
      *
      * @apiError result sucess or fail

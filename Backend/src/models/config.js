@@ -53,7 +53,7 @@ Config.add = function (accessID, newConfig, result) {
 //Get Config by ID
 Config.getConfigById = function (id, result) {
   try {
-      dbConn.query("Select * from config where id = ? ", parseInt(id), function (err, res) {
+      dbConn.query("Select * from config where id = ? and IsDeleted = 0 ", parseInt(id), function (err, res) {
               if (err) {
                   result(err, null);
               } else if(res.length === 0)
@@ -80,7 +80,7 @@ Config.getConfig = function (page, perpage, sort, result) {
   let type = typeof (sort);
   let offset = perpage * (page - 1);
   try {
-      dbConn.query("SELECT COUNT(*) as total from config ", function (err, rows) {
+      dbConn.query("SELECT COUNT(*) as total from config where IsDeleted = 0  ", function (err, rows) {
           if (err) {
               return result(err);
           } else {
@@ -151,7 +151,7 @@ Config.update = function (accessID, id, Config, result) {
 //Delete 1 config by id
 Config.delete = function (id, result) {
   try {
-      dbConn.query("DELETE FROM config WHERE id = ?", [id], function (err, res) {
+      dbConn.query("UPDATE config SET IsDeleted = 1 WHERE id = ? ", [id], function (err, res) {
           if (err) {
               console.log("error: ", err);
               result(null, err);

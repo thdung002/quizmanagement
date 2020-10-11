@@ -46,7 +46,7 @@ Quiz.add = function (accessID, newQuiz, result) {
 //Get Quiz by Examination
 Quiz.getQuizById = function (id, result) {
   try {
-      dbConn.query("Select * from quiz where Examination = ? ", parseInt(id), function (err, res) {
+      dbConn.query("Select * from quiz where Examination = ? and isDeleted = 0", parseInt(id), function (err, res) {
               if (err) {
                   console.log("error: ", err);
                   result(err, null);
@@ -74,7 +74,7 @@ Quiz.getQuiz = function (page, perpage, sort, result) {
   let type = typeof (sort);
   let offset = perpage * (page - 1);
   try {
-      dbConn.query("SELECT COUNT(*) as total from quiz ", function (err, rows) {
+      dbConn.query("SELECT COUNT(*) as total from quiz where isDeleted = 0", function (err, rows) {
           if (err) {
               return result(err);
           } else {
@@ -138,7 +138,7 @@ Quiz.update = function (accessId, id, Quiz, result) {
 //Delete 1 quiz by id
 Quiz.delete = function (id, result) {
   try {
-      dbConn.query("DELETE FROM quiz WHERE id = ?", [id], function (err, res) {
+      dbConn.query("UPDATE quiz SET IsDeleted = 1 WHERE id = ? ", [id], function (err, res) {
           if (err) {
               console.log("error: ", err);
               result(null, err);
