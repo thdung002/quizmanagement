@@ -8,12 +8,10 @@
     "version": "1.0.0",
     "url": "http://localhost:5000/docs"
   },
-
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app",
+    "start-server": "nodemon app",
     "genAPIDoc": "apidoc -i ./src/routes/ -o ./public/docs/"
-
   },
   "repository": {
     "type": "git",
@@ -41,6 +39,7 @@
     "validator": "^13.1.17"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "nodemon": "^2.0.4",
     "sequelize": "^6.3.5"
   }

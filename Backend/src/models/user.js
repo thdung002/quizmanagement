@@ -1,3 +1,5 @@
+
+
 'use strict';
 var dbConn = require('./../../config/db.config');
 
@@ -59,8 +61,8 @@ User.getUserById = function (id, result) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
-                } else if(res.length === 0)
-                    result (1, 'user_not_found', 403, err, null);
+                } else if (res.length === 0)
+                    result(1, 'user_not_found', 404, err, null);
                 else {
                     result(null, res);
                 }
@@ -72,12 +74,12 @@ User.getUserById = function (id, result) {
 };
 //get all user with pagination
 User.getUser = function (page, perpage, sort, result) {
-    if (page === 0|| isNaN(page))
+    if (page === 0 || isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
         perpage = 5;
     }
-    if (sort.length === 0|| sort!=="DESC") {
+    if (sort.length === 0 || sort !== "DESC") {
         sort = "ASC";
     }
     let type = typeof (sort);
@@ -124,7 +126,7 @@ User.getUser = function (page, perpage, sort, result) {
 };
 
 //update user by id
-User.update = function (accessId,id, userinfo, result) {
+User.update = function (accessId, id, userinfo, result) {
     try {
         let queryObj = {};
         queryObj.Password = BCrypt.hashSync(userinfo.Password, 10);
@@ -133,12 +135,12 @@ User.update = function (accessId,id, userinfo, result) {
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
         queryObj.Email = userinfo.Email;
-        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ? and IsDeleted = 0", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy,queryObj.Email, queryObj.Id], function (err, res) {
+        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ? and IsDeleted = 0", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy, queryObj.Email, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
-            } else if(res.changedRows === 0)
-            result(1, 'user_not_found', 403, err, null);
+            } else if (res.changedRows === 0)
+                result(1, 'user_not_found', 403, err, null);
             else {
                 result(null, queryObj.Id);
             }
@@ -153,7 +155,7 @@ User.delete = function (id, result) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
-            } else if(res.affectedRows===0)
+            } else if (res.affectedRows === 0)
                 result(1, 'user_not_found', 403, err, null);
             else {
                 result(null, id);
@@ -163,19 +165,18 @@ User.delete = function (id, result) {
         return result(1, 'delete_user_fail', 400, error, null);
     }
 };
-User.authenticate = function (loginName, password, result) {
+User.authenticate = function (username, password, result) {
     try {
-        if (!Pieces.VariableBaseTypeChecking(loginName, 'string')) {
+        if (!Pieces.VariableBaseTypeChecking(username, 'string')) {
             return result(1, 'invalid_user_login_name', 422, 'login name is not a string', null);
         } else if (!Pieces.VariableBaseTypeChecking(password, 'string')) {
             return result(1, 'invalid_user_password', 422, 'password is not a string', null);
-        }
-        else {
-            dbConn.query("SELECT Id, Role, Username, Password, Email, Fullname from user where Username= ? and IsDeleted = 0", loginName, function (err, res) {
+        } else {
+            dbConn.query("SELECT Id, Role, Username, Password, Email, Fullname from user where Username= ? and IsDeleted = 0", username, function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(null, err);
-                } else if(res.length === 0)
+                } else if (res.length === 0)
                     return result(1, 'user_not_found', 403, err, null);
                 else {
                     let passwordDb = res[0].Password;

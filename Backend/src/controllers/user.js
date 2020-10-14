@@ -33,8 +33,8 @@ module.exports = {
     getUserById: function (req, res) {
         User.getUserById(req.params.id, function (err, result) {
             if (err)
-                return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "User get successfully!", data: result});
+                return res.status(404).json({result:"fail",message:"Invalid input",code: 50008});
+            else return res.json({result:"ok",message: "User get successfully!", data: result, code: 20000});
         })
     },
     //update user
@@ -61,13 +61,17 @@ module.exports = {
     },
     //check for login authenticate
     login:function(req,res){
-        let loginName = req.body.loginName || '';
+        console.log(req.body.username);
+        let username = req.body.username || '';
         let password = req.body.password || '';
-        User.authenticate(loginName,password,function(err,result){
+        User.authenticate(username,password,function(err,result){
+            console.log(result);
             if(err)
-                return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "User login successfully!", data: result});
+                return res.json({result:"fail",message:"Invalid input", code: 60204});
+            else return res.json({result:"ok",message: "User login successfully!", data: result, code: 20000 });
         })
+    },
+    logout:function(req,res) {
+        return res.json({message:"ok", code: 20000});
     }
-
 };

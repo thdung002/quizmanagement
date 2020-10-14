@@ -247,5 +247,6 @@ module.exports = function (app) {
      *       "message": "invalid input"
      *     }
      */
+    app.post('/v1/user/logout', userController.logout);
 
 };

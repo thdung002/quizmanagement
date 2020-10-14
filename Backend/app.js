@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Morgan = require('morgan');
+const cors = require('cors')
 
 // create express app
 let app = express();
@@ -20,6 +21,7 @@ app.use(bodyParser.json({
 app.use(bodyParser.json({
     type: 'application/vnd.api+json'
 }));
+app.use(cors({credentials: true, origin: 'http://localhost:8080'}));
 
 // define a root route
 app.get('/', (req, res) => {
