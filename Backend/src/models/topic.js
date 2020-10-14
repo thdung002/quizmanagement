@@ -34,7 +34,7 @@ Topic.add = function (accessID, newTopic, result) {
 //Get 1 topic by ID
 Topic.getTopicById = function (id, result) {
     try {
-        dbConn.query("Select * from topic where id = ? ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from topic where id = ? and isDeleted = 0 ", parseInt(id), function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(err, null);
@@ -62,7 +62,7 @@ Topic.getTopic = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from topic ", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from topic where isDeleted = 0", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
@@ -122,7 +122,7 @@ Topic.update = function (accessID, id, Topic, result) {
 //Delete 1 topic by id
 Topic.delete = function (id, result) {
     try {
-        dbConn.query("DELETE FROM topic WHERE id = ?", [id], function (err, res) {
+        dbConn.query("UPDATE topic SET IsDeleted = 1 WHERE id = ? ", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);

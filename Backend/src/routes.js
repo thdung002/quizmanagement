@@ -9,4 +9,5 @@ module.exports = function (app) {
     require('./routes/examination')(app);
     require('./routes/quizcontent')(app);
     require('./routes/template')(app);
+    require('./routes/type')(app);
 };

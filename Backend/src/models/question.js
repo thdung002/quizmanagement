@@ -13,13 +13,13 @@ var Question = function(question){
 //Add new question
 Question.add = function (accessID, newQuestion, result) {
   if (!Pieces.VariableBaseTypeChecking(newQuestion.Content, 'string') || newQuestion.Content === null) {
-    return result(1, 'Examination null', 400, null, null);
+    return result(1, 'Content null', 400, null, null);
   }
   else if (!Pieces.VariableBaseTypeChecking(newQuestion.Level, 'string') || newQuestion.Level === null) {
-    return result(1, 'Config null', 400, null, null);
+    return result(1, 'Level null', 400, null, null);
   }
   else if (!Pieces.VariableBaseTypeChecking(newQuestion.Type, 'string') || newQuestion.Type === null) {
-    return result(1, 'Template null', 400, null, null);
+    return result(1, 'Type null', 400, null, null);
   }
   else {
     try {
@@ -43,7 +43,7 @@ Question.add = function (accessID, newQuestion, result) {
 //Get Question by id
 Question.getQuestionById = function (id, result) {
   try {
-      dbConn.query("Select * from question where id = ? ", parseInt(id), function (err, res) {
+      dbConn.query("Select * from question where id = ? and IsDeleted = 0", parseInt(id), function (err, res) {
               if (err) {
                   console.log("error: ", err);
                   result(err, null);
@@ -71,7 +71,7 @@ Question.getQuestion = function (page, perpage, sort, result) {
   let type = typeof (sort);
   let offset = perpage * (page - 1);
   try {
-      dbConn.query("SELECT COUNT(*) as total from question ", function (err, rows) {
+      dbConn.query("SELECT COUNT(*) as total from question where IsDeleted = 0", function (err, rows) {
           if (err) {
               return result(err);
           } else {
@@ -134,7 +134,7 @@ Question.update = function (accessID, id, Question, result) {
 //Delete 1 question by id
 Question.delete = function (id, result) {
   try {
-      dbConn.query("DELETE FROM question WHERE id = ?", [id], function (err, res) {
+      dbConn.query("UPDATE question SET IsDeleted = 1 WHERE id = ?", [id], function (err, res) {
           if (err) {
               console.log("error: ", err);
               result(null, err);
