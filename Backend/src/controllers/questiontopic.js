@@ -13,7 +13,7 @@ module.exports = {
             Questiontopic.add(id, new_Questiontopic, function (err, result) {
                 if (err)
                     res.json({ result: "fail", message: "Invalid input" });
-                else res.json({ result: "ok", message: "Questiontopic added successfully!", id: result });
+                else res.json({ result: "ok", message: "Questiontopic added successfully!", id: result ,code: 20000});
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         Questiontopic.getQuestiontopic(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Questiontopic get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Questiontopic get successfully!", data: result,code: 20000 });
         })
     },
     //get 1 Questiontopic by id
@@ -33,7 +33,7 @@ module.exports = {
         Questiontopic.getQuestiontopicById(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Questiontopic get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Questiontopic get successfully!", data: result ,code: 20000});
         })
     },
     //update Questiontopic
@@ -46,7 +46,7 @@ module.exports = {
             Questiontopic.update(id, req.params.id, new Questiontopic(req.body), function (err, result) {
                 if (err)
                     return res.json({ result: "fail", message: "Invalid input" });
-                else return res.json({ result: "ok", message: "Questiontopic update successfully!", id: result });
+                else return res.json({ result: "ok", message: "Questiontopic update successfully!", id: result,code: 20000 });
             });
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
         Questiontopic.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Questiontopic delete successfully!", id: result });
+            else return res.json({ result: "ok", message: "Questiontopic delete successfully!", id: result,code: 20000 });
         })
     }
 };

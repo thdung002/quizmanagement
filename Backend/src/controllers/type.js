@@ -12,7 +12,7 @@ module.exports = {
             Type.add(id, new_Type, function (err, result) {
                 if (err)
                     res.json({ result: "fail", message: "Invalid input" });
-                else res.json({ result: "ok", message: "Type added successfully!", id: result });
+                else res.json({ result: "ok", message: "Type added successfully!", id: result,code: 20000 });
             });
         }
     },
@@ -24,7 +24,7 @@ module.exports = {
         Type.getType(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Type get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Type get successfully!", data: result ,code: 20000});
         })
     },
     //get 1 Type by id
@@ -32,7 +32,7 @@ module.exports = {
         Type.getTypeById(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Type get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Type get successfully!", data: result,code: 20000 });
         })
     },
     //update Type
@@ -45,7 +45,7 @@ module.exports = {
             Type.update(id, req.params.id, new Type(req.body), function (err, result) {
                 if (err)
                     return res.json({ result: "fail", message: "Invalid input" });
-                else return res.json({ result: "ok", message: "Type update successfully!", id: result });
+                else return res.json({ result: "ok", message: "Type update successfully!", id: result ,code: 20000});
             });
         }
     },
@@ -54,7 +54,7 @@ module.exports = {
         Type.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Type delete successfully!", id: result });
+            else return res.json({ result: "ok", message: "Type delete successfully!", id: result ,code: 20000});
         })
     }
 };

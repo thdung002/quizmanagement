@@ -13,7 +13,7 @@ module.exports = {
             QuizContent.add(id,new_QuizContent, function (err, result) {
                 if (err)
                     res.json({result:"fail",message:"Invalid input"});
-                else  res.json({result:"ok",message: "QuizContent added successfully!", id: result});
+                else  res.json({result:"ok",message: "QuizContent added successfully!", id: result,code: 20000});
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         QuizContent.getQuizContent(parseInt(page),parseInt(perpage),sort,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "QuizContent get successfully!", data: result});
+            else return res.json({result:"ok",message: "QuizContent get successfully!", data: result,code: 20000});
         })
     },
     //get 1 QuizContent by id
@@ -33,7 +33,7 @@ module.exports = {
         QuizContent.getQuizContentById(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "QuizContent get successfully!", data: result});
+            else return res.json({result:"ok",message: "QuizContent get successfully!", data: result,code: 20000});
         })
     },
     //update QuizContent
@@ -46,7 +46,7 @@ module.exports = {
             QuizContent.update(id,req.params.id, new QuizContent(req.body), function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
-                else return res.json({result:"ok",message: "QuizContent update successfully!", id: result});
+                else return res.json({result:"ok",message: "QuizContent update successfully!", id: result,code: 20000});
             });
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
         QuizContent.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "QuizContent delete successfully!", id: result});
+            else return res.json({result:"ok",message: "QuizContent delete successfully!", id: result,code: 20000});
         })
     }
 };

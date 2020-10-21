@@ -13,7 +13,7 @@ module.exports = {
             Exam.add(id,new_Exam, function (err, result) {
                 if (err)
                     res.json({result:"fail",message:"Invalid input"});
-                else  res.json({result:"ok",message: "Exam added successfully!", id: result});
+                else  res.json({result:"ok",message: "Exam added successfully!", id: result,code: 20000});
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         Exam.getExam(parseInt(page),parseInt(perpage),sort,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Exam get successfully!", data: result});
+            else return res.json({result:"ok",message: "Exam get successfully!", data: result,code: 20000});
         })
     },
     //get 1 Exam by id
@@ -33,7 +33,7 @@ module.exports = {
         Exam.getExamById(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Exam get successfully!", data: result});
+            else return res.json({result:"ok",message: "Exam get successfully!", data: result,code: 20000});
         })
     },
     //update Exam
@@ -45,7 +45,7 @@ module.exports = {
             Exam.update(id,req.params.id, new Exam(req.body), function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
-                else return res.json({result:"ok",message: "Exam update successfully!", id: result});
+                else return res.json({result:"ok",message: "Exam update successfully!", id: result,code: 20000});
             });
         }
     },
@@ -54,7 +54,7 @@ module.exports = {
         Exam.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Exam delete successfully!", id: result});
+            else return res.json({result:"ok",message: "Exam delete successfully!", id: result,code: 20000});
         })
     }
 

@@ -14,19 +14,21 @@ module.exports = {
             User.add(id,role,new_user, function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
-                else return res.json({result:"ok",message: "User added successfully!", id: result});
+                else return res.json({result:"ok",message: "User added successfully!", id: result, code: 20000});
             });
         }
     },
     //get all user
     getUser: function (req, res) {
-        let page = req.body.page || '';
-        let sort = req.body.sort || '';
-        let perpage = req.body.perpage || '';
-        User.getUser(parseInt(page),parseInt(perpage),sort,function (err, result) {
+        let page = req.query.page || '';
+        let sort = req.query.sort || '';
+        let perpage = req.query.perpage || '';
+        let username=req.query.username || '';
+        let role = req.query.role ||'';
+        User.getUser(parseInt(page),parseInt(perpage),sort,username,role,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "User get successfully!", data: result});
+            else return res.json({result:"ok",message: "User get successfully!", data: result, code: 20000});
         })
     },
     //get 1 user by id
@@ -40,14 +42,13 @@ module.exports = {
     //update user
     updateUserById: function (req, res) {
         let id = req.body.accessID;
-
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
             res.status(400).send({error: true, message: 'Please provide all required field'});
         } else {
             User.update(id,req.params.id, new User(req.body), function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
-                else return res.json({result:"ok",message: "User update successfully!", id: result});
+                else return res.json({result:"ok",message: "User update successfully!", id: result, code: 20000});
             });
         }
     },
@@ -56,7 +57,7 @@ module.exports = {
         User.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "User delete successfully!", id: result});
+            else return res.json({result:"ok",message: "User delete successfully!", id: result, code: 20000});
         })
     },
     //check for login authenticate

@@ -12,7 +12,7 @@ module.exports = {
             Question.add(id, new_Question, function (err, result) {
                 if (err)
                     res.json({ result: "fail", message: "Invalid input" });
-                else res.json({ result: "ok", message: "Question added successfully!", id: result });
+                else res.json({ result: "ok", message: "Question added successfully!", id: result,code: 20000 });
             });
         }
     },
@@ -24,7 +24,7 @@ module.exports = {
         Question.getQuestion(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Question get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Question get successfully!", data: result,code: 20000 });
         })
     },
     //get 1 Question by id
@@ -32,7 +32,7 @@ module.exports = {
         Question.getQuestionById(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Question get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Question get successfully!", data: result ,code: 20000});
         })
     },
     //update Question
@@ -45,7 +45,7 @@ module.exports = {
             Question.update(id, req.params.id, new Question(req.body), function (err, result) {
                 if (err)
                     return res.json({ result: "fail", message: "Invalid input" });
-                else return res.json({ result: "ok", message: "Question update successfully!", id: result });
+                else return res.json({ result: "ok", message: "Question update successfully!", id: result ,code: 20000});
             });
         }
     },
@@ -54,7 +54,7 @@ module.exports = {
         Question.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Question delete successfully!", id: result });
+            else return res.json({ result: "ok", message: "Question delete successfully!", id: result ,code: 20000});
         })
     }
 };

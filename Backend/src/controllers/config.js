@@ -13,7 +13,7 @@ module.exports = {
             Config.add(id, new_Config, function (err, result) {
                 if (err)
                     res.json({ result: "fail", message: "Invalid input" });
-                else res.json({ result: "ok", message: "Config added successfully!", id: result });
+                else res.json({ result: "ok", message: "Config added successfully!", id: result,code: 20000 });
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         Config.getConfig(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Config get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Config get successfully!", data: result ,code: 20000});
         })
     },
     //get Config by id
@@ -33,7 +33,7 @@ module.exports = {
         Config.getConfigById(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Config get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Config get successfully!", data: result,code: 20000 });
         })
     },
     //update Config
@@ -46,7 +46,7 @@ module.exports = {
             Config.update(id, req.params.id, new Config(req.body), function (err, result) {
                 if (err)
                     return res.json({ result: "fail", message: "Invalid input" });
-                else return res.json({ result: "ok", message: "Config update successfully!", id: result });
+                else return res.json({ result: "ok", message: "Config update successfully!", id: result ,code: 20000});
             });
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
         Config.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Config delete successfully!", id: result });
+            else return res.json({ result: "ok", message: "Config delete successfully!", id: result,code: 20000 });
         })
     }
 };

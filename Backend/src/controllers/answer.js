@@ -13,7 +13,7 @@ module.exports = {
             Answer.add(id,new_Answer, function (err, result) {
                 if (err)
                      res.json({result:"fail",message:"Invalid input"});
-                else  res.json({result:"ok",message: "Answer added successfully!", id: result});
+                else  res.json({result:"ok",message: "Answer added successfully!", id: result,code: 20000});
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         Answer.getAnswer(parseInt(page),parseInt(perpage),sort,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Answer get successfully!", data: result});
+            else return res.json({result:"ok",message: "Answer get successfully!", data: result,code: 20000});
         })
     },
     //get 1 Answer by id
@@ -33,7 +33,7 @@ module.exports = {
         Answer.getAnswerById(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Answer get successfully!", data: result});
+            else return res.json({result:"ok",message: "Answer get successfully!", data: result,code: 20000});
         })
     },
     //update Answer
@@ -46,7 +46,7 @@ module.exports = {
             Answer.update(id,req.params.id, new Answer(req.body), function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
-                else return res.json({result:"ok",message: "Answer update successfully!", id: result});
+                else return res.json({result:"ok",message: "Answer update successfully!", id: result,code: 20000});
             });
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
         Answer.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Answer delete successfully!", id: result});
+            else return res.json({result:"ok",message: "Answer delete successfully!", id: result,code: 20000});
         })
     }
 };

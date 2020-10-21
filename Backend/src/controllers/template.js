@@ -13,7 +13,7 @@ module.exports = {
             Template.add(id,new_Template, function (err, result) {
                 if (err)
                     res.json({result:"fail",message:"Invalid input"});
-                else  res.json({result:"ok",message: "Template added successfully!", id: result});
+                else  res.json({result:"ok",message: "Template added successfully!", id: result,code: 20000});
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         Template.getTemplate(parseInt(page),parseInt(perpage),sort,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Template get successfully!", data: result});
+            else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});
         })
     },
     //get 1 Template by id
@@ -33,7 +33,7 @@ module.exports = {
         Template.getTemplateById(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Template get successfully!", data: result});
+            else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});
         })
     },
     //update Template
@@ -45,7 +45,7 @@ module.exports = {
             Template.update(id,req.params.id, new Template(req.body), function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
-                else return res.json({result:"ok",message: "Template update successfully!", id: result});
+                else return res.json({result:"ok",message: "Template update successfully!", id: result,code: 20000},);
             });
         }
     },
@@ -54,7 +54,7 @@ module.exports = {
         Template.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Template delete successfully!", id: result});
+            else return res.json({result:"ok",message: "Template delete successfully!", id: result,code: 20000});
         })
     }
 };

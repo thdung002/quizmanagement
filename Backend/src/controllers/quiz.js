@@ -13,7 +13,7 @@ module.exports = {
             Quiz.add(id, new_Quiz, function (err, result) {
                 if (err)
                     res.json({ result: "fail", message: "Invalid input" });
-                else res.json({ result: "ok", message: "Quiz added successfully!", id: result });
+                else res.json({ result: "ok", message: "Quiz added successfully!", id: result,code: 20000 });
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         Quiz.getQuiz(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Quiz get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Quiz get successfully!", data: result ,code: 20000});
         })
     },
     //get 1 Quiz by id
@@ -33,7 +33,7 @@ module.exports = {
         Quiz.getQuizById(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Quiz get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Quiz get successfully!", data: result,code: 20000 });
         })
     },
     //update Quiz
@@ -46,7 +46,7 @@ module.exports = {
             Quiz.update(id, req.params.id, new Quiz(req.body), function (err, result) {
                 if (err)
                     return res.json({ result: "fail", message: "Invalid input" });
-                else return res.json({ result: "ok", message: "Quiz update successfully!", id: result });
+                else return res.json({ result: "ok", message: "Quiz update successfully!", id: result ,code: 20000});
             });
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
         Quiz.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Quiz delete successfully!", id: result });
+            else return res.json({ result: "ok", message: "Quiz delete successfully!", id: result,code: 20000 });
         })
     }
 };

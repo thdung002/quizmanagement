@@ -13,7 +13,7 @@ module.exports = {
             Topic.add(id, new_Topic, function (err, result) {
                 if (err)
                     res.json({ result: "fail", message: "Invalid input" });
-                else res.json({ result: "ok", message: "Topic added successfully!", id: result });
+                else res.json({ result: "ok", message: "Topic added successfully!", id: result,code: 20000 });
             });
         }
     },
@@ -25,7 +25,7 @@ module.exports = {
         Topic.getTopic(parseInt(page), parseInt(perpage), sort, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Topic get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Topic get successfully!", data: result,code: 20000 });
         })
     },
     //get Topic by id
@@ -33,7 +33,7 @@ module.exports = {
         Topic.getTopicById(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Topic get successfully!", data: result });
+            else return res.json({ result: "ok", message: "Topic get successfully!", data: result,code: 20000 });
         })
     },
     //update Topic
@@ -46,7 +46,7 @@ module.exports = {
             Topic.update(id, req.params.id, new Topic(req.body), function (err, result) {
                 if (err)
                     return res.json({ result: "fail", message: "Invalid input" });
-                else return res.json({ result: "ok", message: "Topic update successfully!", id: result });
+                else return res.json({ result: "ok", message: "Topic update successfully!", id: result ,code: 20000});
             });
         }
     },
@@ -55,7 +55,7 @@ module.exports = {
         Topic.delete(req.params.id, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
-            else return res.json({ result: "ok", message: "Topic delete successfully!", id: result });
+            else return res.json({ result: "ok", message: "Topic delete successfully!", id: result ,code: 20000});
         })
     }
 };

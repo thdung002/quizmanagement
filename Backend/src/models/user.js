@@ -1,5 +1,3 @@
-
-
 'use strict';
 var dbConn = require('./../../config/db.config');
 
@@ -15,24 +13,13 @@ var User = function (user) {
     this.CreatedBy = user.CreatedBy;
     this.UpdatedBy = user.UpdatedBy;
     this.Email = user.Email;
+    this.IsDeleted = user.IsDeleted;
 };
 //add user
 User.add = function (accessID, accessRole, newUser, result) {
-    if (accessRole === 2) {
+    if (accessRole === 3 ) {
         return result(1, 'invalid_user_permission', 422, 'You dont have permission to create account', null);
-    } else if (!Pieces.VariableBaseTypeChecking(newUser.Username, 'string')
-        || !Validator.isAlphanumeric(newUser.Username)
-        || !Validator.isLowercase(newUser.Username)
-        || !Validator.isLength(newUser.Username, {min: 4, max: 128})) {
-        return result(1, 'invalid_user_login_name', 400, 'login name should be alphanumeric, lowercase and length 4-128', null);
-    } else if (!Pieces.VariableBaseTypeChecking(newUser.Password, 'string')) {
-        return result(1, 'invalid_user_password', 400, 'password is not a string', null);
-    } else if (!Pieces.VariableBaseTypeChecking(newUser.Email, 'string')
-        || !Validator.isEmail(newUser.Email)) {
-        return result(1, 'invalid_user_email', 400, 'email is incorrect format', null);
-    } else if (newUser.Role > 3 || newUser.Role <= 0) {
-        return result(1, 'invalid_role', 400, 'Role is not have. Only role 1, 2 ,3 ', null);
-    } else {
+    }  else {
         try {
             let queryObj = {};
             queryObj.Password = BCrypt.hashSync(newUser.Password, 10);
@@ -73,57 +60,181 @@ User.getUserById = function (id, result) {
     }
 };
 //get all user with pagination
-User.getUser = function (page, perpage, sort, result) {
+User.getUser = function (page, perpage, sort, username, role, result) {
     if (page === 0 || isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
-        perpage = 5;
+        perpage = 10;
     }
     if (sort.length === 0 || sort !== "DESC") {
         sort = "ASC";
     }
-    let type = typeof (sort);
     let offset = perpage * (page - 1);
-    try {
-        dbConn.query("SELECT COUNT(*) as total from user where IsDeleted = 0", function (err, rows) {
-            if (err) {
-                return result(err);
-            } else {
-                dbConn.query(`Select Username, Fullname, Role, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt from user ORDER BY ID ${sort} limit ${perpage} offset ${offset} where IsDeleted = 0`, function (errs, res) {
-                    if (errs) {
-                        console.log("error in query db: ", errs);
-                        return result(errs);
-                    } else {
-                        // console.log('topic : ', res);
-                        // result(null, res);
-                        let pages = Math.ceil(rows[0].total / perpage);
-                        let output = {
-                            data: res,
-                            pages: {
-                                current: page,
-                                prev: page - 1,
-                                hasPrev: false,
-                                next: (page + 1) > pages ? 0 : (page + 1),
-                                hasNext: false,
-                                total: pages
-                            },
-                            items: {
-                                begin: ((page * perpage) - perpage) + 1,
-                                end: page * perpage,
-                                total: parseInt(res.length)
-                            }
-                        };
-                        output.pages.hasNext = (output.pages.next !== 0);
-                        output.pages.hasPrev = (output.pages.prev !== 0);
-                        return result(null, output);
-                    }
-                });
-            }
-        })
-    } catch (error) {
-        return result(1, 'get_all_user_fail', 400, error, null);
+
+    if (username.length !== 0 && role.length !== 0) {
+        try {
+            dbConn.query("SELECT COUNT(*) as total from user", function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from user where Username ='${username}' AND Role = '${role}' ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            // console.log('topic : ', res);
+                            // result(null, res);
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: pages
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_user_fail', 400, error, null);
+        }
+    } else if (username.length !== 0) {
+        try {
+            dbConn.query("SELECT COUNT(*) as total from user", function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from user where  Username='${username}' ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            // console.log('topic : ', res);
+                            // result(null, res);
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: pages
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_user_fail', 400, error, null);
+        }
+    } else if (role.length !== 0) {
+        try {
+            dbConn.query("SELECT COUNT(*) as total from user", function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from user where Role='${role}' ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            // console.log('topic : ', res);
+                            // result(null, res);
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: pages
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_user_fail', 400, error, null);
+        }
+    } else {
+        try {
+            dbConn.query("SELECT COUNT(*) as total from user ", function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from user  ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            // console.log('topic : ', res);
+                            // result(null, res);
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: pages
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_user_fail', 400, error, null);
+        }
+
     }
 };
+
 
 //update user by id
 User.update = function (accessId, id, userinfo, result) {
@@ -135,7 +246,8 @@ User.update = function (accessId, id, userinfo, result) {
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
         queryObj.Email = userinfo.Email;
-        dbConn.query("UPDATE user SET Password=?,Fullname=?,Role=?,UpdatedBy=?, Email=? WHERE id = ? and IsDeleted = 0", [queryObj.Password, queryObj.Fullname, queryObj.Role, queryObj.UpdatedBy, queryObj.Email, queryObj.Id], function (err, res) {
+        queryObj.IsDeleted = userinfo.IsDeleted;
+        dbConn.query(`UPDATE user SET Password='${queryObj.Password}',Fullname='${queryObj.Fullname}',Role='${queryObj.Role}',UpdatedBy=${queryObj.UpdatedBy}, Email='${queryObj.Email}' , IsDeleted=${queryObj.IsDeleted} WHERE id = ${queryObj.Id}`, function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
