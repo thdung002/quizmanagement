@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/answer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/api/question.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README-zh.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/components/Sidebar/SidebarItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/components/Sidebar/SidebarItem.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +37,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -221,7 +238,9 @@
       <workItem from="1603185290375" duration="2555000" />
       <workItem from="1603276077410" duration="19307000" />
       <workItem from="1603299301597" duration="7679000" />
-      <workItem from="1603340934773" duration="42000" />
+      <workItem from="1603340934773" duration="1052000" />
+      <workItem from="1603442050479" duration="240000" />
+      <workItem from="1603442740716" duration="11775000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -405,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603306920967</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="edit front end page">
+      <created>1603341112337</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1603341112337</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +477,8 @@
     <MESSAGE value="edit delete in answer, examination, quizcontent, template, user models" />
     <MESSAGE value="dung add FE website base on template" />
     <MESSAGE value="dung add user page in frontend&#10;edit backend (model of user in getall user for fit with frontend)" />
-    <option name="LAST_COMMIT_MESSAGE" value="dung add user page in frontend&#10;edit backend (model of user in getall user for fit with frontend)" />
+    <MESSAGE value="edit front end page" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit front end page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

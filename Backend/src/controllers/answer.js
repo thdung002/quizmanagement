@@ -19,10 +19,11 @@ module.exports = {
     },
     //get all Answer
     getAnswer: function (req, res) {
-        let page = req.body.page || '';
-        let sort = req.body.sort || '';
-        let perpage = req.body.perpage || '';
-        Answer.getAnswer(parseInt(page),parseInt(perpage),sort,function (err, result) {
+        let page = req.query.page || '';
+        let sort = req.query.sort || '';
+        let perpage = req.query.perpage || '';
+        let content = req.query.content || '';
+        Answer.getAnswer(parseInt(page),parseInt(perpage),sort,content,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Answer get successfully!", data: result,code: 20000});

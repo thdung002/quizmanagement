@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.username" placeholder="Username" style="width: 200px;" class="filter-item"
+      <el-input v-model="listQuery.content" placeholder="Content" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-select v-model="listQuery.role" placeholder="Role" clearable class="filter-item" style="width: 130px">
+      <el-select v-model="listQuery.role" placeholder="CorrectAnswer" clearable class="filter-item" style="width: 130px">
         <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'"
                    :value="item.key"/>
       </el-select>
@@ -39,39 +39,33 @@
           <span>{{ row.ID }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="DateCreated" width="200px" align="center">
+      <el-table-column label="DateCreated" width="150" align="center">
         <template slot-scope="{row}">
           <span>{{ row.CreatedAt }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Username" min-width="150px">
+      <el-table-column label="Question ID" width="100" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Username }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Password" min-width="150px">
-        <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Password }}</span>
+          <span>{{ row.Question }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="Fullname" min-width="150px">
+      <el-table-column label="Content" min-width="200">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Fullname }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Content }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Email" min-width="150px">
+      <el-table-column label="Correct Answer(For filling)" min-width="150px">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Email }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.CorrectAnswer }}</span>
         </template>
       </el-table-column>
-
-      <el-table-column label="Role" width="150px" align="center">
+      <el-table-column label="Correct Answer(For single/multiple choices)" width="150px" align="center">
         <template slot-scope="{row}">
-          <el-tag>{{ row.Role | typeFilter }}</el-tag>
+          <el-tag>{{ row.IsCorrect | typeFilter }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Status" class-name="status-col" width="100">
+      <el-table-column label="Status" class-name="status-col" width="100px">
         <template slot-scope="{row}">
           <el-tag :type="row.IsDeleted | statusFilter">
             {{ row.IsDeleted | activeFilter }}
@@ -99,16 +93,28 @@
         <el-form-item label="ID" prop="ID">
           <el-input :disabled="true" v-model="temp.ID"/>
         </el-form-item>
-        <el-form-item label="Username" prop="Username">
-          <el-input v-model="temp.Username"/>
+        <el-form-item label="Question ID" prop="Question">
+          <el-select v-model="temp.Question" class="filter-item" placeholder="Please select">
+            <el-option v-for="item in listquestion" :key="item.ID" :label="item.Content" :value="item.ID"/>
+          </el-select>
         </el-form-item>
 
-        <el-form-item label="Role" prop="Role">
-          <el-select v-model="temp.Role" class="filter-item" placeholder="Please select">
+        <el-form-item label="Content" prop="Content">
+          <el-input v-model="temp.Content"/>
+        </el-form-item>
+
+        <el-form-item label="Correct Answer" prop="IsCorrect">
+          <el-select v-model="temp.IsCorrect" class="filter-item" placeholder="Please select">
             <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name"
                        :value="item.key"/>
           </el-select>
         </el-form-item>
+
+        <el-form-item label="Correct Answer for filling" prop="CorrectAnswer">
+          <el-input v-model="temp.CorrectAnswer"
+                    placeholder="Leave it out if this is answer for choice( multi/single) question"/>
+        </el-form-item>
+
 
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
@@ -120,15 +126,6 @@
         <!--        <el-form-item label="Date" prop="timestamp">-->
         <!--          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />-->
         <!--        </el-form-item>-->
-        <el-form-item label="Password" prop="Password">
-          <el-input :type="passwordType" v-model="temp.Password"/>
-        </el-form-item>
-        <el-form-item label="Fullname" prop="Fullname">
-          <el-input v-model="temp.Fullname"/>
-        </el-form-item>
-        <el-form-item label="Email" prop="Email">
-          <el-input v-model="temp.Email"/>
-        </el-form-item>
 
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -154,16 +151,17 @@
 </template>
 
 <script>
-    import {GetUser, CreateUser, UpdateUser, DeleteUser} from '@/api/user'
+    import {GetAnswer, CreateAnswer, UpdateAnswer, DeleteAnswer} from '@/api/answer'
+    import {GetQuestion} from '@/api/question'
+
     import waves from '@/directive/waves' // waves directive
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
 
     const calendarTypeOptions = [
-        {key: '1', display_name: 'SuperAdmin'},
-        {key: '2', display_name: 'Admin'},
-        {key: '3', display_name: 'User'},
+        {key: 1, display_name: 'Correct Answer'},
+        {key: 0, display_name: 'Default Answer'},
     ];
     const statusType = [
         {key: 0, display_name: 'Actived'},
@@ -211,14 +209,14 @@
                 passwordType: 'password',
                 tableKey: 0,
                 list: null,
+                listquestion: null,
                 total: 0,
                 listLoading: true,
                 listQuery: {
                     page: 1,
                     perpage: 10,
                     sort: 'ASC',
-                    username: undefined,
-                    role: undefined
+                    content: undefined,
                 },
                 calendarTypeOptions,
                 statusType,
@@ -226,11 +224,10 @@
                 statusOptions: ['active', 'deleted'],
                 temp: {
                     ID: '',
-                    Username: '',
-                    Password: '',
-                    Email: '',
-                    Fullname: '',
-                    Role: '',
+                    Question: '',
+                    Content: '',
+                    IsCorrect: '',
+                    CorrectAnswer: '',
                     accessID: '',
                     accessUserRole: '',
 
@@ -244,18 +241,9 @@
                 dialogPvVisible: false,
                 pvData: [],
                 rules: {
-                    Password: [{
-                        required: true,
-                        message: 'password is required',
-                        trigger: 'blur',
-                        validator: validatePassword
-                    }],
-                    Fullname: [{required: true, message: 'name is required', trigger: 'blur'}],
-                    Email: [
-                        {required: true, message: 'Please input email address', trigger: 'blur'},
-                        {type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change']}
-                    ],
-                    Username: [{required: true, message: 'username is required', trigger: 'blur'}]
+                    Content: [{required: true, message: 'content is required', trigger: 'blur'}],
+                    Question: [{required: true, message: 'question id is required', trigger: 'blur'}],
+                    IsCorrect: [{required: true, message: 'correct answer is required', trigger: 'blur'}]
                 },
                 downloadLoading: false
             }
@@ -266,10 +254,11 @@
         methods: {
             getList() {
                 this.listLoading = false;
-                GetUser(this.listQuery).then(response => {
+                GetAnswer(this.listQuery).then(response => {
                     this.list = response.data.data;
                     this.total = response.data.items.total;
-                })
+                });
+
             },
             handleFilter() {
                 this.listQuery.page = 1;
@@ -299,20 +288,23 @@
             resetTemp() {
                 this.temp = {
                     ID: '',
-                    Password: '',
-                    Email: '',
-                    Fullname: '',
-                    Role: '',
+                    Question: '',
+                    Content: '',
+                    IsCorrect: '',
+                    CorrectAnswer: '',
                     accessID: '',
+                    accessUserRole: '',
                     IsDeleted: 0,
-                    accessUserRole:'',
-
                 }
             },
             handleCreate() {
                 this.resetTemp();
                 this.dialogStatus = 'create';
                 this.dialogFormVisible = true;
+                this.listQuery.content = undefined;
+                GetQuestion(this.listQuery).then((response) => {
+                    this.listquestion = response.data.data;
+                });
                 this.$nextTick(() => {
                     this.$refs.dataForm.clearValidate()
                 })
@@ -322,13 +314,14 @@
                     if (valid) {
                         this.temp.accessUserRole = getRole();
                         this.temp.accessID = getToken();
-                        CreateUser(this.temp).then((response) => {
+                        CreateAnswer(this.temp).then((response) => {
                             if (response.result === "fail")
                                 this.$notify({
-                                    title: 'Warning',
+                                    title: 'Fail',
                                     message: 'Created Failed',
                                     type: 'warning',
-                                    duration: 2000
+                                    duration: 2000,
+                                    position: 'top-right'
                                 });
                             else {
                                 this.list.unshift(this.temp);
@@ -350,6 +343,10 @@
                 this.temp.accessID = getToken();
                 this.dialogStatus = 'update';
                 this.dialogFormVisible = true;
+                GetQuestion(this.listQuery).then((response) => {
+                    this.listquestion = response.data.data;
+                });
+
                 this.$nextTick(() => {
                     this.$refs['dataForm'].clearValidate()
                 })
@@ -358,7 +355,7 @@
                 this.$refs['dataForm'].validate((valid) => {
                     if (valid) {
                         const tempData = Object.assign({}, this.temp);
-                        UpdateUser(tempData, this.temp.ID).then((response) => {
+                        UpdateAnswer(tempData, this.temp.ID).then((response) => {
                             if (response.result === "fail")
                                 this.$notify({
                                     title: 'Warning',
@@ -370,17 +367,18 @@
                                 this.getList();
                                 this.dialogFormVisible = false;
                                 this.$notify({
-                                title: 'Success',
-                                message: 'Update Successfully',
-                                type: 'success',
-                                duration: 2000
-                            })}
+                                    title: 'Success',
+                                    message: 'Update Successfully',
+                                    type: 'success',
+                                    duration: 2000
+                                })
+                            }
                         })
                     }
                 })
             },
-            handleDelete(row,id) {
-                DeleteUser(id).then((response)=>{
+            handleDelete(row, id) {
+                DeleteAnswer(id).then((response) => {
                     if (response.result === "fail")
                         this.$notify({
                             title: 'Warning',
@@ -397,7 +395,7 @@
                             duration: 2000
                         });
                     }
-                    });
+                });
             },
             handleFetchPv(pv) {
                 fetchPv(pv).then(response => {
