@@ -22,7 +22,7 @@
         Export
       </el-button>
     </div>
-
+<!--search bar, sort -->
     <el-table
       :key="tableKey"
       v-loading="listLoading"
@@ -49,23 +49,24 @@
           <span>{{ row.Question }}</span>
         </template>
       </el-table-column>
-
-      <el-table-column label="Content" min-width="200">
+      <el-table-column label="Content" min-width="200" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.Content }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Correct Answer(For filling)" min-width="150px">
+      <el-table-column label="Correct Answer(For filling)" min-width="150px" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.CorrectAnswer }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Correct Answer(For single/multiple choices)" width="150px" align="center">
+      <el-table-column label="Correct Answer(single/multiple choices)" width="200" align="center">
         <template slot-scope="{row}">
-          <el-tag>{{ row.IsCorrect | typeFilter }}</el-tag>
+          <el-tag :type="row.IsCorrect | correctFilter">
+            {{ row.IsCorrect | typeFilter }}
+          </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Status" class-name="status-col" width="100px">
+      <el-table-column label="Status" class-name="status-col" width="100px" align="center">
         <template slot-scope="{row}">
           <el-tag :type="row.IsDeleted | statusFilter">
             {{ row.IsDeleted | activeFilter }}
@@ -83,10 +84,12 @@
         </template>
       </el-table-column>
     </el-table>
+<!--Table for values-->
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.perpage"
                 @pagination="getList"/>
 
+<!--pagination-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
                style="width: 400px; margin-left:50px;">
@@ -98,35 +101,24 @@
             <el-option v-for="item in listquestion" :key="item.ID" :label="item.Content" :value="item.ID"/>
           </el-select>
         </el-form-item>
-
         <el-form-item label="Content" prop="Content">
           <el-input v-model="temp.Content"/>
         </el-form-item>
-
         <el-form-item label="Correct Answer" prop="IsCorrect">
           <el-select v-model="temp.IsCorrect" class="filter-item" placeholder="Please select">
             <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name"
                        :value="item.key"/>
           </el-select>
         </el-form-item>
-
         <el-form-item label="Correct Answer for filling" prop="CorrectAnswer">
           <el-input v-model="temp.CorrectAnswer"
                     placeholder="Leave it out if this is answer for choice( multi/single) question"/>
         </el-form-item>
-
-
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
             <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
         </el-form-item>
-
-
-        <!--        <el-form-item label="Date" prop="timestamp">-->
-        <!--          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />-->
-        <!--        </el-form-item>-->
-
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -137,6 +129,7 @@
         </el-button>
       </div>
     </el-dialog>
+<!--    Hidden dialog-->
 
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
       <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
@@ -176,7 +169,6 @@
         acc[cur.key] = cur.display_name;
         return acc
     }, {});
-
     export default {
         name: 'ComplexTable',
         components: {Pagination},
@@ -189,12 +181,20 @@
                 };
                 return statusMap[status]
             },
+            correctFilter(status) {
+                const statusMap = {
+                    0: 'default',
+                    1: 'warning'
+                };
+                return statusMap[status]
+            },
+
             activeFilter(active) {
                 return statusValue[active]
             },
             typeFilter(type) {
                 return calendarTypeKeyValue[type]
-            }
+            },
         },
         data() {
             const validatePassword = (rule, value, callback) => {
@@ -258,6 +258,10 @@
                     this.list = response.data.data;
                     this.total = response.data.items.total;
                 });
+                GetQuestion(this.listQuery).then((response) => {
+                    this.listquestion = response.data.data;
+                });
+
 
             },
             handleFilter() {
@@ -302,9 +306,6 @@
                 this.dialogStatus = 'create';
                 this.dialogFormVisible = true;
                 this.listQuery.content = undefined;
-                GetQuestion(this.listQuery).then((response) => {
-                    this.listquestion = response.data.data;
-                });
                 this.$nextTick(() => {
                     this.$refs.dataForm.clearValidate()
                 })
@@ -343,10 +344,6 @@
                 this.temp.accessID = getToken();
                 this.dialogStatus = 'update';
                 this.dialogFormVisible = true;
-                GetQuestion(this.listQuery).then((response) => {
-                    this.listquestion = response.data.data;
-                });
-
                 this.$nextTick(() => {
                     this.$refs['dataForm'].clearValidate()
                 })

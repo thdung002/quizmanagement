@@ -22,6 +22,7 @@
         Export
       </el-button>
     </div>
+<!--search, sort bar-->
 
     <el-table
       :key="tableKey"
@@ -44,34 +45,32 @@
           <span>{{ row.CreatedAt }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Username" min-width="150px">
+      <el-table-column label="Username" min-width="150px" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.Username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Password" min-width="150px">
+      <el-table-column label="Password" min-width="150px" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.Password }}</span>
         </template>
       </el-table-column>
-
-      <el-table-column label="Fullname" min-width="150px">
+      <el-table-column label="Fullname" min-width="150px" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.Fullname }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Email" min-width="150px">
+      <el-table-column label="Email" min-width="150px" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.Email }}</span>
         </template>
       </el-table-column>
-
       <el-table-column label="Role" width="150px" align="center">
         <template slot-scope="{row}">
           <el-tag>{{ row.Role | typeFilter }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Status" class-name="status-col" width="100">
+      <el-table-column label="Status" class-name="status-col" width="100" align="center">
         <template slot-scope="{row}">
           <el-tag :type="row.IsDeleted | statusFilter">
             {{ row.IsDeleted | activeFilter }}
@@ -89,10 +88,10 @@
         </template>
       </el-table-column>
     </el-table>
-
+<!--Table for values-->
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.perpage"
                 @pagination="getList"/>
-
+<!--pagination in the button-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
                style="width: 400px; margin-left:50px;">
@@ -102,24 +101,17 @@
         <el-form-item label="Username" prop="Username">
           <el-input v-model="temp.Username"/>
         </el-form-item>
-
         <el-form-item label="Role" prop="Role">
           <el-select v-model="temp.Role" class="filter-item" placeholder="Please select">
             <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name"
                        :value="item.key"/>
           </el-select>
         </el-form-item>
-
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
             <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
         </el-form-item>
-
-
-        <!--        <el-form-item label="Date" prop="timestamp">-->
-        <!--          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />-->
-        <!--        </el-form-item>-->
         <el-form-item label="Password" prop="Password">
           <el-input :type="passwordType" v-model="temp.Password"/>
         </el-form-item>
@@ -129,7 +121,6 @@
         <el-form-item label="Email" prop="Email">
           <el-input v-model="temp.Email"/>
         </el-form-item>
-
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -140,7 +131,7 @@
         </el-button>
       </div>
     </el-dialog>
-
+<!--    hidden dialog-->
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
       <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
         <el-table-column prop="key" label="Channel"/>
@@ -150,6 +141,7 @@
         <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
+
   </div>
 </template>
 
