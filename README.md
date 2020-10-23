@@ -4,7 +4,7 @@
 # clone the project
 git clone https://github.com/thdung002/quizmanagement.git
 ```
-#For back-end
+# For back-end
 
 ## Build Setup
 
@@ -21,7 +21,7 @@ npm run start-server
 
 And it will run automatically to server - can modify in config folder
 
-#For front-end
+# For front-end
 
 English 
 
