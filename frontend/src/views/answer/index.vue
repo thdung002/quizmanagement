@@ -39,9 +39,9 @@
           <span>{{ row.ID }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="DateCreated" width="150" align="center">
+      <el-table-column label="DateCreated" width="200" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.CreatedAt }}</span>
+          <span>{{ row.CreatedAt | format_date}}</span>
         </template>
       </el-table-column>
       <el-table-column label="Question ID" width="100" align="center">
@@ -145,8 +145,8 @@
 
 <script>
     import {GetAnswer, CreateAnswer, UpdateAnswer, DeleteAnswer} from '@/api/answer'
-    import {GetQuestion} from '@/api/question'
-
+    import {GetActiveQuestion} from '@/api/question'
+    import moment from 'moment'
     import waves from '@/directive/waves' // waves directive
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -174,6 +174,11 @@
         components: {Pagination},
         directives: {waves},
         filters: {
+            format_date(value){
+                if (value) {
+                    return moment(String(value)).format('DD-MM-YYYY H:m')
+                }
+            },
             statusFilter(status) {
                 const statusMap = {
                     0: 'success',
@@ -258,11 +263,9 @@
                     this.list = response.data.data;
                     this.total = response.data.items.total;
                 });
-                GetQuestion(this.listQuery).then((response) => {
-                    this.listquestion = response.data.data;
+                GetActiveQuestion().then((response) => {
+                    this.listquestion = response.data;
                 });
-
-
             },
             handleFilter() {
                 this.listQuery.page = 1;

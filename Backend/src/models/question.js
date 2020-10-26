@@ -66,8 +66,7 @@ Question.getQuestion = function (page, perpage, sort, content, result) {
         sort = "ASC";
     }
     let offset = perpage * (page - 1);
-    if(content.length !== 0)
-    {
+    if (content.length !== 0) {
         try {
             dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
                 if (err) {
@@ -105,10 +104,7 @@ Question.getQuestion = function (page, perpage, sort, content, result) {
         } catch (error) {
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
-
-    }
-    else
-    {
+    } else {
         try {
             dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
                 if (err) {
@@ -148,6 +144,25 @@ Question.getQuestion = function (page, perpage, sort, content, result) {
         }
     }
 };
+//get active question
+Question.getActiveQuestion = function (result) {
+    try {
+        dbConn.query("Select * from question WHERE IsDeleted = 0", function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if (res.length === 0)
+                    result(1, 'No question found', 403, err, null);
+                else {
+                    result(null, res);
+                }
+            }
+        );
+    } catch (error) {
+        return result(1, 'Get question fail', 400, error, null);
+    }
+};
+
 
 //Update Question by id
 Question.update = function (accessID, id, Question, result) {
@@ -159,7 +174,7 @@ Question.update = function (accessID, id, Question, result) {
         queryObj.UpdatedBy = accessID;
         queryObj.id = id;
         queryObj.IsDeleted = Question.IsDeleted;
-        dbConn.query("UPDATE question SET Content=?,Level=?,Type=?,UpdatedBy=?,IsDeleted=? WHERE id = ?", [queryObj.Content, queryObj.Level, queryObj.Type, queryObj.UpdatedBy,queryObj.IsDeleted, queryObj.id], function (err, res) {
+        dbConn.query("UPDATE question SET Content=?,Level=?,Type=?,UpdatedBy=?,IsDeleted=? WHERE id = ?", [queryObj.Content, queryObj.Level, queryObj.Type, queryObj.UpdatedBy, queryObj.IsDeleted, queryObj.id], function (err, res) {
             if (err) {
                 result(null, err);
             } else if (res.changedRows === 0)

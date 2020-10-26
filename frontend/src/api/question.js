@@ -9,7 +9,12 @@ export function GetQuestion(data){
     params: data,
   })
 }
-
+export function GetActiveQuestion(){
+  return request({
+    url: '/v1/question/getactive',
+    method: 'get',
+  })
+}
 export function CreateQuestion(data){
   return request({
     url:'/v1/question/add',

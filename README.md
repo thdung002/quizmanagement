@@ -1,12 +1,12 @@
-# Quiz-management
-#First step
+# QUIZ MANAGEMENT
+## First step
 ```bash
 # clone the project
 git clone https://github.com/thdung002/quizmanagement.git
 ```
-# For back-end
+## _For back-end_
 
-## Build Setup
+### Build Setup
 
 ```bash
 # enter the project directory
@@ -21,7 +21,7 @@ npm run start-server
 
 And it will run automatically to server - can modify in config folder
 
-# For front-end
+## For front-end
 
 English 
 
@@ -31,7 +31,7 @@ English
 **The current version is `v4.0+` build on `vue-cli`. 
 
 
-## Build Setup
+### Build Setup
 
 ```bash
 # enter the project directory
@@ -46,7 +46,7 @@ npm run start-website
 
 This will automatically open http://localhost:9528
 
-## Build
+### Build
 
 ```bash
 # build for test environment
@@ -56,7 +56,7 @@ npm run build:stage
 npm run build:prod
 ```
 
-## Advanced
+### Advanced
 
 ```bash
 # preview the release environment effect
@@ -74,4 +74,4 @@ npm run lint -- --fix
 
 Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/guide/essentials/deploy.html) for more information
 
-## Demo
+### Demo

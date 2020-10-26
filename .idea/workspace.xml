@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Database/quizmanagement_ccd3ylv1pufy_ap-northeast-2_rds_amazonaws_com_3306.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/BackupDatabase.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -158,8 +168,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start-server (1)" />
         <item itemvalue="npm.start-website (1)" />
+        <item itemvalue="npm.start-server (1)" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev (1)" />
@@ -222,7 +232,8 @@
       <workItem from="1603299301597" duration="7679000" />
       <workItem from="1603340934773" duration="1052000" />
       <workItem from="1603442050479" duration="240000" />
-      <workItem from="1603442740716" duration="13199000" />
+      <workItem from="1603442740716" duration="13391000" />
+      <workItem from="1603715955189" duration="4305000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -427,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603456734762</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="edit readme">
+      <created>1603456794034</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1603456794034</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +469,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="Dung add source" />
     <MESSAGE value="Edit code topic" />
     <MESSAGE value="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js" />
     <MESSAGE value="edit db" />
@@ -476,7 +493,8 @@
     <MESSAGE value="edit front end page" />
     <MESSAGE value="add answer page" />
     <MESSAGE value="edit comment" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit comment" />
+    <MESSAGE value="edit readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

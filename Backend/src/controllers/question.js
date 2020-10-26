@@ -28,6 +28,15 @@ module.exports = {
             else return res.json({ result: "ok", message: "Question get successfully!", data: result,code: 20000 });
         })
     },
+    //get active question
+    getActive: function (req, res) {
+        Question.getActiveQuestion(function (err, result) {
+            if (err)
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Question get successfully!", data: result,code: 20000 });
+        })
+    },
+
     //get 1 Question by id
     getQuestionById: function (req, res) {
         Question.getQuestionById(req.params.id, function (err, result) {

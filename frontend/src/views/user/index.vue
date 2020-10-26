@@ -42,7 +42,7 @@
       </el-table-column>
       <el-table-column label="DateCreated" width="200px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.CreatedAt }}</span>
+          <span>{{ row.CreatedAt | format_date }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Username" min-width="150px" align="center">
@@ -151,7 +151,7 @@
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
-
+    import moment from 'moment'
     const calendarTypeOptions = [
         {key: '1', display_name: 'SuperAdmin'},
         {key: '2', display_name: 'Admin'},
@@ -188,7 +188,13 @@
             },
             typeFilter(type) {
                 return calendarTypeKeyValue[type]
-            }
+            },
+            format_date(value){
+                if (value) {
+                    return moment(String(value)).format('DD-MM-YYYY H:m')
+                }
+            },
+
         },
         data() {
             const validatePassword = (rule, value, callback) => {

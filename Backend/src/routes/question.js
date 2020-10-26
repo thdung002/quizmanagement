@@ -12,6 +12,7 @@ module.exports = function (app) {
      * @apiParam {Number} page Page which we want to get (N/A)
      * @apiParam {Number} perPage Item per page (N/A)
      * @apiParam {String} sort Sort the list by a field (N/A)
+     *@apiParam {String} content Content of question to get
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/question/getall
@@ -59,6 +60,53 @@ module.exports = function (app) {
      * @apiError result sucess or fail
      * @apiError message from server
      * 
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "result": "fail",
+     *       "message": "invalid input"
+     *     }
+     */
+    app.get('/v1/question/getactive', questionController.getActive);
+    /**
+     * @api {GET} /v1/question/getactive Get All List
+     * @apiVersion 1.0.0
+     * @apiName getAll
+     * @apiGroup question
+     *
+     * @apiDescription Get all questions
+     *
+     * @apiExample Example usage:
+     * curl -i http://localhost:5000/v1/question/getactive
+     *
+     * @apiSuccess {String} result sucess or fail
+     * @apiSuccess {String} message from server
+     * @apiSuccess {Object[]} data the list of data
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     * {
+     *    "result": "ok",
+     *    "message": "question get successfully!",
+     *    "data": {
+     *        "data": [
+     *            {
+     *                "ID": 1,
+     *                "Content": 1,
+     *                "Level": 1,
+     *                "Type": 1,
+     *                "CreatedBy": 1,
+     *                "CreatedAt": "2020-09-22T06:12:51.000Z",
+     *                "UpdatedBy": null,
+     *                "UpdatedAt": "2020-10-06T02:00:18.000Z"
+     *            }
+     *        ],
+     *    }
+     *}
+     *
+     * @apiError result sucess or fail
+     * @apiError message from server
+     *
      * @apiErrorExample Error-Response:
      *     HTTP/1.1 400 Bad Request
      *     {
