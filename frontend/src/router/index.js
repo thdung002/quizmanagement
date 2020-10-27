@@ -63,7 +63,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'User',
         component: () => import('@/views/user/index'),
-        meta: { title: 'User', icon: 'user' ,roles: ['1','2']}
+        meta: { title: 'User', icon: 'user'}
       }
     ]
   },

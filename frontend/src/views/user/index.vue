@@ -153,9 +153,9 @@
     import {getToken, getRole} from '@/utils/auth'
     import moment from 'moment'
     const calendarTypeOptions = [
-        {key: '1', display_name: 'SuperAdmin'},
-        {key: '2', display_name: 'Admin'},
-        {key: '3', display_name: 'User'},
+        {key: 1, display_name: 'SuperAdmin'},
+        {key: 2, display_name: 'Admin'},
+        {key: 3, display_name: 'User'},
     ];
     const statusType = [
         {key: 0, display_name: 'Actived'},

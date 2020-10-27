@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: quizmanagement.ccd3ylv1pufy.ap-northeast-2.rds.amazonaws.com:3306
--- Generation Time: Oct 23, 2020 at 02:53 PM
+-- Generation Time: Oct 27, 2020 at 07:03 AM
 -- Server version: 8.0.20
 -- PHP Version: 7.4.2
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -29,8 +28,6 @@ USE `quiz_management`;
 
 --
 -- Table structure for table `answer`
---
--- Creation: Oct 23, 2020 at 11:52 AM
 --
 
 CREATE TABLE `answer` (
@@ -60,8 +57,6 @@ INSERT INTO `answer` (`ID`, `Question`, `Content`, `IsCorrect`, `CorrectAnswer`,
 
 --
 -- Table structure for table `config`
---
--- Creation: Oct 23, 2020 at 11:54 AM
 --
 
 CREATE TABLE `config` (
@@ -97,8 +92,6 @@ INSERT INTO `config` (`ID`, `NumberQuestionLevel1`, `NumberQuestionLevel2`, `Num
 --
 -- Table structure for table `examination`
 --
--- Creation: Oct 23, 2020 at 11:55 AM
---
 
 CREATE TABLE `examination` (
   `ID` int NOT NULL,
@@ -129,9 +122,6 @@ INSERT INTO `examination` (`ID`, `Duration`, `Semester`, `Notes`, `Department`, 
 --
 -- Table structure for table `question`
 --
--- Creation: Oct 23, 2020 at 11:45 AM
--- Last update: Oct 23, 2020 at 11:43 AM
---
 
 CREATE TABLE `question` (
   `ID` int NOT NULL,
@@ -150,14 +140,12 @@ CREATE TABLE `question` (
 --
 
 INSERT INTO `question` (`ID`, `Content`, `Level`, `Type`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`, `IsDeleted`) VALUES
-(12, 'Which among the following cities produces highest e-waste in India?', 2, 'Single Choice', 2, '2020-10-23 11:48:41', NULL, NULL, 0);
+(12, 'Which among the following cities produces highest e-waste in India?', 2, 'Single Choice', 2, '2020-10-23 11:48:41', NULL, '2020-10-26 12:59:54', 0);
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `questiontopic`
---
--- Creation: Oct 23, 2020 at 11:55 AM
 --
 
 CREATE TABLE `questiontopic` (
@@ -175,8 +163,6 @@ CREATE TABLE `questiontopic` (
 
 --
 -- Table structure for table `quiz`
---
--- Creation: Oct 23, 2020 at 11:56 AM
 --
 
 CREATE TABLE `quiz` (
@@ -205,8 +191,6 @@ INSERT INTO `quiz` (`ID`, `Examination`, `Config`, `Template`, `Code`, `CreatedB
 --
 -- Table structure for table `quizcontent`
 --
--- Creation: Oct 23, 2020 at 11:56 AM
---
 
 CREATE TABLE `quizcontent` (
   `ID` int NOT NULL,
@@ -223,8 +207,6 @@ CREATE TABLE `quizcontent` (
 
 --
 -- Table structure for table `template`
---
--- Creation: Oct 23, 2020 at 11:56 AM
 --
 
 CREATE TABLE `template` (
@@ -255,8 +237,6 @@ INSERT INTO `template` (`ID`, `TemplateName`, `Description`, `HeaderContent`, `Q
 --
 -- Table structure for table `topic`
 --
--- Creation: Oct 23, 2020 at 11:56 AM
---
 
 CREATE TABLE `topic` (
   `ID` int NOT NULL,
@@ -285,9 +265,6 @@ INSERT INTO `topic` (`ID`, `Content`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `Up
 --
 -- Table structure for table `user`
 --
--- Creation: Oct 21, 2020 at 06:44 PM
--- Last update: Oct 21, 2020 at 06:46 PM
---
 
 CREATE TABLE `user` (
   `ID` int NOT NULL,
@@ -295,7 +272,7 @@ CREATE TABLE `user` (
   `Password` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `Fullname` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Role` varchar(11) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL COMMENT '1 is super admin, 2  is admin, 3 is user',
+  `Role` tinyint(1) NOT NULL COMMENT '1 is super admin, 2  is admin, 3 is user',
   `CreatedBy` int NOT NULL,
   `CreatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `UpdatedBy` int DEFAULT NULL,
@@ -308,12 +285,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`ID`, `Username`, `Password`, `Email`, `Fullname`, `Role`, `CreatedBy`, `CreatedAt`, `UpdatedBy`, `UpdatedAt`, `IsDeleted`) VALUES
-(1, 'admin', '$2a$10$QO6L4xnLz4f3.oCvuTBX9.WdozMUe6JWStVtWPqvzU/GR6I6VJAU2', 'admin@quizmanagement', 'Admin', '1', 0, '2020-09-09 18:35:35', 2, '2020-10-21 13:05:46', 0),
-(2, 'dung', '$2a$10$mzjOcLXufG2zwFbvbN9nsusRlsTAJjWv5zqgir.iHPBXuG4pPjpy6', 'thdung002@gmail.com', 'THD', '1', 0, '2020-09-09 18:38:12', 2, '2020-10-23 10:09:45', 0),
-(3, 'trung', '$2a$10$6AiC5tsYYPICTaV/uMxtVODjgBwHRW6zRt/M7/79Q6ecdrxMPsd0u', 'admin@quizmanagement.com', 'trung', '2', 0, '2020-09-09 18:38:12', 2, '2020-10-21 18:33:07', 0),
-(12, 'dung12', '$2a$10$ZGPsIbPp1qD4dpdZa/CSGeSBeI6T7idnKUsQIZKvFLthN0Oaw4n7C', 'thdung002@gmail.com', 'Dungtest', '2', 2, '2020-10-21 18:40:26', 2, '2020-10-21 18:40:53', 0),
-(16, 'dung12345', '$2a$10$KCBz8JLiHB0Al/ePzzRzNOuNwQNyyHiObXJRMEQP9UQe6jObbxWCe', 'thdung002@gmail.com', 'Dungtest', '3', 2, '2020-10-21 18:44:52', 2, '2020-10-23 10:24:52', 0),
-(17, 'anonymous', '$2a$10$us.aShe.In5wRk57cmT06.PCZRPPhW0IbQptS0xQ1SqcE9lUYRncG', 'test@gmail.com', 'tester', '3', 2, '2020-10-21 18:46:42', 2, '2020-10-23 10:25:39', 1);
+(1, 'admin', '$2a$10$QO6L4xnLz4f3.oCvuTBX9.WdozMUe6JWStVtWPqvzU/GR6I6VJAU2', 'admin@quizmanagement', 'Admin', 1, 0, '2020-09-09 18:35:35', 2, '2020-10-21 13:05:46', 0),
+(2, 'dung', '$2a$10$mzjOcLXufG2zwFbvbN9nsusRlsTAJjWv5zqgir.iHPBXuG4pPjpy6', 'thdung002@gmail.com', 'THD', 1, 0, '2020-09-09 18:38:12', 2, '2020-10-23 10:09:45', 0),
+(3, 'trung', '$2a$10$6AiC5tsYYPICTaV/uMxtVODjgBwHRW6zRt/M7/79Q6ecdrxMPsd0u', 'admin@quizmanagement.com', 'trung', 2, 0, '2020-09-09 18:38:12', 2, '2020-10-21 18:33:07', 0),
+(12, 'dung12', '$2a$10$ZGPsIbPp1qD4dpdZa/CSGeSBeI6T7idnKUsQIZKvFLthN0Oaw4n7C', 'thdung002@gmail.com', 'Dungtest', 2, 2, '2020-10-21 18:40:26', 2, '2020-10-21 18:40:53', 0),
+(16, 'dung12345', '$2a$10$KCBz8JLiHB0Al/ePzzRzNOuNwQNyyHiObXJRMEQP9UQe6jObbxWCe', 'thdung002@gmail.com', 'Dungtest', 3, 2, '2020-10-21 18:44:52', 2, '2020-10-23 10:24:52', 0),
+(17, 'anonymous', '$2a$10$us.aShe.In5wRk57cmT06.PCZRPPhW0IbQptS0xQ1SqcE9lUYRncG', 'test@gmail.com', 'tester', 3, 2, '2020-10-21 18:46:42', 2, '2020-10-23 10:25:39', 1),
+(18, 'tester1', '$2a$10$8ryH64nqnY4aNfFNEKv9Pu3yuKgfEkHtmBh75aNozNOQrOnVIvv4O', '123@gmail.com', 'TDSASD', 3, 2, '2020-10-27 06:00:47', NULL, NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -469,7 +447,7 @@ ALTER TABLE `topic`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -545,7 +523,6 @@ ALTER TABLE `template`
 ALTER TABLE `topic`
   ADD CONSTRAINT `topic_ibfk_1` FOREIGN KEY (`CreatedBy`) REFERENCES `user` (`ID`),
   ADD CONSTRAINT `topic_ibfk_2` FOREIGN KEY (`UpdatedBy`) REFERENCES `user` (`ID`);
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

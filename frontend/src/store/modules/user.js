@@ -39,7 +39,6 @@ const actions = {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response;
         commit('SET_TOKEN', data[0].Id);
-        commit('SET_ROLE',data[0].Role);
         setRole(data[0].Role);
         setToken(data[0].Id);
         resolve()
@@ -58,6 +57,7 @@ const actions = {
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
+        commit('SET_ROLE',data[0].Role);
         commit('SET_NAME', data[0].Fullname);
         commit('SET_AVATAR', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
         resolve(data)

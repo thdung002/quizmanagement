@@ -71,7 +71,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
     }
     let offset = perpage * (page - 1);
 
-    if (username.length !== 0 && role.length !== 0) {
+    if (username.length !== 0 && !isNaN(role)) {
         try {
             dbConn.query("SELECT COUNT(*) as total from user", function (err, rows) {
                 if (err) {
@@ -151,7 +151,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
         } catch (error) {
             return result(1, 'get_all_user_fail', 400, error, null);
         }
-    } else if (role.length !== 0) {
+    } else if (!isNaN(role)) {
         try {
             dbConn.query("SELECT COUNT(*) as total from user", function (err, rows) {
                 if (err) {
@@ -247,7 +247,7 @@ User.update = function (accessId, id, userinfo, result) {
         queryObj.Id = id;
         queryObj.Email = userinfo.Email;
         queryObj.IsDeleted = userinfo.IsDeleted;
-        dbConn.query(`UPDATE user SET Password='${queryObj.Password}',Fullname='${queryObj.Fullname}',Role='${queryObj.Role}',UpdatedBy=${queryObj.UpdatedBy}, Email='${queryObj.Email}' , IsDeleted=${queryObj.IsDeleted} WHERE id = ${queryObj.Id}`, function (err, res) {
+        dbConn.query(`UPDATE user SET Password='${queryObj.Password}',Fullname='${queryObj.Fullname}',Role=${queryObj.Role},UpdatedBy=${queryObj.UpdatedBy}, Email='${queryObj.Email}' , IsDeleted=${queryObj.IsDeleted} WHERE id = ${queryObj.Id}`, function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
