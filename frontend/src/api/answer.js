@@ -17,6 +17,12 @@ export function CreateAnswer(data){
     data: qs.stringify(data)
   })
 }
+export function GetActiveAnswer(){
+  return request({
+    url: '/v1/answer/getactive',
+    method: 'get',
+  })
+}
 
 export function UpdateAnswer(data,id){
   return request({

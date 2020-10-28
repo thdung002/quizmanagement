@@ -23,7 +23,8 @@ module.exports = {
         let sort = req.query.sort || '';
         let perpage = req.query.perpage || '';
         let content = req.query.content || '';
-        Answer.getAnswer(parseInt(page),parseInt(perpage),sort,content,function (err, result) {
+        let iscorrect = req.query.iscorrect ||'';
+        Answer.getAnswer(parseInt(page),parseInt(perpage),sort,content,parseInt(iscorrect),function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Answer get successfully!", data: result,code: 20000});
@@ -37,6 +38,15 @@ module.exports = {
             else return res.json({result:"ok",message: "Answer get successfully!", data: result,code: 20000});
         })
     },
+    //get active
+    getActive: function (req, res) {
+        Answer.getActive(function (err, result) {
+            if (err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Answer get successfully!", data: result,code: 20000});
+        })
+    },
+
     //update Answer
     updateAnswerById: function (req, res) {
         let id = req.body.accessID;

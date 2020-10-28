@@ -73,7 +73,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
 
     if (username.length !== 0 && !isNaN(role)) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from user", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from user where Username='${username}' and Role = '${role}'`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
@@ -113,7 +113,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
         }
     } else if (username.length !== 0) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from user", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from user where  Username='${username}'`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {

@@ -19,10 +19,12 @@ module.exports = {
     },
     //get all Exam
     getExam: function (req, res) {
-        let page = req.body.page || '';
-        let sort = req.body.sort || '';
-        let perpage = req.body.perpage || '';
-        Exam.getExam(parseInt(page),parseInt(perpage),sort,function (err, result) {
+        let page = req.query.page || '';
+        let sort = req.query.sort || '';
+        let perpage = req.query.perpage || '';
+        let lecturer = req.query.lecturer ||'';
+        let semester = req.query.semester || '';
+        Exam.getExam(parseInt(page),parseInt(perpage),sort,lecturer,semester,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Exam get successfully!", data: result,code: 20000});
@@ -34,6 +36,14 @@ module.exports = {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Exam get successfully!", data: result,code: 20000});
+        })
+    },
+    //get active Exam
+    getActive: function (req, res) {
+        Exam.getActiveExam(function (err, result) {
+            if (err)
+                return res.json({ result: "fail", message: "Invalid input" });
+            else return res.json({ result: "ok", message: "Question get successfully!", data: result,code: 20000 });
         })
     },
     //update Exam

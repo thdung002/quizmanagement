@@ -80,6 +80,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/examination',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Exam',
+        component: () => import('@/views/examination/index'),
+        meta: { title: 'Examination', icon: 'el-icon-notebook-1' }
+      }
+    ]
+  },
 
   {
     path: '/topic',

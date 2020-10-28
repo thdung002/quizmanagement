@@ -55,8 +55,27 @@ Answer.getAnswerById = function (id, result) {
         return result(1, 'get_one_Answer_fail', 400, error, null);
     }
 };
+//get Answer
+Answer.getActive = function (result) {
+    try {
+        dbConn.query("Select * from answer WHERE IsDeleted = 0 ", parseInt(id), function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if (res.length === 0)
+                    result(1, 'Answer_not_found', 403, err, null);
+                else {
+                    result(null, res);
+                }
+            }
+        );
+    } catch (error) {
+        return result(1, 'get_one_Answer_fail', 400, error, null);
+    }
+};
+
 //get all Answer with pagination
-Answer.getAnswer = function (page, perpage, sort,content, result) {
+Answer.getAnswer = function (page, perpage, sort,content,iscorrect, result) {
     if (page === 0 || isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
@@ -67,13 +86,98 @@ Answer.getAnswer = function (page, perpage, sort,content, result) {
     }
     let type = typeof (sort);
     let offset = perpage * (page - 1);
-    if(content.length !==0) {
+    if(content.length !==0 && !isNaN(iscorrect)) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from answer", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from answer where Content ='${content}' and IsCorrect =${iscorrect}`, function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from answer where Content ='${content}' and IsCorrect =${iscorrect} ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            // console.log('topic : ', res);
+                            // result(null, res);
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: pages
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_Answer_fail', 400, error, null);
+        }
+    }
+    else if(content.length !==0)
+    {
+        try {
+            dbConn.query(`SELECT COUNT(*) as total from answer where Content ='${content}'`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
                     dbConn.query(`Select * from answer where Content ='${content}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            // console.log('topic : ', res);
+                            // result(null, res);
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: pages
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_Answer_fail', 400, error, null);
+        }
+
+    }
+    else if(!isNaN(iscorrect))
+    {
+        try {
+            dbConn.query(`SELECT COUNT(*) as total from answer where IsCorrect =${iscorrect}`, function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from answer where IsCorrect =${iscorrect} ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);

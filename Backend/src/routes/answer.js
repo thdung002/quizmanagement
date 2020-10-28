@@ -6,13 +6,15 @@ module.exports = function (app) {
      * @apiVersion 1.0.0
      * @apiName getAll
      * @apiGroup Answer
-     * @apiPermission only Super administrator
+     * @apiPermission All user
      *
      * @apiDescription Get all answers
      *
      * @apiParam {Number} page Page which we want to get (N/A)
      * @apiParam {Number} perPage Item per page (N/A)
      * @apiParam {String} sort Sort the list by a field (N/A)
+     * @apiParam {String} Content content for sort
+     * @apiParam {number} IsCorrect correct answer
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/answer/getall
@@ -31,6 +33,38 @@ module.exports = function (app) {
      *       "data": [...],
      *       "items": {"begin": 1, "end": 3, "total": 2},
      *       "pages": {"current": 1, "prev": 0, "hasPrev": false, "next": 2, "hasNext": true, "total": 4},
+     *     }
+     *
+     * @apiError invalid input data
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "result": "fail",
+     *       "message": "invalid input"
+     *     }
+     */
+    app.get('/v1/answer/getactive', answerController.getActive);
+    /**
+     * @api {GET} /v1/answer/getactive Get All List
+     * @apiVersion 1.0.0
+     * @apiName getAll
+     * @apiGroup Answer
+     * @apiPermission All user
+     * @apiDescription Get all answers
+     *
+     * @apiExample Example usage:
+     * curl -i http://localhost:5000/v1/answer/getall
+     *
+     * @apiSuccess {String} result ok or fail
+     * @apiSuccess {String} message something from server
+     * @apiSuccess {Object[]} data the list of data
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "result": "ok",
+     *       "message": ""
+     *       "data": [...],
      *     }
      *
      * @apiError invalid input data

@@ -13,6 +13,7 @@ module.exports = function (app) {
      * @apiParam {Number} page Page which we want to get (N/A)
      * @apiParam {Number} perPage Item per page (N/A)
      * @apiParam {String} sort Sort the list by a field (N/A)
+     * @apiParam {String} lecturer get exam by lecturer
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/exam/getall
@@ -61,7 +62,6 @@ module.exports = function (app) {
      * @apiParam {String} CourseCode course code of course
      * @apiParam {String} AcademicYear year of the exam
      * @apiParam {String} Lecturer lecturer name
-
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/exam/add
      *
@@ -101,11 +101,50 @@ module.exports = function (app) {
      * @apiExample Example usage:
      * curl -i http://localhost:3000/v1/exams/get/2
      *
-     * @apiSuccess {String} Id the ID of Exam
-     * @apiSuccess {Number} Question Id of question
-     * @apiSuccess {String} Content Exam content
-     * @apiSuccess {String} CorrectExam Exam for filling question
-     * @apiSuccess {Number} IsCorrect correct Exam for multiple choice, 1 is correct, 0 is fail
+     * @apiSuccess {String} result ok or fail
+     * @apiSuccess {String} message something from server
+     * @apiSuccess {Object[]} data the list of data
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *          "result": "ok",
+     *          "message" "Exam get successfully!"
+     *          "data":{
+     *              "ID": 1,
+     *              "Question": 3,
+     *              "Content": "This is Exam B",
+     *              "CorrectExam": "This is column 2",
+     *              ...
+     *          },
+     *     }
+     *
+     * @apiError invalid input data
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "result": "fail",
+     *       "message": "invalid input"
+     *     }
+     */
+    app.get('/v1/exam/getactive', examController.getActive);
+    /**
+     * @api {GET} /v1/exam/getactive
+     * @apiVersion 1.0.0
+     * @apiName getOne
+     * @apiGroup Exam
+     * @apiPermission Every type of user
+     * @apiHeader {String} access_token json web token to access to data
+     *
+     * @apiDescription Get one Exam
+     *
+     * @apiExample Example usage:
+     * curl -i http://localhost:3000/v1/exams/getactive
+     *
+     * @apiSuccess {String} result ok or fail
+     * @apiSuccess {String} message something from server
+     * @apiSuccess {Object[]} data the list of data
      *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK

@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.username" placeholder="Username" style="width: 200px;" class="filter-item"
+      <el-input v-model="listQuery.lecturer" placeholder="Lecturer name" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-select v-model="listQuery.role" placeholder="Role" clearable class="filter-item" style="width: 130px" @change="handleFilter">
+      <el-select v-model="listQuery.semester" placeholder="Semester" clearable class="filter-item" @change="handleFilter" style="width: 130px" >
         <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'"
                    :value="item.key"/>
       </el-select>
@@ -22,8 +22,7 @@
         Export
       </el-button>
     </div>
-<!--search, sort bar-->
-
+    <!--search bar, sort -->
     <el-table
       :key="tableKey"
       v-loading="listLoading"
@@ -40,37 +39,59 @@
           <span>{{ row.ID }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="DateCreated" width="200px" align="center">
+      <el-table-column label="DateCreated" width="150" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.CreatedAt | format_date }}</span>
+          <span>{{ row.CreatedAt | format_date}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Username" min-width="150px" align="center">
+      <el-table-column label="Lecturer name" width="200" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Username }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Lecturer }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Password" min-width="150px" align="center">
+      <el-table-column label="Semester" min-width="200" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Password }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Semester }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Fullname" min-width="150px" align="center">
+      <el-table-column label="Duration" min-width="150px" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Fullname }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Duration }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Email" min-width="150px" align="center">
+      <el-table-column label="Notes" min-width="150px" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Email }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Notes }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Role" width="150px" align="center">
+      <el-table-column label="Department" min-width="150px" align="center">
         <template slot-scope="{row}">
-          <el-tag>{{ row.Role | typeFilter }}</el-tag>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Department }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Status" class-name="status-col" width="100" align="center">
+
+      <el-table-column label="Course" width="200" align="center">
+        <template slot-scope="{row}">
+          <el-tag :type="row.Course">
+            {{ row.Course }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="CourseCode" width="200" align="center">
+        <template slot-scope="{row}">
+          <el-tag :type="row.Coursecode">
+            {{ row.Coursecode }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="Academic Year" width="200" align="center">
+        <template slot-scope="{row}">
+          <el-tag :type="row.AcademicYear">
+            {{ row.AcademicYear }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="Status" class-name="status-col" width="100px" align="center">
         <template slot-scope="{row}">
           <el-tag :type="row.IsDeleted | statusFilter">
             {{ row.IsDeleted | activeFilter }}
@@ -88,38 +109,47 @@
         </template>
       </el-table-column>
     </el-table>
-<!--Table for values-->
+    <!--Table for values-->
+
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.perpage"
                 @pagination="getList"/>
-<!--pagination in the button-->
+
+    <!--pagination-->
+
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px"
                style="width: 400px; margin-left:50px;">
         <el-form-item label="ID" prop="ID">
           <el-input :disabled="true" v-model="temp.ID"/>
         </el-form-item>
-        <el-form-item label="Username" prop="Username">
-          <el-input v-model="temp.Username"/>
+        <el-form-item label="Lecturer name" prop="Lecturer">
+          <el-input v-model="temp.Lecturer"/>
         </el-form-item>
-        <el-form-item label="Role" prop="Role">
-          <el-select v-model="temp.Role" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name"
-                       :value="item.key"/>
-          </el-select>
+        <el-form-item label="Duration" prop="Duration">
+          <el-input v-model="temp.Duration"/>
+        </el-form-item>
+        <el-form-item label="Semester" prop="Semester">
+          <el-input v-model="temp.Semester"/>
+        </el-form-item>
+        <el-form-item label="Notes" prop="Notes">
+          <el-input v-model="temp.Notes"/>
+        </el-form-item>
+        <el-form-item label="Department" prop="Department">
+          <el-input v-model="temp.Department"/>
+        </el-form-item>
+        <el-form-item label="Course name" prop="Course">
+          <el-input v-model="temp.Course"/>
+        </el-form-item>
+        <el-form-item label="Course code" prop="CourseCode">
+          <el-input v-model="temp.CourseCode"/>
+        </el-form-item>
+        <el-form-item label="Academic Year" prop="AcademicYear">
+          <el-input v-model="temp.AcademicYear"/>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
             <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
-        </el-form-item>
-        <el-form-item label="Password" prop="Password">
-          <el-input :type="passwordType" v-model="temp.Password"/>
-        </el-form-item>
-        <el-form-item label="Fullname" prop="Fullname">
-          <el-input v-model="temp.Fullname"/>
-        </el-form-item>
-        <el-form-item label="Email" prop="Email">
-          <el-input v-model="temp.Email"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -131,7 +161,8 @@
         </el-button>
       </div>
     </el-dialog>
-<!--    hidden dialog-->
+    <!--    Hidden dialog-->
+
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
       <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
         <el-table-column prop="key" label="Channel"/>
@@ -141,21 +172,21 @@
         <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
       </span>
     </el-dialog>
-
   </div>
 </template>
 
 <script>
-    import {GetUser, CreateUser, UpdateUser, DeleteUser} from '@/api/user'
+    import {GetExam, CreateExam, UpdateExam, DeleteExam} from '@/api/examination'
+    import moment from 'moment'
     import waves from '@/directive/waves' // waves directive
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
-    import moment from 'moment'
+
     const calendarTypeOptions = [
-        {key: 1, display_name: 'SuperAdmin'},
-        {key: 2, display_name: 'Admin'},
-        {key: 3, display_name: 'User'},
+        {key: 1, display_name: 'Semester 1'},
+        {key: 2, display_name: 'Semester 2'},
+        {key: 3, display_name: 'Semester 3'},
     ];
     const statusType = [
         {key: 0, display_name: 'Actived'},
@@ -170,12 +201,16 @@
         acc[cur.key] = cur.display_name;
         return acc
     }, {});
-
     export default {
         name: 'ComplexTable',
         components: {Pagination},
         directives: {waves},
         filters: {
+            format_date(value){
+                if (value) {
+                    return moment(String(value)).format('DD-MM-YYYY H:m')
+                }
+            },
             statusFilter(status) {
                 const statusMap = {
                     0: 'success',
@@ -183,30 +218,13 @@
                 };
                 return statusMap[status]
             },
+
             activeFilter(active) {
                 return statusValue[active]
             },
-            typeFilter(type) {
-                return calendarTypeKeyValue[type]
-            },
-            format_date(value){
-                if (value) {
-                    return moment(String(value)).format('DD-MM-YYYY H:m')
-                }
-            },
-
         },
         data() {
-            const validatePassword = (rule, value, callback) => {
-                if (value.length < 6) {
-                    callback(new Error('The password can not be less than 6 digits'))
-                } else {
-                    callback()
-                }
-            };
-
             return {
-                passwordType: 'password',
                 tableKey: 0,
                 list: null,
                 total: 0,
@@ -215,8 +233,8 @@
                     page: 1,
                     perpage: 10,
                     sort: 'ASC',
-                    username: undefined,
-                    role: undefined
+                    lecturer: undefined,
+                    semester: undefined
                 },
                 calendarTypeOptions,
                 statusType,
@@ -224,14 +242,15 @@
                 statusOptions: ['active', 'deleted'],
                 temp: {
                     ID: '',
-                    Username: '',
-                    Password: '',
-                    Email: '',
-                    Fullname: '',
-                    Role: '',
+                    Lecturer: '',
+                    Semester: '',
+                    Duration: '',
+                    Notes: '',
+                    Department: '',
+                    Course: '',
+                    CourseCode: '',
+                    AcademicYear:'',
                     accessID: '',
-                    accessUserRole: '',
-
                 },
                 dialogFormVisible: false,
                 dialogStatus: '',
@@ -242,18 +261,13 @@
                 dialogPvVisible: false,
                 pvData: [],
                 rules: {
-                    Password: [{
-                        required: true,
-                        message: 'password is required',
-                        trigger: 'blur',
-                        validator: validatePassword
-                    }],
-                    Fullname: [{required: true, message: 'name is required', trigger: 'blur'}],
-                    Email: [
-                        {required: true, message: 'Please input email address', trigger: 'blur'},
-                        {type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change']}
-                    ],
-                    Username: [{required: true, message: 'username is required', trigger: 'blur'}]
+                    Duration: [{required: true, message: 'duration is required', trigger: 'blur'}],
+                    Semester: [{required: true, message: 'semester id is required', trigger: 'blur'}],
+                    Department: [{required: true, message: 'department is required', trigger: 'blur'}],
+                    Course: [{required: true, message: 'course name is required', trigger: 'blur'}],
+                    CourseCode: [{required: true, message: 'course code is required', trigger: 'blur'}],
+                    AcademicYear: [{required: true, message: 'academic year is required', trigger: 'blur'}],
+                    Lecturer: [{required: true, message: 'lecturer name is required', trigger: 'blur'}],
                 },
                 downloadLoading: false
             }
@@ -264,10 +278,10 @@
         methods: {
             getList() {
                 this.listLoading = false;
-                GetUser(this.listQuery).then(response => {
+                GetExam(this.listQuery).then(response => {
                     this.list = response.data.data;
                     this.total = response.data.items.total;
-                })
+                });
             },
             handleFilter() {
                 this.listQuery.page = 1;
@@ -297,20 +311,22 @@
             resetTemp() {
                 this.temp = {
                     ID: '',
-                    Password: '',
-                    Email: '',
-                    Fullname: '',
-                    Role: '',
+                    Lecturer: '',
+                    Semester: '',
+                    Duration: '',
+                    Notes: '',
+                    Department: '',
+                    Course: '',
+                    CourseCode: '',
+                    AcademicYear:'',
                     accessID: '',
-                    IsDeleted: 0,
-                    accessUserRole:'',
-
                 }
             },
             handleCreate() {
                 this.resetTemp();
                 this.dialogStatus = 'create';
                 this.dialogFormVisible = true;
+                this.listQuery.content = undefined;
                 this.$nextTick(() => {
                     this.$refs.dataForm.clearValidate()
                 })
@@ -318,15 +334,15 @@
             createData() {
                 this.$refs.dataForm.validate((valid) => {
                     if (valid) {
-                        this.temp.accessUserRole = getRole();
                         this.temp.accessID = getToken();
-                        CreateUser(this.temp).then((response) => {
+                        CreateExam(this.temp).then((response) => {
                             if (response.result === "fail")
                                 this.$notify({
-                                    title: 'Warning',
+                                    title: 'Fail',
                                     message: 'Created Failed',
                                     type: 'warning',
-                                    duration: 2000
+                                    duration: 2000,
+                                    position: 'top-right'
                                 });
                             else {
                                 this.list.unshift(this.temp);
@@ -356,7 +372,7 @@
                 this.$refs['dataForm'].validate((valid) => {
                     if (valid) {
                         const tempData = Object.assign({}, this.temp);
-                        UpdateUser(tempData, this.temp.ID).then((response) => {
+                        UpdateExam(tempData, this.temp.ID).then((response) => {
                             if (response.result === "fail")
                                 this.$notify({
                                     title: 'Warning',
@@ -368,17 +384,18 @@
                                 this.getList();
                                 this.dialogFormVisible = false;
                                 this.$notify({
-                                title: 'Success',
-                                message: 'Update Successfully',
-                                type: 'success',
-                                duration: 2000
-                            })}
+                                    title: 'Success',
+                                    message: 'Update Successfully',
+                                    type: 'success',
+                                    duration: 2000
+                                })
+                            }
                         })
                     }
                 })
             },
-            handleDelete(row,id) {
-                DeleteUser(id).then((response)=>{
+            handleDelete(row, id) {
+                DeleteExam(id).then((response) => {
                     if (response.result === "fail")
                         this.$notify({
                             title: 'Warning',
@@ -395,7 +412,7 @@
                             duration: 2000
                         });
                     }
-                    });
+                });
             },
             handleFetchPv(pv) {
                 fetchPv(pv).then(response => {
