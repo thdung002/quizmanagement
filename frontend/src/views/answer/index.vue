@@ -3,7 +3,7 @@
     <div class="filter-container">
       <el-input v-model="listQuery.content" placeholder="Content" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-select v-model="listQuery.role" placeholder="CorrectAnswer" clearable class="filter-item" style="width: 130px">
+      <el-select v-model="listQuery.iscorrect" placeholder="CorrectAnswer" clearable class="filter-item" @change="handleFilter" style="width: 130px" >
         <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'"
                    :value="item.key"/>
       </el-select>
@@ -222,6 +222,7 @@
                     perpage: 10,
                     sort: 'ASC',
                     content: undefined,
+                    iscorrect: undefined
                 },
                 calendarTypeOptions,
                 statusType,

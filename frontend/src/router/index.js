@@ -80,6 +80,18 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/examination',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Exam',
+        component: () => import('@/views/examination/index'),
+        meta: { title: 'Examination', icon: 'el-icon-notebook-1' }
+      }
+    ]
+  },
 
 
   // 404 page must be placed at the end !!!
