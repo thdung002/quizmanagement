@@ -7,7 +7,6 @@ var Topic = function (topic) {
     this.CreatedBy = topic.CreatedBy;
     this.UpdatedBy = topic.UpdatedBy;
     this.IsDeleted = topic.IsDeleted;
-
 };
 //Add new topic
 Topic.add = function (accessID, newTopic, result) {
@@ -50,8 +49,26 @@ Topic.getTopicById = function (id, result) {
         return result(1, 'Get topic fail', 400, error, null);
     }
 };
+//Get active topic
+Topic.getActiveTopic = function (result) {
+    try {
+        dbConn.query("Select * from topic WHERE IsDeleted = 0 ", parseInt(id), function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if (res.length === 0)
+                    result(1, 'Topic_not_found', 403, err, null);
+                else {
+                    result(null, res);
+                }
+            }
+        );
+    } catch (error) {
+        return result(1, 'get_topic_fail', 400, error, null);
+    }
+};
 //Get all topic
-Topic.getTopic = function (page, perpage, sort, result) {
+Topic.getTopic = function (page, perpage, sort, content, result) {
     if (page === 0 || isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
@@ -62,42 +79,85 @@ Topic.getTopic = function (page, perpage, sort, result) {
     }
     let type = typeof (sort);
     let offset = perpage * (page - 1);
-    try {
-        dbConn.query("SELECT COUNT(*) as total from topic where isDeleted = 0", function (err, rows) {
-            if (err) {
-                return result(err);
-            } else {
-                dbConn.query(`Select * from topic ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
-                    if (errs) {
-                        console.log("error in query db: ", errs);
-                        return result(errs);
+    if(content.length !==0) {
+        {
+            try {
+                dbConn.query(`SELECT COUNT(*) as total from topic where Content ='${content}'`, function (err, rows) {
+                    if (err) {
+                        return result(err);
                     } else {
-                        let pages = Math.ceil(rows[0].total / perpage);
-                        let output = {
-                            data: res,
-                            pages: {
-                                current: page,
-                                prev: page - 1,
-                                hasPrev: false,
-                                next: (page + 1) > pages ? 0 : (page + 1),
-                                hasNext: false,
-                                total: pages
-                            },
-                            items: {
-                                begin: ((page * perpage) - perpage) + 1,
-                                end: page * perpage,
-                                total: parseInt(res.length)
+                        dbConn.query(`Select * from topic where Content ='${content}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                            if (errs) {
+                                console.log("error in query db: ", errs);
+                                return result(errs);
+                            } else {
+                                let pages = Math.ceil(rows[0].total / perpage);
+                                let output = {
+                                    data: res,
+                                    pages: {
+                                        current: page,
+                                        prev: page - 1,
+                                        hasPrev: false,
+                                        next: (page + 1) > pages ? 0 : (page + 1),
+                                        hasNext: false,
+                                        total: pages
+                                    },
+                                    items: {
+                                        begin: ((page * perpage) - perpage) + 1,
+                                        end: page * perpage,
+                                        total: parseInt(res.length)
+                                    }
+                                };
+                                output.pages.hasNext = (output.pages.next !== 0);
+                                output.pages.hasPrev = (output.pages.prev !== 0);
+                                return result(null, output);
                             }
-                        };
-                        output.pages.hasNext = (output.pages.next !== 0);
-                        output.pages.hasPrev = (output.pages.prev !== 0);
-                        return result(null, output);
+                        });
                     }
-                });
+                })
+            } catch (error) {
+                return result(1, 'Get all topic fail', 400, error, null);
             }
-        })
-    } catch (error) {
-        return result(1, 'get_all_Topic_fail', 400, error, null);
+        }
+    }
+    else{
+        try {
+            dbConn.query("SELECT COUNT(*) as total from topic", function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from topic ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: pages
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_Topic_fail', 400, error, null);
+        }
     }
 };
 //Update Topic by id
