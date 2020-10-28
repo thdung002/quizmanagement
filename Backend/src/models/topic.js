@@ -6,6 +6,7 @@ var Topic = function (topic) {
     this.Content = topic.Content;
     this.CreatedBy = topic.CreatedBy;
     this.UpdatedBy = topic.UpdatedBy;
+    this.IsDeleted = topic.IsDeleted;
 
 };
 //Add new topic
@@ -54,7 +55,7 @@ Topic.getTopic = function (page, perpage, sort, result) {
     if (page === 0 || isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
-        perpage = 5;
+        perpage = 10;
     }
     if (sort.length === 0) {
         sort = "ASC";
@@ -106,7 +107,8 @@ Topic.update = function (accessID, id, Topic, result) {
         queryObj.Content = Topic.Content;
         queryObj.UpdatedBy = accessID;
         queryObj.Id = id;
-        dbConn.query("UPDATE topic SET Content=?,UpdatedBy=? WHERE id = ?", [queryObj.Content, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+        queryObj.IsDeleted = parseInt(Topic.IsDeleted);
+        dbConn.query("UPDATE topic SET Content=?,UpdatedBy=?,IsDeleted=? WHERE id = ?", [queryObj.Content, queryObj.UpdatedBy,queryObj.IsDeleted, queryObj.Id], function (err, res) {
             if (err) {
                 result(null, err);
             } else if (res.changedRows === 0)
