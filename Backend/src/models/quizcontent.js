@@ -138,4 +138,6 @@ QuizContent.delete = function (id, result) {
         return result(1, 'delete_Quiz_Content_fail', 400, error, null);
     }
 };
+
+
 module.exports = QuizContent;

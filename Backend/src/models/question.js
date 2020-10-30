@@ -68,11 +68,11 @@ Question.getQuestion = function (page, perpage, sort, content, result) {
     let offset = perpage * (page - 1);
     if (content.length !== 0) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}')`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from question where content = '${content}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select *,Content from question where MATCH(Content) AGAINST('${content}')  ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -106,7 +106,7 @@ Question.getQuestion = function (page, perpage, sort, content, result) {
         }
     } else {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from question`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {

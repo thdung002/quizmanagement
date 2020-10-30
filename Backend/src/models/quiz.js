@@ -152,4 +152,7 @@ Quiz.delete = function (id, result) {
       return result(1, 'delete_Quiz_fail', 400, error, null);
   }
 };
+
+
+
 module.exports = Quiz;
