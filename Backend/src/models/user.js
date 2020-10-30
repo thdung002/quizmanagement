@@ -73,11 +73,11 @@ User.getUser = function (page, perpage, sort, username, role, result) {
 
     if (username.length !== 0 && !isNaN(role)) {
         try {
-            dbConn.query(`SELECT COUNT(*) as total from user where Username='${username}' and Role = '${role}'`, function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from user where MATCH(Username) AGAINST('${username}') and Role = '${role}'`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from user where Username ='${username}' AND Role = '${role}' ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
+                    dbConn.query(`Select * from user where MATCH(Username) AGAINST('${username}') AND Role = '${role}' ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -113,17 +113,15 @@ User.getUser = function (page, perpage, sort, username, role, result) {
         }
     } else if (username.length !== 0) {
         try {
-            dbConn.query(`SELECT COUNT(*) as total from user where  Username='${username}'`, function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from user where  MATCH(Username) AGAINST('${username}')`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from user where  Username='${username}' ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
+                    dbConn.query(`Select * from user where  MATCH(Username) AGAINST('${username}') ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
                         } else {
-                            // console.log('topic : ', res);
-                            // result(null, res);
                             let pages = Math.ceil(rows[0].total / perpage);
                             let output = {
                                 data: res,

@@ -88,11 +88,11 @@ Answer.getAnswer = function (page, perpage, sort,content,iscorrect, result) {
     let offset = perpage * (page - 1);
     if(content.length !==0 && !isNaN(iscorrect)) {
         try {
-            dbConn.query(`SELECT COUNT(*) as total from answer where Content ='${content}' and IsCorrect =${iscorrect}`, function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from answer where MATCH(Content) AGAINST('${content}') and IsCorrect =${iscorrect}`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from answer where Content ='${content}' and IsCorrect =${iscorrect} ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select * from answer where MATCH(Content) AGAINST('${content}') and IsCorrect =${iscorrect} ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -130,11 +130,11 @@ Answer.getAnswer = function (page, perpage, sort,content,iscorrect, result) {
     else if(content.length !==0)
     {
         try {
-            dbConn.query(`SELECT COUNT(*) as total from answer where Content ='${content}'`, function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from answer where MATCH(Content) AGAINST('${content}')`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from answer where Content ='${content}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select * from answer where MATCH(Content) AGAINST('${content}') ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
