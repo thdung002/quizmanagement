@@ -43,10 +43,10 @@ Quiz.add = function (accessID, newQuiz, result) {
     }
   }
 };
-//Get Quiz by Examination
+//Get Quiz by id
 Quiz.getQuizById = function (id, result) {
   try {
-      dbConn.query("Select * from quiz where Examination = ? and isDeleted = 0", parseInt(id), function (err, res) {
+      dbConn.query("Select * from quiz where ID = ? and isDeleted = 0", parseInt(id), function (err, res) {
               if (err) {
                   console.log("error: ", err);
                   result(err, null);

@@ -198,6 +198,47 @@ module.exports = function (app) {
      *       "message": "invalid input"
      *     }
      */
+    app.get('/v1/question/getrandom', questionController.randomQuestion);
+    /**
+     * @api {GET} /v1/answer/get/random Get random
+     * @apiVersion 1.0.0
+     * @apiName get random
+     * @apiGroup question
+     *
+     * @apiDescription Get one question
+     *
+     * @apiParam {Number} quantity The number of questions need to random
+     * @apiParam {Number} type The type of question need to random
+     *
+     * @apiExample Example usage:
+     * curl -i http://localhost:3000/v1/question/get/random
+     *
+     * @apiSuccess {String} result sucess or fail
+     * @apiSuccess {String} message from server
+     * @apiSuccess {Object[]} data the list of data
+     *
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *          "result": "ok",
+     *          "message" "question get successfully!"
+     *          "data":{
+     *              "ID": 1,
+     *              ...
+     *          },
+     *     }
+     *
+     * @apiError result sucess or fail
+     * @apiError message from server
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "result": "fail",
+     *       "message": "invalid input"
+     *     }
+     */
+
     app.put('/v1/question/update/:id', questionController.updateQuestionById);
     /**
      * @api {PUT} /v1/question/update/:id Update One
