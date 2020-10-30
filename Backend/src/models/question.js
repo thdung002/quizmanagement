@@ -55,6 +55,26 @@ Question.getQuestionById = function (id, result) {
         return result(1, 'Get question fail', 400, error, null);
     }
 };
+
+//Get active question
+Question.getActive = function (result) {
+    try {
+        dbConn.query("Select * from question WHERE IsDeleted = 0", function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if (res.length === 0)
+                    result(1, 'No question found', 403, err, null);
+                else {
+                    result(null, res);
+                }
+            }
+        );
+    } catch (error) {
+        return result(1, 'Get question fail', 400, error, null);
+    }
+};
+
 //Get all Question with pagination
 Question.getQuestion = function (page, perpage, sort, content, result) {
     if (page === 0 || isNaN(page))
@@ -144,25 +164,6 @@ Question.getQuestion = function (page, perpage, sort, content, result) {
         }
     }
 };
-//get active question
-Question.getActiveQuestion = function (result) {
-    try {
-        dbConn.query("Select * from question WHERE IsDeleted = 0", function (err, res) {
-                if (err) {
-                    console.log("error: ", err);
-                    result(err, null);
-                } else if (res.length === 0)
-                    result(1, 'No question found', 403, err, null);
-                else {
-                    result(null, res);
-                }
-            }
-        );
-    } catch (error) {
-        return result(1, 'Get question fail', 400, error, null);
-    }
-};
-
 
 //Update Question by id
 Question.update = function (accessID, id, Question, result) {
