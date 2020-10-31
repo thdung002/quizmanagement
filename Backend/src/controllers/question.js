@@ -69,5 +69,14 @@ module.exports = {
                 return res.json({ result: "fail", message: "Invalid input" });
             else return res.json({ result: "ok", message: "Question delete successfully!", id: result ,code: 20000});
         })
+    },
+    randomQuestion: function(req,res){
+        let quantity = parseInt(req.query.quantity);
+        let type = parseInt(req.query.type);
+        Question.random(quantity,type,function(err,result){
+            if(err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message:"get random question ok",data:result, code: 20000});
+        })
     }
 };

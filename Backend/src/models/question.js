@@ -244,11 +244,11 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
     }
     else if (content.length !==0) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}')`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from question where content = '${content}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select *,Content from question where MATCH(Content) AGAINST('${content}')  ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -283,7 +283,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
     }
     else if (type.length !==0) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from question`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
@@ -438,6 +438,27 @@ Question.delete = function (id, result) {
         });
     } catch (error) {
         return result(1, 'delete_Question_fail', 400, error, null);
+    }
+};
+
+//get random question
+Question.random = function(quantity,type,result){
+    try{
+        dbConn.query(`SELECT ID FROM question where type =${type} and IsDeleted = 0 ORDER BY RAND() LIMIT ${quantity}`,function(err,res){
+            if(err)
+            {
+                console.log("error: ", err);
+                result(null, err);
+            }
+            else if (res.length === 0)
+                result(1, 'No question found', 403, err, null);
+            else {
+                result(null, res);
+            }
+        })
+    }
+    catch(error){
+        return result(1, 'get_random_fail', 400, error, null);
     }
 };
 module.exports = Question;

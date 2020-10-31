@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/quiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quiz.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/routes/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/question.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -160,8 +162,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.start-server (1)" />
+        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev (1)" />
@@ -228,7 +230,9 @@
       <workItem from="1603715955189" duration="4305000" />
       <workItem from="1603790468711" duration="90000" />
       <workItem from="1603876716283" duration="6287000" />
-      <workItem from="1604026423666" duration="957000" />
+      <workItem from="1604026423666" duration="3855000" />
+      <workItem from="1604043468232" duration="646000" />
+      <workItem from="1604058856657" duration="4087000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -454,7 +458,21 @@
       <option name="project" value="LOCAL" />
       <updated>1603883975426</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="edit sql query MATCH AGAINST">
+      <created>1604027442515</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1604027442515</updated>
+    </task>
+    <task id="LOCAL-00034" summary="edit query">
+      <created>1604043938460</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1604043938461</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,8 +496,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="edit db" />
-    <MESSAGE value="answer" />
     <MESSAGE value="dung add pagination for get all user" />
     <MESSAGE value="answer api" />
     <MESSAGE value="dung edit code users - code mau =&gt; lam theo cho nhung table khac" />
@@ -503,7 +519,9 @@
     <MESSAGE value="edit readme" />
     <MESSAGE value="backup db - edit some  small error" />
     <MESSAGE value="add examination page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add examination page" />
+    <MESSAGE value="edit sql query MATCH AGAINST" />
+    <MESSAGE value="edit query" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit query" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

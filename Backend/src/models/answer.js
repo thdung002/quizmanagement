@@ -92,7 +92,7 @@ Answer.getAnswer = function (page, perpage, sort,content,iscorrect, result) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from answer where MATCH(Content) AGAINST('${content}') and IsCorrect =${iscorrect} ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select *,Content from answer where MATCH(Content) AGAINST('${content}') and IsCorrect =${iscorrect} ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -134,7 +134,7 @@ Answer.getAnswer = function (page, perpage, sort,content,iscorrect, result) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from answer where MATCH(Content) AGAINST('${content}') ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select *,Content from answer where MATCH(Content) AGAINST('${content}') ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
