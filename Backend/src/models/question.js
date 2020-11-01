@@ -86,13 +86,13 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
         sort = "ASC";
     }
     let offset = perpage * (page - 1);
-    if (content.length !==0 && type.length !==0 && level.length !== undefined) {
+    if (content.length !==0 && type.length !==0 && !isNaN(level)) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and type = '${type}' and level = '${level}'", function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from question where content = '${content}' and type = '${type}' and level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select *,Content from question where MATCH(Content) AGAINST('${content}') and type = '${type}' and level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -127,11 +127,11 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
     }
     else if (content.length !==0 && type.length !==0) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and type = '${type}'", function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from question where content = '${content}' and type = '${type}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select *,Content from question where MATCH(Content) AGAINST('${content}') and type = '${type}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -164,13 +164,13 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (content.length !==0 && level.length !==0) {
+    else if (content.length !==0 && !isNaN(level)) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and level = '${level}'", function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
-                    dbConn.query(`Select * from question where content = '${content}' and level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    dbConn.query(`Select *. Content from question where MATCH(Content) AGAINST('${content}') and level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                         if (errs) {
                             console.log("error in query db: ", errs);
                             return result(errs);
@@ -203,9 +203,9 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (type.length !==0 && level.length !== undefined) {
+    else if (type.length !==0 && !isNaN(level)) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            dbConn.query("SELECT COUNT(*) as total from question where type = '${type}' and level = '${level}'", function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {
@@ -320,7 +320,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (level.length !== undefined) {
+    else if (!isNaN(level)) {
         try {
             dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
                 if (err) {

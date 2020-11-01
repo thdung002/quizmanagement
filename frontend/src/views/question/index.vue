@@ -103,7 +103,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="Type" prop="Type">
-          <el-select v-model="temp.Level" class="filter-item" placeholder="Please select">
+          <el-select v-model="temp.Type" class="filter-item" placeholder="Please select">
             <el-option v-for="item in questionTypeOptions" :key="item.key" :label="item.display_name"
                        :value="item.key"/>
           </el-select>
@@ -212,7 +212,7 @@
                 return questionTypeKeyValue[type]
             },
             levelFilter(level) {
-                return questionLevelKeyValue[type]
+                return questionLevelKeyValue[level]
             },
         },
         data() {
