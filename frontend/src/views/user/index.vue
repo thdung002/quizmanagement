@@ -4,7 +4,7 @@
       <el-input v-model="listQuery.username" placeholder="Username" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
       <el-select v-model="listQuery.role" placeholder="Role" clearable class="filter-item" style="width: 130px" @change="handleFilter">
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'"
+        <el-option v-for="item in roleType" :key="item.key" :label="item.display_name+'('+item.key+')'"
                    :value="item.key"/>
       </el-select>
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
@@ -67,7 +67,9 @@
       </el-table-column>
       <el-table-column label="Role" width="150px" align="center">
         <template slot-scope="{row}">
-          <el-tag>{{ row.Role | typeFilter }}</el-tag>
+          <el-tag :type="row.Role | roleStatusFilter">
+            {{ row.Role | roleFilter }}
+          </el-tag>
         </template>
       </el-table-column>
       <el-table-column label="Status" class-name="status-col" width="100" align="center">
@@ -79,10 +81,10 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
+          <el-button v-if="row.Role !== 1" type="primary" size="mini" @click="handleUpdate(row)">
             Edit
           </el-button>
-          <el-button v-if="row.IsDeleted!=1" size="mini" type="danger" @click="handleDelete(row,row.ID)">
+          <el-button v-if="(row.IsDeleted!==1 && (row.Role !== 1 && row.IsDeleted === 0))" size="mini" type="danger" @click="handleDelete(row,row.ID)">
             Delete
           </el-button>
         </template>
@@ -103,7 +105,7 @@
         </el-form-item>
         <el-form-item label="Role" prop="Role">
           <el-select v-model="temp.Role" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name"
+            <el-option v-for="item in role" :key="item.key" :label="item.display_name"
                        :value="item.key"/>
           </el-select>
         </el-form-item>
@@ -152,11 +154,16 @@
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
     import moment from 'moment'
-    const calendarTypeOptions = [
+    const roleType = [
         {key: 1, display_name: 'SuperAdmin'},
         {key: 2, display_name: 'Admin'},
         {key: 3, display_name: 'User'},
     ];
+    const role = [
+        {key: 2, display_name: 'Admin'},
+        {key: 3, display_name: 'User'},
+    ];
+
     const statusType = [
         {key: 0, display_name: 'Actived'},
         {key: 1, display_name: 'Deleted'}
@@ -166,7 +173,7 @@
         return acc
     }, {});
     // arr to obj, such as { CN : "China", US : "USA" }
-    const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
+    const roleValue = roleType.reduce((acc, cur) => {
         acc[cur.key] = cur.display_name;
         return acc
     }, {});
@@ -186,8 +193,15 @@
             activeFilter(active) {
                 return statusValue[active]
             },
-            typeFilter(type) {
-                return calendarTypeKeyValue[type]
+            roleStatusFilter(role){
+                const roleMap ={
+                    1:'danger',
+                    2:'info',
+                };
+                return roleMap[role]
+            },
+            roleFilter(type) {
+                return roleValue[type]
             },
             format_date(value){
                 if (value) {
@@ -218,7 +232,8 @@
                     username: undefined,
                     role: undefined
                 },
-                calendarTypeOptions,
+                roleType,
+                role,
                 statusType,
                 sortOptions: [{label: 'ID Ascending', key: 'ASC'}, {label: 'ID Descending', key: 'DESC'}],
                 statusOptions: ['active', 'deleted'],

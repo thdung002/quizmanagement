@@ -4,7 +4,7 @@
       <el-input v-model="listQuery.content" placeholder="Content" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
       <el-select v-model="listQuery.iscorrect" placeholder="CorrectAnswer" clearable class="filter-item" @change="handleFilter" style="width: 130px" >
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'"
+        <el-option v-for="item in answerType" :key="item.key" :label="item.display_name+'('+item.key+')'"
                    :value="item.key"/>
       </el-select>
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
@@ -106,7 +106,7 @@
         </el-form-item>
         <el-form-item label="Correct Answer" prop="IsCorrect">
           <el-select v-model="temp.IsCorrect" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name"
+            <el-option v-for="item in answerType" :key="item.key" :label="item.display_name"
                        :value="item.key"/>
           </el-select>
         </el-form-item>
@@ -152,7 +152,7 @@
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
 
-    const calendarTypeOptions = [
+    const answerType = [
         {key: 1, display_name: 'Correct Answer'},
         {key: 0, display_name: 'Default Answer'},
     ];
@@ -165,7 +165,7 @@
         return acc
     }, {});
     // arr to obj, such as { CN : "China", US : "USA" }
-    const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
+    const answerValue = answerType.reduce((acc, cur) => {
         acc[cur.key] = cur.display_name;
         return acc
     }, {});
@@ -198,7 +198,7 @@
                 return statusValue[active]
             },
             typeFilter(type) {
-                return calendarTypeKeyValue[type]
+                return answerValue[type]
             },
         },
         data() {
@@ -224,7 +224,7 @@
                     content: undefined,
                     iscorrect: undefined
                 },
-                calendarTypeOptions,
+                answerType,
                 statusType,
                 sortOptions: [{label: 'ID Ascending', key: 'ASC'}, {label: 'ID Descending', key: 'DESC'}],
                 statusOptions: ['active', 'deleted'],

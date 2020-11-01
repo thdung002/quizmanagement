@@ -92,6 +92,24 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/template',
+    component: Layout,
+    redirect: '/pdf/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/template/index'),
+        name: 'Template',
+        meta: { title: 'Template', icon: 'pdf' }
+      }
+    ]
+  },
+  {
+    path: '/template/download',
+    component: () => import('@/views/template/download'),
+    hidden: true
+  },
 
 
   // 404 page must be placed at the end !!!

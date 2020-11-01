@@ -12,6 +12,7 @@ var Template = function (template) {
     this.FooterContent = template.FooterContent;
     this.CreatedBy = template.CreatedBy;
     this.UpdatedBy = template.UpdatedBy;
+    this.IsDeleted = template.IsDeleted;
 };
 //add Template
 Template.add = function (accessID, newTemp, result) {
