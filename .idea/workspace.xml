@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/template.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -231,7 +231,7 @@
       <workItem from="1604043468232" duration="646000" />
       <workItem from="1604058856657" duration="4184000" />
       <workItem from="1604065879147" duration="38000" />
-      <workItem from="1604249135847" duration="3185000" />
+      <workItem from="1604249135847" duration="3358000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -485,7 +485,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604252241536</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="edit template controller + model">
+      <created>1604252347074</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1604252347074</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -509,7 +516,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung edit code users - code mau =&gt; lam theo cho nhung table khac" />
     <MESSAGE value="add answer and backup database" />
     <MESSAGE value="dung add examination and backup database" />
     <MESSAGE value="add quizcontent" />
@@ -534,7 +540,8 @@
     <MESSAGE value="edit query" />
     <MESSAGE value="dung add random question query in backend" />
     <MESSAGE value="edit view and icons" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit view and icons" />
+    <MESSAGE value="edit template controller + model" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit template controller + model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

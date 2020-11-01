@@ -119,7 +119,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Topic',
         component: () => import('@/views/topic/index'),
-        meta: { title: 'Topic', icon: 'el-icon-minus' }
+        meta: { title: 'Topic', icon: 'education' }
       }
     ]
   },
@@ -132,7 +132,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Question',
         component: () => import('@/views/question/index'),
-        meta: { title: 'Question', icon: 'el-icon-minus' }
+        meta: { title: 'Question', icon: 'el-icon-question' }
       }
     ]
   },
