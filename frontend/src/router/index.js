@@ -111,7 +111,57 @@ export const constantRoutes = [
     hidden: true
   },
 
+  {
+    path: '/topic',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Topic',
+        component: () => import('@/views/topic/index'),
+        meta: { title: 'Topic', icon: 'el-icon-minus' }
+      }
+    ]
+  },
 
+  {
+    path: '/question',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Question',
+        component: () => import('@/views/question/index'),
+        meta: { title: 'Question', icon: 'el-icon-minus' }
+      }
+    ]
+  },
+
+  // {
+  //   path: '/quiz',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Quiz',
+  //       component: () => import('@/views/quiz/index'),
+  //       meta: { title: 'Quiz', icon: 'el-icon-minus' }
+  //     }
+  //   ]
+  // },
+
+  // {
+  //   path: '/config',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       name: 'Config',
+  //       component: () => import('@/views/config/index'),
+  //       meta: { title: 'Config', icon: 'el-icon-minus' }
+  //     }
+  //   ]
+  // },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ];

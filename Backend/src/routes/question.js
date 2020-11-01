@@ -74,7 +74,7 @@ module.exports = function (app) {
      * @apiName getAll
      * @apiGroup question
      *
-     * @apiDescription Get all questions
+     * @apiDescription Get all active questions
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/question/getactive

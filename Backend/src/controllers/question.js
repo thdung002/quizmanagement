@@ -1,5 +1,6 @@
 'use strict';
 const Question = require('../models/question');
+
 module.exports = {
     //Add new Question
     addQuestion: function (req, res) {
@@ -22,7 +23,9 @@ module.exports = {
         let sort = req.query.sort || '';
         let perpage = req.query.perpage || '';
         let content = req.query.content || '';
-        Question.getQuestion(parseInt(page), parseInt(perpage), sort,content, function (err, result) {
+        let type = req.query.type || '';
+        let level = req.query.level || '';
+        Question.getQuestion(parseInt(page), parseInt(perpage), sort, content, type, parseInt(level), function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
             else return res.json({ result: "ok", message: "Question get successfully!", data: result,code: 20000 });
@@ -30,7 +33,7 @@ module.exports = {
     },
     //get active question
     getActive: function (req, res) {
-        Question.getActiveQuestion(function (err, result) {
+        Question.getActive(function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
             else return res.json({ result: "ok", message: "Question get successfully!", data: result,code: 20000 });

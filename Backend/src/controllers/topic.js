@@ -19,13 +19,22 @@ module.exports = {
     },
     //Get all
     getTopic: function (req, res) {
-        let page = req.body.page || '';
-        let sort = req.body.sort || '';
-        let perpage = req.body.perpage || '';
-        Topic.getTopic(parseInt(page), parseInt(perpage), sort, function (err, result) {
+        let page = req.query.page || '';
+        let sort = req.query.sort || '';
+        let perpage = req.query.perpage || '';
+        let content = req.query.content || '';
+        Topic.getTopic(parseInt(page), parseInt(perpage), sort, content, function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
             else return res.json({ result: "ok", message: "Topic get successfully!", data: result,code: 20000 });
+        })
+    },
+     //get active topic
+     getActiveTopic: function (req, res) {
+        Answer.getActiveTopic(function (err, result) {
+            if (err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Topic get successfully!", data: result,code: 20000});
         })
     },
     //get Topic by id

@@ -64,7 +64,38 @@ module.exports = function (app) {
      *       "message": "invalid input"
      *     }
      */
-
+    app.get('/v1/topic/getactivetopic', topicController.getActiveTopic);
+    /**
+     * @api {GET} /v1/topic/getactivetopic Get All List
+     * @apiVersion 1.0.0
+     * @apiName getAll
+     * @apiGroup Topic
+     * @apiPermission All user
+     * @apiDescription Get all active topic
+     *
+     * @apiExample Example usage:
+     * curl -i http://localhost:5000/v1/answer/getactivetopic
+     *
+     * @apiSuccess {String} result ok or fail
+     * @apiSuccess {String} message something from server
+     * @apiSuccess {Object[]} data the list of data
+     * @apiSuccessExample Success-Response:
+     *     HTTP/1.1 200 OK
+     *     {
+     *       "result": "ok",
+     *       "message": ""
+     *       "data": [...],
+     *     }
+     *
+     * @apiError invalid input data
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 400 Bad Request
+     *     {
+     *       "result": "fail",
+     *       "message": "invalid input"
+     *     }
+     */
     app.post('/v1/topic/add', topicController.addTopic);
     /**
      * @api {POST} /v1/topic/add Create One topic
