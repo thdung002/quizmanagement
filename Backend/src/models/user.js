@@ -245,7 +245,7 @@ User.update = function (accessId, id, userinfo, result) {
         queryObj.Id = id;
         queryObj.Email = userinfo.Email;
         queryObj.IsDeleted = userinfo.IsDeleted;
-        dbConn.query(`UPDATE user SET Password='${queryObj.Password}',Fullname='${queryObj.Fullname}',Role=${queryObj.Role},UpdatedBy=${queryObj.UpdatedBy}, Email='${queryObj.Email}' , IsDeleted=${queryObj.IsDeleted} WHERE id = ${queryObj.Id}`, function (err, res) {
+        dbConn.query(`UPDATE user SET Password='${queryObj.Password}',Fullname='${queryObj.Fullname}',Role=${queryObj.Role},UpdatedBy=${queryObj.UpdatedBy}, Email='${queryObj.Email}' , IsDeleted=${queryObj.IsDeleted} WHERE id = ${queryObj.Id} and role != 1`, function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -261,7 +261,7 @@ User.update = function (accessId, id, userinfo, result) {
 };
 User.delete = function (id, result) {
     try {
-        dbConn.query("UPDATE user set IsDeleted =1 WHERE id = ?", [id], function (err, res) {
+        dbConn.query("UPDATE user set IsDeleted =1 WHERE id = ? and role != 1", [id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);

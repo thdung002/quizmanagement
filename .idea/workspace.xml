@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/question.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/quiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quiz.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/routes/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/routes/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,20 +52,20 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vue-element-admin-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src" />
-      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src" />
       <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\components" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src" />
+      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\utils" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -162,8 +159,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start-server (1)" />
         <item itemvalue="npm.start-website (1)" />
+        <item itemvalue="npm.start-server (1)" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev (1)" />
@@ -232,7 +229,9 @@
       <workItem from="1603876716283" duration="6287000" />
       <workItem from="1604026423666" duration="3855000" />
       <workItem from="1604043468232" duration="646000" />
-      <workItem from="1604058856657" duration="4087000" />
+      <workItem from="1604058856657" duration="4184000" />
+      <workItem from="1604065879147" duration="38000" />
+      <workItem from="1604249135847" duration="3358000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -472,7 +471,28 @@
       <option name="project" value="LOCAL" />
       <updated>1604043938461</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="dung add random question query in backend">
+      <created>1604065848244</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1604065848244</updated>
+    </task>
+    <task id="LOCAL-00036" summary="edit view and icons">
+      <created>1604252241536</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1604252241536</updated>
+    </task>
+    <task id="LOCAL-00037" summary="edit template controller + model">
+      <created>1604252347074</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1604252347074</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,9 +516,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung add pagination for get all user" />
-    <MESSAGE value="answer api" />
-    <MESSAGE value="dung edit code users - code mau =&gt; lam theo cho nhung table khac" />
     <MESSAGE value="add answer and backup database" />
     <MESSAGE value="dung add examination and backup database" />
     <MESSAGE value="add quizcontent" />
@@ -521,7 +538,10 @@
     <MESSAGE value="add examination page" />
     <MESSAGE value="edit sql query MATCH AGAINST" />
     <MESSAGE value="edit query" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit query" />
+    <MESSAGE value="dung add random question query in backend" />
+    <MESSAGE value="edit view and icons" />
+    <MESSAGE value="edit template controller + model" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit template controller + model" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

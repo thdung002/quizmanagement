@@ -19,9 +19,9 @@ module.exports = {
     },
     //get all Template
     getTemplate: function (req, res) {
-        let page = req.body.page || '';
-        let sort = req.body.sort || '';
-        let perpage = req.body.perpage || '';
+        let page = req.query.page || '';
+        let sort = req.query.sort || '';
+        let perpage = req.query.perpage || '';
         Template.getTemplate(parseInt(page),parseInt(perpage),sort,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});

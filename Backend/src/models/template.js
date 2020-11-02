@@ -12,6 +12,7 @@ var Template = function (template) {
     this.FooterContent = template.FooterContent;
     this.CreatedBy = template.CreatedBy;
     this.UpdatedBy = template.UpdatedBy;
+    this.IsDeleted = template.IsDeleted;
 };
 //add Template
 Template.add = function (accessID, newTemp, result) {
@@ -73,11 +74,11 @@ Template.getTemplate = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from template where IsDeleted = 0", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from template", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from template ORDER BY ID ${sort} limit ${perpage} offset ${offset} where IsDeleted = 0`, function (errs, res) {
+                dbConn.query(`Select * from template ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);

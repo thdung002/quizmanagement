@@ -4,7 +4,7 @@
       <el-input v-model="listQuery.lecturer" placeholder="Lecturer name" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
       <el-select v-model="listQuery.semester" placeholder="Semester" clearable class="filter-item" @change="handleFilter" style="width: 130px" >
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'"
+        <el-option v-for="item in semesterType" :key="item.key" :label="item.display_name+'('+item.key+')'"
                    :value="item.key"/>
       </el-select>
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
@@ -183,7 +183,7 @@
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
 
-    const calendarTypeOptions = [
+    const semesterType = [
         {key: 1, display_name: 'Semester 1'},
         {key: 2, display_name: 'Semester 2'},
         {key: 3, display_name: 'Semester 3'},
@@ -193,11 +193,6 @@
         {key: 1, display_name: 'Deleted'}
     ];
     const statusValue = statusType.reduce((acc, cur) => {
-        acc[cur.key] = cur.display_name;
-        return acc
-    }, {});
-    // arr to obj, such as { CN : "China", US : "USA" }
-    const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
         acc[cur.key] = cur.display_name;
         return acc
     }, {});
@@ -236,7 +231,7 @@
                     lecturer: undefined,
                     semester: undefined
                 },
-                calendarTypeOptions,
+                semesterType,
                 statusType,
                 sortOptions: [{label: 'ID Ascending', key: 'ASC'}, {label: 'ID Descending', key: 'DESC'}],
                 statusOptions: ['active', 'deleted'],

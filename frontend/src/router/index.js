@@ -92,6 +92,24 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+    path: '/template',
+    component: Layout,
+    redirect: '/pdf/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/template/index'),
+        name: 'Template',
+        meta: { title: 'Template', icon: 'pdf' }
+      }
+    ]
+  },
+  {
+    path: '/template/download',
+    component: () => import('@/views/template/download'),
+    hidden: true
+  },
 
   {
     path: '/topic',
@@ -101,7 +119,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Topic',
         component: () => import('@/views/topic/index'),
-        meta: { title: 'Topic', icon: 'el-icon-minus' }
+        meta: { title: 'Topic', icon: 'education' }
       }
     ]
   },
@@ -114,7 +132,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Question',
         component: () => import('@/views/question/index'),
-        meta: { title: 'Question', icon: 'el-icon-minus' }
+        meta: { title: 'Question', icon: 'el-icon-question' }
       }
     ]
   },
