@@ -16,14 +16,10 @@ var Config = function (config) {
   this.TotalQuestion = config.TotalQuestion;
   this.CreatedBy = config.CreatedBy;
   this.UpdatedBy = config.UpdatedBy;
+  this.IsDeleted = config.IsDeleted;
 };
 //Add new config
 Config.add = function (accessID, newConfig, result) {
-  if (!Pieces.VariableBaseTypeChecking(newConfig.TotalQuestion, 'string')
-    || newConfig.TotalQuestion === null) {
-    return result(1, 'TotalQuestion null', 400, null, null);
-  }
-  else {
     try {
       let queryObj = {};
       queryObj.NumberQuestionLevel1 = newConfig.NumberQuestionLevel1;
@@ -48,7 +44,6 @@ Config.add = function (accessID, newConfig, result) {
     } catch (error) {
       result(1, 'create_Config_fail', 400, error, null);
     }
-  }
 };
 //Get Config by ID
 Config.getConfigById = function (id, result) {
@@ -67,17 +62,34 @@ Config.getConfigById = function (id, result) {
       return result(1, 'Get config fail', 400, error, null);
   }
 };
+//Get active config
+Config.getActiveConfig = function (result) {
+    try {
+        dbConn.query("Select * from config WHERE IsDeleted = 0 ", parseInt(id), function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if (res.length === 0)
+                    result(1, 'Config_not_found', 403, err, null);
+                else {
+                    result(null, res);
+                }
+            }
+        );
+    } catch (error) {
+        return result(1, 'get_config_fail', 400, error, null);
+    }
+};
 //get all Config with pagination
 Config.getConfig = function (page, perpage, sort, result) {
   if (page === 0 || isNaN(page))
       page = 1;
   if (perpage <= 0 || isNaN(perpage)) {
-      perpage = 5;
+      perpage = 10;
   }
   if (sort.length === 0) {
       sort = "ASC";
   }
-  let type = typeof (sort);
   let offset = perpage * (page - 1);
   try {
       dbConn.query("SELECT COUNT(*) as total from config where IsDeleted = 0  ", function (err, rows) {
@@ -133,9 +145,10 @@ Config.update = function (accessID, id, Config, result) {
       queryObj.NumberQuestionLevel9 = Config.NumberQuestionLevel9;
       queryObj.NumberQuestionLevel10 = Config.NumberQuestionLevel10;
       queryObj.TotalQuestion = Config.TotalQuestion;
+      queryObj.IsDeleted = parseInt(Config.IsDeleted);
       queryObj.UpdatedBy = accessID;
       queryObj.Id = id;
-      dbConn.query("UPDATE config SET NumberQuestionLevel1=?,NumberQuestionLevel2=?,NumberQuestionLevel3=?,NumberQuestionLevel4=?,NumberQuestionLevel5=?,NumberQuestionLevel6=?,NumberQuestionLevel7=?,NumberQuestionLevel8=?,NumberQuestionLevel9=?,NumberQuestionLevel10=?,TotalQuestion=?, UpdatedBy=? WHERE id = ?", [queryObj.NumberQuestionLevel1,queryObj.NumberQuestionLevel2,queryObj.NumberQuestionLevel3,queryObj.NumberQuestionLevel4,queryObj.NumberQuestionLevel5,queryObj.NumberQuestionLevel6,queryObj.NumberQuestionLevel7,queryObj.NumberQuestionLevel8,queryObj.NumberQuestionLevel9,queryObj.NumberQuestionLevel10,queryObj.TotalQuestion, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+      dbConn.query("UPDATE config SET NumberQuestionLevel1=?,NumberQuestionLevel2=?,NumberQuestionLevel3=?,NumberQuestionLevel4=?,NumberQuestionLevel5=?,NumberQuestionLevel6=?,NumberQuestionLevel7=?,NumberQuestionLevel8=?,NumberQuestionLevel9=?,NumberQuestionLevel10=?,TotalQuestion=?, UpdatedBy=?, IsDeleted=? WHERE id = ?", [queryObj.NumberQuestionLevel1,queryObj.NumberQuestionLevel2,queryObj.NumberQuestionLevel3,queryObj.NumberQuestionLevel4,queryObj.NumberQuestionLevel5,queryObj.NumberQuestionLevel6,queryObj.NumberQuestionLevel7,queryObj.NumberQuestionLevel8,queryObj.NumberQuestionLevel9,queryObj.NumberQuestionLevel10,queryObj.TotalQuestion, queryObj.UpdatedBy,queryObj.IsDeleted, queryObj.Id], function (err, res) {
           if (err) {
               result(null, err);
           } else if(res.changedRows === 0)

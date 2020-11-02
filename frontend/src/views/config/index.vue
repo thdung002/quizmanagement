@@ -1,16 +1,6 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.content" placeholder="Content" style="width: 200px;" class="filter-item"
-                @keyup.enter.native="handleFilter"/>
-      <el-select v-model="listQuery.type" placeholder="Type" clearable class="filter-item" @change="handleFilter" style="width: 130px" >
-        <el-option v-for="item in questionTypeOptions" :key="item.key" :label="item.display_name"
-                   :value="item.key"/>
-      </el-select>
-      <el-select v-model="listQuery.level" placeholder="Level" clearable class="filter-item" @change="handleFilter" style="width: 130px" >
-        <el-option v-for="item in questionLevelOptions" :key="item.key" :label="item.display_name"
-                   :value="item.key"/>
-      </el-select>
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key"/>
       </el-select>
@@ -48,19 +38,59 @@
           <span>{{ row.CreatedAt | format_date}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Content" min-width="400" align="center">
+      <el-table-column label="Total" min-width="100" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Content }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.TotalQuestion }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Level" min-width="50" align="center">
+      <el-table-column label="Question lv1" min-width="100" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Level }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Type" min-width="100" align="center">
+      <el-table-column label="Question lv2" min-width="100" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Type }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel2 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv3" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel3 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv4" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel4 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv5" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel5 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv6" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel6 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv7" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel7 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv8" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel8 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv9" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel9 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="Question lv10" min-width="100" align="center">
+        <template slot-scope="{row}">
+          <span class="link-type" @click="handleUpdate(row)">{{ row.NumberQuestionLevel10 }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Status" class-name="status-col" width="100px" align="center">
@@ -82,10 +112,8 @@
       </el-table-column>
     </el-table>
 <!--Table for values-->
-
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.perpage"
                 @pagination="getList"/>
-
 <!--pagination-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
@@ -93,20 +121,38 @@
         <el-form-item label="ID" prop="ID">
           <el-input :disabled="true" v-model="temp.ID"/>
         </el-form-item>
-        <el-form-item label="Content" prop="Content">
-          <el-input v-model="temp.Content"/>
+        <el-form-item label="Question lv1" prop="Question lv1">
+          <el-input v-model="temp.NumberQuestionLevel1"/>
         </el-form-item>
-        <el-form-item label="Level" prop="Level">
-          <el-select v-model="temp.Level" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in questionLevelOptions" :key="item.key" :label="item.display_name"
-                       :value="item.key"/>
-          </el-select>
+         <el-form-item label="Question lv2" prop="Question lv2">
+          <el-input v-model="temp.NumberQuestionLevel2"/>
         </el-form-item>
-        <el-form-item label="Type" prop="Type">
-          <el-select v-model="temp.Type" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in questionTypeOptions" :key="item.key" :label="item.display_name"
-                       :value="item.key"/>
-          </el-select>
+         <el-form-item label="Question lv3" prop="Question lv3">
+          <el-input v-model="temp.NumberQuestionLevel3"/>
+        </el-form-item>
+         <el-form-item label="Question lv4" prop="Question lv4">
+          <el-input v-model="temp.NumberQuestionLevel4"/>
+        </el-form-item>
+         <el-form-item label="Question lv5" prop="Question lv5">
+          <el-input v-model="temp.NumberQuestionLevel5"/>
+        </el-form-item>
+         <el-form-item label="Question lv6" prop="Question lv6">
+          <el-input v-model="temp.NumberQuestionLevel6"/>
+        </el-form-item>
+         <el-form-item label="Question lv7" prop="Question lv7">
+          <el-input v-model="temp.NumberQuestionLevel7"/>
+        </el-form-item>
+         <el-form-item label="Question lv8" prop="Question lv8">
+          <el-input v-model="temp.NumberQuestionLevel8"/>
+        </el-form-item>
+         <el-form-item label="Question lv9" prop="Question lv9">
+          <el-input v-model="temp.NumberQuestionLevel9"/>
+        </el-form-item>
+         <el-form-item label="Question lv10" prop="Question lv10">
+          <el-input v-model="temp.NumberQuestionLevel10"/>
+        </el-form-item>
+        <el-form-item label="Total" prop="Total Question">
+          <span id="TotalQ">0</span>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
@@ -124,7 +170,6 @@
       </div>
     </el-dialog>
 <!--    Hidden dialog-->
-
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
       <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
         <el-table-column prop="key" label="Channel"/>
@@ -138,31 +183,13 @@
 </template>
 
 <script>
-    import {GetQuestion, CreateQuestion, UpdateQuestion, DeleteQuestion} from '@/api/question'
+    import {GetConfig, CreateConfig, UpdateConfig, DeleteConfig} from '@/api/config'
     import moment from 'moment'
     import waves from '@/directive/waves' // waves directive
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
-
-    const questionTypeOptions = [
-        {key: 'Single Choice', display_name: 'Single Choice'},
-        {key: 'Multiple-Choice', display_name: 'Multiple-Choice'},
-        {key: 'Fill the blank', display_name: 'Fill the blank'},
-        {key: 'Match', display_name: 'Match'},
-    ];
-    const questionLevelOptions = [
-        {key: 1, display_name: 1},
-        {key: 2, display_name: 2},
-        {key: 3, display_name: 3},
-        {key: 4, display_name: 4},
-        {key: 5, display_name: 5},
-        {key: 6, display_name: 6},
-        {key: 7, display_name: 7},
-        {key: 8, display_name: 8},
-        {key: 9, display_name: 9},
-        {key: 10, display_name: 10},
-    ];
+    
     const statusType = [
         {key: 0, display_name: 'Actived'},
         {key: 1, display_name: 'Deleted'}
@@ -172,14 +199,6 @@
         return acc
     }, {});
     // arr to obj, such as { CN : "China", US : "USA" }
-    const questionTypeKeyValue = questionTypeOptions.reduce((acc, cur) => {
-        acc[cur.key] = cur.display_name;
-        return acc
-    }, {});
-    const questionLevelKeyValue = questionLevelOptions.reduce((acc, cur) => {
-        acc[cur.key] = cur.display_name;
-        return acc
-    }, {});
     export default {
         name: 'ComplexTable',
         components: {Pagination},
@@ -208,37 +227,42 @@
             activeFilter(active) {
                 return statusValue[active]
             },
-            typeFilter(type) {
-                return questionTypeKeyValue[type]
-            },
-            levelFilter(level) {
-                return questionLevelKeyValue[level]
-            },
         },
         data() {
+            const validatePassword = (rule, value, callback) => {
+                if (value.length < 6) {
+                    callback(new Error('The password can not be less than 6 digits'))
+                } else {
+                    callback()
+                }
+            };
+
             return {
                 tableKey: 0,
-                list: null,
-                listquestion: null,
+                list: null,// du lieu do vao day
                 total: 0,
                 listLoading: true,
-                listQuery: {
+                listQuery: { // LIST ĐỂ FILTER
                     page: 1,
                     perpage: 10,
                     sort: 'ASC',
-                    content: undefined,
-                    iscorrect: undefined
                 },
-                questionTypeOptions,
-                questionLevelOptions,
                 statusType,
                 sortOptions: [{label: 'ID Ascending', key: 'ASC'}, {label: 'ID Descending', key: 'DESC'}],
                 statusOptions: ['active', 'deleted'],
-                temp: {
+                temp: { //LIST DE ADD
                     ID: '',
-                    Content: '',
-                    Level: '',
-                    Type: '',
+                    NumberQuestionLevel1: 0,
+                    NumberQuestionLevel2: 0,
+                    NumberQuestionLevel3: 0,
+                    NumberQuestionLevel4: 0,
+                    NumberQuestionLevel5: 0,
+                    NumberQuestionLevel6: 0,
+                    NumberQuestionLevel7: 0,
+                    NumberQuestionLevel8: 0,
+                    NumberQuestionLevel9: 0,
+                    NumberQuestionLevel10: 0 ,
+                    TotalQuestion: 0,
                     accessID: '',
                     accessUserRole: '',
                 },
@@ -250,10 +274,8 @@
                 },
                 dialogPvVisible: false,
                 pvData: [],
-                rules: {
-                    Content: [{required: true, message: 'content is required', trigger: 'blur'}],
-                    Level: [{required: true, message: 'level is required', trigger: 'blur'}],
-                    Type: [{required: true, message: 'type is required', trigger: 'blur'}]
+                rules: {//CHECK RULE CAI DIALOG CHO ADD
+                    TotalQuestion: [{required: true, message: 'At least 1 question!', trigger: 'blur'}],
                 },
                 downloadLoading: false
             }
@@ -262,9 +284,18 @@
             this.getList()
         },
         methods: {
+              sumQ() {
+                var total = this.NumberQuestionLevel1 + this.NumberQuestionLevel1 + 
+                this.NumberQuestionLevel2 + this.NumberQuestionLevel3 + 
+                this.NumberQuestionLevel4 + this.NumberQuestionLevel5 + 
+                this.NumberQuestionLevel6 + this.NumberQuestionLevel7 + 
+                this.NumberQuestionLevel8 + this.NumberQuestionLevel9 + 
+                this.NumberQuestionLevel10;
+                $("#TotalQ").text("test");
+              },
             getList() {
                 this.listLoading = false;
-                GetQuestion(this.listQuery).then(response => {
+                GetConfig(this.listQuery).then(response => {
                     this.list = response.data.data;
                     this.total = response.data.items.total;
                 });
@@ -297,19 +328,16 @@
             resetTemp() {
                 this.temp = {
                     ID: '',
-                    Content: '',
-                    Level: '',
-                    Type: '',
                     accessID: '',
                     accessUserRole: '',
                     IsDeleted: 0,
                 }
-            },
+            },    
             handleCreate() {
                 this.resetTemp();
                 this.dialogStatus = 'create';
+                this.sumQ();
                 this.dialogFormVisible = true;
-                this.listQuery.content = undefined;
                 this.$nextTick(() => {
                     this.$refs.dataForm.clearValidate()
                 })
@@ -319,7 +347,7 @@
                     if (valid) {
                         this.temp.accessUserRole = getRole();
                         this.temp.accessID = getToken();
-                        CreateQuestion(this.temp).then((response) => {
+                        CreateConfig(this.temp).then((response) => {
                             if (response.result === "fail")
                                 this.$notify({
                                     title: 'Fail',
@@ -344,7 +372,7 @@
                 })
             },
             handleUpdate(row) {
-                this.temp = Object.assign({}, row); // copy obj
+                this.temp = Object.assign({}, row); 
                 this.temp.accessID = getToken();
                 this.dialogStatus = 'update';
                 this.dialogFormVisible = true;
@@ -356,7 +384,7 @@
                 this.$refs['dataForm'].validate((valid) => {
                     if (valid) {
                         const tempData = Object.assign({}, this.temp);
-                        UpdateQuestion(tempData, this.temp.ID).then((response) => {
+                        UpdateConfig(tempData, this.temp.ID).then((response) => {
                             if (response.result === "fail")
                                 this.$notify({
                                     title: 'Warning',
@@ -379,7 +407,7 @@
                 })
             },
             handleDelete(row, id) {
-                DeleteQuestion(id).then((response) => {
+                DeleteConfig(id).then((response) => {
                     if (response.result === "fail")
                         this.$notify({
                             title: 'Warning',

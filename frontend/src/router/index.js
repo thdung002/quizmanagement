@@ -132,18 +132,18 @@ export const constantRoutes = [
   //   ]
   // },
 
-  // {
-  //   path: '/config',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Config',
-  //       component: () => import('@/views/config/index'),
-  //       meta: { title: 'Config', icon: 'el-icon-minus' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/config',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Config',
+        component: () => import('@/views/config/index'),
+        meta: { title: 'Config', icon: 'el-icon-minus' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ];
