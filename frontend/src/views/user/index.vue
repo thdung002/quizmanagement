@@ -4,7 +4,7 @@
       <el-input v-model="listQuery.username" placeholder="Username" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
       <el-select v-model="listQuery.role" placeholder="Role" clearable class="filter-item" style="width: 130px" @change="handleFilter">
-        <el-option v-for="item in roleType" :key="item.key" :label="item.display_name+'('+item.key+')'"
+        <el-option v-for="item in roleType" :key="item.key" :label="item.display_name"
                    :value="item.key"/>
       </el-select>
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
@@ -81,10 +81,10 @@
       </el-table-column>
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button v-if="row.Role !== 1" type="primary" size="mini" @click="handleUpdate(row)">
+          <el-button v-if="row.Role !== 'super admin'" type="primary" size="mini" @click="handleUpdate(row)">
             Edit
           </el-button>
-          <el-button v-if="(row.IsDeleted!==1 && (row.Role !== 1 && row.IsDeleted === 0))" size="mini" type="danger" @click="handleDelete(row,row.ID)">
+          <el-button v-if="(row.IsDeleted!==1 && (row.Role !== 'super admin' && row.IsDeleted === 0))" size="mini" type="danger" @click="handleDelete(row,row.ID)">
             Delete
           </el-button>
         </template>
@@ -114,6 +114,7 @@
             <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
         </el-form-item>
+
         <el-form-item label="Password" prop="Password">
           <el-input :type="passwordType" v-model="temp.Password"/>
         </el-form-item>
@@ -155,13 +156,13 @@
     import {getToken, getRole} from '@/utils/auth'
     import moment from 'moment'
     const roleType = [
-        {key: 1, display_name: 'SuperAdmin'},
-        {key: 2, display_name: 'Admin'},
-        {key: 3, display_name: 'User'},
+        {key: 'super admin', display_name: 'Super Admin'},
+        {key: 'admin', display_name: 'Admin'},
+        {key: 'user', display_name: 'User'},
     ];
     const role = [
-        {key: 2, display_name: 'Admin'},
-        {key: 3, display_name: 'User'},
+        {key: 'admin', display_name: 'Admin'},
+        {key: 'user', display_name: 'User'},
     ];
 
     const statusType = [
@@ -195,8 +196,8 @@
             },
             roleStatusFilter(role){
                 const roleMap ={
-                    1:'danger',
-                    2:'info',
+                    'admin':'danger',
+                    'user':'info',
                 };
                 return roleMap[role]
             },
@@ -212,11 +213,11 @@
         },
         data() {
             const validatePassword = (rule, value, callback) => {
-                if (value.length < 6) {
-                    callback(new Error('The password can not be less than 6 digits'))
-                } else {
-                    callback()
-                }
+                    if (value.length < 6) {
+                        callback(new Error('The password can not be less than 6 digits'))
+                    } else {
+                        callback()
+                    }
             };
 
             return {
@@ -246,7 +247,6 @@
                     Role: '',
                     accessID: '',
                     accessUserRole: '',
-
                 },
                 dialogFormVisible: false,
                 dialogStatus: '',
@@ -319,7 +319,6 @@
                     accessID: '',
                     IsDeleted: 0,
                     accessUserRole:'',
-
                 }
             },
             handleCreate() {
@@ -359,10 +358,12 @@
                 })
             },
             handleUpdate(row) {
+                this.resetTemp();
                 this.temp = Object.assign({}, row); // copy obj
                 this.temp.accessID = getToken();
                 this.dialogStatus = 'update';
                 this.dialogFormVisible = true;
+                this.temp.Password='';
                 this.$nextTick(() => {
                     this.$refs['dataForm'].clearValidate()
                 })

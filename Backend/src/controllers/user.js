@@ -11,7 +11,7 @@ module.exports = {
         if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
             res.status(400).send({error: true, message: 'Please provide all required field'});
         } else {
-            User.add(id,parseInt(role),new_user, function (err, result) {
+            User.add(id,role,new_user, function (err, result) {
                 if (err)
                     return res.json({result:"fail",message:"Invalid input"});
                 else return res.json({result:"ok",message: "User added successfully!", id: result, code: 20000});
@@ -25,7 +25,7 @@ module.exports = {
         let perpage = req.query.perpage || '';
         let username=req.query.username || '';
         let role = req.query.role ||'';
-        User.getUser(parseInt(page),parseInt(perpage),sort,username,parseInt(role),function (err, result) {
+        User.getUser(parseInt(page),parseInt(perpage),sort,username,role,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "User get successfully!", data: result, code: 20000});
@@ -62,7 +62,6 @@ module.exports = {
     },
     //check for login authenticate
     login:function(req,res){
-        console.log(req.body.username);
         let username = req.body.username || '';
         let password = req.body.password || '';
         User.authenticate(username,password,function(err,result){

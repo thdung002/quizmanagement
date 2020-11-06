@@ -3,7 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/layout/components/Sidebar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/components/Sidebar/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/permission.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/getters.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -159,8 +169,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.start-server (1)" />
+        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
         <item itemvalue="npm.dev (1)" />
@@ -231,7 +241,11 @@
       <workItem from="1604043468232" duration="646000" />
       <workItem from="1604058856657" duration="4184000" />
       <workItem from="1604065879147" duration="38000" />
-      <workItem from="1604249135847" duration="3358000" />
+      <workItem from="1604249135847" duration="3955000" />
+      <workItem from="1604253148672" duration="50000" />
+      <workItem from="1604308418066" duration="1824000" />
+      <workItem from="1604385573995" duration="634000" />
+      <workItem from="1604666243453" duration="11972000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -492,7 +506,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604252347074</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="edit icon">
+      <created>1604252510385</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1604252510385</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +537,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="add answer and backup database" />
     <MESSAGE value="dung add examination and backup database" />
     <MESSAGE value="add quizcontent" />
     <MESSAGE value="dung edit db" />
@@ -541,7 +561,8 @@
     <MESSAGE value="dung add random question query in backend" />
     <MESSAGE value="edit view and icons" />
     <MESSAGE value="edit template controller + model" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit template controller + model" />
+    <MESSAGE value="edit icon" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit icon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

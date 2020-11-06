@@ -17,9 +17,9 @@ var User = function (user) {
 };
 //add user
 User.add = function (accessID, accessRole, newUser, result) {
-    if (accessRole === 3 ) {
+    if (accessRole === 'user') {
         return result(1, 'invalid_user_permission', 422, 'You dont have permission to create account', null);
-    }  else {
+    } else {
         try {
             let queryObj = {};
             queryObj.Password = BCrypt.hashSync(newUser.Password, 10);
@@ -49,9 +49,14 @@ User.getUserById = function (id, result) {
                     console.log("error: ", err);
                     result(err, null);
                 } else if (res.length === 0)
+
                     result(1, 'user_not_found', 404, err, null);
                 else {
-                    result(null, res);
+                    let output = {
+                        data: res,
+                        roles: [res[0].Role]
+                    }
+                    return result(null, output);
                 }
             }
         );
@@ -71,7 +76,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
     }
     let offset = perpage * (page - 1);
 
-    if (username.length !== 0 && !isNaN(role)) {
+    if (username.length !== 0 && role.length !== 0) {
         try {
             dbConn.query(`SELECT COUNT(*) as total from user where Username='${username}' and Role = '${role}'`, function (err, rows) {
                 if (err) {
@@ -149,7 +154,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
         } catch (error) {
             return result(1, 'get_all_user_fail', 400, error, null);
         }
-    } else if (!isNaN(role)) {
+    } else if (role.length !== 0) {
         try {
             dbConn.query(`SELECT COUNT(*) as total from user where Role='${role}'`, function (err, rows) {
                 if (err) {
@@ -236,6 +241,8 @@ User.getUser = function (page, perpage, sort, username, role, result) {
 
 //update user by id
 User.update = function (accessId, id, userinfo, result) {
+
+
     try {
         let queryObj = {};
         queryObj.Password = BCrypt.hashSync(userinfo.Password, 10);
@@ -245,7 +252,7 @@ User.update = function (accessId, id, userinfo, result) {
         queryObj.Id = id;
         queryObj.Email = userinfo.Email;
         queryObj.IsDeleted = userinfo.IsDeleted;
-        dbConn.query(`UPDATE user SET Password='${queryObj.Password}',Fullname='${queryObj.Fullname}',Role=${queryObj.Role},UpdatedBy=${queryObj.UpdatedBy}, Email='${queryObj.Email}' , IsDeleted=${queryObj.IsDeleted} WHERE id = ${queryObj.Id} and role != 1`, function (err, res) {
+        dbConn.query(`UPDATE user SET Password='${queryObj.Password}',Fullname='${queryObj.Fullname}',Role='${queryObj.Role}',UpdatedBy=${queryObj.UpdatedBy}, Email='${queryObj.Email}' , IsDeleted=${queryObj.IsDeleted} WHERE id = ${queryObj.Id} and role != 'super admin' `, function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
@@ -258,6 +265,7 @@ User.update = function (accessId, id, userinfo, result) {
     } catch (error) {
         return result(1, 'update_user_fail', 400, error, null);
     }
+
 };
 User.delete = function (id, result) {
     try {

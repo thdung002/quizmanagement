@@ -54,20 +54,6 @@ export const constantRoutes = [
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
   },
-
-  {
-    path: '/user',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'User',
-        component: () => import('@/views/user/index'),
-        meta: { title: 'User', icon: 'user'}
-      }
-    ]
-  },
-
   {
     path: '/answer',
     component: Layout,
@@ -162,9 +148,30 @@ export const constantRoutes = [
       }
     ]
   },
+
+];
+export const asyncRoutes = [
+  {
+    path: '/user',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'User',
+        component: () => import('@/views/user/index'),
+        meta: {
+          title: 'User',
+          icon: 'user',
+          roles: ['admin','super admin']
+        }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
+
 ];
+
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support

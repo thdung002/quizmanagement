@@ -7,7 +7,7 @@ const getDefaultState = () => {
     token: getToken(),
     name: '',
     avatar: '',
-    role:''
+    roles:[]
   }
 };
 
@@ -20,8 +20,8 @@ const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
   },
-  SET_ROLE:(state,role)=>{
-    state.role = role
+  SET_ROLES: (state, roles) => {
+    state.roles=roles
   },
   SET_NAME: (state, name) => {
     state.name = name
@@ -39,8 +39,8 @@ const actions = {
       login({ username: username.trim(), password: password }).then(response => {
         const { data } = response;
         commit('SET_TOKEN', data[0].Id);
-        setRole(data[0].Role);
         setToken(data[0].Id);
+        setRole(data[0].Role);
         resolve()
       }).catch(error => {
         reject(error)
@@ -53,12 +53,12 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
         const { data } = response;
-
         if (!data) {
           return reject('Verification failed, please Login again.')
         }
-        commit('SET_ROLE',data[0].Role);
-        commit('SET_NAME', data[0].Fullname);
+        const { Fullname } = data.data[0];
+        commit('SET_ROLES',data.roles);
+        commit('SET_NAME', Fullname);
         commit('SET_AVATAR', 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif');
         resolve(data)
       }).catch(error => {
