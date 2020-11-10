@@ -46,12 +46,12 @@ module.exports = function (app) {
      */
     app.get('/v1/answer/getactive', answerController.getActive);
     /**
-     * @api {GET} /v1/answer/getactive Get All List
+     * @api {GET} /v1/answer/getactive Get active List
      * @apiVersion 1.0.0
-     * @apiName getAll
+     * @apiName getactive
      * @apiGroup Answer
      * @apiPermission All user
-     * @apiDescription Get all answers
+     * @apiDescription Get all answers active
      *
      * @apiExample Example usage:
      * curl -i http://localhost:5000/v1/answer/getall

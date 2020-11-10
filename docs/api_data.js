@@ -303,82 +303,6 @@ define({ "api": [
   },
   {
     "type": "GET",
-    "url": "/v1/answer/getactive",
-    "title": "Get All List",
-    "version": "1.0.0",
-    "name": "getAll",
-    "group": "Answer",
-    "permission": [
-      {
-        "name": "All user"
-      }
-    ],
-    "description": "<p>Get all answers</p>",
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "curl -i http://localhost:5000/v1/answer/getall",
-        "type": "json"
-      }
-    ],
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "result",
-            "description": "<p>ok or fail</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "message",
-            "description": "<p>something from server</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "Object[]",
-            "optional": false,
-            "field": "data",
-            "description": "<p>the list of data</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"result\": \"ok\",\n  \"message\": \"\"\n  \"data\": [...],\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "fields": {
-        "Error 4xx": [
-          {
-            "group": "Error 4xx",
-            "optional": false,
-            "field": "invalid",
-            "description": "<p>input data</p>"
-          }
-        ]
-      },
-      "examples": [
-        {
-          "title": "Error-Response:",
-          "content": "HTTP/1.1 400 Bad Request\n{\n  \"result\": \"fail\",\n  \"message\": \"invalid input\"\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "src/routes/answer.js",
-    "groupTitle": "Answer"
-  },
-  {
-    "type": "GET",
     "url": "/v1/answer/get/:id",
     "title": "Get One",
     "version": "1.0.0",
@@ -454,6 +378,82 @@ define({ "api": [
         {
           "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n     \"result\": \"ok\",\n     \"message\" \"answer get successfully!\"\n     \"data\":{\n         \"ID\": 1,\n         \"Question\": 3,\n         \"Content\": \"This is answer B\",\n         \"CorrectAnswer\": \"This is column 2\",\n         ...\n     },\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "invalid",
+            "description": "<p>input data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 400 Bad Request\n{\n  \"result\": \"fail\",\n  \"message\": \"invalid input\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/routes/answer.js",
+    "groupTitle": "Answer"
+  },
+  {
+    "type": "GET",
+    "url": "/v1/answer/getactive",
+    "title": "Get active List",
+    "version": "1.0.0",
+    "name": "getactive",
+    "group": "Answer",
+    "permission": [
+      {
+        "name": "All user"
+      }
+    ],
+    "description": "<p>Get all answers active</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i http://localhost:5000/v1/answer/getall",
+        "type": "json"
+      }
+    ],
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "result",
+            "description": "<p>ok or fail</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "message",
+            "description": "<p>something from server</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "data",
+            "description": "<p>the list of data</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"result\": \"ok\",\n  \"message\": \"\"\n  \"data\": [...],\n}",
           "type": "json"
         }
       ]
