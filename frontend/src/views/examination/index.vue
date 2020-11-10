@@ -275,7 +275,7 @@
                 this.listLoading = false;
                 GetExam(this.listQuery).then(response => {
                     this.list = response.data.data;
-                    this.total = response.data.items.total;
+                    this.total = response.data.pages.total;
                 });
             },
             handleFilter() {

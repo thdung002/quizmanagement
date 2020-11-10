@@ -147,21 +147,21 @@
 
     const questionTypeOptions = [
         {key: 'Single Choice', display_name: 'Single Choice'},
-        {key: 'Multiple-Choice', display_name: 'Multiple-Choice'},
+        {key: 'Multiple Choice', display_name: 'Multiple Choice'},
         {key: 'Fill the blank', display_name: 'Fill the blank'},
         {key: 'Match', display_name: 'Match'},
     ];
     const questionLevelOptions = [
-        {key: 1, display_name: 1},
-        {key: 2, display_name: 2},
-        {key: 3, display_name: 3},
-        {key: 4, display_name: 4},
-        {key: 5, display_name: 5},
-        {key: 6, display_name: 6},
-        {key: 7, display_name: 7},
-        {key: 8, display_name: 8},
-        {key: 9, display_name: 9},
-        {key: 10, display_name: 10},
+        {key: 1, display_name: 'Level 1'},
+        {key: 2, display_name: 'Level 2'},
+        {key: 3, display_name: 'Level 3'},
+        {key: 4, display_name: 'Level 4'},
+        {key: 5, display_name: 'Level 5'},
+        {key: 6, display_name: 'Level 6'},
+        {key: 7, display_name: 'Level 7'},
+        {key: 8, display_name: 'Level 8'},
+        {key: 9, display_name: 'Level 9'},
+        {key: 10, display_name: 'Level 10'},
     ];
     const statusType = [
         {key: 0, display_name: 'Actived'},
@@ -171,7 +171,7 @@
         acc[cur.key] = cur.display_name;
         return acc
     }, {});
-    // arr to obj, such as { CN : "China", US : "USA" }
+
     const questionTypeKeyValue = questionTypeOptions.reduce((acc, cur) => {
         acc[cur.key] = cur.display_name;
         return acc
@@ -266,7 +266,7 @@
                 this.listLoading = false;
                 GetQuestion(this.listQuery).then(response => {
                     this.list = response.data.data;
-                    this.total = response.data.items.total;
+                    this.total = response.data.pages.total;
                 });
             },
             handleFilter() {

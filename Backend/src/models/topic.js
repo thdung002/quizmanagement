@@ -100,7 +100,7 @@ Topic.getTopic = function (page, perpage, sort, content, result) {
                                         hasPrev: false,
                                         next: (page + 1) > pages ? 0 : (page + 1),
                                         hasNext: false,
-                                        total: pages
+                                        total: rows[0].total
                                     },
                                     items: {
                                         begin: ((page * perpage) - perpage) + 1,
@@ -140,7 +140,7 @@ Topic.getTopic = function (page, perpage, sort, content, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,

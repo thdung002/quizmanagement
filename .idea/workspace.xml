@@ -3,16 +3,28 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_data.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/public/docs/api_data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/public/docs/api_data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_project.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/public/docs/api_project.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/public/docs/api_project.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/public/docs/api_project.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/examination.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/examination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/questiontopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/questiontopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/quiz.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quiz.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/topic.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/topic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/type.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/type.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/src/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/components/Sidebar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/components/Sidebar/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/permission.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/quizmanagement_ccd3ylv1pufy_ap-northeast-2_rds_amazonaws_com_3306.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/quiz_management.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/getters.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/getters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/store/modules/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/store/modules/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/config/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/config/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/question/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/question/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -99,11 +111,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="dev (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/Frontend/package.json" />
+    <configuration name="genAPIDoc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/Backend/package.json" />
       <command value="run" />
       <scripts>
-        <script value="dev" />
+        <script value="genAPIDoc" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -161,19 +173,19 @@
     </configuration>
     <list>
       <item itemvalue="npm.start-server" />
-      <item itemvalue="npm.dev (1)" />
       <item itemvalue="npm.serve" />
       <item itemvalue="npm.start-website" />
       <item itemvalue="npm.start-server (1)" />
       <item itemvalue="npm.start-website (1)" />
+      <item itemvalue="npm.genAPIDoc" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start-server (1)" />
+        <item itemvalue="npm.genAPIDoc" />
         <item itemvalue="npm.start-website (1)" />
+        <item itemvalue="npm.start-server (1)" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
-        <item itemvalue="npm.dev (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -245,7 +257,8 @@
       <workItem from="1604253148672" duration="50000" />
       <workItem from="1604308418066" duration="1824000" />
       <workItem from="1604385573995" duration="634000" />
-      <workItem from="1604666243453" duration="11972000" />
+      <workItem from="1604666243453" duration="12147000" />
+      <workItem from="1604977484258" duration="4632000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -513,7 +526,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604252510385</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="dung edit permission for user page(only admin, super admin)&#10;edit role in database( change to enum(&quot;super admin&quot;, &quot;admin&quot;,&quot;user&quot;)">
+      <created>1604678655199</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1604678655199</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -537,7 +557,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung add examination and backup database" />
     <MESSAGE value="add quizcontent" />
     <MESSAGE value="dung edit db" />
     <MESSAGE value="dung refactor code + name source" />
@@ -562,7 +581,8 @@
     <MESSAGE value="edit view and icons" />
     <MESSAGE value="edit template controller + model" />
     <MESSAGE value="edit icon" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit icon" />
+    <MESSAGE value="dung edit permission for user page(only admin, super admin)&#10;edit role in database( change to enum(&quot;super admin&quot;, &quot;admin&quot;,&quot;user&quot;)" />
+    <option name="LAST_COMMIT_MESSAGE" value="dung edit permission for user page(only admin, super admin)&#10;edit role in database( change to enum(&quot;super admin&quot;, &quot;admin&quot;,&quot;user&quot;)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

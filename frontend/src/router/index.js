@@ -51,77 +51,78 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: {title: 'Dashboard', icon: 'dashboard'}
     }]
   },
   {
-    path: '/answer',
+    path: '/library',
     component: Layout,
+    name: 'Question & Answer',
+    redirect: '/library/question',
+    alwaysShow: true,
+    meta: {
+      title: 'Question & Answer',
+      icon: 'el-icon-question',
+    },
     children: [
       {
-        path: 'index',
+        path: 'question',
+        name: 'Question',
+        component: () => import('@/views/question/index'),
+        meta: {title: 'Question'}
+      },
+      {
+        path: 'answer',
         name: 'Answer',
         component: () => import('@/views/answer/index'),
-        meta: { title: 'Answer', icon: 'el-icon-circle-close' }
-      }
+        meta: {title: 'Answer'}
+      },
+      {
+        path: 'topic',
+        name: 'Topic',
+        component: () => import('@/views/topic/index'),
+        meta: {title: 'Topic'}
+      },
+
     ]
   },
   {
-    path: '/examination',
+    path: '/quizconfig',
     component: Layout,
+    redirect: '/quizconfig/config',
+    alwaysShow: true,
+    name: 'Quiz Config',
+    meta: {
+      title: 'Quiz Config',
+      icon: 'el-icon-setting',
+    },
     children: [
       {
-        path: 'index',
+        path: 'config',
+        name: 'Config',
+        component: () => import('@/views/config/index'),
+        meta: {title: 'Config'}
+      },
+      {
+        path: 'examination',
         name: 'Exam',
         component: () => import('@/views/examination/index'),
-        meta: { title: 'Examination', icon: 'el-icon-notebook-1' }
-      }
-    ]
-  },
-  {
-    path: '/template',
-    component: Layout,
-    redirect: '/pdf/index',
-    children: [
+        meta: {title: 'Examination'}
+      },
       {
-        path: 'index',
+        path: 'template',
         component: () => import('@/views/template/index'),
         name: 'Template',
-        meta: { title: 'Template', icon: 'pdf' }
+        meta: {title: 'Template'}
       }
     ]
   },
   {
-    path: '/template/download',
+    path: '/quizconfig/template/download',
     component: () => import('@/views/template/download'),
     hidden: true
   },
 
-  {
-    path: '/topic',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Topic',
-        component: () => import('@/views/topic/index'),
-        meta: { title: 'Topic', icon: 'education' }
-      }
-    ]
-  },
-
-  {
-    path: '/question',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Question',
-        component: () => import('@/views/question/index'),
-        meta: { title: 'Question', icon: 'el-icon-question' }
-      }
-    ]
-  },
 
   // {
   //   path: '/quiz',
@@ -136,18 +137,6 @@ export const constantRoutes = [
   //   ]
   // },
 
-  {
-    path: '/config',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Config',
-        component: () => import('@/views/config/index'),
-        meta: { title: 'Config', icon: 'el-icon-minus' }
-      }
-    ]
-  },
 
 ];
 export const asyncRoutes = [
@@ -162,20 +151,20 @@ export const asyncRoutes = [
         meta: {
           title: 'User',
           icon: 'user',
-          roles: ['admin','super admin']
+          roles: ['admin', 'super admin']
         }
       }
     ]
   },
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  {path: '*', redirect: '/404', hidden: true}
 
 ];
 
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({y: 0}),
   routes: constantRoutes
 });
 

@@ -201,7 +201,7 @@
                 this.listLoading = false;
                 GetTopic(this.listQuery).then(response => {
                     this.list = response.data.data;
-                    this.total = response.data.items.total;
+                    this.total = response.data.pages.total;
                 });
             },
             handleFilter() {
@@ -277,7 +277,7 @@
                 })
             },
             handleUpdate(row) {
-                this.temp = Object.assign({}, row); 
+                this.temp = Object.assign({}, row);
                 this.temp.accessID = getToken();
                 this.dialogStatus = 'update';
                 this.dialogFormVisible = true;

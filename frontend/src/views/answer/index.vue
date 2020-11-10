@@ -262,7 +262,7 @@
                 this.listLoading = false;
                 GetAnswer(this.listQuery).then(response => {
                     this.list = response.data.data;
-                    this.total = response.data.items.total;
+                    this.total = response.data.pages.total;
                 });
                 GetActiveQuestion().then((response) => {
                     this.listquestion = response.data;

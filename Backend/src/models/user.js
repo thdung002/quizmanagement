@@ -87,8 +87,6 @@ User.getUser = function (page, perpage, sort, username, role, result) {
                             console.log("error in query db: ", errs);
                             return result(errs);
                         } else {
-                            // console.log('topic : ', res);
-                            // result(null, res);
                             let pages = Math.ceil(rows[0].total / perpage);
                             let output = {
                                 data: res,
@@ -98,7 +96,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,
@@ -136,7 +134,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,
@@ -176,7 +174,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,
@@ -216,7 +214,7 @@ User.getUser = function (page, perpage, sort, username, role, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,

@@ -80,7 +80,7 @@ QuizContent.getQuizContent = function (page, perpage, sort, result) {
                                 hasPrev: false,
                                 next: (page + 1) > pages ? 0 : (page + 1),
                                 hasNext: false,
-                                total: pages
+                                total: rows[0].total
                             },
                             items: {
                                 begin: ((page * perpage) - perpage) + 1,

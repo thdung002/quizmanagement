@@ -189,7 +189,7 @@
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
-    
+
     const statusType = [
         {key: 0, display_name: 'Actived'},
         {key: 1, display_name: 'Deleted'}
@@ -285,11 +285,11 @@
         },
         methods: {
               sumQ() {
-                var total = this.NumberQuestionLevel1 + this.NumberQuestionLevel1 + 
-                this.NumberQuestionLevel2 + this.NumberQuestionLevel3 + 
-                this.NumberQuestionLevel4 + this.NumberQuestionLevel5 + 
-                this.NumberQuestionLevel6 + this.NumberQuestionLevel7 + 
-                this.NumberQuestionLevel8 + this.NumberQuestionLevel9 + 
+                var total = this.NumberQuestionLevel1 + this.NumberQuestionLevel1 +
+                this.NumberQuestionLevel2 + this.NumberQuestionLevel3 +
+                this.NumberQuestionLevel4 + this.NumberQuestionLevel5 +
+                this.NumberQuestionLevel6 + this.NumberQuestionLevel7 +
+                this.NumberQuestionLevel8 + this.NumberQuestionLevel9 +
                 this.NumberQuestionLevel10;
                 $("#TotalQ").text("test");
               },
@@ -297,7 +297,7 @@
                 this.listLoading = false;
                 GetConfig(this.listQuery).then(response => {
                     this.list = response.data.data;
-                    this.total = response.data.items.total;
+                    this.total = response.data.pages.total;
                 });
             },
             handleFilter() {
@@ -332,7 +332,7 @@
                     accessUserRole: '',
                     IsDeleted: 0,
                 }
-            },    
+            },
             handleCreate() {
                 this.resetTemp();
                 this.dialogStatus = 'create';
@@ -372,7 +372,7 @@
                 })
             },
             handleUpdate(row) {
-                this.temp = Object.assign({}, row); 
+                this.temp = Object.assign({}, row);
                 this.temp.accessID = getToken();
                 this.dialogStatus = 'update';
                 this.dialogFormVisible = true;

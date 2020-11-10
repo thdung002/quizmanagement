@@ -111,7 +111,7 @@ Exam.getExam = function (page, perpage, sort,lecturer,semester, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,
@@ -153,7 +153,7 @@ Exam.getExam = function (page, perpage, sort,lecturer,semester, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,
@@ -196,7 +196,7 @@ Exam.getExam = function (page, perpage, sort,lecturer,semester, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,
@@ -238,7 +238,7 @@ Exam.getExam = function (page, perpage, sort,lecturer,semester, result) {
                                     hasPrev: false,
                                     next: (page + 1) > pages ? 0 : (page + 1),
                                     hasNext: false,
-                                    total: pages
+                                    total: rows[0].total
                                 },
                                 items: {
                                     begin: ((page * perpage) - perpage) + 1,
