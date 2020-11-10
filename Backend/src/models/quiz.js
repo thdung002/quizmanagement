@@ -9,6 +9,7 @@ var Quiz = function (quiz) {
   this.Code = quiz.Code;
   this.CreatedBy = quiz.CreatedBy;
   this.UpdatedBy = quiz.UpdatedBy;
+  this.IsDeleted = question.IsDeleted;
 };
 
 //Add new quiz
@@ -73,43 +74,318 @@ Quiz.getQuiz = function (page, perpage, sort, result) {
   }
   let type = typeof (sort);
   let offset = perpage * (page - 1);
-  try {
-      dbConn.query("SELECT COUNT(*) as total from quiz where isDeleted = 0", function (err, rows) {
-          if (err) {
-              return result(err);
-          } else {
-              dbConn.query(`Select * from quiz ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
-                  if (errs) {
-                      console.log("error in query db: ", errs);
-                      return result(errs);
-                  } else {
-                      let pages = Math.ceil(rows[0].total / perpage);
-                      let output = {
-                          data: res,
-                          pages: {
-                              current: page,
-                              prev: page - 1,
-                              hasPrev: false,
-                              next: (page + 1) > pages ? 0 : (page + 1),
-                              hasNext: false,
-                              total: rows[0].total
-                          },
-                          items: {
-                              begin: ((page * perpage) - perpage) + 1,
-                              end: page * perpage,
-                              total: parseInt(res.length)
-                          }
-                      };
-                      output.pages.hasNext = (output.pages.next !== 0);
-                      output.pages.hasPrev = (output.pages.prev !== 0);
-                      return result(null, output);
-                  }
-              });
-          }
-      })
-  } catch (error) {
-      return result(1, 'get_all_Quiz_fail', 400, error, null);
-  }
+  if (!isNaN(Examination) !==0 && !isNaN(Config) !==0 && !isNaN(Template)) {
+    try {
+        dbConn.query("SELECT COUNT(*) as total from question where Examination = '${Examination}' and Config = '${Config}' and Template = '${Template}'", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select *,Content from question where MATCH(Content) AGAINST('${content}') and type = '${type}' and level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
+else if (content.length !==0 && type.length !==0) {
+    try {
+        dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and type = '${type}'", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select *,Content from question where MATCH(Content) AGAINST('${content}') and type = '${type}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
+else if (content.length !==0 && !isNaN(level)) {
+    try {
+        dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and level = '${level}'", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select *. Content from question where MATCH(Content) AGAINST('${content}') and level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
+else if (type.length !==0 && !isNaN(level)) {
+    try {
+        dbConn.query("SELECT COUNT(*) as total from question where type = '${type}' and level = '${level}'", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select * from question where type = '${type}' and level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
+else if (content.length !==0) {
+    try {
+        dbConn.query(`SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}')`, function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select *,Content from question where MATCH(Content) AGAINST('${content}')  ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
+else if (type.length !==0) {
+    try {
+        dbConn.query(`SELECT COUNT(*) as total from question`, function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select * from question where type = '${type}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
+else if (!isNaN(level)) {
+    try {
+        dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select * from question where level = '${level}' ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
+else {
+    try {
+        dbConn.query("SELECT COUNT(*) as total from question", function (err, rows) {
+            if (err) {
+                return result(err);
+            } else {
+                dbConn.query(`Select * from question ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                    if (errs) {
+                        console.log("error in query db: ", errs);
+                        return result(errs);
+                    } else {
+                        let pages = Math.ceil(rows[0].total / perpage);
+                        let output = {
+                            data: res,
+                            pages: {
+                                current: page,
+                                prev: page - 1,
+                                hasPrev: false,
+                                next: (page + 1) > pages ? 0 : (page + 1),
+                                hasNext: false,
+                                total: rows[0].total
+                            },
+                            items: {
+                                begin: ((page * perpage) - perpage) + 1,
+                                end: page * perpage,
+                                total: parseInt(res.length)
+                            }
+                        };
+                        output.pages.hasNext = (output.pages.next !== 0);
+                        output.pages.hasPrev = (output.pages.prev !== 0);
+                        return result(null, output);
+                    }
+                });
+            }
+        })
+    } catch (error) {
+        return result(1, 'get_all_Question_fail', 400, error, null);
+    }
+}
 };
 
 //Update Quiz by id
@@ -122,7 +398,8 @@ Quiz.update = function (accessId, id, Quiz, result) {
       queryObj.Code = Quiz.Code;
       queryObj.UpdatedBy = accessId;
       queryObj.Id = id;
-      dbConn.query("UPDATE quiz SET Examination=?,Config=?,Template=?,Code=?, UpdatedBy=? WHERE id = ?", [queryObj.Examination, queryObj.Config, queryObj.Template,queryObj.Code, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
+      queryObj.IsDeleted = Quiz.IsDeleted;
+      dbConn.query("UPDATE quiz SET Examination=?,Config=?,Template=?,Code=?, UpdatedBy=?, isDeleted=? WHERE id = ?", [queryObj.Examination, queryObj.Config, queryObj.Template,queryObj.Code, queryObj.UpdatedBy, queryObj.Id,queryObj.IsDeleted], function (err, res) {
           if (err) {
               result(null, err);
           } else if(res.changedRows === 0)
