@@ -41,15 +41,15 @@ Question.add = function (accessID, newQuestion, result) {
 Question.getQuestionById = function (id, result) {
     try {
         dbConn.query("Select * from question where id = ? and IsDeleted = 0", parseInt(id), function (err, res) {
-                if (err) {
-                    console.log("error: ", err);
-                    result(err, null);
-                } else if (res.length === 0)
-                    result(1, 'No question found', 403, err, null);
-                else {
-                    result(null, res);
-                }
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+            } else if (res.length === 0)
+                result(1, 'No question found', 403, err, null);
+            else {
+                result(null, res);
             }
+        }
         );
     } catch (error) {
         return result(1, 'Get question fail', 400, error, null);
@@ -60,15 +60,15 @@ Question.getQuestionById = function (id, result) {
 Question.getActive = function (result) {
     try {
         dbConn.query("Select * from question WHERE IsDeleted = 0", function (err, res) {
-                if (err) {
-                    console.log("error: ", err);
-                    result(err, null);
-                } else if (res.length === 0)
-                    result(1, 'No question found', 403, err, null);
-                else {
-                    result(null, res);
-                }
+            if (err) {
+                console.log("error: ", err);
+                result(err, null);
+            } else if (res.length === 0)
+                result(1, 'No question found', 403, err, null);
+            else {
+                result(null, res);
             }
+        }
         );
     } catch (error) {
         return result(1, 'Get question fail', 400, error, null);
@@ -86,7 +86,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
         sort = "ASC";
     }
     let offset = perpage * (page - 1);
-    if (content.length !==0 && type.length !==0 && !isNaN(level)) {
+    if (content.length !== 0 && type.length !== 0 && !isNaN(level)) {
         try {
             dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and type = '${type}' and level = '${level}'", function (err, rows) {
                 if (err) {
@@ -125,7 +125,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (content.length !==0 && type.length !==0) {
+    else if (content.length !== 0 && type.length !== 0) {
         try {
             dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and type = '${type}'", function (err, rows) {
                 if (err) {
@@ -164,7 +164,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (content.length !==0 && !isNaN(level)) {
+    else if (content.length !== 0 && !isNaN(level)) {
         try {
             dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and level = '${level}'", function (err, rows) {
                 if (err) {
@@ -203,7 +203,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (type.length !==0 && !isNaN(level)) {
+    else if (type.length !== 0 && !isNaN(level)) {
         try {
             dbConn.query("SELECT COUNT(*) as total from question where type = '${type}' and level = '${level}'", function (err, rows) {
                 if (err) {
@@ -242,7 +242,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (content.length !==0) {
+    else if (content.length !== 0) {
         try {
             dbConn.query(`SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}')`, function (err, rows) {
                 if (err) {
@@ -281,7 +281,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
             return result(1, 'get_all_Question_fail', 400, error, null);
         }
     }
-    else if (type.length !==0) {
+    else if (type.length !== 0) {
         try {
             dbConn.query(`SELECT COUNT(*) as total from question`, function (err, rows) {
                 if (err) {
@@ -442,11 +442,10 @@ Question.delete = function (id, result) {
 };
 
 //get random question
-Question.random = function(quantity,type,result){
-    try{
-        dbConn.query(`SELECT ID FROM question where type =${type} and IsDeleted = 0 ORDER BY RAND() LIMIT ${quantity}`,function(err,res){
-            if(err)
-            {
+Question.random = function (quantity, type, result) {
+    try {
+        dbConn.query(`SELECT ID FROM question where type =${type} and IsDeleted = 0 ORDER BY RAND() LIMIT ${quantity}`, function (err, res) {
+            if (err) {
                 console.log("error: ", err);
                 result(null, err);
             }
@@ -457,7 +456,7 @@ Question.random = function(quantity,type,result){
             }
         })
     }
-    catch(error){
+    catch (error) {
         return result(1, 'get_random_fail', 400, error, null);
     }
 };

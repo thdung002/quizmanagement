@@ -1,4 +1,8 @@
 # QUIZ MANAGEMENT
+
+## API DOCS
+[Docs](https://thdung002.github.io/quizmanagement/)
+
 ## First step
 ```bash
 # clone the project
@@ -71,6 +75,7 @@ npm run lint
 # code format check and auto fix
 npm run lint -- --fix
 ```
+
 
 Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/guide/essentials/deploy.html) for more information
 

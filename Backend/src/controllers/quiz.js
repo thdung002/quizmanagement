@@ -19,10 +19,13 @@ module.exports = {
     },
     //get all Quiz
     getQuiz: function (req, res) {
-        let page = req.body.page || '';
-        let sort = req.body.sort || '';
-        let perpage = req.body.perpage || '';
-        Quiz.getQuiz(parseInt(page), parseInt(perpage), sort, function (err, result) {
+        let page = req.query.page || '';
+        let sort = req.query.sort || 'ASC';
+        let perpage = req.query.perpage || '';
+        let Examination = req.query.Examination || '';
+        let Config = req.query.Config || '';
+        let Template = req.query.Template || '';
+        Quiz.getQuiz(parseInt(page), parseInt(perpage), sort, parseInt(Examination),parseInt(Config),parseInt(Template),  function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });
             else return res.json({ result: "ok", message: "Quiz get successfully!", data: result ,code: 20000});
