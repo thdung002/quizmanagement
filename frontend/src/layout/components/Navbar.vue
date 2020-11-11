@@ -19,7 +19,7 @@
           <a target="_blank" href="https://github.com/thdung002/quizmanagement/">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
-          <a target="_blank" href="#">
+          <a target="_blank" href="https://thdung002.github.io/quizmanagement/">
             <el-dropdown-item>API Docs</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
