@@ -124,18 +124,18 @@ export const constantRoutes = [
   },
 
 
-  // {
-  //   path: '/quiz',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       name: 'Quiz',
-  //       component: () => import('@/views/quiz/index'),
-  //       meta: { title: 'Quiz', icon: 'el-icon-minus' }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/quiz',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Quiz',
+        component: () => import('@/views/quiz/index'),
+        meta: { title: 'Quiz', icon: 'el-icon-minus' }
+      }
+    ]
+  },
 
 
 ];

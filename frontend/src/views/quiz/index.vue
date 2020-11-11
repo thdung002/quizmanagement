@@ -1,12 +1,12 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.lecturer" placeholder="Lecturer name" style="width: 200px;" class="filter-item"
+      <el-input v-model="listQuery.Examination" placeholder="Examination id" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
-      <el-select v-model="listQuery.semester" placeholder="Semester" clearable class="filter-item" @change="handleFilter" style="width: 130px" >
-        <el-option v-for="item in semesterType" :key="item.key" :label="item.display_name+'('+item.key+')'"
-                   :value="item.key"/>
-      </el-select>
+      <el-input v-model="listQuery.Config" placeholder="Config id" style="width: 200px;" class="filter-item"
+                @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.Template" placeholder="Template id" style="width: 200px;" class="filter-item"
+                @keyup.enter.native="handleFilter"/>   
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key"/>
       </el-select>
@@ -44,51 +44,24 @@
           <span>{{ row.CreatedAt | format_date}}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Lecturer name" width="200" align="center">
+      <el-table-column label="Examination id" width="200" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Lecturer }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Examination }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Semester" min-width="200" align="center">
+      <el-table-column label="Config id" min-width="200" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Semester }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Config }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Duration" min-width="150px" align="center">
+      <el-table-column label="Template id" min-width="150px" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Duration }}</span>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Template }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Notes" min-width="150px" align="center">
+      <el-table-column label="Code" min-width="150px" align="center">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Notes }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="Department" min-width="150px" align="center">
-        <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.Department }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="Course" width="200" align="center">
-        <template slot-scope="{row}">
-          <el-tag :type="row.Course">
-            {{ row.Course }}
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="CourseCode" width="200" align="center">
-        <template slot-scope="{row}">
-          <el-tag :type="row.Coursecode">
-            {{ row.Coursecode }}
-          </el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column label="Academic Year" width="200" align="center">
-        <template slot-scope="{row}">
-          <el-tag :type="row.AcademicYear">
-            {{ row.AcademicYear }}
-          </el-tag>
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Code }}</span>
         </template>
       </el-table-column>
       <el-table-column label="Status" class-name="status-col" width="100px" align="center">
@@ -101,10 +74,7 @@
       <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            Edit
-          </el-button>
-          <el-button v-if="row.IsDeleted!=1" size="mini" type="danger" @click="handleDelete(row,row.ID)">
-            Delete
+            View
           </el-button>
         </template>
       </el-table-column>
@@ -117,37 +87,25 @@
     <!--pagination-->
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px"
+      <el-form ref="dataForm" :model="temp" label-position="left" label-width="150px"
                style="width: 400px; margin-left:50px;">
         <el-form-item label="ID" prop="ID">
           <el-input :disabled="true" v-model="temp.ID"/>
         </el-form-item>
-        <el-form-item label="Lecturer name" prop="Lecturer">
-          <el-input v-model="temp.Lecturer"/>
+        <el-form-item label="Examination id" prop="Examination">
+          <el-input :disabled="true" v-model="temp.Examination"/>
         </el-form-item>
-        <el-form-item label="Duration" prop="Duration">
-          <el-input v-model="temp.Duration"/>
+        <el-form-item label="Template id" prop="Template">
+          <el-input :disabled="true" v-model="temp.Template"/>
         </el-form-item>
-        <el-form-item label="Semester" prop="Semester">
-          <el-input v-model="temp.Semester"/>
+        <el-form-item label="Config id" prop="Config">
+          <el-input :disabled="true" v-model="temp.Config"/>
         </el-form-item>
-        <el-form-item label="Notes" prop="Notes">
-          <el-input v-model="temp.Notes"/>
-        </el-form-item>
-        <el-form-item label="Department" prop="Department">
-          <el-input v-model="temp.Department"/>
-        </el-form-item>
-        <el-form-item label="Course name" prop="Course">
-          <el-input v-model="temp.Course"/>
-        </el-form-item>
-        <el-form-item label="Course code" prop="CourseCode">
-          <el-input v-model="temp.CourseCode"/>
-        </el-form-item>
-        <el-form-item label="Academic Year" prop="AcademicYear">
-          <el-input v-model="temp.AcademicYear"/>
+        <el-form-item label="Code" prop="Code">
+          <el-input :disabled="true" v-model="temp.Code"/>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
-          <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
+          <el-select :disabled="true" v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
             <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
           </el-select>
         </el-form-item>
@@ -156,9 +114,9 @@
         <el-button @click="dialogFormVisible = false">
           Cancel
         </el-button>
-        <el-button type="primary" @click="dialogStatus==='create'? createData():updateData()">
-          Confirm
-        </el-button>
+        <!-- <el-button type="primary" @click="dialogStatus==='create'? createData():updateData()">
+          Print
+        </el-button> -->
       </div>
     </el-dialog>
     <!--    Hidden dialog-->
@@ -176,18 +134,13 @@
 </template>
 
 <script>
-    import {GetExam, CreateExam, UpdateExam, DeleteExam} from '@/api/examination'
+    import {GetQuiz, DeleteQuiz, CreateQuiz} from '@/api/quiz'
     import moment from 'moment'
     import waves from '@/directive/waves' // waves directive
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
 
-    const semesterType = [
-        {key: 1, display_name: 'Semester 1'},
-        {key: 2, display_name: 'Semester 2'},
-        {key: 3, display_name: 'Semester 3'},
-    ];
     const statusType = [
         {key: 0, display_name: 'Actived'},
         {key: 1, display_name: 'Deleted'}
@@ -228,23 +181,19 @@
                     page: 1,
                     perpage: 10,
                     sort: 'ASC',
-                    lecturer: undefined,
-                    semester: undefined
+                    Examination: undefined,
+                    Config: undefined,
+                    Template: undefined
                 },
-                semesterType,
                 statusType,
                 sortOptions: [{label: 'ID Ascending', key: 'ASC'}, {label: 'ID Descending', key: 'DESC'}],
                 statusOptions: ['active', 'deleted'],
                 temp: {
                     ID: '',
-                    Lecturer: '',
-                    Semester: '',
-                    Duration: '',
-                    Notes: '',
-                    Department: '',
-                    Course: '',
-                    CourseCode: '',
-                    AcademicYear:'',
+                    Examination: '',
+                    Config: '',
+                    Template: '',
+                    Code: '',
                     accessID: '',
                 },
                 dialogFormVisible: false,
@@ -255,15 +204,6 @@
                 },
                 dialogPvVisible: false,
                 pvData: [],
-                rules: {
-                    Duration: [{required: true, message: 'duration is required', trigger: 'blur'}],
-                    Semester: [{required: true, message: 'semester id is required', trigger: 'blur'}],
-                    Department: [{required: true, message: 'department is required', trigger: 'blur'}],
-                    Course: [{required: true, message: 'course name is required', trigger: 'blur'}],
-                    CourseCode: [{required: true, message: 'course code is required', trigger: 'blur'}],
-                    AcademicYear: [{required: true, message: 'academic year is required', trigger: 'blur'}],
-                    Lecturer: [{required: true, message: 'lecturer name is required', trigger: 'blur'}],
-                },
                 downloadLoading: false
             }
         },
@@ -273,7 +213,7 @@
         methods: {
             getList() {
                 this.listLoading = false;
-                GetExam(this.listQuery).then(response => {
+                GetQuiz(this.listQuery).then(response => {
                     this.list = response.data.data;
                     this.total = response.data.pages.total;
                 });
@@ -306,15 +246,12 @@
             resetTemp() {
                 this.temp = {
                     ID: '',
-                    Lecturer: '',
-                    Semester: '',
-                    Duration: '',
-                    Notes: '',
-                    Department: '',
-                    Course: '',
-                    CourseCode: '',
-                    AcademicYear:'',
+                    Examination: '',
+                    Config: '',
+                    Template: '',
                     accessID: '',
+                    accessUserRole: '',
+                    IsDeleted: 0,
                 }
             },
             handleCreate() {
@@ -326,34 +263,6 @@
                     this.$refs.dataForm.clearValidate()
                 })
             },
-            createData() {
-                this.$refs.dataForm.validate((valid) => {
-                    if (valid) {
-                        this.temp.accessID = getToken();
-                        CreateExam(this.temp).then((response) => {
-                            if (response.result === "fail")
-                                this.$notify({
-                                    title: 'Fail',
-                                    message: 'Created Failed',
-                                    type: 'warning',
-                                    duration: 2000,
-                                    position: 'top-right'
-                                });
-                            else {
-                                this.list.unshift(this.temp);
-                                this.dialogFormVisible = false;
-                                this.getList();
-                                this.$notify({
-                                    title: 'Success',
-                                    message: 'Created Successfully',
-                                    type: 'success',
-                                    duration: 2000
-                                })
-                            }
-                        })
-                    }
-                })
-            },
             handleUpdate(row) {
                 this.temp = Object.assign({}, row); // copy obj
                 this.temp.accessID = getToken();
@@ -363,34 +272,8 @@
                     this.$refs['dataForm'].clearValidate()
                 })
             },
-            updateData() {
-                this.$refs['dataForm'].validate((valid) => {
-                    if (valid) {
-                        const tempData = Object.assign({}, this.temp);
-                        UpdateExam(tempData, this.temp.ID).then((response) => {
-                            if (response.result === "fail")
-                                this.$notify({
-                                    title: 'Warning',
-                                    message: 'Update Failed',
-                                    type: 'warning',
-                                    duration: 2000
-                                });
-                            else {
-                                this.getList();
-                                this.dialogFormVisible = false;
-                                this.$notify({
-                                    title: 'Success',
-                                    message: 'Update Successfully',
-                                    type: 'success',
-                                    duration: 2000
-                                })
-                            }
-                        })
-                    }
-                })
-            },
             handleDelete(row, id) {
-                DeleteExam(id).then((response) => {
+                DeleteQuiz(id).then((response) => {
                     if (response.result === "fail")
                         this.$notify({
                             title: 'Warning',
