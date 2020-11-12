@@ -11,7 +11,7 @@ export function GetExam(data){
 }
 export function GetActiveExam(){
   return request({
-    url: '/v1/exam/getactive',
+    url: '/v1/exam/getactiveexam',
     method: 'get',
   })
 }

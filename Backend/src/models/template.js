@@ -43,6 +43,24 @@ Template.add = function (accessID, newTemp, result) {
         }
     }
 };
+//Get active template
+Template.getActiveTemplate = function (result) {
+    try {
+        dbConn.query("Select * from template WHERE IsDeleted = 0", function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if (res.length === 0)
+                    result(1, 'No template found', 403, err, null);
+                else {
+                    result(null, res);
+                }
+            }
+        );
+    } catch (error) {
+        return result(1, 'Get template fail', 400, error, null);
+    }
+};
 //get Template
 Template.getTemplateById = function (id, result) {
     try {
@@ -61,24 +79,6 @@ Template.getTemplateById = function (id, result) {
         return result(1, 'get_one_Template_fail', 400, error, null);
     }
 };
-//Get active template
-Template.getActiveTemplate = function (result) {
-    try {
-        dbConn.query("Select * from template WHERE IsDeleted = 0 ", parseInt(id), function (err, res) {
-                if (err) {
-                    console.log("error: ", err);
-                    result(err, null);
-                } else if (res.length === 0)
-                    result(1, 'template_not_found', 403, err, null);
-                else {
-                    result(null, res);
-                }
-            }
-        );
-    } catch (error) {
-        return result(1, 'get_template_fail', 400, error, null);
-    }
-};
 //get all Template with pagination
 Template.getTemplate = function (page, perpage, sort, result) {
     if (page === 0 || isNaN(page))
@@ -92,17 +92,15 @@ Template.getTemplate = function (page, perpage, sort, result) {
     let type = typeof (sort);
     let offset = perpage * (page - 1);
     try {
-        dbConn.query("SELECT COUNT(*) as total from template", function (err, rows) {
+        dbConn.query("SELECT COUNT(*) as total from template where IsDeleted = 0  ", function (err, rows) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from template ORDER BY ID ${sort} limit ${perpage} offset ${offset}`, function (errs, res) {
+                dbConn.query(`Select * from template ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
                     } else {
-                        // console.log('topic : ', res);
-                        // result(null, res);
                         let pages = Math.ceil(rows[0].total / perpage);
                         let output = {
                             data: res,
@@ -128,7 +126,7 @@ Template.getTemplate = function (page, perpage, sort, result) {
             }
         })
     } catch (error) {
-        return result(1, 'get_all_Template_fail', 400, error, null);
+        return result(1, 'get_all_template_fail', 400, error, null);
     }
 };
 

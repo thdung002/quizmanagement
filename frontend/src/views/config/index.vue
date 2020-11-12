@@ -284,15 +284,15 @@
             this.getList()
         },
         methods: {
-              sumQ() {
-                var total = this.NumberQuestionLevel1 + this.NumberQuestionLevel1 +
-                this.NumberQuestionLevel2 + this.NumberQuestionLevel3 +
-                this.NumberQuestionLevel4 + this.NumberQuestionLevel5 +
-                this.NumberQuestionLevel6 + this.NumberQuestionLevel7 +
-                this.NumberQuestionLevel8 + this.NumberQuestionLevel9 +
-                this.NumberQuestionLevel10;
-                $("#TotalQ").text("test");
-              },
+              // sumQ() {
+              //   var total = this.NumberQuestionLevel1 + this.NumberQuestionLevel1 +
+              //   this.NumberQuestionLevel2 + this.NumberQuestionLevel3 +
+              //   this.NumberQuestionLevel4 + this.NumberQuestionLevel5 +
+              //   this.NumberQuestionLevel6 + this.NumberQuestionLevel7 +
+              //   this.NumberQuestionLevel8 + this.NumberQuestionLevel9 +
+              //   this.NumberQuestionLevel10;
+              //   $("#TotalQ").text("test");
+              // },
             getList() {
                 this.listLoading = false;
                 GetConfig(this.listQuery).then(response => {
@@ -336,7 +336,7 @@
             handleCreate() {
                 this.resetTemp();
                 this.dialogStatus = 'create';
-                this.sumQ();
+                // this.sumQ();
                 this.dialogFormVisible = true;
                 this.$nextTick(() => {
                     this.$refs.dataForm.clearValidate()

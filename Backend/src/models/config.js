@@ -65,19 +65,19 @@ Config.getConfigById = function (id, result) {
 //Get active config
 Config.getActiveConfig = function (result) {
     try {
-        dbConn.query("Select * from config WHERE IsDeleted = 0 ", parseInt(id), function (err, res) {
+        dbConn.query("Select * from config WHERE IsDeleted = 0", function (err, res) {
                 if (err) {
                     console.log("error: ", err);
                     result(err, null);
                 } else if (res.length === 0)
-                    result(1, 'Config_not_found', 403, err, null);
+                    result(1, 'No config found', 403, err, null);
                 else {
                     result(null, res);
                 }
             }
         );
     } catch (error) {
-        return result(1, 'get_config_fail', 400, error, null);
+        return result(1, 'Get config fail', 400, error, null);
     }
 };
 //get all Config with pagination

@@ -17,20 +17,20 @@ module.exports = {
             });
         }
     },
+    //get active template
+    getActiveTemplate: function (req, res) {
+        Template.getActiveTemplate(function (err, result) {
+            if (err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});
+        })
+    },
     //get all Template
     getTemplate: function (req, res) {
         let page = req.query.page || '';
         let sort = req.query.sort || '';
         let perpage = req.query.perpage || '';
         Template.getTemplate(parseInt(page),parseInt(perpage),sort,function (err, result) {
-            if (err)
-                return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});
-        })
-    },
-    //get active template
-    getActiveTemplate: function (req, res) {
-        Template.getActiveTemplate(function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});

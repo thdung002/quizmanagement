@@ -4,17 +4,17 @@
                style="width: 400px; margin-left:50px;">
         <el-form-item label="Examination ID" prop="Examination">
           <el-select v-model="temp.Examination" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in listquestion" :key="item.ID" :label="item.Examination" :value="item.ID"/>
+            <el-option v-for="item in listexam" :key="item.ID" :label="item.ID" :value="item.ID"/>
           </el-select>
         </el-form-item>
         <el-form-item label="Config ID" prop="Config">
           <el-select v-model="temp.Config" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in listquestion" :key="item.ID" :label="item.Config" :value="item.ID"/>
+            <el-option v-for="item in listconfig" :key="item.ID" :label="item.ID" :value="item.ID"/>
           </el-select>
         </el-form-item>
         <el-form-item label="Template ID" prop="Template">
           <el-select v-model="temp.Template" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in Template" :key="item.ID" :label="item.Template" :value="item.ID"/>
+            <el-option v-for="item in listtemplate" :key="item.ID" :label="item.ID" :value="item.ID"/>
           </el-select>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
@@ -24,7 +24,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogStatus==='create'? createData():updateData()">
+        <el-button type="primary" @click="createData()">
           Confirm
         </el-button>
         <el-button @click="dialogFormVisible = false">
@@ -53,11 +53,7 @@
     import {parseTime} from '@/utils/index'
     import Pagination from '@/components/Pagination' // secondary package based on el-pagination
     import {getToken, getRole} from '@/utils/auth'
-    
-    const answerType = [
-        {key: 1, display_name: 'Correct Answer'},
-        {key: 0, display_name: 'Default Answer'},
-    ];
+
     const statusType = [
         {key: 0, display_name: 'Actived'},
         {key: 1, display_name: 'Deleted'}
@@ -67,10 +63,7 @@
         return acc
     }, {});
     // arr to obj, such as { CN : "China", US : "USA" }
-    const answerValue = answerType.reduce((acc, cur) => {
-        acc[cur.key] = cur.display_name;
-        return acc
-    }, {});
+    
     export default {
         name: 'ComplexTable',
         components: {Pagination},
@@ -99,9 +92,6 @@
             activeFilter(active) {
                 return statusValue[active]
             },
-            typeFilter(type) {
-                return answerValue[type]
-            },
         },
         data() {
             const validatePassword = (rule, value, callback) => {
@@ -120,7 +110,6 @@
                 listconfig: null,
                 listtemplate: null,
                 total: 0,
-                listLoading: true,
                 listQuery: {
                     page: 1,
                     perpage: 10,
@@ -128,19 +117,16 @@
                     content: undefined,
                     iscorrect: undefined
                 },
-                answerType,
                 statusType,
                 sortOptions: [{label: 'ID Ascending', key: 'ASC'}, {label: 'ID Descending', key: 'DESC'}],
                 statusOptions: ['active', 'deleted'],
                 temp: {
                     ID: '',
-                    Question: '',
-                    Content: '',
-                    IsCorrect: '',
-                    CorrectAnswer: '',
+                    Examination: '',
+                    Config: '',
+                    Template: '',
                     accessID: '',
                     accessUserRole: '',
-
                 },
                 dialogFormVisible: false,
                 dialogStatus: '',
@@ -151,9 +137,9 @@
                 dialogPvVisible: false,
                 pvData: [],
                 rules: {
-                    Content: [{required: true, message: 'content is required', trigger: 'blur'}],
-                    Question: [{required: true, message: 'question id is required', trigger: 'blur'}],
-                    IsCorrect: [{required: true, message: 'correct answer is required', trigger: 'blur'}]
+                    Examination: [{required: true, message: 'Examination is required', trigger: 'blur'}],
+                    Config: [{required: true, message: 'Config id is required', trigger: 'blur'}],
+                    Template: [{required: true, message: 'Template answer is required', trigger: 'blur'}]
                 },
                 downloadLoading: false
             }
@@ -163,15 +149,17 @@
         },
         methods: {
             getList() {
-                this.listLoading = false;
                 GetActiveExam().then((response) => {
                     this.listexam = response.data;
+                    console.log(response.data);
                 });
                 GetActiveConfig().then((response) => {
                     this.listconfig = response.data;
                 });
                 GetActiveTemplate().then((response) => {
                     this.listtemplate = response.data;
+                    console.log(response.data);
+
                 });
             },
             handleModifyStatus(row, status) {
@@ -184,10 +172,9 @@
             resetTemp() {
                 this.temp = {
                     ID: '',
-                    Question: '',
-                    Content: '',
-                    IsCorrect: '',
-                    CorrectAnswer: '',
+                    Examination: '',
+                    Config: '',
+                    Template: '',
                     accessID: '',
                     accessUserRole: '',
                     IsDeleted: 0,
@@ -205,7 +192,7 @@
                     if (valid) {
                         this.temp.accessUserRole = getRole();
                         this.temp.accessID = getToken();
-                        CreateAnswer(this.temp).then((response) => {
+                        CreateQuiz(this.temp).then((response) => {
                             if (response.result === "fail")
                                 this.$notify({
                                     title: 'Fail',
@@ -215,7 +202,7 @@
                                     position: 'top-right'
                                 });
                             else {
-                                this.list.unshift(this.temp);
+                                // this.list.unshift(this.temp);
                                 this.dialogFormVisible = false;
                                 this.getList();
                                 this.$notify({
