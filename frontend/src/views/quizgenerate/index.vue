@@ -47,7 +47,7 @@
     import {CreateQuiz} from '@/api/quiz'
     import {GetActiveExam} from '@/api/examination'
     import {GetActiveConfig} from '@/api/config'
-    import {GetActiveTemplate} from '@/api/template'
+    import {GetTemplate} from '@/api/template'
     import moment from 'moment'
     import waves from '@/directive/waves' // waves directive
     import {parseTime} from '@/utils/index'
@@ -63,7 +63,7 @@
         return acc
     }, {});
     // arr to obj, such as { CN : "China", US : "USA" }
-    
+
     export default {
         name: 'ComplexTable',
         components: {Pagination},
@@ -156,8 +156,8 @@
                 GetActiveConfig().then((response) => {
                     this.listconfig = response.data;
                 });
-                GetActiveTemplate().then((response) => {
-                    this.listtemplate = response.data;
+                GetTemplate().then((response) => {
+                    this.listtemplate = response.data.data;
                     console.log(response.data);
 
                 });

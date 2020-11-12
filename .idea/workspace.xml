@@ -2,60 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/BackToTop/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/Keyboard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/LineMarker.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/MixChart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Charts/mixins/resize.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/DndList/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/DragSelect/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Dropzone/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ErrorLog/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/GithubCorner/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/HeaderSearch/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ImageCropper/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ImageCropper/utils/data2blob.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ImageCropper/utils/effectRipple.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ImageCropper/utils/language.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ImageCropper/utils/mimes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/JsonEditor/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Kanban/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MDinput/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MarkdownEditor/default-options.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/MarkdownEditor/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/PanThumb/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/RightPanel/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Screenfull/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Share/DropdownMenu.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/SizeSelect/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Sticky/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/TextHoverEffect/Mallki.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/ThemePicker/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tinymce/components/EditorImage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tinymce/dynamicLoadScript.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tinymce/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tinymce/plugins.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Tinymce/toolbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Upload/SingleImage.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Upload/SingleImage2.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Upload/SingleImage3.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UploadExcel/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BarChart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/LineChart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/PanelGroup.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/PieChart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/RaddarChart.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/TodoList/Todo.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/TodoList/index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/TodoList/index.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/TransactionTable.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/mixins/resize.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Breadcrumb/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/layout/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/layout/components/Navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -299,7 +248,8 @@
       <workItem from="1605014997030" duration="1467000" />
       <workItem from="1605022127229" duration="1772000" />
       <workItem from="1605025626042" duration="2608000" />
-      <workItem from="1605091287133" duration="1665000" />
+      <workItem from="1605091287133" duration="1783000" />
+      <workItem from="1605152571493" duration="1610000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -595,7 +545,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604985435566</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="update dashboard">
+      <created>1605094725409</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1605094725410</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +576,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung refactor code + name source" />
     <MESSAGE value="dung add template" />
     <MESSAGE value="dung add template and backup template" />
     <MESSAGE value="dung edit db query" />
@@ -644,7 +600,8 @@
     <MESSAGE value="dung edit permission for user page(only admin, super admin)&#10;edit role in database( change to enum(&quot;super admin&quot;, &quot;admin&quot;,&quot;user&quot;)" />
     <MESSAGE value="edit router, models(back end)" />
     <MESSAGE value="edit api docs" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit api docs" />
+    <MESSAGE value="update dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="update dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

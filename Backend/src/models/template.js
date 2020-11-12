@@ -96,7 +96,7 @@ Template.getTemplate = function (page, perpage, sort, result) {
             if (err) {
                 return result(err);
             } else {
-                dbConn.query(`Select * from template ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                dbConn.query(`Select * from template where IsDeleted = 0 ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
                     if (errs) {
                         console.log("error in query db: ", errs);
                         return result(errs);
