@@ -89,7 +89,7 @@ export const constantRoutes = [
   {
     path: '/quizconfig',
     component: Layout,
-    redirect: '/quizconfig/config',
+    redirect: '/quizconfig/quiz',
     alwaysShow: true,
     name: 'Quiz Config',
     meta: {
@@ -114,7 +114,14 @@ export const constantRoutes = [
         component: () => import('@/views/template/index'),
         name: 'Template',
         meta: {title: 'Template'}
+      },
+      {
+        path: 'quiz',
+        name: 'Quiz',
+        component: () => import('@/views/quiz/index'),
+        meta: { title: 'Quiz'}
       }
+
     ]
   },
   {
@@ -122,21 +129,6 @@ export const constantRoutes = [
     component: () => import('@/views/template/download'),
     hidden: true
   },
-
-
-  {
-    path: '/quiz',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Quiz',
-        component: () => import('@/views/quiz/index'),
-        meta: { title: 'Quiz', icon: 'el-icon-minus' }
-      }
-    ]
-  },
-
   {
     path: '/quizgenerate',
     component: Layout,
