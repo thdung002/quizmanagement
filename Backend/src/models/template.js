@@ -61,6 +61,24 @@ Template.getTemplateById = function (id, result) {
         return result(1, 'get_one_Template_fail', 400, error, null);
     }
 };
+//Get active template
+Template.getActiveTemplate = function (result) {
+    try {
+        dbConn.query("Select * from template WHERE IsDeleted = 0 ", parseInt(id), function (err, res) {
+                if (err) {
+                    console.log("error: ", err);
+                    result(err, null);
+                } else if (res.length === 0)
+                    result(1, 'template_not_found', 403, err, null);
+                else {
+                    result(null, res);
+                }
+            }
+        );
+    } catch (error) {
+        return result(1, 'get_template_fail', 400, error, null);
+    }
+};
 //get all Template with pagination
 Template.getTemplate = function (page, perpage, sort, result) {
     if (page === 0 || isNaN(page))

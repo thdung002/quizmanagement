@@ -19,7 +19,7 @@ module.exports = {
     },
     //get active config
     getActiveConfig: function (req, res) {
-        Answer.getActiveConfig(function (err, result) {
+        Config.getActiveConfig(function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Config get successfully!", data: result,code: 20000});

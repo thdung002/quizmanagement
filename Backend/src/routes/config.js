@@ -148,7 +148,7 @@ module.exports = function (app) {
 
     app.get('/v1/config/get/:id', configController.getConfigById);
     /**
-     * @api {GET} /v1/answer/get/:id Get One
+     * @api {GET} /v1/config/get/:id Get One
      * @apiVersion 1.0.0
      * @apiName getOne
      * @apiGroup Config

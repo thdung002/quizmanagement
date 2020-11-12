@@ -137,6 +137,18 @@ export const constantRoutes = [
     ]
   },
 
+  {
+    path: '/quizgenerate',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Generate Quiz',
+        component: () => import('@/views/quizgenerate/index'),
+        meta: { title: 'Generate Quiz', icon: 'el-icon-minus' }
+      }
+    ]
+  },
 
 ];
 export const asyncRoutes = [

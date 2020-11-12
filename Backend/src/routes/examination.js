@@ -128,7 +128,7 @@ module.exports = function (app) {
      *       "message": "invalid input"
      *     }
      */
-    app.get('/v1/exam/getactive', examController.getActive);
+    app.get('/v1/exam/getactiveexam', examController.getActiveExam);
     /**
      * @api {GET} /v1/exam/getactive
      * @apiVersion 1.0.0

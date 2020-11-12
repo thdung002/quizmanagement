@@ -39,7 +39,7 @@ module.exports = {
         })
     },
     //get active Exam
-    getActive: function (req, res) {
+    getActiveExam: function (req, res) {
         Exam.getActiveExam(function (err, result) {
             if (err)
                 return res.json({ result: "fail", message: "Invalid input" });

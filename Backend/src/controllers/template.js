@@ -28,6 +28,14 @@ module.exports = {
             else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});
         })
     },
+    //get active template
+    getActiveTemplate: function (req, res) {
+        Template.getActiveTemplate(function (err, result) {
+            if (err)
+                return res.json({result:"fail",message:"Invalid input"});
+            else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});
+        })
+    },
     //get 1 Template by id
     getTemplateById: function (req, res) {
         Template.getTemplateById(req.params.id, function (err, result) {
