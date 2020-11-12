@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -248,7 +248,7 @@
       <workItem from="1605022127229" duration="1772000" />
       <workItem from="1605025626042" duration="2608000" />
       <workItem from="1605091287133" duration="1783000" />
-      <workItem from="1605152571493" duration="1944000" />
+      <workItem from="1605152571493" duration="2818000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -558,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605154323959</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="fix router">
+      <created>1605154765488</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1605154765488</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +589,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung add template and backup template" />
     <MESSAGE value="dung edit db query" />
     <MESSAGE value="dung edit query in model" />
     <MESSAGE value="dung - answer update condition not undefined" />
@@ -607,7 +613,8 @@
     <MESSAGE value="edit api docs" />
     <MESSAGE value="update dashboard" />
     <MESSAGE value="fix code for dummy" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix code for dummy" />
+    <MESSAGE value="fix router" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix router" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

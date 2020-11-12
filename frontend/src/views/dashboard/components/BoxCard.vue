@@ -5,7 +5,7 @@
     </div>
     <div style="position:relative;">
       <pan-thumb :image="avatar" class="panThumb" />
-      <mallki class-name="mallki-text" text="quiz management" />
+      <mallki class-name="mallki-text" text="quiz management" href="https://github.com/thdung002/quizmanagement" />
       <div style="padding-top:35px;" class="progress-item">
         <span>Vue</span>
         <el-progress :percentage="32.4" />
