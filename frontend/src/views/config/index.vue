@@ -118,9 +118,6 @@
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
                style="width: 400px; margin-left:50px;">
-        <el-form-item label="ID" prop="ID">
-          <el-input :disabled="true" v-model="temp.ID"/>
-        </el-form-item>
         <el-form-item label="Question lv1" prop="Question lv1">
           <el-input v-model="temp.NumberQuestionLevel1"/>
         </el-form-item>

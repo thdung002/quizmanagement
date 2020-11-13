@@ -6,7 +6,7 @@
       <el-input v-model="listQuery.Config" placeholder="Config id" style="width: 200px;" class="filter-item"
                 @keyup.enter.native="handleFilter"/>
       <el-input v-model="listQuery.Template" placeholder="Template id" style="width: 200px;" class="filter-item"
-                @keyup.enter.native="handleFilter"/>   
+                @keyup.enter.native="handleFilter"/>
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key"/>
       </el-select>
@@ -89,9 +89,6 @@
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :model="temp" label-position="left" label-width="150px"
                style="width: 400px; margin-left:50px;">
-        <el-form-item label="ID" prop="ID">
-          <el-input :disabled="true" v-model="temp.ID"/>
-        </el-form-item>
         <el-form-item label="Examination id" prop="Examination">
           <el-input :disabled="true" v-model="temp.Examination"/>
         </el-form-item>

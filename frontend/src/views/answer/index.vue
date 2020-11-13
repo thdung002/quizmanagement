@@ -93,9 +93,6 @@
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
                style="width: 400px; margin-left:50px;">
-        <el-form-item label="ID" prop="ID">
-          <el-input :disabled="true" v-model="temp.ID"/>
-        </el-form-item>
         <el-form-item label="Question ID" prop="Question">
           <el-select v-model="temp.Question" class="filter-item" placeholder="Please select">
             <el-option v-for="item in listquestion" :key="item.ID" :label="item.Content" :value="item.ID"/>

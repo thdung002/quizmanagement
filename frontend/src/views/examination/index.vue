@@ -33,7 +33,7 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <el-table-column label="ID" prop="ID" sortable="custom" align="center" width="80"
+      <el-table-column label="ID" prop="ID" sortable="custom" align="center" width="80" fixed
                        :class-name="getSortClass('ID')">
         <template slot-scope="{row}">
           <span>{{ row.ID }}</span>
@@ -44,6 +44,12 @@
           <span>{{ row.CreatedAt | format_date}}</span>
         </template>
       </el-table-column>
+      <el-table-column label="Description" width="200" align="center" fixed>
+        <template slot-scope="{row}" >
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Description }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="Lecturer name" width="200" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.Lecturer }}</span>
@@ -118,33 +124,34 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px"
-               style="width: 400px; margin-left:50px;">
-        <el-form-item label="ID" prop="ID">
-          <el-input :disabled="true" v-model="temp.ID"/>
+               style="width: 600px; margin-left:50px;">
+        <el-form-item label="Description" prop="Description">
+          <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="Please input description" v-model="temp.Description" clearable>
+          </el-input>
         </el-form-item>
         <el-form-item label="Lecturer name" prop="Lecturer">
-          <el-input v-model="temp.Lecturer"/>
+          <el-input v-model="temp.Lecturer" clearable/>
         </el-form-item>
         <el-form-item label="Duration" prop="Duration">
-          <el-input v-model="temp.Duration"/>
+          <el-input v-model="temp.Duration" clearable/>
         </el-form-item>
         <el-form-item label="Semester" prop="Semester">
-          <el-input v-model="temp.Semester"/>
+          <el-input v-model="temp.Semester" clearable/>
         </el-form-item>
         <el-form-item label="Notes" prop="Notes">
-          <el-input v-model="temp.Notes"/>
+          <el-input v-model="temp.Notes" clearable/>
         </el-form-item>
         <el-form-item label="Department" prop="Department">
-          <el-input v-model="temp.Department"/>
+          <el-input v-model="temp.Department" clearable/>
         </el-form-item>
         <el-form-item label="Course name" prop="Course">
-          <el-input v-model="temp.Course"/>
+          <el-input v-model="temp.Course" clearable/>
         </el-form-item>
-        <el-form-item label="Course code" prop="CourseCode">
-          <el-input v-model="temp.CourseCode"/>
+        <el-form-item label="Course code" prop="Coursecode">
+          <el-input v-model="temp.Coursecode" clearable/>
         </el-form-item>
         <el-form-item label="Academic Year" prop="AcademicYear">
-          <el-input v-model="temp.AcademicYear"/>
+          <el-input v-model="temp.AcademicYear" clearable/>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
@@ -243,6 +250,7 @@
                     Notes: '',
                     Department: '',
                     Course: '',
+                    Description:'',
                     CourseCode: '',
                     AcademicYear:'',
                     accessID: '',
@@ -263,6 +271,7 @@
                     CourseCode: [{required: true, message: 'course code is required', trigger: 'blur'}],
                     AcademicYear: [{required: true, message: 'academic year is required', trigger: 'blur'}],
                     Lecturer: [{required: true, message: 'lecturer name is required', trigger: 'blur'}],
+                    Description: [{required: true, message:'please input description',trigger:'blur'}]
                 },
                 downloadLoading: false
             }
@@ -312,7 +321,8 @@
                     Notes: '',
                     Department: '',
                     Course: '',
-                    CourseCode: '',
+                    Coursecode: '',
+                    Description:'',
                     AcademicYear:'',
                     accessID: '',
                 }

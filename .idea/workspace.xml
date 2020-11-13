@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
+    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="edit examination">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/examination.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/examination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/config/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/config/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/question/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/question/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,8 +169,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.start-server (1)" />
+        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.genAPIDoc" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
@@ -248,7 +255,8 @@
       <workItem from="1605022127229" duration="1772000" />
       <workItem from="1605025626042" duration="2608000" />
       <workItem from="1605091287133" duration="1783000" />
-      <workItem from="1605152571493" duration="2818000" />
+      <workItem from="1605152571493" duration="2866000" />
+      <workItem from="1605236392815" duration="5918000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -565,7 +573,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605154765488</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="fix router">
+      <created>1605155493013</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1605155493013</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
