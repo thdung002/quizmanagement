@@ -36,3 +36,10 @@ export function DeleteQuestion(id){
     method: 'delete'
   })
 }
+export function GetRandomQuestion(data){
+  return request({
+    url: '/v1/question/getrandom',
+    method: 'get',
+    params: data
+  })
+}
