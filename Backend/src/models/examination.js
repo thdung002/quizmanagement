@@ -84,7 +84,7 @@ Exam.getExam = function (page, perpage, sort,lecturer,semester, result) {
     if (page === 0|| isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
-        perpage = 5;
+        perpage = 10;
     }
     if (sort.length === 0|| sort!=="DESC") {
         sort = "ASC";

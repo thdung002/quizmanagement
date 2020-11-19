@@ -88,7 +88,7 @@ Question.getQuestion = function (page, perpage, sort, content, type, level, resu
     let offset = perpage * (page - 1);
     if (content.length !== 0 && type.length !== 0 && !isNaN(level)) {
         try {
-            dbConn.query("SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and type = '${type}' and level = '${level}'", function (err, rows) {
+            dbConn.query(`SELECT COUNT(*) as total from question where MATCH(Content) AGAINST('${content}') and type = '${type}' and level = '${level}'`, function (err, rows) {
                 if (err) {
                     return result(err);
                 } else {

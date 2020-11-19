@@ -30,7 +30,8 @@ module.exports = {
         let page = req.query.page || '';
         let sort = req.query.sort || '';
         let perpage = req.query.perpage || '';
-        Template.getTemplate(parseInt(page),parseInt(perpage),sort,function (err, result) {
+        let templatename = req.query.templatename ||'';
+        Template.getTemplate(parseInt(page),parseInt(perpage),sort,templatename,function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "Template get successfully!", data: result,code: 20000});

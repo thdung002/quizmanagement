@@ -6,7 +6,6 @@ var Template = function (template) {
     this.TemplateName = template.TemplateName;
     this.Description = template.Description;
     this.HeaderContent = template.HeaderContent;
-    this.Quiz = template.Quiz;
     this.QuestionContent = template.QuestionContent;
     this.AnswerContent = template.AnswerContent;
     this.FooterContent = template.FooterContent;
@@ -25,7 +24,6 @@ Template.add = function (accessID, newTemp, result) {
             queryObj.TemplateName = newTemp.TemplateName;
             queryObj.Description = newTemp.Description;
             queryObj.HeaderContent = newTemp.HeaderContent;
-            queryObj.Quiz = newTemp.Quiz;
             queryObj.QuestionContent = newTemp.QuestionContent;
             queryObj.AnswerContent = newTemp.AnswerContent;
             queryObj.FooterContent = newTemp.FooterContent;
@@ -80,53 +78,93 @@ Template.getTemplateById = function (id, result) {
     }
 };
 //get all Template with pagination
-Template.getTemplate = function (page, perpage, sort, result) {
+Template.getTemplate = function (page, perpage, sort,templatename, result) {
     if (page === 0 || isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
-        perpage = 5;
+        perpage = 10;
     }
     if (sort.length === 0 || sort !== "DESC") {
         sort = "ASC";
     }
-    let type = typeof (sort);
     let offset = perpage * (page - 1);
-    try {
-        dbConn.query("SELECT COUNT(*) as total from template where IsDeleted = 0  ", function (err, rows) {
-            if (err) {
-                return result(err);
-            } else {
-                dbConn.query(`Select * from template where IsDeleted = 0 ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
-                    if (errs) {
-                        console.log("error in query db: ", errs);
-                        return result(errs);
-                    } else {
-                        let pages = Math.ceil(rows[0].total / perpage);
-                        let output = {
-                            data: res,
-                            pages: {
-                                current: page,
-                                prev: page - 1,
-                                hasPrev: false,
-                                next: (page + 1) > pages ? 0 : (page + 1),
-                                hasNext: false,
-                                total: rows[0].total
-                            },
-                            items: {
-                                begin: ((page * perpage) - perpage) + 1,
-                                end: page * perpage,
-                                total: parseInt(res.length)
-                            }
-                        };
-                        output.pages.hasNext = (output.pages.next !== 0);
-                        output.pages.hasPrev = (output.pages.prev !== 0);
-                        return result(null, output);
-                    }
-                });
-            }
-        })
-    } catch (error) {
-        return result(1, 'get_all_template_fail', 400, error, null);
+    if(templatename.length !== 0 ){
+        try {
+            dbConn.query(`SELECT COUNT(*) as total from template where MATCH(TemplateName) AGAINST('${templatename}') and IsDeleted =0`, function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from template where MATCH(TemplateName) AGAINST('${templatename}') and IsDeleted=0 ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: rows[0].total
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_template_fail', 400, error, null);
+        }
+    }
+    else{
+        try {
+            dbConn.query("SELECT COUNT(*) as total from template where IsDeleted = 0 ", function (err, rows) {
+                if (err) {
+                    return result(err);
+                } else {
+                    dbConn.query(`Select * from template where IsDeleted = 0 ORDER BY ID ${sort} limit ${perpage} offset ${offset} `, function (errs, res) {
+                        if (errs) {
+                            console.log("error in query db: ", errs);
+                            return result(errs);
+                        } else {
+                            let pages = Math.ceil(rows[0].total / perpage);
+                            let output = {
+                                data: res,
+                                pages: {
+                                    current: page,
+                                    prev: page - 1,
+                                    hasPrev: false,
+                                    next: (page + 1) > pages ? 0 : (page + 1),
+                                    hasNext: false,
+                                    total: rows[0].total
+                                },
+                                items: {
+                                    begin: ((page * perpage) - perpage) + 1,
+                                    end: page * perpage,
+                                    total: parseInt(res.length)
+                                }
+                            };
+                            output.pages.hasNext = (output.pages.next !== 0);
+                            output.pages.hasPrev = (output.pages.prev !== 0);
+                            return result(null, output);
+                        }
+                    });
+                }
+            })
+        } catch (error) {
+            return result(1, 'get_all_template_fail', 400, error, null);
+        }
     }
 };
 
@@ -137,7 +175,6 @@ Template.update = function (id, accessId, Templateinfo, result) {
         queryObj.TemplateName = Templateinfo.TemplateName;
         queryObj.Description = Templateinfo.Description;
         queryObj.HeaderContent = Templateinfo.HeaderContent;
-        queryObj.Quiz = Templateinfo.Quiz;
         queryObj.QuestionContent = Templateinfo.QuestionContent;
         queryObj.AnswerContent = Templateinfo.AnswerContent;
         queryObj.FooterContent = Templateinfo.FooterContent;

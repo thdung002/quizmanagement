@@ -3,8 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/controllers/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/controllers/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/examination.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/examination.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/questiontopic.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/questiontopic.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/quizcontent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/type.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/type.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/template.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/PanelGroup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/PanelGroup.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -163,8 +173,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.start-server (1)" />
+        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.genAPIDoc" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
@@ -251,7 +261,8 @@
       <workItem from="1605091287133" duration="1783000" />
       <workItem from="1605152571493" duration="2866000" />
       <workItem from="1605236392815" duration="6001000" />
-      <workItem from="1605699579067" duration="1927000" />
+      <workItem from="1605699579067" duration="2332000" />
+      <workItem from="1605752520668" duration="7660000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -582,7 +593,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605243450328</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="update dashboard">
+      <created>1605701668106</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1605701668106</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -627,11 +645,11 @@
     <MESSAGE value="dung edit permission for user page(only admin, super admin)&#10;edit role in database( change to enum(&quot;super admin&quot;, &quot;admin&quot;,&quot;user&quot;)" />
     <MESSAGE value="edit router, models(back end)" />
     <MESSAGE value="edit api docs" />
-    <MESSAGE value="update dashboard" />
     <MESSAGE value="fix code for dummy" />
     <MESSAGE value="fix router" />
     <MESSAGE value="edit examination, fixed head table" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit examination, fixed head table" />
+    <MESSAGE value="update dashboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="update dashboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -646,10 +664,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="js.build_tools.npm">
-        <watch expression="err.sqlMessage" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
