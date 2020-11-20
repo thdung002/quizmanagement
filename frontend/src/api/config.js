@@ -9,6 +9,13 @@ export function GetConfig(data){
     params: data,
   })
 }
+export function GetConfigbyID(id){
+  return request({
+    url: '/v1/config/get'+id,
+    method: 'get',
+  })
+}
+
 export function GetActiveConfig(){
   return request({
     url: '/v1/config/getactiveconfig',

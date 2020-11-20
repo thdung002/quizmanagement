@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/api/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/question.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -248,7 +249,11 @@
       <workItem from="1605022127229" duration="1772000" />
       <workItem from="1605025626042" duration="2608000" />
       <workItem from="1605091287133" duration="1783000" />
-      <workItem from="1605152571493" duration="2818000" />
+      <workItem from="1605152571493" duration="2866000" />
+      <workItem from="1605236392815" duration="6001000" />
+      <workItem from="1605699579067" duration="2332000" />
+      <workItem from="1605752520668" duration="7698000" />
+      <workItem from="1605791636207" duration="2612000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
@@ -565,7 +570,35 @@
       <option name="project" value="LOCAL" />
       <updated>1605154765488</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="fix router">
+      <created>1605155493013</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1605155493013</updated>
+    </task>
+    <task id="LOCAL-00047" summary="edit examination, fixed head table">
+      <created>1605243450328</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1605243450328</updated>
+    </task>
+    <task id="LOCAL-00048" summary="update dashboard">
+      <created>1605701668106</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1605701668106</updated>
+    </task>
+    <task id="LOCAL-00049" summary="update template page">
+      <created>1605763034214</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1605763034214</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,8 +622,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung edit db query" />
-    <MESSAGE value="dung edit query in model" />
     <MESSAGE value="dung - answer update condition not undefined" />
     <MESSAGE value="edit delete in answer models" />
     <MESSAGE value="edit delete in answer, examination, quizcontent, template, user models" />
@@ -611,10 +642,12 @@
     <MESSAGE value="dung edit permission for user page(only admin, super admin)&#10;edit role in database( change to enum(&quot;super admin&quot;, &quot;admin&quot;,&quot;user&quot;)" />
     <MESSAGE value="edit router, models(back end)" />
     <MESSAGE value="edit api docs" />
-    <MESSAGE value="update dashboard" />
     <MESSAGE value="fix code for dummy" />
     <MESSAGE value="fix router" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix router" />
+    <MESSAGE value="edit examination, fixed head table" />
+    <MESSAGE value="update dashboard" />
+    <MESSAGE value="update template page" />
+    <option name="LAST_COMMIT_MESSAGE" value="update template page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -629,10 +662,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="js.build_tools.npm">
-        <watch expression="err.sqlMessage" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>

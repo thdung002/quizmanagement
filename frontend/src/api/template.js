@@ -9,6 +9,13 @@ export function GetTemplate(data){
     params: data,
   })
 }
+export function GetOneTemplate(id){
+  return request({
+    url: '/v1/template/get/' +id,
+    method: 'get'
+  })
+}
+
 export function CreateTemplate(data){
   return request({
     url:'/v1/template/add',

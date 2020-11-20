@@ -3,8 +3,7 @@
     <github-corner class="github-corner" />
 
     <el-row :gutter="8">
-        <div class="dashboard-text">name: {{ name }}</div>
-        <div class="dashboard-text">roles: <span v-for="role in roles" :key="role">{{ role }}</span></div>
+      <panel-group/>
     </el-row>
     <el-row :gutter="8">
       <el-col :xs="{span: 24}" :sm="{span: 12}" :md="{span: 12}" :lg="{span: 6}" :xl="{span: 6}" style="margin-bottom:30px;">
@@ -26,6 +25,7 @@ import { mapGetters } from 'vuex'
 import BoxCard from './components/BoxCard'
 import TodoList from './components/TodoList'
 import GithubCorner from '@/components/GithubCorner'
+import PanelGroup from './components/PanelGroup'
 
 export default {
   name: 'Dashboard',
@@ -33,6 +33,7 @@ export default {
         GithubCorner,
         BoxCard,
         TodoList,
+        PanelGroup
 
     },
 

@@ -34,7 +34,7 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <el-table-column label="ID" prop="ID" sortable="custom" align="center" width="80"
+      <el-table-column label="ID" prop="ID" sortable="custom" align="center" width="80" height="250"
                        :class-name="getSortClass('ID')">
         <template slot-scope="{row}">
           <span>{{ row.ID }}</span>
@@ -50,7 +50,7 @@
           <span class="link-type" @click="handleUpdate(row)">{{ row.Username }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Password" min-width="150px" align="center">
+      <el-table-column label="Password" min-width="150px" align="center" hidden="true">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.Password }}</span>
         </template>
@@ -97,9 +97,6 @@
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
                style="width: 400px; margin-left:50px;">
-        <el-form-item label="ID" prop="ID">
-          <el-input :disabled="true" v-model="temp.ID"/>
-        </el-form-item>
         <el-form-item label="Username" prop="Username">
           <el-input v-model="temp.Username"/>
         </el-form-item>
@@ -116,7 +113,7 @@
         </el-form-item>
 
         <el-form-item label="Password" prop="Password">
-          <el-input :type="passwordType" v-model="temp.Password"/>
+          <el-input v-model="temp.Password" show-password/>
         </el-form-item>
         <el-form-item label="Fullname" prop="Fullname">
           <el-input v-model="temp.Fullname"/>
@@ -221,7 +218,6 @@
             };
 
             return {
-                passwordType: 'password',
                 tableKey: 0,
                 list: null,
                 total: 0,
@@ -264,6 +260,7 @@
                         validator: validatePassword
                     }],
                     Fullname: [{required: true, message: 'name is required', trigger: 'blur'}],
+                    Role: [{required: true,message:'Please select role',trigger: 'change'}],
                     Email: [
                         {required: true, message: 'Please input email address', trigger: 'blur'},
                         {type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change']}
@@ -360,13 +357,16 @@
             handleUpdate(row) {
                 this.resetTemp();
                 this.temp = Object.assign({}, row); // copy obj
-                this.temp.accessID = getToken();
-                this.dialogStatus = 'update';
-                this.dialogFormVisible = true;
-                this.temp.Password='';
-                this.$nextTick(() => {
-                    this.$refs['dataForm'].clearValidate()
-                })
+                if(this.temp.ID !== 1){
+                    this.temp.accessID = getToken();
+                    this.dialogStatus = 'update';
+                    this.dialogFormVisible = true;
+                    this.temp.Password='';
+                    this.$nextTick(() => {
+                        this.$refs['dataForm'].clearValidate()
+                    })
+
+                }
             },
             updateData() {
                 this.$refs['dataForm'].validate((valid) => {

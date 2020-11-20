@@ -13,6 +13,7 @@ var Exam = function (exam) {
     this.Lecturer = exam.Lecturer;
     this.CreatedBy = exam.CreatedBy;
     this.UpdatedBy = exam.UpdatedBy;
+    this.Description = exam.Description;
     this.IsDeleted = exam.IsDeleted;
 };
 //add Exam
@@ -27,6 +28,7 @@ Exam.add = function (accessID, newExam, result) {
             queryObj.CourseCode = newExam.CourseCode;
             queryObj.AcademicYear = newExam.AcademicYear;
             queryObj.Lecturer = newExam.Lecturer;
+            queryObj.Description = newExam.Description;
             queryObj.CreatedBy = accessID;
             dbConn.query("INSERT INTO examination set ?", queryObj, function (err, res) {
                 if (err) {
@@ -82,7 +84,7 @@ Exam.getExam = function (page, perpage, sort,lecturer,semester, result) {
     if (page === 0|| isNaN(page))
         page = 1;
     if (perpage <= 0 || isNaN(perpage)) {
-        perpage = 5;
+        perpage = 10;
     }
     if (sort.length === 0|| sort!=="DESC") {
         sort = "ASC";
@@ -272,11 +274,12 @@ Exam.update = function (accessId,id, Examinfo, result) {
         queryObj.CourseCode = Examinfo.CourseCode;
         queryObj.AcademicYear = Examinfo.AcademicYear;
         queryObj.Lecturer = Examinfo.Lecturer;
+        queryObj.Description = Examinfo.Description;
         queryObj.UpdatedBy = accessId;
         queryObj.Id = id;
         queryObj.IsDeleted = Examinfo.IsDeleted;
-        dbConn.query("UPDATE examination SET Duration=?,Semester=?,Notes=?,Department=?,Course=?,CourseCode=?,AcademicYear=?,Lecturer=?,UpdatedBy=?,IsDeleted=? WHERE id = ?",
-            [queryObj.Duration, queryObj.Semester, queryObj.Notes,queryObj.Department,queryObj.Course,queryObj.CourseCode,
+        dbConn.query("UPDATE examination SET Description=?,Duration=?,Semester=?,Notes=?,Department=?,Course=?,CourseCode=?,AcademicYear=?,Lecturer=?,UpdatedBy=?,IsDeleted=? WHERE id = ?",
+            [queryObj.Description,queryObj.Duration, queryObj.Semester, queryObj.Notes,queryObj.Department,queryObj.Course,queryObj.CourseCode,
                 queryObj.AcademicYear,queryObj.Lecturer, queryObj.UpdatedBy,queryObj.IsDeleted, queryObj.Id], function (err, res) {
             if (err) {
                 console.log("error: ", err);
