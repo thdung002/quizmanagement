@@ -72,8 +72,9 @@ module.exports = {
     },
     randomQuestion: function(req,res){
         let quantity = parseInt(req.query.quantity);
-        let type = parseInt(req.query.type);
-        Question.random(quantity,type,function(err,result){
+        let type = req.query.type;
+        let level = parseInt(req.query.level);
+        Question.random(quantity,type,level,function(err,result){
             if(err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message:"get random question ok",data:result, code: 20000});

@@ -442,9 +442,9 @@ Question.delete = function (id, result) {
 };
 
 //get random question
-Question.random = function (quantity, type, result) {
+Question.random = function (quantity, type,level, result) {
     try {
-        dbConn.query(`SELECT ID FROM question where type =${type} and IsDeleted = 0 ORDER BY RAND() LIMIT ${quantity}`, function (err, res) {
+        dbConn.query(`SELECT ID FROM question where type ='${type}' and level = '${level}' and IsDeleted = 0 ORDER BY RAND() LIMIT ${quantity}`, function (err, res) {
             if (err) {
                 console.log("error: ", err);
                 result(null, err);
