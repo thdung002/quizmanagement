@@ -1,6 +1,7 @@
 'use strict';
 var dbConn = require('./../../config/db.config');
 const Pieces = require('../utils/Pieces');
+const { response } = require('express');
 
 var Quiz = function (quiz) {
     this.Examination = quiz.Examination;
@@ -11,6 +12,8 @@ var Quiz = function (quiz) {
     this.UpdatedBy = quiz.UpdatedBy;
     this.IsDeleted = quiz.IsDeleted;
 };
+
+var quizID;
 
 //Add new quiz
 Quiz.add = function (accessID, newQuiz, result) {
@@ -33,11 +36,133 @@ Quiz.add = function (accessID, newQuiz, result) {
             queryObj.Code = newQuiz.Code;
             queryObj.CreatedBy = accessID;
             dbConn.query("INSERT INTO quiz set ?", queryObj, function (err, res) {
+                quizID = res.insertId;
                 if (err) {
                     result(err, null);
                 } else {
                     result(null, res.err);
                 }
+            });
+           dbConn.query("SELECT * FROM config where ID = ?", parseInt(queryObj.Config), function (err, res) {
+                var nq1 = res[0].NumberQuestionLevel1;
+                dbConn.query(`SELECT * FROM question where level = ${1} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq1}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject);
+                    }
+                });
+                var nq2 = res[0].NumberQuestionLevel2;
+                dbConn.query(`SELECT * FROM question where level = ${2} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq2}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq3 = res[0].NumberQuestionLevel3;
+                dbConn.query(`SELECT * FROM question where level = ${3} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq3}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq4 = res[0].NumberQuestionLevel4;
+                dbConn.query(`SELECT * FROM question where level = ${4} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq4}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq5 = res[0].NumberQuestionLevel5;
+                dbConn.query(`SELECT * FROM question where level = ${5} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq5}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq6 = res[0].NumberQuestionLevel6;
+                dbConn.query(`SELECT * FROM question where level = ${6} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq6}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq7 = res[0].NumberQuestionLevel7;
+                dbConn.query(`SELECT * FROM question where level = ${7} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq7}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq8 = res[0].NumberQuestionLevel8;
+                dbConn.query(`SELECT * FROM question where level = ${8} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq8}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq9 = res[0].NumberQuestionLevel9;
+                dbConn.query(`SELECT * FROM question where level = ${9} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq9}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
+                var nq10 = res[0].NumberQuestionLevel10;
+                dbConn.query(`SELECT * FROM question where level = ${10} and IsDeleted = 0 ORDER BY RAND() LIMIT ${nq10}`,function (err, res) {
+                    let questionObject = {};
+                        questionObject.Quiz = quizID;
+                        questionObject.CreatedBy = accessID;
+                        questionObject.QuestionID = 0;
+                    for (var j = 0; j < res.length; j++) {
+                        questionObject.QuestionID = res[j].ID;
+                        dbConn.query("INSERT INTO quizcontent set ?", questionObject, function (err, res) {
+                        });
+                    }
+                });
             });
         } catch (error) {
             result(1, 'create_Quiz_fail', 400, error, null);

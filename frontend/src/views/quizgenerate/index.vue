@@ -27,9 +27,6 @@
         <el-button type="primary" @click="createData()">
           Confirm
         </el-button>
-        <el-button @click="dialogFormVisible = false">
-          Cancel
-        </el-button>
       </div>
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
       <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
