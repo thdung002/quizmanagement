@@ -19,10 +19,7 @@ module.exports = {
     },
     //get all QuizContent
     getQuizContent: function (req, res) {
-        let page = req.body.page || '';
-        let sort = req.body.sort || '';
-        let perpage = req.body.perpage || '';
-        QuizContent.getQuizContent(parseInt(page),parseInt(perpage),sort,function (err, result) {
+        QuizContent.getQuizContent(req.params.idquiz, function (err, res) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
             else return res.json({result:"ok",message: "QuizContent get successfully!", data: result,code: 20000});

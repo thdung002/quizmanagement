@@ -9,6 +9,12 @@ export function GetExam(data){
     params: data,
   })
 }
+export function GetOneExam(id){
+  return request({
+    url: '/v1/exam/get/' +id,
+    method: 'get'
+  })
+}
 export function GetActiveExam(){
   return request({
     url: '/v1/exam/getactiveexam',

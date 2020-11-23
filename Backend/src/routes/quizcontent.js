@@ -78,7 +78,7 @@ module.exports = function (app) {
      */
 
 
-    app.get('/v1/quizcontent/get/:id', quizcontentController.getQuizContentById);
+    app.get('/v1/quizcontent/get/:idquiz', quizcontentController.getQuizContent);
     /**
      * @api {GET} /v1/quizcontent/get/:id Get One
      * @apiVersion 1.0.0

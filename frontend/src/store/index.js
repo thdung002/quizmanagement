@@ -9,13 +9,18 @@ import permission from './modules/permission'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+  state: {
+    template: 0,
+    examination: 0,
+    quiz: 0
+  },
   modules: {
     app,
     permission,
     settings,
     user
   },
-  getters
+  getters,
 })
 
 export default store

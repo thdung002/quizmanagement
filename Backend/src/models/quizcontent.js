@@ -5,8 +5,8 @@ const Pieces = require('../utils/Pieces');
 var QuizContent = function (quiz) {
     this.Quiz = quiz.Quiz;
     this.QuestionID = quiz.QuestionID;
-    this.CreatedBy = quiz.CreatedBy;
-    this.UpdatedBy = quiz.UpdatedBy;
+    this.Question;
+    this.Answer;
 };
 //add QuizContent
 QuizContent.add = function (accessID, newQuizContent, result) {
@@ -48,56 +48,19 @@ QuizContent.getQuizContentById = function (id, result) {
     }
 };
 //get all QuizContent with pagination
-QuizContent.getQuizContent = function (page, perpage, sort, result) {
-    if (page === 0|| isNaN(page))
-        page = 1;
-    if (perpage <= 0 || isNaN(perpage)) {
-        perpage = 10;
-    }
-    if (sort.length === 0|| sort!=="DESC") {
-        sort = "ASC";
-    }
-    let type = typeof (sort);
-    let offset = perpage * (page - 1);
-    try {
-        dbConn.query("SELECT COUNT(*) as total from quizcontent where IsDeleted = 0", function (err, rows) {
-            if (err) {
-                return result(err);
-            } else {
-                dbConn.query(`Select * from quizcontent ORDER BY ID ${sort} limit ${perpage} offset ${offset} where IsDeleted = 0`, function (errs, res) {
-                    if (errs) {
-                        console.log("error in query db: ", errs);
-                        return result(errs);
-                    } else {
-                        // console.log('topic : ', res);
-                        // result(null, res);
-                        let pages = Math.ceil(rows[0].total / perpage);
-                        let output = {
-                            data: res,
-                            pages: {
-                                current: page,
-                                prev: page - 1,
-                                hasPrev: false,
-                                next: (page + 1) > pages ? 0 : (page + 1),
-                                hasNext: false,
-                                total: rows[0].total
-                            },
-                            items: {
-                                begin: ((page * perpage) - perpage) + 1,
-                                end: page * perpage,
-                                total: parseInt(res.length)
-                            }
-                        };
-                        output.pages.hasNext = (output.pages.next !== 0);
-                        output.pages.hasPrev = (output.pages.prev !== 0);
-                        return result(null, output);
-                    }
-                });
-            }
-        })
-    } catch (error) {
-        return result(1, 'get_all_Quiz_Content_fail', 400, error, null);
-    }
+QuizContent.getQuizContent = function (idquiz, result) {
+    dbConn.query(`Select * from quizcontent where Quiz = ${idquiz}`, function (err, res) {
+        console.log(res);
+        for(var i = 0;i < res.length; i++){
+            dbConn.query(`Select * from question where ID = ${res[i].QuestionID}`, function (question) {
+                res[i].Question = question[0].Content;
+            });
+            dbConn.query(`Select * from answer where Question = ${res[i].QuestionID}`, function (answer) {
+                res[i].Answer = answer.Content;
+            });
+        }
+        return result(res);
+    });
 };
 
 //update QuizContent by id

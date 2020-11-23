@@ -28,15 +28,6 @@
           Confirm
         </el-button>
       </div>
-    <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
-      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
-        <el-table-column prop="key" label="Channel"/>
-        <el-table-column prop="pv" label="Pv"/>
-      </el-table>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
-      </span>
-    </el-dialog>
   </div>
 </template>
 
@@ -44,7 +35,7 @@
     import {CreateQuiz} from '@/api/quiz'
     import {GetActiveExam} from '@/api/examination'
     import {GetActiveConfig} from '@/api/config'
-    import {GetTemplate} from '@/api/template'
+    import {GetTemplate, GetOneTemplate} from '@/api/template'
     import moment from 'moment'
     import waves from '@/directive/waves' // waves directive
     import {parseTime} from '@/utils/index'
@@ -62,6 +53,18 @@
     // arr to obj, such as { CN : "China", US : "USA" }
 
     export default {
+        computed: {
+        getTemplateID () {
+            return store.$state.template
+            },
+        // getExam () {
+        //     return store.$state.examination
+        //     },
+        // getQuiz () {
+        //     return store.$state.quiz
+        //     }
+        },
+        
         name: 'ComplexTable',
         components: {Pagination},
         directives: {waves},
@@ -125,6 +128,7 @@
                     accessID: '',
                     accessUserRole: '',
                 },
+                template: '',
                 dialogFormVisible: false,
                 dialogStatus: '',
                 textMap: {
@@ -148,15 +152,12 @@
             getList() {
                 GetActiveExam().then((response) => {
                     this.listexam = response.data;
-                    console.log(response.data);
                 });
                 GetActiveConfig().then((response) => {
                     this.listconfig = response.data;
                 });
                 GetTemplate().then((response) => {
                     this.listtemplate = response.data.data;
-                    console.log(response.data);
-
                 });
             },
             handleModifyStatus(row, status) {
@@ -199,14 +200,24 @@
                                     position: 'top-right'
                                 });
                             else {
-                                // this.list.unshift(this.temp);
-                                this.dialogFormVisible = false;
+                                // GetOneTemplate(parseInt(this.temp.Template)).then((response) => {
+                                // this.template = response.data[0];
+                                // });
                                 this.getList();
                                 this.$notify({
                                     title: 'Success',
                                     message: 'Created Successfully',
                                     type: 'success',
                                     duration: 2000
+                                })
+                                this.$store.state.template = this.temp.Template;
+                                this.$store.state.examination = this.temp.Examination;
+                                this.$store.state.config = this.temp.Config;
+                                console.log(this.$store.state.template);
+                                console.log(this.$store.state.examination);
+                                console.log(this.$store.state.config);
+                                this.$router.push({
+                                    path:'/quizconfig/template/download/'
                                 })
                             }
                         })

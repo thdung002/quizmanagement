@@ -9,6 +9,12 @@ export function GetQuiz(data){
     params: data,
   })
 }
+export function GetQuizContent(id){
+  return request({
+    url: '/v1/quizcontent/get/:idquiz' +id,
+    method: 'get'
+  })
+}
 export function CreateQuiz(data){
   return request({
     url:'/v1/quiz/add',

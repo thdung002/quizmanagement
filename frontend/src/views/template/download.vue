@@ -12,31 +12,64 @@
 <!--    <div>-->
 <!--      {{ article.FooterContent }}-->
 <!--    </div>-->
-    <div ref="content" v-html="article.HeaderContent" />
-    <div ref="content" v-html="article.QuestionContent" />
-    <div ref="content" v-html="article.AnswerContent" />
-    <div ref="content" v-html="article.FooterContent" />
+    <div ref="content" v-html="list.HeaderContent" />
+    <div ref="content" v-html="list.QuestionContent" />
+    <div ref="content" v-html="list.AnswerContent" />
+    <div ref="content" v-html="list.FooterContent" />
 
   </div>
 </template>
 
 <script>
   import {GetOneTemplate} from "@/api/template";
+  import {GetOneExam} from "@/api/examination";
 
   export default {
         data() {
             return {
-                article: null,
+                list: {
+                  TemplateName: '',
+                  HeaderContent: '',
+                  QuestionContent: '',
+                  AnswerContent: '',
+                  FooterContent: ''
+                },
+                exam: {
+                  Lecturer: '',
+                  Semester: '',
+                  Duration: '',
+                  Notes: '',
+                  Department: '',
+                  Course: '',
+                  Description:'',
+                  CourseCode: '',
+                  AcademicYear:''
+                },
                 fullscreenLoading: true
             }
         },
+        created() {
+            this.fetchDataExam()
+        },
         mounted() {
-            this.fetchData()
+            this.fetchDataTemplate()
         },
         methods: {
-            fetchData() {
-                GetOneTemplate(4).then(response => {
-                    this.article = response.data[0];
+            fetchDataExam() {
+              GetOneExam(this.$store.state.examination).then(response => {
+                    this.exam = response.data[0];
+                    console.log(this.exam);
+                    this.fullscreenLoading = false;
+                        this.$nextTick(() => {
+                            window.print()
+                        })
+                })
+            },
+            fetchDataTemplate(){
+              GetOneTemplate(this.$store.state.template).then(response => {
+                    this.list = response.data[0];
+                    console.log(this.list);
+
                     this.fullscreenLoading = false;
                         this.$nextTick(() => {
                             window.print()
