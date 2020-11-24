@@ -23,59 +23,54 @@
 <script>
   import {GetOneTemplate} from "@/api/template";
   import {GetOneExam} from "@/api/examination";
-
+  import Mustache from 'mustache';
   export default {
         data() {
             return {
-                list: {
-                  TemplateName: '',
-                  HeaderContent: '',
-                  QuestionContent: '',
-                  AnswerContent: '',
-                  FooterContent: ''
-                },
-                exam: {
-                  Lecturer: '',
-                  Semester: '',
-                  Duration: '',
-                  Notes: '',
-                  Department: '',
-                  Course: '',
-                  Description:'',
-                  CourseCode: '',
-                  AcademicYear:''
-                },
-                fullscreenLoading: true
+                list: null,
+                exam: null,
+                fullscreenLoading: true,
+                headermustache:null,
             }
         },
         created() {
-            this.fetchDataExam()
+            this.fetchDataExam();
+            this.fetchDataTemplate();
+
         },
         mounted() {
-            this.fetchDataTemplate()
         },
         methods: {
             fetchDataExam() {
               GetOneExam(this.$store.state.examination).then(response => {
                     this.exam = response.data[0];
-                    console.log(this.exam);
-                    this.fullscreenLoading = false;
-                        this.$nextTick(() => {
-                            window.print()
-                        })
+                    // console.log(this.exam);
                 })
             },
             fetchDataTemplate(){
               GetOneTemplate(this.$store.state.template).then(response => {
                     this.list = response.data[0];
-                    console.log(this.list);
+                    this.list.HeaderContent = this.list.HeaderContent.replace(this.list.HeaderContent.match(/\{\{\s*\s*\TemplateName+\s*\}\}/g),Mustache.render("{{TemplateName}}", this.list));
+                    //lấy template name để render data
 
-                    this.fullscreenLoading = false;
-                        this.$nextTick(() => {
-                            window.print()
-                        })
+                  this.headermustache = this.list.HeaderContent.match(/\{\{\s*\s*\w+\s*\}\}/g); //lấy ra mustache exam để render data
+                  var i;
+                  for(i=0;i<this.headermustache.length;i++)
+                  {
+                      this.list.HeaderContent = this.list.HeaderContent.replace(this.headermustache[i],Mustache.render(this.headermustache[i], this.exam));//loop để thay data render
+                  }
+                  setTimeout(() => {
+                      this.fullscreenLoading = false;
+                      this.$nextTick(() => {
+                          window.print()
+                      })
+                  }, 3000)
                 })
-            }
+            },
+            // findMustache(){
+            //     let a = this.list.HeaderContent.match(/\{\{\s*\w+\s*\}\}/g);
+            //     console.log(a);
+            // }
         }
     }
 </script>

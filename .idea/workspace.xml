@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/models/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -254,6 +256,8 @@
       <workItem from="1605699579067" duration="2332000" />
       <workItem from="1605752520668" duration="7698000" />
       <workItem from="1605791636207" duration="2612000" />
+      <workItem from="1606137345665" duration="5116000" />
+      <workItem from="1606184950850" duration="6353000" />
     </task>
     <task id="LOCAL-00001" summary="Dung add source">
       <created>1599646824777</created>
