@@ -23,6 +23,7 @@
 <script>
   import {GetOneTemplate} from "@/api/template";
   import {GetOneExam} from "@/api/examination";
+import { render } from "nprogress";
 
   export default {
         data() {
@@ -49,16 +50,18 @@
             }
         },
         created() {
-            this.fetchDataExam()
-        },
-        mounted() {
+          console.log('2');
+            this.fetchDataExam(),
             this.fetchDataTemplate()
         },
+        // mounted() {
+        //   console.log('1');
+        //     this.fetchDataTemplate()
+        // },
         methods: {
             fetchDataExam() {
               GetOneExam(this.$store.state.examination).then(response => {
                     this.exam = response.data[0];
-                    console.log(this.exam);
                     this.fullscreenLoading = false;
                         this.$nextTick(() => {
                             window.print()
@@ -68,8 +71,6 @@
             fetchDataTemplate(){
               GetOneTemplate(this.$store.state.template).then(response => {
                     this.list = response.data[0];
-                    console.log(this.list);
-
                     this.fullscreenLoading = false;
                         this.$nextTick(() => {
                             window.print()
