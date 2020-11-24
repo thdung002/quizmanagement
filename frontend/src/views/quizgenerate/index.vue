@@ -4,17 +4,17 @@
                style="width: 400px; margin-left:50px;">
         <el-form-item label="Examination ID" prop="Examination">
           <el-select v-model="temp.Examination" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in listexam" :key="item.ID" :label="item.ID" :value="item.ID"/>
+            <el-option v-for="item in listexam" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
         </el-form-item>
         <el-form-item label="Config ID" prop="Config">
           <el-select v-model="temp.Config" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in listconfig" :key="item.ID" :label="item.ID" :value="item.ID"/>
+            <el-option v-for="item in listconfig" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
         </el-form-item>
         <el-form-item label="Template ID" prop="Template">
           <el-select v-model="temp.Template" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in listtemplate" :key="item.ID" :label="item.ID" :value="item.ID"/>
+            <el-option v-for="item in listtemplate" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
@@ -64,7 +64,7 @@
         //     return store.$state.quiz
         //     }
         },
-        
+
         name: 'ComplexTable',
         components: {Pagination},
         directives: {waves},
