@@ -1,12 +1,20 @@
 'use strict';
+var MySql = require('sync-mysql');
+
+var connection = new MySql({
+    host     : 'quizmanagement.ccd3ylv1pufy.ap-northeast-2.rds.amazonaws.com',
+    port     : '3306',
+    user     : 'dung',
+    password : 'dung1234',
+    database : 'quiz_management'
+});
+
 var dbConn = require('./../../config/db.config');
 const Pieces = require('../utils/Pieces');
 
 var QuizContent = function (quiz) {
     this.Quiz = quiz.Quiz;
     this.QuestionID = quiz.QuestionID;
-    this.Question;
-    this.Answer;
 };
 //add QuizContent
 QuizContent.add = function (accessID, newQuizContent, result) {
@@ -49,18 +57,15 @@ QuizContent.getQuizContentById = function (id, result) {
 };
 //get all QuizContent with pagination
 QuizContent.getQuizContent = function (idquiz, result) {
-    dbConn.query(`Select * from quizcontent where Quiz = ${idquiz}`, function (err, res) {
-        console.log(res);
-        for(var i = 0;i < res.length; i++){
-            dbConn.query(`Select * from question where ID = ${res[i].QuestionID}`, function (question) {
-                res[i].Question = question[0].Content;
-            });
-            dbConn.query(`Select * from answer where Question = ${res[i].QuestionID}`, function (answer) {
-                res[i].Answer = answer.Content;
-            });
-        }
-        return result(res);
-    });
+    var quizContent = connection.query(`Select * from quizcontent where Quiz = ${idquiz}`);
+    for(var i = 0; i < quizContent.length; i++){
+        var questionContent =  connection.query(`Select * from question where ID = ${quizContent[i].QuestionID}`);
+        quizContent[i].Question = questionContent[0].Content;
+        var answerContent =  connection.query(`Select Content from answer where Question = ${quizContent[i].QuestionID}`);
+        quizContent[i].Answer = answerContent;
+    }
+    console.log(quizContent);
+    return result(null, quizContent)
 };
 
 //update QuizContent by id

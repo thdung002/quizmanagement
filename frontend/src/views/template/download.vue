@@ -23,12 +23,8 @@
 <script>
   import {GetOneTemplate} from "@/api/template";
   import {GetOneExam} from "@/api/examination";
-<<<<<<< HEAD
-import { render } from "nprogress";
-
-=======
+  import { render } from "nprogress";
   import Mustache from 'mustache';
->>>>>>> a50b08fb9519153b8c04e60fc1aaaf9921f1f2a0
   export default {
         data() {
             return {
@@ -39,17 +35,14 @@ import { render } from "nprogress";
             }
         },
         created() {
-<<<<<<< HEAD
           console.log('2');
             this.fetchDataExam(),
             this.fetchDataTemplate()
-=======
             this.fetchDataExam();
             this.fetchDataTemplate();
 
         },
         mounted() {
->>>>>>> a50b08fb9519153b8c04e60fc1aaaf9921f1f2a0
         },
         // mounted() {
         //   console.log('1');
@@ -59,25 +52,20 @@ import { render } from "nprogress";
             fetchDataExam() {
               GetOneExam(this.$store.state.examination).then(response => {
                     this.exam = response.data[0];
-<<<<<<< HEAD
                     this.fullscreenLoading = false;
                         this.$nextTick(() => {
                             window.print()
                         })
-=======
                     // console.log(this.exam);
->>>>>>> a50b08fb9519153b8c04e60fc1aaaf9921f1f2a0
                 })
             },
             fetchDataTemplate(){
               GetOneTemplate(this.$store.state.template).then(response => {
                     this.list = response.data[0];
-<<<<<<< HEAD
                     this.fullscreenLoading = false;
                         this.$nextTick(() => {
                             window.print()
                         })
-=======
                     this.list.HeaderContent = this.list.HeaderContent.replace(this.list.HeaderContent.match(/\{\{\s*\s*\TemplateName+\s*\}\}/g),Mustache.render("{{TemplateName}}", this.list));
                     //lấy template name để render data
 
@@ -93,7 +81,6 @@ import { render } from "nprogress";
                           window.print()
                       })
                   }, 3000)
->>>>>>> a50b08fb9519153b8c04e60fc1aaaf9921f1f2a0
                 })
             },
             // findMustache(){
