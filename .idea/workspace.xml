@@ -3,10 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/models/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/models/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/question/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/question/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="npm.start-server">
+  <component name="RunManager" selected="npm.start-serve">
     <configuration default="true" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/Frontend/vue-admin-template/package.json" />
       <command value="run" />
@@ -115,7 +114,7 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start-server (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="start-serve" type="js.build_tools.npm" temporary="true">
       <package-json value="$PROJECT_DIR$/Backend/package.json" />
       <command value="run" />
       <scripts>
@@ -159,14 +158,14 @@
       <item itemvalue="npm.start-server" />
       <item itemvalue="npm.serve" />
       <item itemvalue="npm.start-website" />
-      <item itemvalue="npm.start-server (1)" />
       <item itemvalue="npm.start-website (1)" />
       <item itemvalue="npm.genAPIDoc" />
+      <item itemvalue="npm.start-serve" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start-serve" />
         <item itemvalue="npm.start-website (1)" />
-        <item itemvalue="npm.start-server (1)" />
         <item itemvalue="npm.genAPIDoc" />
         <item itemvalue="npm.start-website" />
         <item itemvalue="npm.serve" />
@@ -257,14 +256,12 @@
       <workItem from="1605752520668" duration="7698000" />
       <workItem from="1605791636207" duration="2612000" />
       <workItem from="1606137345665" duration="5116000" />
-      <workItem from="1606184950850" duration="6353000" />
-    </task>
-    <task id="LOCAL-00001" summary="Dung add source">
-      <created>1599646824777</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1599646824777</updated>
+      <workItem from="1606184950850" duration="6414000" />
+      <workItem from="1606232253470" duration="939000" />
+      <workItem from="1606318262909" duration="891000" />
+      <workItem from="1606391473684" duration="1609000" />
+      <workItem from="1606395659044" duration="116000" />
+      <workItem from="1606395847144" duration="2217000" />
     </task>
     <task id="LOCAL-00002" summary="Dung add source">
       <created>1599647189311</created>
@@ -602,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605763034214</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="render download page">
+      <created>1606191354972</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1606191354972</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +630,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung - answer update condition not undefined" />
     <MESSAGE value="edit delete in answer models" />
     <MESSAGE value="edit delete in answer, examination, quizcontent, template, user models" />
     <MESSAGE value="dung add FE website base on template" />
@@ -651,7 +654,8 @@
     <MESSAGE value="edit examination, fixed head table" />
     <MESSAGE value="update dashboard" />
     <MESSAGE value="update template page" />
-    <option name="LAST_COMMIT_MESSAGE" value="update template page" />
+    <MESSAGE value="render download page" />
+    <option name="LAST_COMMIT_MESSAGE" value="render download page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

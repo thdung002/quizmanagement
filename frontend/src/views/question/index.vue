@@ -259,9 +259,9 @@
             this.getList()
         },
         methods: {
-            getList() {
+             getList() {
                 this.listLoading = false;
-                GetQuestion(this.listQuery).then(response => {
+                 GetQuestion(this.listQuery).then(response => {
                     this.list = response.data.data;
                     this.total = response.data.pages.total;
                 });
