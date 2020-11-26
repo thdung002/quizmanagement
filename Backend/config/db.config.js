@@ -5,7 +5,8 @@ const dbConn = mysql.createConnection({
   port     : '3306',
   user     : 'dung',
   password : 'dung1234',
-  database : 'quiz_management'
+  database : 'quiz_management',
+  timeout: 15000
 });
 dbConn.connect(function(err) {
   if (err) throw err;

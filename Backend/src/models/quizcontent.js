@@ -6,7 +6,8 @@ var connection = new MySql({
     port     : '3306',
     user     : 'dung',
     password : 'dung1234',
-    database : 'quiz_management'
+    database : 'quiz_management',
+    timeout: 15000
 });
 
 var dbConn = require('./../../config/db.config');
@@ -57,15 +58,26 @@ QuizContent.getQuizContentById = function (id, result) {
 };
 //get all QuizContent with pagination
 QuizContent.getQuizContent = function (idquiz, result) {
-    var quizContent = connection.query(`Select * from quizcontent where Quiz = ${idquiz}`);
-    for(var i = 0; i < quizContent.length; i++){
-        var questionContent =  connection.query(`Select * from question where ID = ${quizContent[i].QuestionID}`);
-        quizContent[i].Question = questionContent[0].Content;
-        var answerContent =  connection.query(`Select Content from answer where Question = ${quizContent[i].QuestionID}`);
-        quizContent[i].Answer = answerContent;
-    }
-    console.log(quizContent);
-    return result(null, quizContent)
+    dbConn.query(`Select * from quizcontent where Quiz = ${idquiz}`, function(err, res){
+        // for(var i = 0; i < res.length; i++){
+        //     var questionContent =  connection.query(`Select * from question where ID = ${res[i].QuestionID}`);
+        //     res[i].Question = questionContent[0].Content;
+        //     var answerContent =  connection.query(`Select Content from answer where Question = ${res[i].QuestionID}`);
+        //     res[i].Answer = answerContent;
+        // }
+        dbConn.query(`Select * from question where ID = ${res[i].QuestionID}`, function (err, question){
+            for(var i = 0;i < res.length; i++){
+                res[i].Question = question[0].Content;
+            }
+        })
+        dbConn.query(`Select Content from answer where Question = ${res[i].QuestionID}`, function (err, answer){
+            for(var i = 0;i < res.length; i++){
+                res[i].Question = answer;
+            }
+        })
+    return result(null, res)    
+    });
+    
 };
 
 //update QuizContent by id

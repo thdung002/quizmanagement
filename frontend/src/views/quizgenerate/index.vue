@@ -212,10 +212,7 @@
                                 })
                                 this.$store.state.template = this.temp.Template;
                                 this.$store.state.examination = this.temp.Examination;
-                                this.$store.state.config = this.temp.Config;
-                                console.log(this.$store.state.template);
-                                console.log(this.$store.state.examination);
-                                console.log(this.$store.state.config);
+                                this.$store.state.quiz = response.id.insertId;
                                 this.$router.push({
                                     path:'/quizconfig/template/download/'
                                 })

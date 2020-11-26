@@ -9,7 +9,7 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 const service = axios.create({
   baseURL: 'http://localhost:5000', // url = base url + request url
   withCredentials: true, // send cookies when cross-domain requests
-  timeout: 3000 // request timeout
+  // timeout: 300000 // request timeout
 });
 
 // request interceptor

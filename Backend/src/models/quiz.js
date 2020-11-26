@@ -152,7 +152,7 @@ Quiz.add = function (accessID, newQuiz, result) {
                             }
                         });
                     });
-                    result(null, res.err);
+                    result(null, res);
                 }
             });
            
