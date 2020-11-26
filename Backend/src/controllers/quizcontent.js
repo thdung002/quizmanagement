@@ -19,10 +19,10 @@ module.exports = {
     },
     //get all QuizContent
     getQuizContent: function (req, res) {
-        QuizContent.getQuizContent(req.params.idquiz, function (err, res) {
+        QuizContent.getQuizContent(req.params.idquiz, function (err, result) {
             if (err)
                 return res.json({result:"fail",message:"Invalid input"});
-            else return res.json({result:"ok",message: "QuizContent get successfully!", data: result,code: 20000});
+            else return res.json({result:"ok",message: "QuizContent get successfully!", data: result ,code: 20000});
         })
     },
     //get 1 QuizContent by id

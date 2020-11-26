@@ -11,7 +11,7 @@ export function GetQuiz(data){
 }
 export function GetQuizContent(id){
   return request({
-    url: '/v1/quizcontent/get/:idquiz' +id,
+    url: '/v1/quizcontent/get/' +id,
     method: 'get'
   })
 }

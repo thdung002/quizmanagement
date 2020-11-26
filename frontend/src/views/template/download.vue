@@ -1,21 +1,19 @@
 <template>
   <div v-loading.fullscreen.lock="fullscreenLoading" class="main-article" element-loading-text="Efforts to generate PDF">
-<!--      <div>-->
-<!--        {{ article.HeaderContent }}-->
-<!--      </div>-->
-<!--    <div>-->
-<!--      {{ article.QuestionContent }}-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      {{ article.AnswerContent }}-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      {{ article.FooterContent }}-->
-<!--    </div>-->
-    <div ref="content" v-html="list.HeaderContent" />
-    <div ref="content" v-html="list.QuestionContent" />
-    <div ref="content" v-html="list.AnswerContent" />
-    <div ref="content" v-html="list.FooterContent" />
+    <div v-if="list" ref="content" v-html="list.HeaderContent" />
+    <ul v-if="quizcontent">
+      <li v-for="data in quizcontent" :key="data.ID">
+        {{data.Question}}
+        <ul v-if="quizcontent.Answer">
+          <li v-for="answer in quizcontent.Answer" :key="answer.id">
+            {{ answer }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- <div ref="content" v-html="list.QuestionContent" />
+    <div ref="content" v-html="list.AnswerContent" /> -->
+    <div v-if="list" ref="content" v-html="list.FooterContent" />
 
   </div>
 </template>
@@ -23,33 +21,44 @@
 <script>
   import {GetOneTemplate} from "@/api/template";
   import {GetOneExam} from "@/api/examination";
+  import {GetQuizContent} from "@/api/quiz";
+  import { render } from "nprogress";
   import Mustache from 'mustache';
+  const options = {
+    timeout: 15000,
+  };
   export default {
         data() {
             return {
                 list: null,
                 exam: null,
+                quizcontent: null,
                 fullscreenLoading: true,
                 headermustache:null,
             }
         },
         created() {
-            this.fetchDataExam();
-            this.fetchDataTemplate();
-
-        },
-        mounted() {
+            this.fetchDataExam(),
+            this.fetchDataTemplate(),
+            this.fetchDataContent()
         },
         methods: {
             fetchDataExam() {
               GetOneExam(this.$store.state.examination).then(response => {
                     this.exam = response.data[0];
-                    // console.log(this.exam);
                 })
+            },
+             fetchDataContent() {
+              this.quizcontent =  this.getContent();
+              console.log(this.quizcontent);
+            },
+            getContent() {
+              return GetQuizContent(this.$store.state.quiz)
             },
             fetchDataTemplate(){
               GetOneTemplate(this.$store.state.template).then(response => {
                     this.list = response.data[0];
+                    this.fullscreenLoading = false;
                     this.list.HeaderContent = this.list.HeaderContent.replace(this.list.HeaderContent.match(/\{\{\s*\s*\TemplateName+\s*\}\}/g),Mustache.render("{{TemplateName}}", this.list));
                     //lấy template name để render data
 
@@ -64,13 +73,9 @@
                       this.$nextTick(() => {
                           window.print()
                       })
-                  }, 3000)
+                  }, 15000)
                 })
             },
-            // findMustache(){
-            //     let a = this.list.HeaderContent.match(/\{\{\s*\w+\s*\}\}/g);
-            //     console.log(a);
-            // }
         }
     }
 </script>
