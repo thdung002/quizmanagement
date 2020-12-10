@@ -10,7 +10,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "nodemon app",
+    "start-server": "nodemon index",
     "genAPIDoc": "apidoc -i ./src/routes/ -o ../docs/"
   },
   "repository": {
@@ -37,6 +37,7 @@
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "node-api-doc-generator": "^1.1.1",
+    "sync-mysql": "^3.0.1",
     "validator": "^13.1.17"
   },
   "devDependencies": {

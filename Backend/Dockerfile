@@ -1,14 +1,14 @@
 FROM node:13-alpine
 
-RUN mkdir /app
-WORKDIR /app
+RUN mkdir -p /app/node-docker
+WORKDIR /app/node-docker
 
-COPY package*.json ./
+COPY package.json package-lock.json /app/node-docker
 
 RUN npm install
 
-COPY . .
+COPY . /app/node-docker
 
 EXPOSE 5000
 
-ENTRYPOINT [ "nodemon","app"]
+CMD [ "npm","run", "start-server"]

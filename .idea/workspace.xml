@@ -3,9 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/.prettierrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/node_modules/validator/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/node_modules/validator/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/dist/Validator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/node_modules/validator/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/rollup.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/src/messages.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/src/validator.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/node_modules/validator/test/validator.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/question/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/question/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -261,7 +273,8 @@
       <workItem from="1606318262909" duration="891000" />
       <workItem from="1606391473684" duration="1609000" />
       <workItem from="1606395659044" duration="116000" />
-      <workItem from="1606395847144" duration="2217000" />
+      <workItem from="1606395847144" duration="2851000" />
+      <workItem from="1606403581039" duration="3093000" />
     </task>
     <task id="LOCAL-00002" summary="Dung add source">
       <created>1599647189311</created>
