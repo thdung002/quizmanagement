@@ -1,20 +1,15 @@
 <template>
   <div v-loading.fullscreen.lock="fullscreenLoading" class="main-article" element-loading-text="Efforts to generate PDF">
     <div v-if="list" ref="content" v-html="list.HeaderContent" />
-    <ul v-if="quizcontent">
-      <li v-for="data in quizcontent" :key="data.ID">
-        {{data.Question}}
-        <ul v-if="quizcontent.Answer">
-          <li v-for="answer in quizcontent.Answer" :key="answer.id">
-            {{ answer }}
-          </li>
-        </ul>
+    <ul>
+      <li v-for="item in quizcontent" :key="item.quizcontentID">
+        {{item.Question}}
+        <span v-for="a in quizcontent.Answer" :key="a">
+          {{a}}
+        </span>
       </li>
     </ul>
-    <!-- <div ref="content" v-html="list.QuestionContent" />
-    <div ref="content" v-html="list.AnswerContent" /> -->
     <div v-if="list" ref="content" v-html="list.FooterContent" />
-
   </div>
 </template>
 
@@ -24,15 +19,15 @@
   import {GetQuizContent} from "@/api/quiz";
   import { render } from "nprogress";
   import Mustache from 'mustache';
-  const options = {
-    timeout: 15000,
-  };
+  
   export default {
         data() {
             return {
                 list: null,
                 exam: null,
                 quizcontent: null,
+                test: 0,
+                QID: 0,
                 fullscreenLoading: true,
                 headermustache:null,
             }
@@ -49,11 +44,9 @@
                 })
             },
              fetchDataContent() {
-              this.quizcontent =  this.getContent();
-              console.log(this.quizcontent);
-            },
-            getContent() {
-              return GetQuizContent(this.$store.state.quiz)
+               GetQuizContent(this.$store.state.quiz).then(response => {
+                    this.quizcontent = response.data;
+                })
             },
             fetchDataTemplate(){
               GetOneTemplate(this.$store.state.template).then(response => {
@@ -73,7 +66,7 @@
                       this.$nextTick(() => {
                           window.print()
                       })
-                  }, 15000)
+                  }, 3000)
                 })
             },
         }
