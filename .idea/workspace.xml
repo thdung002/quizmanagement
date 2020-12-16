@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/gh-pages-deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/gh-pages-deploy.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="gh-pages" />
+        <entry key="$PROJECT_DIR$" value="deploy-website" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -91,21 +92,31 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="genAPIDoc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/Backend/package.json" />
+    <configuration name="build:prod" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
       <scripts>
-        <script value="genAPIDoc" />
+        <script value="build:prod" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="serve" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="deploy" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
       <scripts>
-        <script value="serve" />
+        <script value="deploy" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="genAPIDoc" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/Backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="genAPIDoc" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -141,31 +152,21 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start-website" type="js.build_tools.npm" temporary="true">
-      <package-json value="$PROJECT_DIR$/frontend/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="npm.start-server" />
-      <item itemvalue="npm.serve" />
-      <item itemvalue="npm.start-website" />
       <item itemvalue="npm.start-website (1)" />
       <item itemvalue="npm.genAPIDoc" />
       <item itemvalue="npm.start-serve" />
+      <item itemvalue="npm.deploy" />
+      <item itemvalue="npm.build:prod" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build:prod" />
+        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.start-serve" />
         <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.genAPIDoc" />
-        <item itemvalue="npm.start-website" />
-        <item itemvalue="npm.serve" />
       </list>
     </recent_temporary>
   </component>
@@ -260,20 +261,7 @@
       <workItem from="1606395659044" duration="116000" />
       <workItem from="1606395847144" duration="2851000" />
       <workItem from="1606403581039" duration="3093000" />
-    </task>
-    <task id="LOCAL-00002" summary="Dung add source">
-      <created>1599647189311</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1599647189311</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Edit code topic">
-      <created>1599880854377</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1599880854377</updated>
+      <workItem from="1608099282229" duration="30000" />
     </task>
     <task id="LOCAL-00004" summary="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js">
       <created>1600760214327</created>
@@ -604,7 +592,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606191354972</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="deploy website again">
+      <created>1608098902452</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1608098902452</updated>
+    </task>
+    <task id="LOCAL-00052" summary="checkout">
+      <created>1608099231869</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1608099231870</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -628,8 +630,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="edit delete in answer models" />
-    <MESSAGE value="edit delete in answer, examination, quizcontent, template, user models" />
     <MESSAGE value="dung add FE website base on template" />
     <MESSAGE value="dung add user page in frontend&#10;edit backend (model of user in getall user for fit with frontend)" />
     <MESSAGE value="edit front end page" />
@@ -653,7 +653,9 @@
     <MESSAGE value="update dashboard" />
     <MESSAGE value="update template page" />
     <MESSAGE value="render download page" />
-    <option name="LAST_COMMIT_MESSAGE" value="render download page" />
+    <MESSAGE value="deploy website again" />
+    <MESSAGE value="checkout" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkout" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

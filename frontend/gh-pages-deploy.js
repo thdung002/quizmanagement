@@ -13,7 +13,7 @@ const fs = require("fs");
     await execa("git", ["--work-tree", folderName, "commit", "-m", "deploy-page-test"]);
     console.log("Pushing to deploy-page-test...");
     await execa("git", ["push", "origin", "HEAD:deploy-page-test", "--force"]);
-    console.log("Delete folder name"+folderName);
+    console.log("Delete folder name "+folderName);
     await execa("del", ["-r", folderName]);
     console.log("Checkout master...");
     await execa("git", ["checkout", "-f", "master"]);
