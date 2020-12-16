@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/gh-pages-deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/gh-pages-deploy.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/vue.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/vue.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -163,9 +163,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.build:prod" />
+        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.start-serve" />
-        <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.genAPIDoc" />
       </list>
     </recent_temporary>
@@ -261,7 +261,7 @@
       <workItem from="1606395659044" duration="116000" />
       <workItem from="1606395847144" duration="2851000" />
       <workItem from="1606403581039" duration="3093000" />
-      <workItem from="1608099282229" duration="30000" />
+      <workItem from="1608099282229" duration="1071000" />
     </task>
     <task id="LOCAL-00004" summary="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js">
       <created>1600760214327</created>
