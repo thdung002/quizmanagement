@@ -21,7 +21,7 @@ app.use(bodyParser.json({
 app.use(bodyParser.json({
     type: 'application/vnd.api+json'
 }));
-app.use(cors({credentials: true, origin: 'http://localhost:9528'}));
+app.use(cors({credentials: true, origin: 'https://thdung002.github.io'}));
 
 // define a root route
 app.get('/', (req, res) => {
