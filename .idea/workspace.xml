@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -261,13 +262,7 @@
       <workItem from="1606395847144" duration="2851000" />
       <workItem from="1606403581039" duration="3093000" />
       <workItem from="1608099282229" duration="1071000" />
-    </task>
-    <task id="LOCAL-00005" summary="answer">
-      <created>1600838611180</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1600838611180</updated>
+      <workItem from="1608114439606" duration="486000" />
     </task>
     <task id="LOCAL-00006" summary="dung add pagination for get all user">
       <created>1600923521955</created>
@@ -605,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608102034469</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="edit CORS for deploy website">
+      <created>1608102348494</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1608102348494</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -629,7 +631,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung add FE website base on template" />
     <MESSAGE value="dung add user page in frontend&#10;edit backend (model of user in getall user for fit with frontend)" />
     <MESSAGE value="edit front end page" />
     <MESSAGE value="add answer page" />
@@ -654,7 +655,8 @@
     <MESSAGE value="render download page" />
     <MESSAGE value="deploy website again" />
     <MESSAGE value="checkout" />
-    <option name="LAST_COMMIT_MESSAGE" value="checkout" />
+    <MESSAGE value="edit CORS for deploy website" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit CORS for deploy website" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

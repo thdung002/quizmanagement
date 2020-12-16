@@ -19,7 +19,7 @@
   import {GetQuizContent} from "@/api/quiz";
   import { render } from "nprogress";
   import Mustache from 'mustache';
-  
+
   export default {
         data() {
             return {
@@ -137,6 +137,9 @@
   ul {
     list-style: none; /* Remove list bullets */
     margin-top: 1px;
+  }
+  @media print {
+    .page-break  { display: block; page-break-after: always; }
   }
 
 </style>
