@@ -2,99 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/app.cac53d8b.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-04583358.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-1d80914f.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-22b05956.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-238c903c.3c7f5ad9.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-3069037c.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-3c87c493.c4639779.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-47f9d568.c4861fc6.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-4d6fe6b1.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-4ed454f6.5042e0f2.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-7fa18d83.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-ab17c9c6.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-ef54b38e.77760ede.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-elementUI.68c70ad5.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-fdf25b38.4029a74a.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/css/chunk-libs.3dfb7769.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/fonts/element-icons.535877f5.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/fonts/element-icons.732389de.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/img/404.a57b6f31.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/img/404_cloud.0f4bc32b.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/app.5884b25d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-04583358.30ed4abb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-05fe20ba.2fef7483.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-1d80914f.af734764.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-2125b98f.312960af.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-22b05956.b03bc34d.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-238c903c.321d0923.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-3069037c.f9bd8cf6.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-33a44dd6.c975e58f.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-3c87c493.af01f650.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-4454f06e.a72860e1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-47f9d568.874098fb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-4d6fe6b1.da214baf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-4ed454f6.9e21c3a5.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-7fa18d83.709ac3cf.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-ab17c9c6.289a8046.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-ef54b38e.f5da3254.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-elementUI.cb459a4a.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-fdf25b38.ba8bf2a7.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/static/js/chunk-libs.f23c79f4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/api_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/api_data.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/api_project.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/api_project.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/img/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/ca.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/cs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/de.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/es.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/fr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/it.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/locale.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/nl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/pl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/pt_br.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/ro.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/ru.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/tr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/vi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/zh.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/locales/zh_cn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/utils/handlebars_helper.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/utils/send_sample_request.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/utils/send_sample_request_utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/diff_match_patch.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/handlebars.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/list.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/lodash.custom.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/path-to-regexp/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/path-to-regexp/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/polyfill.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/prism.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/prism.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/require.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/semver.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs1/vendor/webfontloader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/gh-pages-deploy.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/gh-pages-deploy.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -253,8 +161,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.start-serve" />
+        <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build:prod" />
         <item itemvalue="npm.start-website (1)" />
         <item itemvalue="npm.genAPIDoc" />
@@ -353,13 +261,6 @@
       <workItem from="1606395847144" duration="2851000" />
       <workItem from="1606403581039" duration="3093000" />
       <workItem from="1608099282229" duration="1071000" />
-    </task>
-    <task id="LOCAL-00004" summary="Merge branch 'trung' of https://github.com/thdung002/quizmanagement into master&#10;&#10;# Conflicts:&#10;#&#9;Backend/src/routes.js">
-      <created>1600760214327</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1600760214327</updated>
     </task>
     <task id="LOCAL-00005" summary="answer">
       <created>1600838611180</created>
@@ -697,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608099231870</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="checkout">
+      <created>1608102034468</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1608102034469</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
