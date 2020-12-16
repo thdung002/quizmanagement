@@ -58,26 +58,24 @@ QuizContent.getQuizContentById = function (id, result) {
 };
 //get all QuizContent with pagination
 QuizContent.getQuizContent = function (idquiz, result) {
-    dbConn.query(`Select * from quizcontent where Quiz = ${idquiz}`, function(err, res){
-        // for(var i = 0; i < res.length; i++){
-        //     var questionContent =  connection.query(`Select * from question where ID = ${res[i].QuestionID}`);
-        //     res[i].Question = questionContent[0].Content;
-        //     var answerContent =  connection.query(`Select Content from answer where Question = ${res[i].QuestionID}`);
-        //     res[i].Answer = answerContent;
-        // }
-        dbConn.query(`Select * from question where ID = ${res[i].QuestionID}`, function (err, question){
-            for(var i = 0;i < res.length; i++){
-                res[i].Question = question[0].Content;
-            }
-        })
-        dbConn.query(`Select Content from answer where Question = ${res[i].QuestionID}`, function (err, answer){
-            for(var i = 0;i < res.length; i++){
-                res[i].Question = answer;
-            }
-        })
-    return result(null, res)    
-    });
-    
+    let res = connection.query('SELECT  qz.ID as quizcontentID, QuestionID, qs.Content as Question, a.Content as Answer FROM quiz_management.quizcontent qz JOIN quiz_management.question qs ON qz.QuestionID = qs.ID left join answer a on qs.ID = a.Question WHERE quiz = 65 ORDER BY QuestionID',[idquiz]);  
+    let data = [];
+    let index = -1;
+    let check = 0;
+    console.log(res.length)
+    for(let i = 0;i < res.length; i++){
+        // data[index].Answer.push(res[i].Answer);
+        if(check != res[i].QuestionID){
+            data.push({});
+            index++;
+            data[index].Question = res[i].Question;
+            check = res[i].QuestionID;
+            data[index].Answer = [];
+        }
+        data[index].Answer.push(res[i].Answer);
+    }
+    console.log(data)
+    return result(null, data);
 };
 
 //update QuizContent by id

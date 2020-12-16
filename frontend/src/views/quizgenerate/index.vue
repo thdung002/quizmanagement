@@ -212,7 +212,7 @@
                                 })
                                 this.$store.state.template = this.temp.Template;
                                 this.$store.state.examination = this.temp.Examination;
-                                this.$store.state.quiz = response.id.insertId;
+                                this.$store.state.quiz = parseInt(response.id.insertId);
                                 this.$router.push({
                                     path:'/quizconfig/template/download/'
                                 })
