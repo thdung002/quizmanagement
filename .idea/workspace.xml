@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
-    </list>
+    <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -262,14 +259,8 @@
       <workItem from="1606395847144" duration="2851000" />
       <workItem from="1606403581039" duration="3093000" />
       <workItem from="1608099282229" duration="1071000" />
-      <workItem from="1608114439606" duration="486000" />
-    </task>
-    <task id="LOCAL-00006" summary="dung add pagination for get all user">
-      <created>1600923521955</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1600923521956</updated>
+      <workItem from="1608114439606" duration="1263000" />
+      <workItem from="1608209531846" duration="18000" />
     </task>
     <task id="LOCAL-00007" summary="answer api">
       <created>1600950232746</created>
@@ -607,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608102348494</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="update template">
+      <created>1608114989626</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1608114989627</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -631,7 +629,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="dung add user page in frontend&#10;edit backend (model of user in getall user for fit with frontend)" />
     <MESSAGE value="edit front end page" />
     <MESSAGE value="add answer page" />
     <MESSAGE value="edit comment" />
@@ -656,7 +653,8 @@
     <MESSAGE value="deploy website again" />
     <MESSAGE value="checkout" />
     <MESSAGE value="edit CORS for deploy website" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit CORS for deploy website" />
+    <MESSAGE value="update template" />
+    <option name="LAST_COMMIT_MESSAGE" value="update template" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
