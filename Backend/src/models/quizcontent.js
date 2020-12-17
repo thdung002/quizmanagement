@@ -58,23 +58,49 @@ QuizContent.getQuizContentById = function (id, result) {
 };
 //get all QuizContent with pagination
 QuizContent.getQuizContent = function (idquiz, result) {
-    let res = connection.query('SELECT  qz.ID as quizcontentID, QuestionID, qs.Content as Question, a.Content as Answer FROM quiz_management.quizcontent qz JOIN quiz_management.question qs ON qz.QuestionID = qs.ID left join answer a on qs.ID = a.Question WHERE quiz = 65 ORDER BY QuestionID',[idquiz]);  
+    let res = connection.query('SELECT  qz.ID as quizcontentID, QuestionID,qs.Type as Type, qs.Content as Question, a.Content as Answer, CorrectAnswer  FROM quiz_management.quizcontent qz JOIN quiz_management.question qs ON qz.QuestionID = qs.ID left join answer a on qs.ID = a.Question WHERE quiz = 65 ORDER BY QuestionID',[idquiz]);  
     let data = [];
     let index = -1;
+    let indexA = 0;
     let check = 0;
-    console.log(res.length)
+    let alphabet = ['A. ', 'B. ', 'C. ', 'D. ', 'E. ', 'F. ', 'G. ', 'H. ', 'I. ']
     for(let i = 0;i < res.length; i++){
         // data[index].Answer.push(res[i].Answer);
         if(check != res[i].QuestionID){
+            indexA = 0;
             data.push({});
             index++;
-            data[index].Question = res[i].Question;
+            data[index].Question = index + 1 + '. ' + res[i].Question;
+            data[index].Type = res[i].Type;
             check = res[i].QuestionID;
             data[index].Answer = [];
+            data[index].CorrectAnswer = [];
+
         }
-        data[index].Answer.push(res[i].Answer);
+        data[index].Answer.push(alphabet[indexA] + res[i].Answer);
+        data[index].CorrectAnswer.push(res[i].CorrectAnswer);
+        indexA++;
     }
-    console.log(data)
+    function shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+      
+          // Pick a remaining element...
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex -= 1;
+      
+          // And swap it with the current element.
+          temporaryValue = array[currentIndex];
+          array[currentIndex] = array[randomIndex];
+          array[randomIndex] = temporaryValue;
+        }
+      
+        return array;
+      }
+    data.forEach(element => {
+        element.CorrectAnswer = shuffle(element.CorrectAnswer);
+    });
     return result(null, data);
 };
 
