@@ -1,14 +1,28 @@
 <template>
   <div v-loading.fullscreen.lock="fullscreenLoading" class="main-article" element-loading-text="Efforts to generate PDF">
     <div v-if="list" ref="content" v-html="list.HeaderContent" />
-    <ul>
-      <li v-for="item in quizcontent" :key="item.quizcontentID">
-        {{item.Question}}
-        <span v-for="a in quizcontent.Answer" :key="a">
-          {{a}}
-        </span>
-      </li>
-    </ul>
+      <div v-for="item in quizcontent" :key="item.quizcontentID">
+        <div style="display:inline;">{{item.Question}}</div>
+        <template v-if="item.Type == 'Single Choice'">
+          <div v-for="answer in item.Answer" :key="answer">
+          <div style="display:inline; margin-left: 5%;">{{ answer }}</div>
+          </div>
+        </template>
+        <template v-if="item.Type == 'Multiple Choice'">
+          <div v-for="answer in item.Answer" :key="answer">
+          <div style="display:inline; margin-left: 5%;">{{ answer }}</div>
+          </div>
+        </template>
+        <template v-else-if="item.Type == 'Match'">
+          <div v-for="answer in item.Answer" :key="answer">
+          <div style="display:inline; margin-left: 5%;">{{ answer }}</div>
+          </div>
+          <p style="display:inline; margin-left: 5%;">*Match correct character of questions to these answers</p>
+          <div v-for="(ca, index) in item.CorrectAnswer" :key="index">
+          <div style="display:inline; margin-left: 5%;">__.{{ ca }}</div>
+          </div>
+        </template>
+      </div>
     <div v-if="list" ref="content" v-html="list.FooterContent" />
   </div>
 </template>
