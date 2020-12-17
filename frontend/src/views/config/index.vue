@@ -149,7 +149,7 @@
           <el-input v-model="temp.NumberQuestionLevel10"/>
         </el-form-item>
         <el-form-item label="Total" prop="Total Question">
-          <span id="TotalQ">0</span>
+          <span id="TotalQ"> {{getTotal}} </span>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
@@ -280,6 +280,13 @@
         created() {
             this.getList()
         },
+        computed:{
+            getTotal(){
+              return this.temp.TotalQuestion= parseInt(this.temp.NumberQuestionLevel1)+parseInt(this.temp.NumberQuestionLevel2)+parseInt(this.temp.NumberQuestionLevel3)
+                  +parseInt(this.temp.NumberQuestionLevel4)+parseInt(this.temp.NumberQuestionLevel5)+parseInt(this.temp.NumberQuestionLevel6)
+                +parseInt(this.temp.NumberQuestionLevel7)+parseInt(this.temp.NumberQuestionLevel8)+parseInt(this.temp.NumberQuestionLevel9)+parseInt(this.temp.NumberQuestionLevel10);
+            }
+        },
         methods: {
               // sumQ() {
               //   var total = this.NumberQuestionLevel1 + this.NumberQuestionLevel1 +
@@ -325,9 +332,19 @@
             resetTemp() {
                 this.temp = {
                     ID: '',
+                    NumberQuestionLevel1: 0,
+                    NumberQuestionLevel2: 0,
+                    NumberQuestionLevel3: 0,
+                    NumberQuestionLevel4: 0,
+                    NumberQuestionLevel5: 0,
+                    NumberQuestionLevel6: 0,
+                    NumberQuestionLevel7: 0,
+                    NumberQuestionLevel8: 0,
+                    NumberQuestionLevel9: 0,
+                    NumberQuestionLevel10: 0 ,
+                    TotalQuestion: 0,
                     accessID: '',
                     accessUserRole: '',
-                    IsDeleted: 0,
                 }
             },
             handleCreate() {
