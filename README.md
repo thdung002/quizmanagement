@@ -1,7 +1,7 @@
 # QUIZ MANAGEMENT
 
 ## API DOCS
-[Docs](https://thdung002.github.io/quizmanagement/)
+[Docs](https://thdung002.github.io/apidocs/)
 
 ## First step
 ```bash
