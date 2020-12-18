@@ -27,17 +27,24 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <el-table-column label="ID" prop="ID" sortable="custom" align="center" width="80"
+      <el-table-column label="ID" prop="ID" sortable="custom" align="center" width="80" fixed
                        :class-name="getSortClass('ID')">
         <template slot-scope="{row}">
           <span>{{ row.ID }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="DateCreated" width="200" align="center">
+      <el-table-column label="DateCreated" width="150" align="center">
         <template slot-scope="{row}">
           <span>{{ row.CreatedAt | format_date}}</span>
         </template>
       </el-table-column>
+
+      <el-table-column label="Description" width="200" align="center" fixed>
+        <template slot-scope="{row}" >
+          <span class="link-type" @click="handleUpdate(row)">{{ row.Description }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="Total" min-width="100" align="center">
         <template slot-scope="{row}">
           <span class="link-type" @click="handleUpdate(row)">{{ row.TotalQuestion }}</span>
@@ -116,8 +123,8 @@
                 @pagination="getList"/>
 <!--pagination-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
-               style="width: 400px; margin-left:50px;">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px"
+               style="width: 800px; margin-left:50px;">
         <el-form-item label="Question lv1" prop="Question lv1">
           <el-input v-model="temp.NumberQuestionLevel1"/>
         </el-form-item>
@@ -148,9 +155,14 @@
          <el-form-item label="Question lv10" prop="Question lv10">
           <el-input v-model="temp.NumberQuestionLevel10"/>
         </el-form-item>
-        <el-form-item label="Total" prop="Total Question">
-          <span id="TotalQ"> {{getTotal}} </span>
+        <el-form-item label="Total" prop="TotalQuestion">
+          <span v-model="temp.TotalQuestion"> {{getTotal}} </span>
         </el-form-item>
+        <el-form-item label="Description" prop="Description">
+          <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 10}" placeholder="Please input description" v-model="temp.Description" clearable>
+          </el-input>
+        </el-form-item>
+
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
             <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
@@ -223,7 +235,7 @@
 
             activeFilter(active) {
                 return statusValue[active]
-            },
+            }
         },
         data() {
             const validatePassword = (rule, value, callback) => {
@@ -231,6 +243,14 @@
                     callback(new Error('The password can not be less than 6 digits'))
                 } else {
                     callback()
+                }
+            };
+            var validTotal = (rule, value, callback) => {
+                if (value === 0) {
+                    callback(new Error('At least 1 question please'));
+                }
+                else{
+                    callback();
                 }
             };
 
@@ -262,6 +282,7 @@
                     TotalQuestion: 0,
                     accessID: '',
                     accessUserRole: '',
+                    Description:''
                 },
                 dialogFormVisible: false,
                 dialogStatus: '',
@@ -271,8 +292,10 @@
                 },
                 dialogPvVisible: false,
                 pvData: [],
+
                 rules: {//CHECK RULE CAI DIALOG CHO ADD
-                    TotalQuestion: [{required: true, message: 'At least 1 question!', trigger: 'blur'}],
+                    TotalQuestion: [{validator: validTotal, trigger: 'change'}],
+                    Description: [{required: true, message: 'Please fill this', trigger: 'blur'}],
                 },
                 downloadLoading: false
             }
@@ -345,6 +368,7 @@
                     TotalQuestion: 0,
                     accessID: '',
                     accessUserRole: '',
+                    Description:''
                 }
             },
             handleCreate() {

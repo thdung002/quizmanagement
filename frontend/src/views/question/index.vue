@@ -89,9 +89,10 @@
 <!--pagination-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
-               style="width: 400px; margin-left:50px;">
+               style="width: 800px; margin-left:50px;">
         <el-form-item label="Content" prop="Content">
-          <el-input v-model="temp.Content"/>
+          <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 10}" placeholder="Please input content" v-model="temp.Content" clearable>
+          </el-input>
         </el-form-item>
         <el-form-item label="Level" prop="Level">
           <el-select v-model="temp.Level" class="filter-item" placeholder="Please select">

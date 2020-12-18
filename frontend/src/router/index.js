@@ -137,7 +137,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Generate Quiz',
         component: () => import('@/views/quizgenerate/index'),
-        meta: { title: 'Generate Quiz', icon: 'el-icon-minus' }
+        meta: { title: 'Generate Quiz', icon: 'el-icon-plus' }
       }
     ]
   },

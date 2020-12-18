@@ -152,9 +152,6 @@
     list-style: none; /* Remove list bullets */
     margin-top: 1px;
   }
-  @media print {
-    .page-break  { display: block; page-break-after: always; }
-  }
 
 </style>
 

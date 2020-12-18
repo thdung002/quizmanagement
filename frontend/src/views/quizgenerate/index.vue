@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px"
-               style="width: 400px; margin-left:50px;">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="200px"
+               style="width: 800px; margin-left:50px;">
         <el-form-item label="Examination ID" prop="Examination">
           <el-select v-model="temp.Examination" class="filter-item" placeholder="Please select">
             <el-option v-for="item in listexam" :key="item.ID" :label="item.Description" :value="item.ID"/>
@@ -24,7 +24,7 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="createData()">
+        <el-button type="primary"  @click="createData()">
           Confirm
         </el-button>
       </div>
