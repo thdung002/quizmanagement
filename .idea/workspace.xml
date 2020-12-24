@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/config/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/config/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,9 +165,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.run" />
         <item itemvalue="npm.start-serve" />
         <item itemvalue="npm.genAPIDoc" />
-        <item itemvalue="npm.run" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build:prod" />
       </list>
@@ -263,14 +266,11 @@
       <workItem from="1606403581039" duration="3093000" />
       <workItem from="1608099282229" duration="1071000" />
       <workItem from="1608114439606" duration="1263000" />
-      <workItem from="1608209531846" duration="7461000" />
-    </task>
-    <task id="LOCAL-00010" summary="dung add examination and backup database">
-      <created>1601265669885</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1601265669886</updated>
+      <workItem from="1608209531846" duration="8011000" />
+      <workItem from="1608610595326" duration="1254000" />
+      <workItem from="1608625034102" duration="3738000" />
+      <workItem from="1608776639323" duration="781000" />
+      <workItem from="1608797123924" duration="4713000" />
     </task>
     <task id="LOCAL-00011" summary="dung add examination and backup database">
       <created>1601265710668</created>
@@ -608,7 +608,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608220915583</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="edit download page">
+      <created>1608222075998</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1608222075998</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,7 +639,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="edit readme" />
     <MESSAGE value="backup db - edit some  small error" />
     <MESSAGE value="add examination page" />
     <MESSAGE value="edit sql query MATCH AGAINST" />
@@ -657,7 +663,8 @@
     <MESSAGE value="edit command" />
     <MESSAGE value="edit config total question" />
     <MESSAGE value="edit style" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit style" />
+    <MESSAGE value="edit download page" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit download page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
