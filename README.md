@@ -48,7 +48,7 @@ npm install
 npm run run
 ```
 
-This will automatically open http://localhost:9528
+This will automatically open http://localhost:9528/quizmanagement
 
 ### Build
 
