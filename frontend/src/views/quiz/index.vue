@@ -237,19 +237,21 @@
             handleDownload() {
                 this.downloadLoading = true;
                 import('@/vendor/Export2Excel').then(excel => {
+                    const tHeader = ['DateCreated', 'Examination ID', 'Config ID', 'Template ID','Code', 'status(0 is activated, 1 is deleted)'];
+                    const filterVal = ['CreatedAt', 'Examination', 'Config', 'Template','Code', 'IsDeleted'];
                     const data = this.formatJson(filterVal);
                     excel.export_json_to_excel({
                         header: tHeader,
                         data,
-                        filename: 'table-list'
+                        filename: 'table-quiz'
                     });
                     this.downloadLoading = false
                 })
             },
             formatJson(filterVal) {
                 return this.list.map(v => filterVal.map(j => {
-                    if (j === 'timestamp') {
-                        return parseTime(v[j])
+                    if (j === 'CreatedAt') {
+                        return moment(String(v[j])).format('DD-MM-YYYY H:m')
                     } else {
                         return v[j]
                     }

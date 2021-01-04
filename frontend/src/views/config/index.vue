@@ -307,15 +307,6 @@
             }
         },
         methods: {
-              // sumQ() {
-              //   var total = this.NumberQuestionLevel1 + this.NumberQuestionLevel1 +
-              //   this.NumberQuestionLevel2 + this.NumberQuestionLevel3 +
-              //   this.NumberQuestionLevel4 + this.NumberQuestionLevel5 +
-              //   this.NumberQuestionLevel6 + this.NumberQuestionLevel7 +
-              //   this.NumberQuestionLevel8 + this.NumberQuestionLevel9 +
-              //   this.NumberQuestionLevel10;
-              //   $("#TotalQ").text("test");
-              // },
             getList() {
                 this.listLoading = false;
                 GetConfig(this.listQuery).then(response => {
@@ -469,19 +460,24 @@
             handleDownload() {
                 this.downloadLoading = true;
                 import('@/vendor/Export2Excel').then(excel => {
+                    const tHeader = ['DateCreated', 'Description', 'Total', 'Number QuestionLevel 1','Number QuestionLevel 2','Number QuestionLevel 3',
+                        'Number Question Level 4','Number Question Level5','Number Question Level 6','Number Question Level 7','Number Question Level8','Number Question Level 9',
+                        'Number Question Level 10','status(0 is activated, 1 is deleted)'];
+                    const filterVal = ['CreatedAt', 'Description','TotalQuestion','NumberQuestionLevel1','NumberQuestionLevel2','NumberQuestionLevel3','NumberQuestionLevel4',
+                        'NumberQuestionLevel5','NumberQuestionLevel6','NumberQuestionLevel7','NumberQuestionLevel8','NumberQuestionLevel9','NumberQuestionLevel10','IsDeleted'];
                     const data = this.formatJson(filterVal);
                     excel.export_json_to_excel({
                         header: tHeader,
                         data,
-                        filename: 'table-list'
+                        filename: 'table-config'
                     });
                     this.downloadLoading = false
                 })
             },
             formatJson(filterVal) {
                 return this.list.map(v => filterVal.map(j => {
-                    if (j === 'timestamp') {
-                        return parseTime(v[j])
+                    if (j === 'CreatedAt') {
+                        return moment(String(v[j])).format('DD-MM-YYYY H:m')
                     } else {
                         return v[j]
                     }

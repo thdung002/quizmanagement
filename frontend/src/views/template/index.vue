@@ -9,10 +9,6 @@
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         Search
       </el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download"
-                 @click="handleDownload">
-        Export
-      </el-button>
 
       <input ref="js-upload-input" class="js-upload-input" type="file" accept=".js" @change="handleClick">
       <el-button v-waves :loading="downloadLoading" class="filter-item" icon="el-icon-plus"  type="primary" @click="handleUpload" style="margin-left:10px">
@@ -300,27 +296,6 @@
                     this.pvData = response.data.pvData;
                     this.dialogPvVisible = true
                 })
-            },
-            handleDownload() {
-                this.downloadLoading = true;
-                import('@/vendor/Export2Excel').then(excel => {
-                    const data = this.formatJson(filterVal);
-                    excel.export_json_to_excel({
-                        header: tHeader,
-                        data,
-                        filename: 'table-list'
-                    });
-                    this.downloadLoading = false
-                })
-            },
-            formatJson(filterVal) {
-                return this.list.map(v => filterVal.map(j => {
-                    if (j === 'timestamp') {
-                        return parseTime(v[j])
-                    } else {
-                        return v[j]
-                    }
-                }))
             },
             getSortClass(key) {
                 const sort = this.listQuery.sort;

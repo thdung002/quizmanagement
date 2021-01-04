@@ -229,27 +229,6 @@
                     this.dialogPvVisible = true
                 })
             },
-            handleDownload() {
-                this.downloadLoading = true;
-                import('@/vendor/Export2Excel').then(excel => {
-                    const data = this.formatJson(filterVal);
-                    excel.export_json_to_excel({
-                        header: tHeader,
-                        data,
-                        filename: 'table-list'
-                    });
-                    this.downloadLoading = false
-                })
-            },
-            formatJson(filterVal) {
-                return this.list.map(v => filterVal.map(j => {
-                    if (j === 'timestamp') {
-                        return parseTime(v[j])
-                    } else {
-                        return v[j]
-                    }
-                }))
-            },
             getSortClass(key) {
                 const sort = this.listQuery.sort;
                 return sort === `${key}` ? 'ascending' : 'descending'

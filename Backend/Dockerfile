@@ -11,4 +11,4 @@ COPY . /app/node-docker
 
 EXPOSE 5000
 
-CMD [ "npm","run", "start-server"]
+CMD [ "node","index.js"]

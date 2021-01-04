@@ -3,10 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/utils/pieces.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/utils/Pieces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/request.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/config/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/config/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/question/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/question/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/template/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,23 +63,23 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/frontend/src/styles" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vue-element-admin-master" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\IntelliJ IDEA 2019.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src" />
-      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\styles" />
       <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\store\modules" />
       <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\components" />
       <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\views\dashboard" />
       <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src" />
+      <recent name="E:\Documents\Do An Tot Nghiep\quizmanagement\frontend\src\utils" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -270,14 +278,14 @@
       <workItem from="1608610595326" duration="1254000" />
       <workItem from="1608625034102" duration="3738000" />
       <workItem from="1608776639323" duration="781000" />
-      <workItem from="1608797123924" duration="4713000" />
-    </task>
-    <task id="LOCAL-00011" summary="dung add examination and backup database">
-      <created>1601265710668</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1601265710668</updated>
+      <workItem from="1608797123924" duration="4765000" />
+      <workItem from="1608814210622" duration="136000" />
+      <workItem from="1608814736012" duration="611000" />
+      <workItem from="1608817217050" duration="399000" />
+      <workItem from="1608817864823" duration="1054000" />
+      <workItem from="1608864335761" duration="2800000" />
+      <workItem from="1609223908748" duration="770000" />
+      <workItem from="1609737782303" duration="4460000" />
     </task>
     <task id="LOCAL-00012" summary="dung add examination and backup database">
       <created>1601265737569</created>
@@ -615,7 +623,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608222075998</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="edit">
+      <created>1608811795567</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1608811795568</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -639,7 +654,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="backup db - edit some  small error" />
     <MESSAGE value="add examination page" />
     <MESSAGE value="edit sql query MATCH AGAINST" />
     <MESSAGE value="edit query" />
@@ -664,7 +678,8 @@
     <MESSAGE value="edit config total question" />
     <MESSAGE value="edit style" />
     <MESSAGE value="edit download page" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit download page" />
+    <MESSAGE value="edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
