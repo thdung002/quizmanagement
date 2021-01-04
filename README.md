@@ -45,10 +45,10 @@ cd frontend
 npm install
 
 # develop
-npm run start-website
+npm run run
 ```
 
-This will automatically open http://localhost:9528
+This will automatically open http://localhost:9528/quizmanagement
 
 ### Build
 

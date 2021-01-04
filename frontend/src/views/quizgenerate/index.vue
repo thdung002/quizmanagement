@@ -1,21 +1,24 @@
 <template>
   <div class="app-container">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="200px"
-               style="width: 800px; margin-left:50px;">
-        <el-form-item label="Examination ID" prop="Examination">
+               style="width: 400px; margin-left:50px;">
+        <el-form-item label="Examination" prop="Examination">
           <el-select v-model="temp.Examination" class="filter-item" placeholder="Please select">
             <el-option v-for="item in listexam" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="Config ID" prop="Config">
+        <el-form-item label="Config" prop="Config">
           <el-select v-model="temp.Config" class="filter-item" placeholder="Please select">
             <el-option v-for="item in listconfig" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="Template ID" prop="Template">
+        <el-form-item label="Template" prop="Template">
           <el-select v-model="temp.Template" class="filter-item" placeholder="Please select">
             <el-option v-for="item in listtemplate" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
+        </el-form-item>
+        <el-form-item label="Code" prop="Code">
+        <el-input placeholder="Please input Code" v-model="temp.Code" clearable></el-input>
         </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
@@ -121,10 +124,10 @@
                 sortOptions: [{label: 'ID Ascending', key: 'ASC'}, {label: 'ID Descending', key: 'DESC'}],
                 statusOptions: ['active', 'deleted'],
                 temp: {
-                    ID: '',
                     Examination: '',
                     Config: '',
                     Template: '',
+                    Code:'',
                     accessID: '',
                     accessUserRole: '',
                 },
@@ -140,7 +143,8 @@
                 rules: {
                     Examination: [{required: true, message: 'Examination is required', trigger: 'blur'}],
                     Config: [{required: true, message: 'Config id is required', trigger: 'blur'}],
-                    Template: [{required: true, message: 'Template answer is required', trigger: 'blur'}]
+                    Template: [{required: true, message: 'Template answer is required', trigger: 'blur'}],
+                    Code:[{required: true, message: 'Please enter code of the quiz',trigger:'blur'}]
                 },
                 downloadLoading: false
             }
@@ -169,10 +173,10 @@
             },
             resetTemp() {
                 this.temp = {
-                    ID: '',
                     Examination: '',
                     Config: '',
                     Template: '',
+                    Code:'',
                     accessID: '',
                     accessUserRole: '',
                     IsDeleted: 0,
@@ -209,7 +213,7 @@
                                     message: 'Created Successfully',
                                     type: 'success',
                                     duration: 2000
-                                })
+                                });
                                 this.$store.state.template = this.temp.Template;
                                 this.$store.state.examination = this.temp.Examination;
                                 this.$store.state.quiz = parseInt(response.id.insertId);
