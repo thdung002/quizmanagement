@@ -17,9 +17,6 @@
             <el-option v-for="item in listtemplate" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="Code" prop="Code">
-        <el-input placeholder="Please input Code" v-model="temp.Code" clearable></el-input>
-        </el-form-item>
         <el-form-item label="Status" prop="IsDeleted">
           <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
             <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
@@ -217,6 +214,7 @@
                                 this.$store.state.template = this.temp.Template;
                                 this.$store.state.examination = this.temp.Examination;
                                 this.$store.state.quiz = parseInt(response.id.insertId);
+                                this.$store.state.quizcode = parseInt(response.id.quizcode);
                                 this.$router.push({
                                     path:'/quizconfig/template/download/'
                                 })

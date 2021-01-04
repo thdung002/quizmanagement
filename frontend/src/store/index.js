@@ -12,7 +12,8 @@ const store = new Vuex.Store({
   state: {
     template: 0,
     examination: 0,
-    quiz: 0
+    quiz: 0,
+    quizcode: 0,
   },
   modules: {
     app,

@@ -97,7 +97,6 @@ QuizContent.getQuizContent = function (idquiz, result) {
     data.forEach(element => {
         element.CorrectAnswer = shuffle(element.CorrectAnswer);
     });
-    console.log(data)
     return result(null, data);
 };
 

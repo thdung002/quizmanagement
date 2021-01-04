@@ -3,6 +3,9 @@
     <button id="buttonPrint" v-on:click="printQuiz()">Print</button>
     <img id="answersheet" src="https://content.zipgrade.com/static/pdfs/ZipGrade50QuestionV2.png"/>
     <div v-if="list" ref="content" v-html="list.HeaderContent" />
+    <div style="margin-bottom: 10px">
+      <span style="border-style: solid; margin: 3px; padding: 3px; ">Quiz Code: {{quizcode}}</span>
+      </div>
       <div v-for="item in quizcontent" :key="item.quizcontentID">
         <div style="display:inline;">{{item.Question}}</div>
         <template v-if="item.Type == 'Single Choice'">
@@ -25,7 +28,6 @@
           </div>
         </template>
       </div>
-    <div v-if="list" ref="content" v-html="list.FooterContent" />
   </div>
 </template>
 
@@ -42,6 +44,7 @@
                 list: null,
                 exam: null,
                 quizcontent: null,
+                quizcode: null,
                 test: 0,
                 QID: 0,
                 fullscreenLoading: true,
@@ -51,7 +54,8 @@
         created() {
             // this.fetchDataContent(),
             this.fetchDataExam(),
-            this.fetchDataTemplate()
+            this.fetchDataTemplate(),
+            this.quizcode = this.$store.state.quizcode;
         },
         // mounted() {
         //     this.fetchDataContent()
@@ -89,7 +93,6 @@
                   {
                       this.list.HeaderContent = this.list.HeaderContent.replace(this.headermustache[i],Mustache.render(this.headermustache[i], this.exam));//loop để thay data render
                   }
-                  
                 })
             },
         }

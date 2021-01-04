@@ -1,4 +1,14 @@
 'use strict';
+var MySql = require('sync-mysql');
+
+var connection = new MySql({
+    host     : 'quizmanagement.ccd3ylv1pufy.ap-northeast-2.rds.amazonaws.com',
+    port     : '3306',
+    user     : 'dung',
+    password : 'dung1234',
+    database : 'quiz_management',
+    timeout: 15000
+});
 var dbConn = require('./../../config/db.config');
 const Pieces = require('../utils/Pieces');
 const { response } = require('express');
@@ -29,14 +39,17 @@ Quiz.add = function (accessID, newQuiz, result) {
     }
     else {
         try {
+            let checkQuizCode = connection.query(`SELECT COUNT(*) as total from quiz where Examination = '${newQuiz.Examination}' and Config = '${newQuiz.Config}' and Template = '${newQuiz.Template}' `);
             let queryObj = {};
             queryObj.Examination = newQuiz.Examination;
             queryObj.Config = newQuiz.Config;
             queryObj.Template = newQuiz.Template;
-            queryObj.Code = newQuiz.Code;
+            queryObj.Code = checkQuizCode[0].total;
             queryObj.CreatedBy = accessID;
             dbConn.query("INSERT INTO quiz set ?", queryObj, function (err, res) {
                 quizID = res.insertId;
+                res.quizcode = checkQuizCode[0].total + 1;
+                console.log(res)
                 if (err) {
                     result(err, null);
                 } else {
