@@ -123,8 +123,7 @@
     <!--pagination-->
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px"
-               style="width: 800px; margin-left:50px;">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px">
         <el-form-item label="Description" prop="Description">
           <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 10}" placeholder="Please input description" v-model="temp.Description" clearable>
           </el-input>

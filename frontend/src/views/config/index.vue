@@ -120,8 +120,7 @@
                 @pagination="getList"/>
 <!--pagination-->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px"
-               style="width: 800px; margin-left:50px;">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px">
         <el-form-item label="Question lv1" prop="Question lv1">
           <el-input v-model="temp.NumberQuestionLevel1"/>
         </el-form-item>
