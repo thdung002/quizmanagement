@@ -1,5 +1,7 @@
 <template>
   <div v-loading.fullscreen.lock="fullscreenLoading" class="main-article" element-loading-text="Efforts to generate PDF">
+    <button id="buttonPrint" v-on:click="printQuiz()">Print</button>
+    <img id="answersheet" src="https://content.zipgrade.com/static/pdfs/ZipGrade50QuestionV2.png"/>
     <div v-if="list" ref="content" v-html="list.HeaderContent" />
       <div v-for="item in quizcontent" :key="item.quizcontentID">
         <div style="display:inline;">{{item.Question}}</div>
@@ -47,11 +49,23 @@
             }
         },
         created() {
+            // this.fetchDataContent(),
             this.fetchDataExam(),
-            this.fetchDataTemplate(),
+            this.fetchDataTemplate()
+        },
+        // mounted() {
+        //     this.fetchDataContent()
+        // },
+        beforeUpdate() {
             this.fetchDataContent()
         },
         methods: {
+            printQuiz() {
+              var x = document.getElementById("buttonPrint");
+              x.style.display = "none";
+              window.print();
+              x.style.display = "block";
+            },
             fetchDataExam() {
               GetOneExam(this.$store.state.examination).then(response => {
                     this.exam = response.data[0];
@@ -75,12 +89,7 @@
                   {
                       this.list.HeaderContent = this.list.HeaderContent.replace(this.headermustache[i],Mustache.render(this.headermustache[i], this.exam));//loop để thay data render
                   }
-                  setTimeout(() => {
-                      this.fullscreenLoading = false;
-                      this.$nextTick(() => {
-                          window.print()
-                      })
-                  }, 3000)
+                  
                 })
             },
         }
@@ -152,6 +161,9 @@
     list-style: none; /* Remove list bullets */
     margin-top: 1px;
   }
-
+  #answersheet {
+    height: 100%;
+    width: 100%;
+  }
 </style>
 

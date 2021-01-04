@@ -70,12 +70,9 @@
                 @pagination="getList"/>
 
     <!--pagination-->
-    <el-dialog :title="Preview" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left">
+    <el-dialog  :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm" :model="temp" label-position="left">
         <div ref="content" v-html="temp.HeaderContent" />
-        <div ref="content" v-html="temp.QuestionContent" />
-        <div ref="content" v-html="temp.AnswerContent" />
-        <div ref="content" v-html="temp.FooterContent" />
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">

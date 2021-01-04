@@ -29,7 +29,6 @@ QuizContent.add = function (accessID, newQuizContent, result) {
                 if (err) {
                     result(err, null);
                 } else {
-                    console.log(res.insertId);
                     result(null, res.insertId);
                 }
             });
@@ -43,7 +42,6 @@ QuizContent.getQuizContentById = function (id, result) {
     try {
         dbConn.query("Select * from quizcontent where id = ? and IsDeleted = 0", parseInt(id), function (err, res) {
                 if (err) {
-                    console.log("error: ", err);
                     result(err, null);
                 } else if(res.length === 0)
                     result (1, 'Quiz_Content_not_found', 403, err, null);
@@ -58,7 +56,7 @@ QuizContent.getQuizContentById = function (id, result) {
 };
 //get all QuizContent with pagination
 QuizContent.getQuizContent = function (idquiz, result) {
-    let res = connection.query('SELECT  qz.ID as quizcontentID, QuestionID,qs.Type as Type, qs.Content as Question, a.Content as Answer, CorrectAnswer  FROM quiz_management.quizcontent qz JOIN quiz_management.question qs ON qz.QuestionID = qs.ID left join answer a on qs.ID = a.Question WHERE quiz = 65 ORDER BY QuestionID',[idquiz]);  
+    let res = connection.query(`SELECT qz.ID as quizcontentID, QuestionID,qs.Type as Type, qs.Content as Question, a.Content as Answer, CorrectAnswer  FROM quiz_management.quizcontent qz JOIN quiz_management.question qs ON qz.QuestionID = qs.ID left join answer a on qs.ID = a.Question WHERE quiz = ${idquiz} ORDER BY QuestionID`);  
     let data = [];
     let index = -1;
     let indexA = 0;
@@ -75,7 +73,6 @@ QuizContent.getQuizContent = function (idquiz, result) {
             check = res[i].QuestionID;
             data[index].Answer = [];
             data[index].CorrectAnswer = [];
-
         }
         data[index].Answer.push(alphabet[indexA] + res[i].Answer);
         data[index].CorrectAnswer.push(res[i].CorrectAnswer);
@@ -95,12 +92,12 @@ QuizContent.getQuizContent = function (idquiz, result) {
           array[currentIndex] = array[randomIndex];
           array[randomIndex] = temporaryValue;
         }
-      
         return array;
       }
     data.forEach(element => {
         element.CorrectAnswer = shuffle(element.CorrectAnswer);
     });
+    console.log(data)
     return result(null, data);
 };
 
@@ -114,7 +111,6 @@ QuizContent.update = function (accessId,id, QuizContentinfo, result) {
         queryObj.Id = id;
         dbConn.query("UPDATE quizcontent SET Quiz=?,QuestionID=?,UpdatedBy=? WHERE id = ? and IsDeleted = 0", [queryObj.Quiz, queryObj.QuestionID, queryObj.UpdatedBy, queryObj.Id], function (err, res) {
             if (err) {
-                console.log("error: ", err);
                 result(null, err);
             } else if(res.changedRows === 0)
                 result(1, 'Quiz_Content_not_found', 403, err, null);
@@ -142,6 +138,4 @@ QuizContent.delete = function (id, result) {
         return result(1, 'delete_Quiz_Content_fail', 400, error, null);
     }
 };
-
-
 module.exports = QuizContent;
