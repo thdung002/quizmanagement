@@ -3,18 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/src/utils/pieces.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/utils/Pieces.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/answer/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/config/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/config/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/examination/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/question/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/question/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quiz/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/topic/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/user/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/user/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/quiz_management.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/quiz_management.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -285,14 +275,10 @@
       <workItem from="1608817864823" duration="1054000" />
       <workItem from="1608864335761" duration="2800000" />
       <workItem from="1609223908748" duration="770000" />
-      <workItem from="1609737782303" duration="4460000" />
-    </task>
-    <task id="LOCAL-00012" summary="dung add examination and backup database">
-      <created>1601265737569</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1601265737569</updated>
+      <workItem from="1609737782303" duration="4587000" />
+      <workItem from="1609817700279" duration="69000" />
+      <workItem from="1609818567278" duration="1619000" />
+      <workItem from="1609829823449" duration="1283000" />
     </task>
     <task id="LOCAL-00013" summary="add quizcontent">
       <created>1601436224143</created>
@@ -630,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608811795568</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="fix export">
+      <created>1609743492798</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1609743492799</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -654,7 +647,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="add examination page" />
     <MESSAGE value="edit sql query MATCH AGAINST" />
     <MESSAGE value="edit query" />
     <MESSAGE value="dung add random question query in backend" />
@@ -679,7 +671,8 @@
     <MESSAGE value="edit style" />
     <MESSAGE value="edit download page" />
     <MESSAGE value="edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit" />
+    <MESSAGE value="fix export" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix export" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

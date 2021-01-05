@@ -52,7 +52,7 @@
             }
         },
         created() {
-            // this.fetchDataContent(),
+             this.loadingScreen(),
             this.fetchDataExam(),
             this.fetchDataTemplate(),
             this.quizcode = this.$store.state.quizcode;
@@ -70,6 +70,15 @@
               window.print();
               x.style.display = "block";
             },
+            loadingScreen(){
+                setTimeout(() => {
+                    this.fullscreenLoading = false;
+                    this.$nextTick(() => {
+                        window.print()
+                    })
+                }, 10000)
+
+            },
             fetchDataExam() {
               GetOneExam(this.$store.state.examination).then(response => {
                     this.exam = response.data[0];
@@ -83,7 +92,6 @@
             fetchDataTemplate(){
               GetOneTemplate(this.$store.state.template).then(response => {
                     this.list = response.data[0];
-                    this.fullscreenLoading = false;
                     this.list.HeaderContent = this.list.HeaderContent.replace(this.list.HeaderContent.match(/\{\{\s*\s*\TemplateName+\s*\}\}/g),Mustache.render("{{TemplateName}}", this.list));
                     //lấy template name để render data
 
