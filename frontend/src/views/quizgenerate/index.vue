@@ -17,11 +17,6 @@
             <el-option v-for="item in listtemplate" :key="item.ID" :label="item.Description" :value="item.ID"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="Status" prop="IsDeleted">
-          <el-select v-model="temp.IsDeleted" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key"/>
-          </el-select>
-        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary"  @click="createData()">

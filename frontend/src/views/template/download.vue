@@ -1,7 +1,18 @@
 <template>
   <div v-loading.fullscreen.lock="fullscreenLoading" class="main-article" element-loading-text="Efforts to generate PDF">
     <button id="buttonPrint" v-on:click="printQuiz()">Print</button>
-    <img id="answersheet" src="https://content.zipgrade.com/static/pdfs/ZipGrade50QuestionV2.png"/>
+    <div v-if="this.quizcontent.length <= 20">
+      <img id="answersheet20" src="https://i.imgur.com/EoONzxK.jpg"/>
+    </div>
+    <div v-else-if="this.quizcontent.length <= 40">
+      <img id="answersheet40" src="https://i.imgur.com/2imvVKO.jpg"/>
+    </div>
+    <div v-else-if="this.quizcontent.length <= 60">
+      <img id="answersheet60" src="https://i.imgur.com/3ytdswn.jpg"/>
+    </div>
+    <div v-else>
+      <img id="answersheet100" src="https://i.imgur.com/Gk5bdab.jpg"/>
+    </div>
     <div v-if="list" ref="content" v-html="list.HeaderContent" />
     <div style="margin-bottom: 10px">
       <span style="border-style: solid; margin: 3px; padding: 3px; ">Quiz Code: {{quizcode}}</span>
@@ -52,14 +63,12 @@
             }
         },
         created() {
-             this.loadingScreen(),
             this.fetchDataExam(),
             this.fetchDataTemplate(),
             this.quizcode = this.$store.state.quizcode;
+            this.loadingScreen()
+
         },
-        // mounted() {
-        //     this.fetchDataContent()
-        // },
         beforeUpdate() {
             this.fetchDataContent()
         },
@@ -73,9 +82,10 @@
             loadingScreen(){
                 setTimeout(() => {
                     this.fullscreenLoading = false;
-                    this.$nextTick(() => {
-                        window.print()
-                    })
+
+                    // this.$nextTick(() => {
+                    //     window.print()
+                    // })
                 }, 10000)
 
             },

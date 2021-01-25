@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/quiz_management.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/quiz_management.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/quizgenerate/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/template/download.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/template/download.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -93,11 +94,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="build:prod" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/frontend/package.json" />
       <command value="run" />
       <scripts>
-        <script value="build:prod" />
+        <script value="build" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -157,17 +158,17 @@
       <item itemvalue="npm.start-server" />
       <item itemvalue="npm.start-serve" />
       <item itemvalue="npm.deploy" />
-      <item itemvalue="npm.build:prod" />
       <item itemvalue="npm.run" />
       <item itemvalue="npm.genAPIDoc" />
+      <item itemvalue="npm.build" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.run" />
         <item itemvalue="npm.start-serve" />
+        <item itemvalue="npm.run" />
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.genAPIDoc" />
         <item itemvalue="npm.deploy" />
-        <item itemvalue="npm.build:prod" />
       </list>
     </recent_temporary>
   </component>
@@ -278,14 +279,12 @@
       <workItem from="1609737782303" duration="4587000" />
       <workItem from="1609817700279" duration="69000" />
       <workItem from="1609818567278" duration="1619000" />
-      <workItem from="1609829823449" duration="1283000" />
-    </task>
-    <task id="LOCAL-00013" summary="add quizcontent">
-      <created>1601436224143</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1601436224143</updated>
+      <workItem from="1609829823449" duration="1331000" />
+      <workItem from="1609849773793" duration="397000" />
+      <workItem from="1609850200861" duration="4000" />
+      <workItem from="1609914465566" duration="626000" />
+      <workItem from="1611025210272" duration="620000" />
+      <workItem from="1611580864502" duration="6007000" />
     </task>
     <task id="LOCAL-00014" summary="add quizcontent">
       <created>1601436515878</created>
@@ -623,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609743492799</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="edit loading">
+      <created>1609831136179</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1609831136179</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,7 +653,6 @@
       <path value="$PROJECT_DIR$/Frontend/vue-admin-template" />
       <path value="$PROJECT_DIR$/Frontend" />
     </ignored-roots>
-    <MESSAGE value="edit sql query MATCH AGAINST" />
     <MESSAGE value="edit query" />
     <MESSAGE value="dung add random question query in backend" />
     <MESSAGE value="edit view and icons" />
@@ -672,7 +677,8 @@
     <MESSAGE value="edit download page" />
     <MESSAGE value="edit" />
     <MESSAGE value="fix export" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix export" />
+    <MESSAGE value="edit loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit loading" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
