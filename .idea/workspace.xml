@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7e3743ff-736d-4640-9ee0-5fed9108bf8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/BoxCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/PieChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/PieChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/LineChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/LineChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/components/TodoList/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/components/TodoList/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/dashboard/index.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -284,14 +284,7 @@
       <workItem from="1609850200861" duration="4000" />
       <workItem from="1609914465566" duration="626000" />
       <workItem from="1611025210272" duration="620000" />
-      <workItem from="1611580864502" duration="6982000" />
-    </task>
-    <task id="LOCAL-00015" summary="dung edit db">
-      <created>1601443580676</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1601443580676</updated>
+      <workItem from="1611580864502" duration="7330000" />
     </task>
     <task id="LOCAL-00016" summary="dung refactor code + name source">
       <created>1601529516193</created>
@@ -629,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611592071304</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="dung edit loading">
+      <created>1611593047323</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1611593047324</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

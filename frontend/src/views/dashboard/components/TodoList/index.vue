@@ -55,8 +55,6 @@
         {text: 'Answer', done: true},
         {text: 'Question', done: true},
         {text: 'Config', done: true},
-        {text: 'Axios', done: true},
-        {text: 'User', done: true}
     ]
     export default {
         components: {Todo},
