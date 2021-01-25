@@ -8,19 +8,19 @@
       <mallki class-name="mallki-text" text="quiz management" href="https://github.com/thdung002/quizmanagement" />
       <div style="padding-top:35px;" class="progress-item">
         <span>Vue</span>
-        <el-progress :percentage="32.4" />
+        <el-progress :percentage="50.5" />
       </div>
       <div class="progress-item">
         <span>JavaScript</span>
-        <el-progress :percentage="65.4" />
+        <el-progress :percentage="47.1" />
       </div>
       <div class="progress-item">
         <span>SCSS</span>
-        <el-progress :percentage="1.8" />
+        <el-progress :percentage="2.2" />
       </div>
       <div class="progress-item">
         <span>Other</span>
-        <el-progress :percentage="0.4" />
+        <el-progress :percentage="0.2" />
       </div>
     </div>
   </el-card>
